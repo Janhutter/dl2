@@ -1,0 +1,15 @@
+numpy
+torch==2.5.0
+torchvision
+
+# git+https://github.com/robustbench/robustbench@v0.1#egg=robustbench
+# git+https://github.com/robustbench/robustbench@v1.1#egg=robustbench
+# https://github.com/RobustBench/robustbench
+
+# extra:
+matplotlib
+torchmetrics
+packaging
+# git+https://github.com/RobustBench/robustbench.git
+iopath
+yacs
