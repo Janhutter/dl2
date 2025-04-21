@@ -38,6 +38,8 @@ def set_logger(cfg):
         "PyTorch Version: torch={}, cuda={}, cudnn={}".format(*version))
     logger.info(cfg)
 
+    return logger
+
 def check_model(model):
     """Check model for compatability with tent."""
     is_training = model.training

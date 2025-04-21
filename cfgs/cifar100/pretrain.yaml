@@ -1,0 +1,43 @@
+SAVE_DIR: ./save/cifar100/bn-wrn-28-10
+DATA_DIR: ./data/cifar100
+RNG_SEED: 1  # we use [1, 17, 36, 91, 511]
+MODEL:
+  ADAPTATION: source
+  ARCH: WRN2810_BN 
+  ADA_PARAM:
+    - bn
+CORRUPTION:
+  DATASET: cifar100
+  NUM_CLASSES: 100
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  SEVERITY:
+    - 5
+    - 4
+    - 3
+    - 2
+    - 1
+  TYPE:
+    - gaussian_noise
+    - shot_noise
+    - impulse_noise
+    - defocus_blur
+    - glass_blur
+    - motion_blur
+    - zoom_blur
+    - snow
+    - frost
+    - fog
+    - brightness
+    - contrast
+    - elastic_transform
+    - pixelate
+    - jpeg_compression
+OPTIM:
+  BATCH_SIZE: 128
+  METHOD: sgd
+  LR: 0.1
+  WD: 0.0005
+  DAMPENING: 0.0
+  NESTEROV: true
+  MOMENTUM: 0.9

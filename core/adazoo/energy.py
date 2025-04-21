@@ -156,6 +156,8 @@ def forward_and_adapt(x, energy_model, optimizer, replay_buffer, sgld_steps, sgl
     n_ch = x.shape[1]
     im_sz = x.shape[2]
     device = x.device
+
+    print("x.shape", x.shape)
     
     if if_cond == 'uncond':
         x_fake, _ = sample_q(energy_model, replay_buffer, 

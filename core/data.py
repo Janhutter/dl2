@@ -6,6 +6,8 @@ from torchvision import datasets, transforms
 from torch.utils import data
 from robustbench.data import load_cifar10c, load_cifar100c, load_imagenetc, load_imagenet3dcc
 from robustbench.data import load_cifar10, load_cifar100
+import sys
+import subprocess
 
 def set_transform(dataset):
     if dataset.lower() == 'cifar10' or dataset.lower() == 'cifar100':
@@ -45,6 +47,29 @@ def set_transform(dataset):
 
 def load_tin200(n_examples, severity=None, data_dir=None, shuffle=False, corruptions=None, transform=None):
     if corruptions is not None:
+        url = "https://zenodo.org/records/2536630/files/Tiny-ImageNet-C.tar"
+        
+        zip_filename = "Tiny-ImageNet-C.tar"
+        file_name = "Tiny-ImageNet-C"
+        zip_path = os.path.join(data_dir, zip_filename)
+        extract_path = os.path.join(data_dir, "Tiny-ImageNet-C")
+
+        os.makedirs(data_dir, exist_ok=True)
+
+        # Download using wget if the zip file doesn't exist
+        if not os.path.exists(zip_path):
+            print(f"Downloading Tiny-ImageNet-C to {zip_path}...")
+            subprocess.run(["wget", url, "-O", zip_path], check=True)
+            print("Download complete.")
+            # print("Zip file already exists, skipping download.")
+
+        # Extract using unzip if the target folder doesn't exist
+        if not os.path.exists(extract_path):
+            print(f"Extracting to {extract_path}...")
+            subprocess.run(["tar", "-xf", zip_path, "-C", data_dir], check=True)
+            print("Extraction complete.")
+            # print("Already extracted, skipping.")
+
         for corruption in corruptions:
             dataset = datasets.ImageFolder(os.path.join(data_dir, 'Tiny-ImageNet-C', corruption, str(severity)), transform=transform)
     else:
@@ -95,8 +120,8 @@ def load_data(data, n_examples=None, severity=None, data_dir=None, shuffle=False
             x_test, y_test = load_tin200(n_examples=n_examples, data_dir=data_dir, transform=transform)
         elif data == 'cifar10c':
             x_test, y_test = load_cifar10c(n_examples, severity, data_dir, shuffle, corruptions)
-        # elif data == 'cifar100c':
-        #     x_test, y_test = load_cifar100c(n_examples, severity, data_dir, shuffle, corruptions)
+        elif data == 'cifar100c':
+            x_test, y_test = load_cifar100c(n_examples, severity, data_dir, shuffle, corruptions)
         elif data == 'tin200c':
             _, transform = set_transform(data)
             x_test, y_test = load_tin200(n_examples=n_examples, severity=severity, data_dir=data_dir, shuffle=shuffle, corruptions=corruptions, transform=transform)
@@ -123,6 +148,13 @@ def load_dataloader(root, dataset, batch_size, if_shuffle, logger=None):
         test_dataset = datasets.MNIST(root=root, train=False, download=True, transform=test_transforms)
     elif dataset.lower() == 'tin200':
         logger.info("using tin200..")
+        # run wget
+        # unzip it
+        if not os.path.exists(os.path.join(root, 'tiny-imagenet-200')):
+            os.makedirs(os.path.join(root), exist_ok=True)
+        if not os.path.exists(os.path.join(root, 'tiny-imagenet-200', 'train')):
+            subprocess.run(["wget", "-P", root, 'http://cs231n.stanford.edu/tiny-imagenet-200.zip'], check=True)
+            subprocess.run(["unzip", os.path.join(root, 'tiny-imagenet-200.zip'), "-d", root], check=True)
         train_dataset = datasets.ImageFolder(os.path.join(root, 'tiny-imagenet-200', 'train'), transform=train_transforms)
         test_dataset = datasets.ImageFolder(os.path.join(root, 'tiny-imagenet-200', 'val'), transform=test_transforms)
     elif 'pacs' in dataset.lower():

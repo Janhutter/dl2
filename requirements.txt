@@ -13,3 +13,5 @@ packaging
 # git+https://github.com/RobustBench/robustbench.git
 iopath
 yacs
+
+tqdm

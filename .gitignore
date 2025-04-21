@@ -23,3 +23,5 @@ experiments/
 output*/
 save*/
 .others/
+
+slurm*

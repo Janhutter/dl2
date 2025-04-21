@@ -1,0 +1,441 @@
+[25/04/20 15:49:10] [utils.py:   37]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/04/20 15:49:10] [utils.py:   39]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: ./data/cifar10
+DESC: 
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: tent_bn_adam-1-0.001-200_250420-154910.txt
+LOG_TIME: 250420-154910
+MODEL:
+  ADAPTATION: tent
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_BN
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 200
+  BETA: 0.9
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 17
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+/home/scur2578/.local/lib/python3.9/site-packages/robustbench/utils.py:165: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
+[25/04/20 15:49:12] [main.py:   57]: test-time adaptation: TENT
+[25/04/20 15:49:12] [param.py:   18]: adapting weights of batch-normalization layer
+[25/04/20 15:49:12] [setada.py:   49]: model for adaptation: WideResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(16, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(16, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block2): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 320, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(160, 320, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block3): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 640, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(320, 640, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=640, out_features=10, bias=True)
+)
+[25/04/20 15:49:12] [setada.py:   50]: params for adaptation: ['block1.layer.0.bn1.weight', 'block1.layer.0.bn1.bias', 'block1.layer.0.bn2.weight', 'block1.layer.0.bn2.bias', 'block1.layer.1.bn1.weight', 'block1.layer.1.bn1.bias', 'block1.layer.1.bn2.weight', 'block1.layer.1.bn2.bias', 'block1.layer.2.bn1.weight', 'block1.layer.2.bn1.bias', 'block1.layer.2.bn2.weight', 'block1.layer.2.bn2.bias', 'block1.layer.3.bn1.weight', 'block1.layer.3.bn1.bias', 'block1.layer.3.bn2.weight', 'block1.layer.3.bn2.bias', 'block2.layer.0.bn1.weight', 'block2.layer.0.bn1.bias', 'block2.layer.0.bn2.weight', 'block2.layer.0.bn2.bias', 'block2.layer.1.bn1.weight', 'block2.layer.1.bn1.bias', 'block2.layer.1.bn2.weight', 'block2.layer.1.bn2.bias', 'block2.layer.2.bn1.weight', 'block2.layer.2.bn1.bias', 'block2.layer.2.bn2.weight', 'block2.layer.2.bn2.bias', 'block2.layer.3.bn1.weight', 'block2.layer.3.bn1.bias', 'block2.layer.3.bn2.weight', 'block2.layer.3.bn2.bias', 'block3.layer.0.bn1.weight', 'block3.layer.0.bn1.bias', 'block3.layer.0.bn2.weight', 'block3.layer.0.bn2.bias', 'block3.layer.1.bn1.weight', 'block3.layer.1.bn1.bias', 'block3.layer.1.bn2.weight', 'block3.layer.1.bn2.bias', 'block3.layer.2.bn1.weight', 'block3.layer.2.bn1.bias', 'block3.layer.2.bn2.weight', 'block3.layer.2.bn2.bias', 'block3.layer.3.bn1.weight', 'block3.layer.3.bn1.bias', 'block3.layer.3.bn2.weight', 'block3.layer.3.bn2.bias', 'bn1.weight', 'bn1.bias']
+[25/04/20 15:49:12] [setada.py:   51]: optimizer for adaptation: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.001
+    maximize: False
+    weight_decay: 0.0
+)
+[25/04/20 15:49:12] [eval.py:   70]: resetting model
+[25/04/20 15:49:16] [eval.py:   78]: acc % [gaussian_noise5]: 75.18%
+[25/04/20 15:49:17] [eval.py:   70]: resetting model
+[25/04/20 15:49:20] [eval.py:   78]: acc % [gaussian_noise4]: 77.77%
+[25/04/20 15:49:20] [eval.py:   70]: resetting model
+[25/04/20 15:49:24] [eval.py:   78]: acc % [gaussian_noise3]: 80.22%
+[25/04/20 15:49:24] [eval.py:   70]: resetting model
+[25/04/20 15:49:27] [eval.py:   78]: acc % [gaussian_noise2]: 85.10%
+[25/04/20 15:49:27] [eval.py:   70]: resetting model
+[25/04/20 15:49:31] [eval.py:   78]: acc % [gaussian_noise1]: 89.08%
+[25/04/20 15:49:31] [eval.py:   70]: resetting model
+[25/04/20 15:49:34] [eval.py:   78]: acc % [shot_noise5]: 76.52%
+[25/04/20 15:49:34] [eval.py:   70]: resetting model
+[25/04/20 15:49:38] [eval.py:   78]: acc % [shot_noise4]: 81.60%
+[25/04/20 15:49:38] [eval.py:   70]: resetting model
+[25/04/20 15:49:42] [eval.py:   78]: acc % [shot_noise3]: 82.75%
+[25/04/20 15:49:42] [eval.py:   70]: resetting model
+[25/04/20 15:49:45] [eval.py:   78]: acc % [shot_noise2]: 89.04%
+[25/04/20 15:49:45] [eval.py:   70]: resetting model
+[25/04/20 15:49:49] [eval.py:   78]: acc % [shot_noise1]: 90.71%
+[25/04/20 15:49:49] [eval.py:   70]: resetting model
+[25/04/20 15:49:52] [eval.py:   78]: acc % [impulse_noise5]: 67.01%
+[25/04/20 15:49:52] [eval.py:   70]: resetting model
+[25/04/20 15:49:56] [eval.py:   78]: acc % [impulse_noise4]: 73.95%
+[25/04/20 15:49:56] [eval.py:   70]: resetting model
+[25/04/20 15:49:59] [eval.py:   78]: acc % [impulse_noise3]: 81.40%
+[25/04/20 15:49:59] [eval.py:   70]: resetting model
+[25/04/20 15:50:03] [eval.py:   78]: acc % [impulse_noise2]: 84.99%
+[25/04/20 15:50:03] [eval.py:   70]: resetting model
+[25/04/20 15:50:07] [eval.py:   78]: acc % [impulse_noise1]: 89.59%
+[25/04/20 15:50:07] [eval.py:   70]: resetting model
+[25/04/20 15:50:10] [eval.py:   78]: acc % [defocus_blur5]: 88.04%
+[25/04/20 15:50:10] [eval.py:   70]: resetting model
+[25/04/20 15:50:14] [eval.py:   78]: acc % [defocus_blur4]: 91.74%
+[25/04/20 15:50:14] [eval.py:   70]: resetting model
+[25/04/20 15:50:17] [eval.py:   78]: acc % [defocus_blur3]: 93.44%
+[25/04/20 15:50:17] [eval.py:   70]: resetting model
+[25/04/20 15:50:21] [eval.py:   78]: acc % [defocus_blur2]: 93.81%
+[25/04/20 15:50:21] [eval.py:   70]: resetting model
+[25/04/20 15:50:24] [eval.py:   78]: acc % [defocus_blur1]: 93.97%
+[25/04/20 15:50:24] [eval.py:   70]: resetting model
+[25/04/20 15:50:28] [eval.py:   78]: acc % [glass_blur5]: 68.17%
+[25/04/20 15:50:28] [eval.py:   70]: resetting model
+[25/04/20 15:50:32] [eval.py:   78]: acc % [glass_blur4]: 68.58%
+[25/04/20 15:50:32] [eval.py:   70]: resetting model
+[25/04/20 15:50:35] [eval.py:   78]: acc % [glass_blur3]: 78.49%
+[25/04/20 15:50:35] [eval.py:   70]: resetting model
+[25/04/20 15:50:39] [eval.py:   78]: acc % [glass_blur2]: 78.11%
+[25/04/20 15:50:39] [eval.py:   70]: resetting model
+[25/04/20 15:50:42] [eval.py:   78]: acc % [glass_blur1]: 78.85%
+[25/04/20 15:50:42] [eval.py:   70]: resetting model
+[25/04/20 15:50:46] [eval.py:   78]: acc % [motion_blur5]: 86.36%
+[25/04/20 15:50:46] [eval.py:   70]: resetting model
+[25/04/20 15:50:50] [eval.py:   78]: acc % [motion_blur4]: 88.68%
+[25/04/20 15:50:50] [eval.py:   70]: resetting model
+[25/04/20 15:50:53] [eval.py:   78]: acc % [motion_blur3]: 88.93%
+[25/04/20 15:50:53] [eval.py:   70]: resetting model
+[25/04/20 15:50:57] [eval.py:   78]: acc % [motion_blur2]: 90.45%
+[25/04/20 15:50:57] [eval.py:   70]: resetting model
+[25/04/20 15:51:00] [eval.py:   78]: acc % [motion_blur1]: 92.41%
+[25/04/20 15:51:00] [eval.py:   70]: resetting model
+[25/04/20 15:51:04] [eval.py:   78]: acc % [zoom_blur5]: 89.21%
+[25/04/20 15:51:04] [eval.py:   70]: resetting model
+[25/04/20 15:51:07] [eval.py:   78]: acc % [zoom_blur4]: 90.81%
+[25/04/20 15:51:07] [eval.py:   70]: resetting model
+[25/04/20 15:51:11] [eval.py:   78]: acc % [zoom_blur3]: 91.94%
+[25/04/20 15:51:11] [eval.py:   70]: resetting model
+[25/04/20 15:51:15] [eval.py:   78]: acc % [zoom_blur2]: 92.77%
+[25/04/20 15:51:15] [eval.py:   70]: resetting model
+[25/04/20 15:51:18] [eval.py:   78]: acc % [zoom_blur1]: 92.57%
+[25/04/20 15:51:18] [eval.py:   70]: resetting model
+[25/04/20 15:51:22] [eval.py:   78]: acc % [snow5]: 84.08%
+[25/04/20 15:51:22] [eval.py:   70]: resetting model
+[25/04/20 15:51:25] [eval.py:   78]: acc % [snow4]: 84.63%
+[25/04/20 15:51:25] [eval.py:   70]: resetting model
+[25/04/20 15:51:29] [eval.py:   78]: acc % [snow3]: 87.22%
+[25/04/20 15:51:29] [eval.py:   70]: resetting model
+[25/04/20 15:51:33] [eval.py:   78]: acc % [snow2]: 87.23%
+[25/04/20 15:51:33] [eval.py:   70]: resetting model
+[25/04/20 15:51:36] [eval.py:   78]: acc % [snow1]: 91.39%
+[25/04/20 15:51:36] [eval.py:   70]: resetting model
+[25/04/20 15:51:40] [eval.py:   78]: acc % [frost5]: 83.81%
+[25/04/20 15:51:40] [eval.py:   70]: resetting model
+[25/04/20 15:51:43] [eval.py:   78]: acc % [frost4]: 86.53%
+[25/04/20 15:51:43] [eval.py:   70]: resetting model
+[25/04/20 15:51:47] [eval.py:   78]: acc % [frost3]: 86.75%
+[25/04/20 15:51:47] [eval.py:   70]: resetting model
+[25/04/20 15:51:50] [eval.py:   78]: acc % [frost2]: 89.34%
+[25/04/20 15:51:50] [eval.py:   70]: resetting model
+[25/04/20 15:51:54] [eval.py:   78]: acc % [frost1]: 91.99%
+[25/04/20 15:51:54] [eval.py:   70]: resetting model
+[25/04/20 15:51:58] [eval.py:   78]: acc % [fog5]: 86.30%
+[25/04/20 15:51:58] [eval.py:   70]: resetting model
+[25/04/20 15:52:01] [eval.py:   78]: acc % [fog4]: 91.51%
+[25/04/20 15:52:01] [eval.py:   70]: resetting model
+[25/04/20 15:52:05] [eval.py:   78]: acc % [fog3]: 93.17%
+[25/04/20 15:52:05] [eval.py:   70]: resetting model
+[25/04/20 15:52:08] [eval.py:   78]: acc % [fog2]: 93.56%
+[25/04/20 15:52:08] [eval.py:   70]: resetting model
+[25/04/20 15:52:12] [eval.py:   78]: acc % [fog1]: 93.98%
+[25/04/20 15:52:12] [eval.py:   70]: resetting model
+[25/04/20 15:52:15] [eval.py:   78]: acc % [brightness5]: 92.12%
+[25/04/20 15:52:15] [eval.py:   70]: resetting model
+[25/04/20 15:52:19] [eval.py:   78]: acc % [brightness4]: 93.07%
+[25/04/20 15:52:19] [eval.py:   70]: resetting model
+[25/04/20 15:52:23] [eval.py:   78]: acc % [brightness3]: 93.25%
+[25/04/20 15:52:23] [eval.py:   70]: resetting model
+[25/04/20 15:52:26] [eval.py:   78]: acc % [brightness2]: 93.30%
+[25/04/20 15:52:26] [eval.py:   70]: resetting model
+[25/04/20 15:52:30] [eval.py:   78]: acc % [brightness1]: 93.60%
+[25/04/20 15:52:30] [eval.py:   70]: resetting model
+[25/04/20 15:52:33] [eval.py:   78]: acc % [contrast5]: 87.84%
+[25/04/20 15:52:33] [eval.py:   70]: resetting model
+[25/04/20 15:52:37] [eval.py:   78]: acc % [contrast4]: 91.93%
+[25/04/20 15:52:37] [eval.py:   70]: resetting model
+[25/04/20 15:52:40] [eval.py:   78]: acc % [contrast3]: 93.08%
+[25/04/20 15:52:40] [eval.py:   70]: resetting model
+[25/04/20 15:52:44] [eval.py:   78]: acc % [contrast2]: 93.37%
+[25/04/20 15:52:44] [eval.py:   70]: resetting model
+[25/04/20 15:52:48] [eval.py:   78]: acc % [contrast1]: 93.77%
+[25/04/20 15:52:48] [eval.py:   70]: resetting model
+[25/04/20 15:52:51] [eval.py:   78]: acc % [elastic_transform5]: 78.00%
+[25/04/20 15:52:51] [eval.py:   70]: resetting model
+[25/04/20 15:52:55] [eval.py:   78]: acc % [elastic_transform4]: 85.26%
+[25/04/20 15:52:55] [eval.py:   70]: resetting model
+[25/04/20 15:52:58] [eval.py:   78]: acc % [elastic_transform3]: 90.53%
+[25/04/20 15:52:58] [eval.py:   70]: resetting model
+[25/04/20 15:53:02] [eval.py:   78]: acc % [elastic_transform2]: 91.66%
+[25/04/20 15:53:02] [eval.py:   70]: resetting model
+[25/04/20 15:53:05] [eval.py:   78]: acc % [elastic_transform1]: 91.35%
+[25/04/20 15:53:05] [eval.py:   70]: resetting model
+[25/04/20 15:53:09] [eval.py:   78]: acc % [pixelate5]: 82.74%
+[25/04/20 15:53:09] [eval.py:   70]: resetting model
+[25/04/20 15:53:13] [eval.py:   78]: acc % [pixelate4]: 87.64%
+[25/04/20 15:53:13] [eval.py:   70]: resetting model
+[25/04/20 15:53:16] [eval.py:   78]: acc % [pixelate3]: 90.63%
+[25/04/20 15:53:16] [eval.py:   70]: resetting model
+[25/04/20 15:53:20] [eval.py:   78]: acc % [pixelate2]: 91.45%
+[25/04/20 15:53:20] [eval.py:   70]: resetting model
+[25/04/20 15:53:23] [eval.py:   78]: acc % [pixelate1]: 92.20%
+[25/04/20 15:53:23] [eval.py:   70]: resetting model
+[25/04/20 15:53:27] [eval.py:   78]: acc % [jpeg_compression5]: 75.84%
+[25/04/20 15:53:27] [eval.py:   70]: resetting model
+[25/04/20 15:53:30] [eval.py:   78]: acc % [jpeg_compression4]: 78.42%
+[25/04/20 15:53:30] [eval.py:   70]: resetting model
+[25/04/20 15:53:34] [eval.py:   78]: acc % [jpeg_compression3]: 81.35%
+[25/04/20 15:53:34] [eval.py:   70]: resetting model
+[25/04/20 15:53:38] [eval.py:   78]: acc % [jpeg_compression2]: 82.57%
+[25/04/20 15:53:38] [eval.py:   70]: resetting model
+[25/04/20 15:53:41] [eval.py:   78]: acc % [jpeg_compression1]: 87.43%
+[25/04/20 15:53:41] [eval.py:   84]: 
+                          1        2         3         4         5       avg
+gaussian_noise     0.751800  0.77770  0.802200  0.851000  0.890800  0.814700
+shot_noise         0.765200  0.81600  0.827500  0.890400  0.907100  0.841240
+impulse_noise      0.670100  0.73950  0.814000  0.849900  0.895900  0.793880
+defocus_blur       0.880400  0.91740  0.934400  0.938100  0.939700  0.922000
+glass_blur         0.681700  0.68580  0.784900  0.781100  0.788500  0.744400
+motion_blur        0.863600  0.88680  0.889300  0.904500  0.924100  0.893660
+zoom_blur          0.892100  0.90810  0.919400  0.927700  0.925700  0.914600
+snow               0.840800  0.84630  0.872200  0.872300  0.913900  0.869100
+frost              0.838100  0.86530  0.867500  0.893400  0.919900  0.876840
+fog                0.863000  0.91510  0.931700  0.935600  0.939800  0.917040
+brightness         0.921200  0.93070  0.932500  0.933000  0.936000  0.930680
+contrast           0.878400  0.91930  0.930800  0.933700  0.937700  0.919980
+elastic_transform  0.780000  0.85260  0.905300  0.916600  0.913500  0.873600
+pixelate           0.827400  0.87640  0.906300  0.914500  0.922000  0.889320
+jpeg_compression   0.758400  0.78420  0.813500  0.825700  0.874300  0.811220
+average            0.814147  0.84808  0.875433  0.891167  0.908593  0.867484
+[25/04/20 15:53:41] [eval.py:  125]: resetting model
+[25/04/20 15:53:47] [eval.py:  137]: Test set Accuracy: 0.9383
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+torch.Size([10000, 3, 32, 32]) 10000
+Files already downloaded and verified
+torch.Size([10000, 3, 32, 32]) 10000

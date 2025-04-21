@@ -1,6 +1,6 @@
 SAVE_DIR: ./save/cifar100/bn-wrn-28-10
 DATA_DIR: ./data/cifar100
-RNG_SEED: 1 # we use [1, 17, 36, 91, 511]
+RNG_SEED: 511 # we use [1, 17, 36, 91, 511]
 MODEL:
   ADAPTATION: energy
   ARCH: WRN2810_BN

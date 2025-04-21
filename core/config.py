@@ -237,6 +237,7 @@ def load_cfg_fom_args():
                         help="Config file location")
     parser.add_argument("opts", default=None, nargs=argparse.REMAINDER,
                         help="See conf.py for all options")
+
     if len(sys.argv) == 1:
         parser.print_help()
         sys.exit(1)

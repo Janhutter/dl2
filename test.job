@@ -5,12 +5,12 @@
 #SBATCH --gpus=1                            # number of gpus per node
 #SBATCH --partition=gpu_a100                # partition
 #SBATCH --time=04:00:00                     # total run time limit (HH:MM:SS)
-#SBATCH --output=logs/test_%A.log       # output file
 
+log_file="logs/${1}_${2}_${3}.log"
 source venv/bin/activate
 alias python=~/tea/venv/bin/python
 
-CUDA_VISIBLE_DEVICES=0 
-python main.py --cfg cfgs/cifar100/source.yaml
+CUDA_VISIBLE_DEVICES=0  
+python main.py --cfg cfgs/${1}/${2}.yaml RNG_SEED ${3} &> "$log_file"
 
 # pip install -r requirements.txt
