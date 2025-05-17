@@ -1,5 +1,5 @@
 SAVE_DIR: ./save/cifar100/bn-wrn-28-10
-DATA_DIR: ./data/cifar100
+DATA_DIR: /scratch-shared/tea/cifar100
 MODEL:
   ADAPTATION: eata
   ARCH: WRN2810_BN

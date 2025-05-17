@@ -8,6 +8,7 @@ from autoattack import AutoAttack
 from torchvision.utils import save_image
 
 from core.data import load_data, load_dataloader
+from tqdm import tqdm
 
 # authors did not have code for mce for the normal results
 def calc_mce(pred, y, num_classes=10, bins=10):
@@ -19,6 +20,7 @@ def clean_accuracy(model, x, y, batch_size = 100, logger=None, device = None, ad
         device = x.device
     acc = 0.
     n_batches = math.ceil(x.shape[0] / batch_size)
+
     with torch.no_grad():
         energes_list=[]
         for counter in range(n_batches):
@@ -31,7 +33,7 @@ def clean_accuracy(model, x, y, batch_size = 100, logger=None, device = None, ad
                 output = model(x_curr)
 
             else:
-                output = model(x_curr, if_adapt=if_adapt)
+                output = model(x_curr, if_adapt=if_adapt, if_vis=if_vis)
 
             acc += (output.max(1)[1] == y_curr).float().sum()
         
@@ -41,16 +43,16 @@ def clean_accuracy_loader(model, test_loader, logger=None, device=None, ada=None
     test_loss = 0
     correct = 0
     index = 1
-    total_step = math.ceil(len(test_loader.dataset) / test_loader.batch_size)
+    # total_step = math.ceil(len(test_loader.dataset) / test_loader.batch_size)
     with torch.no_grad():
-        for counter, (data, target) in enumerate(test_loader):
-            logger.info("Test Batch Process: {}/{}".format(index, total_step))
+        for data, target in tqdm(test_loader, mininterval=5, desc="Testing", unit="batch"):
             data, target = data.to(device), target.to(device)
             with torch.no_grad():
                 if ada == 'source':
                     output = model(data)
                 else:
                     output = model(data, if_adapt=if_adapt)
+
             test_loss += F.cross_entropy(output, target).item() 
             pred = output.argmax(dim=1, keepdim=True)  
             correct += pred.eq(target.view_as(pred)).sum().item()
@@ -71,8 +73,8 @@ def evaluate_ood(model, cfg, logger, device):
                 except:
                     logger.warning("not resetting model")
                 x_test, y_test = load_data(cfg.CORRUPTION.DATASET+'c', cfg.CORRUPTION.NUM_EX,
-                                            cfg.CORRUPTION.SEVERITY[s], cfg.DATA_DIR, False,
-                                            [cfg.CORRUPTION.TYPE[c]])
+                                            cfg.CORRUPTION.SEVERITY[s], cfg.DATA_DIR, True,
+                                            [cfg.CORRUPTION.TYPE[c]], model_arch=cfg.MODEL.ARCH)
                 x_test, y_test = x_test.to(device), y_test.to(device)
                 acc = clean_accuracy(model, x_test, y_test, cfg.OPTIM.BATCH_SIZE, logger=logger, ada=cfg.MODEL.ADAPTATION, if_adapt=True)           
                 logger.info(f"acc % [{cfg.CORRUPTION.TYPE[c]}{cfg.CORRUPTION.SEVERITY[s]}]: {acc:.2%}")
@@ -127,7 +129,7 @@ def evaluate_ori(model, cfg, logger, device):
             logger.warning("not resetting model")
 
         if 'cifar' in cfg.CORRUPTION.DATASET:
-            x_test, y_test = load_data(cfg.CORRUPTION.DATASET, n_examples=cfg.CORRUPTION.NUM_EX, data_dir=cfg.DATA_DIR)
+            x_test, y_test = load_data(cfg.CORRUPTION.DATASET, n_examples=cfg.CORRUPTION.NUM_EX, data_dir=cfg.DATA_DIR, model_arch=cfg.MODEL.ARCH)
             x_test, y_test = x_test.to(device), y_test.to(device)
             out = clean_accuracy(model, x_test, y_test, cfg.OPTIM.BATCH_SIZE, logger=logger, ada=cfg.MODEL.ADAPTATION, if_adapt=True, if_vis=False)
             if cfg.MODEL.ADAPTATION == 'energy':

@@ -1,5 +1,5 @@
 SAVE_DIR: ./save/tin200/bn-wrn-28-10
-DATA_DIR: ./data/tin200
+DATA_DIR: /scratch-shared/tea/tin200
 RNG_SEED: 511 # we use [1, 17, 36, 91, 511]
 MODEL:
   ADAPTATION: energy

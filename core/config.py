@@ -18,9 +18,13 @@ from yacs.config import CfgNode as CfgNode
 _C = CfgNode()
 cfg = _C
 
+_C.EARLY_STOP_PATIENCE = 30  # number of epochs to wait before stopping
+_C.EARLY_STOP_BEGIN = 70  # only check if >= this epoch
+# model will not stop before BEGIN + PATIENCE epochs
 
 # ----------------------------- Model options ------------------------------- #
 _C.MODEL = CfgNode()
+
 
 # Check https://github.com/RobustBench/robustbench for available models
 _C.MODEL.ARCH = 'Standard'
@@ -98,6 +102,45 @@ _C.OPTIM.NESTEROV = True
 
 # L2 regularization
 _C.OPTIM.WD = 0.0
+
+_C.OPTIM.CLIP_NORM = False
+
+# ------------------------------- Energy Optimizer options ------------------------- #
+_C.OPTIM_ENERGY = CfgNode()
+
+# Number of updates per batch
+_C.OPTIM_ENERGY.STEPS = 1
+
+# Learning rate
+_C.OPTIM_ENERGY.LR = 1e-3
+
+# Batch size for evaluation (and updates for norm + tent)
+_C.OPTIM_ENERGY.BATCH_SIZE = 128
+
+# Choices: Adam, SGD
+_C.OPTIM_ENERGY.METHOD = 'Adam'
+
+# Beta
+_C.OPTIM_ENERGY.BETA = 0.9
+
+# Momentum
+_C.OPTIM_ENERGY.MOMENTUM = 0.9
+
+# Momentum dampening
+_C.OPTIM_ENERGY.DAMPENING = 0.0
+
+# Nesterov momentum
+_C.OPTIM_ENERGY.NESTEROV = True
+
+# L2 regularization
+_C.OPTIM_ENERGY.WD = 0.0
+
+_C.OPTIM_ENERGY.CLIP_NORM = False
+
+_C.OPTIM.TEST_BATCH_SIZE = 128
+
+_C.OPTIM.LAMBDA_CLS = 1.0
+_C.OPTIM.LAMBDA_ENERGY = 1.0
 
 # ------------------------------- Testing options --------------------------- #
 _C.TEST = CfgNode()

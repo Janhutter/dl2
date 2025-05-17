@@ -5,6 +5,9 @@ import torch.jit
 import torch.nn as nn
 import torch.nn.functional as F
 
+import logging
+logger = logging.getLogger(__name__)
+
 from torchvision.utils import save_image
 from core.param import load_model_and_optimizer, copy_model_and_optimizer
 
@@ -54,16 +57,21 @@ def sample_q(f, replay_buffer, n_steps, sgld_lr, sgld_std, reinit_freq, batch_si
     init_sample, buffer_inds = sample_p_0(reinit_freq=reinit_freq, replay_buffer=replay_buffer, bs=bs, im_sz=im_sz, n_ch=n_ch, device=device ,y=y)
     init_samples = deepcopy(init_sample)
     x_k = torch.autograd.Variable(init_sample, requires_grad=True)
+
     # sgld
     for k in range(n_steps):
         f_prime = torch.autograd.grad(f(x_k, y=y)[0].sum(), [x_k], retain_graph=True)[0]
+        # clip grad
         x_k.data += sgld_lr * f_prime + sgld_std * torch.randn_like(x_k)
+    
     f.train()
     final_samples = x_k.detach()
+
     # update replay buffer
     if len(replay_buffer) > 0:
         replay_buffer[buffer_inds] = final_samples.cpu()
     return final_samples, init_samples.detach()
+
 
 class Energy(nn.Module):
     """Tent adapts a model by entropy minimization during testing.
@@ -95,21 +103,24 @@ class Energy(nn.Module):
         
         self.path=path
         self.logger = logger
+        self.energy_model.logger = logger
 
         # note: if the model is never reset, like for continual adaptation,
         # then skipping the state copy would save memory
         self.model_state, self.optimizer_state = \
             copy_model_and_optimizer(self.energy_model, self.optimizer)
 
-    def forward(self, x, if_adapt=True, counter=None, if_vis=False):
+    def forward(self, x, if_adapt=True, counter=None, if_vis=False, tet=False):
         if self.episodic:
             self.reset()
         
         if if_adapt:
             for i in range(self.steps):
+                # if tet=True, then outputs is (outputs, energy_loss)
                 outputs = forward_and_adapt(x, self.energy_model, self.optimizer, 
                                             self.replay_buffer, self.sgld_steps, self.sgld_lr, self.sgld_std, self.reinit_freq,
-                                            if_cond=self.if_cond, n_classes=self.n_classes)
+                                            if_cond=self.if_cond, n_classes=self.n_classes, tet=tet)
+                
                 if i % 1 == 0 and if_vis:
                     visualize_images(path=self.path, replay_buffer_old=self.replay_buffer_old, replay_buffer=self.replay_buffer, energy_model=self.energy_model, 
                                     sgld_steps=self.sgld_steps, sgld_lr=self.sgld_lr, sgld_std=self.sgld_std, reinit_freq=self.reinit_freq,
@@ -136,7 +147,7 @@ def visualize_images(path, replay_buffer_old, replay_buffer, energy_model,
     y = torch.arange(n_classes).repeat(repeat_times).to(device) 
     x_fake, _ = sample_q(energy_model, replay_buffer, n_steps=sgld_steps, sgld_lr=sgld_lr, sgld_std=sgld_std, reinit_freq=reinit_freq, batch_size=batch_size, im_sz=im_sz, n_ch=n_ch, device=device, y=y)
     images = x_fake.detach().cpu()
-    save_image(images , os.path.join(path, 'sample.png'), padding=2, nrow=num_cols)
+    save_image(images , os.path.join(path, f'sample{str(counter)}-{str(step)}.png'), padding=2, nrow=num_cols)
 
     num_cols=40
     images_init = replay_buffer_old.cpu()
@@ -145,10 +156,10 @@ def visualize_images(path, replay_buffer_old, replay_buffer, energy_model,
     if step == 0:
         save_image(images_init , os.path.join(path, 'buffer_init.png'), padding=2, nrow=num_cols)
     save_image(images , os.path.join(path, 'buffer-'+str(counter)+"-"+str(step)+'.png'), padding=2, nrow=num_cols) # 
-    save_image(images_diff , os.path.join(path, 'buffer_diff.png'), padding=2, nrow=num_cols)
+    save_image(images_diff , os.path.join(path, f'buffer_diff{counter}.png'), padding=2, nrow=num_cols)
 
 @torch.enable_grad()  # ensure grads in possible no grad context for testing
-def forward_and_adapt(x, energy_model, optimizer, replay_buffer, sgld_steps, sgld_lr, sgld_std, reinit_freq, if_cond=False, n_classes=10):
+def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sgld_steps, sgld_lr, sgld_std, reinit_freq, if_cond=False, n_classes=10, tet=False):
     """Forward and adapt model on batch of data.
     Measure entropy of the model prediction, take gradients, and update params.
     """
@@ -156,8 +167,6 @@ def forward_and_adapt(x, energy_model, optimizer, replay_buffer, sgld_steps, sgl
     n_ch = x.shape[1]
     im_sz = x.shape[2]
     device = x.device
-
-    print("x.shape", x.shape)
     
     if if_cond == 'uncond':
         x_fake, _ = sample_q(energy_model, replay_buffer, 
@@ -170,15 +179,27 @@ def forward_and_adapt(x, energy_model, optimizer, replay_buffer, sgld_steps, sgl
                              batch_size=batch_size, im_sz=im_sz, n_ch=n_ch, device=device, y=y)
 
     # forward
-    out_real = energy_model(x)
-    energy_real = out_real[0].mean()
+    optimizer.zero_grad()
+    energy_model.train()
+    out_real = energy_model(x)  # actual forward call
+    # logits_real are the outputs of energy_model.f(x) (= energy_model.classify(x))
+    logsumexp_real, logits_real = out_real
+    energy_real = logsumexp_real.mean()
     energy_fake = energy_model(x_fake)[0].mean()
 
     # adapt
-    loss = (- (energy_real - energy_fake)) 
-    loss.backward()
+    energy_loss = (- (energy_real - energy_fake))  # = Efake - Ereal
+    
+    # could be expensive to print
+    # print(f"{energy_real=}\n{energy_fake=}\n{energy_loss=}\n")
+
+    if tet:
+        return logits_real, energy_loss
+
+    energy_loss.backward()
+    # energy_model.f.clip_gradients()
     optimizer.step()
-    optimizer.zero_grad()
+    # optimizer.zero_grad()  # deze .zero_grad() kan weg?
     outputs = energy_model.classify(x)
 
     return outputs

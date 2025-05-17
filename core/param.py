@@ -59,6 +59,15 @@ def collect_params(model, ada_param=['bn'], logger=None):
                     if np in ['weight', 'bias']:  # weight is scale, bias is shift
                         params.append(p)
                         names.append(f"{nm}.{np}")
+
+    if 'ln' in ada_param:
+        logger.info('adapting weights of layer-normalization layer')
+        for nm, m in model.named_modules():
+            if isinstance(m, nn.LayerNorm) or 'layernorm' in str(m):
+                for np, p in m.named_parameters():
+                    if np in ['weight', 'bias']:
+                        params.append(p)
+                        names.append(f"{nm}.{np}")
     return params, names
 
 
@@ -112,6 +121,13 @@ def configure_model(model, ada_param=None):
         for m in model.modules():
             if isinstance(m, nn.Linear):
                 m.requires_grad_(True)
+
+    if 'ln' in ada_param:
+        for m in model.modules():
+            if isinstance(m, nn.LayerNorm) or 'layernorm' in str(m):
+                for p in m.parameters():
+                    p.requires_grad = True
+
     return model
 
 

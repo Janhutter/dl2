@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --nodes=1                           # node count
+#SBATCH --ntasks=1                          # total number of tasks across all nodes
+#SBATCH --cpus-per-task=1                   # cpu-cores per task (>1 if multi-threaded tasks), 4 is default
+#SBATCH --gpus=1                            # number of gpus per node
+#SBATCH --partition=gpu_a100                # partition
+#SBATCH --time=00:30:00                     # total run time limit (HH:MM:SS)
+#SBATCH --output='logs/visualize_%A.log'
+
+log_file="logs/visualize_${1}_${2}.log"
+source .venv/bin/activate
+alias python=~/tea/.venv/bin/python
+
+CUDA_VISIBLE_DEVICES=0  
+python main_visz.py --cfg cfgs/${1}/${2}.yaml &> "$log_file"

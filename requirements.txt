@@ -15,3 +15,5 @@ iopath
 yacs
 
 tqdm
+google-cloud-storage
+transformers

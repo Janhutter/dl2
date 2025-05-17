@@ -1,5 +1,5 @@
 SAVE_DIR: ./save/tin200/bn-wrn-28-10
-DATA_DIR: ./data/tin200
+DATA_DIR: /scratch-shared/tea/tin200
 MODEL:
   ADAPTATION: norm
   ARCH: WRN2810_BN
@@ -8,7 +8,7 @@ MODEL:
 CORRUPTION:
   DATASET: tin200
   NUM_CLASSES: 200
-  IMG_SIZE: 64
+  IMG_SIZE: 32
   NUM_CHANNEL: 3
   SEVERITY:
     - 5

@@ -11,7 +11,10 @@ def res(models, datasets, entries=[['1'], ['1', '2', '3', '4', '5']]):
         acc_5_baseline = []
         acc_all_baseline = []
         for seed in [1, 17, 36, 91, 511]:
-            out = read_output(f'important_outputs/{dataset}_source_{seed}.log')
+            if dataset == 'tin200':
+                out = read_output(f'logs/{dataset}_source_{seed}_new.log')
+            else:
+                out = read_output(f'important_outputs/{dataset}_source_{seed}.log')
             if len(out) == 0:
                 print(f'No output for {dataset}_source_{seed}')
             out = ''.join(out)
@@ -25,7 +28,10 @@ def res(models, datasets, entries=[['1'], ['1', '2', '3', '4', '5']]):
         for model in models:
             outs = []
             for seed in [1, 17, 36, 91, 511]:
-                out = read_output(f'important_outputs/{dataset}_{model}_{seed}.log')
+                if dataset == 'tin200':
+                    out = read_output(f'logs/{dataset}_{model}_{seed}_new.log')
+                else:
+                    out = read_output(f'important_outputs/{dataset}_{model}_{seed}.log')
                 if len(out) == 0:
                     print(f'No output for {dataset}_{model}_{seed}')
                 outs.append(out)

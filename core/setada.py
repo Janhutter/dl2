@@ -58,7 +58,7 @@ def setup_eata(model, cfg, logger):
             dataset = "-".join([cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH])
         else:
             dataset = cfg.CORRUPTION.DATASET
-        _, fisher_dataset, _, fisher_loader = load_dataloader(root=cfg.DATA_DIR, dataset=dataset, batch_size=cfg.OPTIM.BATCH_SIZE, if_shuffle=False, logger=logger)
+        _, fisher_dataset, _, fisher_loader = load_dataloader(root=cfg.DATA_DIR, dataset=dataset, batch_size=cfg.OPTIM.BATCH_SIZE, if_shuffle=False, logger=logger, model_arch=cfg.MODEL.ARCH)
         # fisher_dataset.set_dataset_size(cfg.EATA.FISHER_SIZE)
         model = configure_model(model, ada_param=cfg.MODEL.ADA_PARAM)
         params, param_names = collect_params(model, 
@@ -112,7 +112,7 @@ def setup_eata(model, cfg, logger):
     logger.info(f"optimizer for adaptation: %s", optimizer)
     return eta_model
 
-def setup_energy(model, cfg, logger):
+def setup_energy(model, cfg, logger, setup_optim_fn=setup_optimizer):
     """Set up TEA adaptation.
     """
     model = configure_model(model, 
@@ -120,7 +120,7 @@ def setup_energy(model, cfg, logger):
     params, param_names = collect_params(model, 
                                          ada_param=cfg.MODEL.ADA_PARAM,
                                          logger=logger)
-    optimizer = setup_optimizer(params, cfg, logger)
+    optimizer = setup_optim_fn(params, cfg, logger)
     energy_model = energy.Energy(model, optimizer,
                            steps=cfg.OPTIM.STEPS,
                            episodic=cfg.MODEL.EPISODIC,
@@ -139,6 +139,7 @@ def setup_energy(model, cfg, logger):
     logger.info(f"params for adaptation: %s", param_names)
     logger.info(f"optimizer for adaptation: %s", optimizer)
     return energy_model
+
 
 def setup_sar(model, cfg, logger):
     """Set up SAR adaptation.

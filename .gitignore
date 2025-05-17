@@ -1,6 +1,9 @@
 logs/
-venv/
+.venv/
 data/
+ttt_imagenet_release/
+ttt_cifar_release
+
 
 ## General
 

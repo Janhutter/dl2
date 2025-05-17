@@ -31,6 +31,26 @@ def setup_optimizer(params, cfg, logger):
         else:
             raise NotImplementedError
 
+def setup_energy_optimizer(params, cfg, logger):
+    if cfg.MODEL.ADAPTATION.lower() == 'sar':
+        base_optimizer = optim.SGD
+        return SAM(params, base_optimizer, lr=cfg.OPTIM_ENERGY.LR, momentum=0.9)
+    else:
+        if cfg.OPTIM_ENERGY.METHOD.lower() == 'adam':
+            return optim.Adam(params,
+                        lr=cfg.OPTIM_ENERGY.LR,
+                        betas=(cfg.OPTIM_ENERGY.BETA, 0.999),
+                        weight_decay=cfg.OPTIM_ENERGY.WD)
+        elif cfg.OPTIM_ENERGY.METHOD.lower() == 'sgd':
+            return optim.SGD(params,
+                    lr=cfg.OPTIM_ENERGY.LR,
+                    momentum=cfg.OPTIM_ENERGY.MOMENTUM,
+                    dampening=cfg.OPTIM_ENERGY.DAMPENING,
+                    weight_decay=cfg.OPTIM_ENERGY.WD,
+                    nesterov=cfg.OPTIM_ENERGY.NESTEROV)
+        else:
+            raise NotImplementedError
+
 
 """
 from https://github.com/davda54/sam

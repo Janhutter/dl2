@@ -11,8 +11,10 @@ from core.eval import evaluate_ori, evaluate_ood
 from core.calibration import calibration_ori
 from core.config import cfg, load_cfg_fom_args
 from core.utils import set_seed, set_logger
-from core.model import build_model_wrn2810bn, build_model_res18bn, build_model_res50gn
+from core.model import build_model_wrn2810bn, build_model_res18bn, build_model_res50gn, build_vit
 from core.setada import *
+from core.checkpoint import load_checkpoint
+
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +43,10 @@ def main():
     elif 'GN' in cfg.MODEL.ARCH:
         group_num=int(cfg.MODEL.ARCH.split("_")[-1])
         base_model = build_model_res50gn(group_num, cfg.CORRUPTION.NUM_CLASSES).to(device)
+        ckpt = torch.load(os.path.join(cfg.CKPT_DIR ,'{}/{}.pth'.format(cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)))
+        base_model.load_state_dict(ckpt['state_dict'])
+    elif cfg.MODEL.ARCH == 'VIT_16':
+        base_model = build_vit(num_classes=cfg.CORRUPTION.NUM_CLASSES, dropout_rate=0).to(device)
         ckpt = torch.load(os.path.join(cfg.CKPT_DIR ,'{}/{}.pth'.format(cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)))
         base_model.load_state_dict(ckpt['state_dict'])
     else:
