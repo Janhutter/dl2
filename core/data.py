@@ -11,7 +11,7 @@ import subprocess
 from torchvision.transforms.functional import to_pil_image
 
 def set_transform(dataset, model_arch=None):
-    if model_arch == 'VIT_16':
+    if model_arch and 'VIT_16' in model_arch:
         transform_train = T.Compose([ 
         T.Resize(224), 
         T.RandomCrop(224, padding=4), 

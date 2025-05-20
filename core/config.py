@@ -142,6 +142,11 @@ _C.OPTIM.TEST_BATCH_SIZE = 128
 _C.OPTIM.LAMBDA_CLS = 1.0
 _C.OPTIM.LAMBDA_ENERGY = 1.0
 
+_C.OPTIM.SCHEDULER_MILESTONES = [60, 120, 160]
+_C.OPTIM.SCHEDULER_GAMMA = 0.2
+_C.OPTIM.N_EPOCHS = 200
+
+
 # ------------------------------- Testing options --------------------------- #
 _C.TEST = CfgNode()
 

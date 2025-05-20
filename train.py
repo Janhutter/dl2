@@ -80,7 +80,7 @@ def train(cfg, model, device):
         save_every = 20
         scheduler = lr_scheduler.MultiStepLR(
             optimizer,
-            milestones=[60, 120, 160],
+            milestones=[60*len(train_loader), 120*len(train_loader), 160*len(train_loader)],
             gamma=0.2,
         )
 

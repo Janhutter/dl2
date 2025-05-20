@@ -1,5 +1,5 @@
 SAVE_DIR: ./save/cifar10/bn-wrn-28-10
-DATA_DIR: /scratch-shared/tea/cifar10
+DATA_DIR: /scratch-shared/tea2/cifar10
 RNG_SEED: 1 # we use [1, 17, 36, 91, 511]
 MODEL:
   ADAPTATION: energy
@@ -8,7 +8,7 @@ MODEL:
     - bn
 EBM:
   UNCOND: uncond
-  STEPS: 20
+  STEPS: 40
   SGLD_LR: 0.1
   SGLD_STD: 0.01
   BUFFER_SIZE: 10000

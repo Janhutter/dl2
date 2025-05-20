@@ -62,6 +62,7 @@ def sample_q(f, replay_buffer, n_steps, sgld_lr, sgld_std, reinit_freq, batch_si
     for k in range(n_steps):
         f_prime = torch.autograd.grad(f(x_k, y=y)[0].sum(), [x_k], retain_graph=True)[0]
         # clip grad
+        # x_k.data -= sgld_lr * f_prime + sgld_std * torch.randn_like(x_k)
         x_k.data += sgld_lr * f_prime + sgld_std * torch.randn_like(x_k)
     
     f.train()
@@ -187,11 +188,14 @@ def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sg
     energy_real = logsumexp_real.mean()
     energy_fake = energy_model(x_fake)[0].mean()
 
-    # adapt
+    # adapt (original)
     energy_loss = (- (energy_real - energy_fake))  # = Efake - Ereal
+
+    # # alternative
+    # energy_loss = (- (energy_fake - energy_real)) # = Ereal - Efake
     
     # could be expensive to print
-    # print(f"{energy_real=}\n{energy_fake=}\n{energy_loss=}\n")
+    # logger.warning(f"\n{energy_real=}\n{energy_fake=}\n{energy_loss=}\n")
 
     if tet:
         return logits_real, energy_loss

@@ -1,5 +1,5 @@
 SAVE_DIR: ./save/cifar100/vit_16
-DATA_DIR: /scratch-shared/tea/cifar100
+DATA_DIR: /scratch-shared/tea2/cifar100
 RNG_SEED: 511 # we use [1, 17, 36, 91, 511]
 MODEL:
   ADAPTATION: energy
@@ -25,20 +25,6 @@ CORRUPTION:
     - 2
     - 1
   TYPE:
-    - gaussian_noise
-    - shot_noise
-    - impulse_noise
-    - defocus_blur
-    - glass_blur
-    - motion_blur
-    - zoom_blur
-    - snow
-    - frost
-    - fog
-    - brightness
-    - contrast
-    - elastic_transform
-    - pixelate
     - jpeg_compression
 OPTIM:
   BATCH_SIZE: 200

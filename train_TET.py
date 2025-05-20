@@ -22,7 +22,7 @@ from torch.optim import lr_scheduler
 from core.checkpoint import load_checkpoint
 from transformers import get_cosine_schedule_with_warmup
 
-from ttt_cifar_release.utils.rotation import rotate_batch
+# from ttt_cifar_release.utils.rotation import rotate_batch
 from core.adazoo.energy import init_random, sample_q, EnergyModel
 from core.param import collect_params
 
@@ -42,6 +42,8 @@ def main():
     base_model = None
     if 'WRN2810' in cfg.MODEL.ARCH:
         base_model = build_model_wrn2810bn(cfg.CORRUPTION.NUM_CLASSES).to(device)
+    elif 'VIT' in cfg.MODEL.ARCH:
+        base_model = build_vit(num_classes=cfg.CORRUPTION.NUM_CLASSES, dropout_rate=0).to(device)
     else:
         raise NotImplementedError
     assert base_model is not None, "Base model should be initialized before training."
@@ -67,7 +69,6 @@ def make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses
     ax1.plot(epochs, train_cls_losses, color='tab:orange', label='Classifier loss')
     ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
     ax1.tick_params(axis='y', labelcolor=color)
-    ax1.legend()
     # add grid lines in the plot
     ax1.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.7)
 
@@ -80,6 +81,7 @@ def make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses
     ax2.plot(x_points, y_points, color=color, label='Eval accuracy')
     ax2.tick_params(axis='y', labelcolor=color)
 
+    ax1.legend()
     fig.tight_layout()
     # multiply dpi by 2
     fig.set_dpi(200)
@@ -95,26 +97,37 @@ def train(cfg, base_model, device):
     # torch.autograd.set_detect_anomaly(True)
     
     logger = set_logger(cfg, silent=True)
-    net = setup_energy(base_model, cfg, logger, setup_energy_optimizer)
 
     train_dataset, test_dataset, train_loader, test_loader = load_dataloader(
           root=cfg.DATA_DIR, dataset=cfg.CORRUPTION.DATASET, batch_size=cfg.OPTIM.BATCH_SIZE, 
-          if_shuffle=True, logger=logger, test_batch_size=cfg.OPTIM.TEST_BATCH_SIZE)
+          if_shuffle=True, logger=logger, test_batch_size=cfg.OPTIM.TEST_BATCH_SIZE, model_arch=cfg.MODEL.ARCH)
+
+    if 'vit' in cfg.MODEL.ARCH.lower():
+        net = setup_energy(base_model, cfg, logger, setup_energy_optimizer)
+        cls_params = net.parameters()
+        cls_optimizer = setup_optimizer(cls_params, cfg, logger)
+        eval_every = 1
+
+        cls_scheduler = get_cosine_schedule_with_warmup(
+            cls_optimizer,
+            num_warmup_steps=500,
+            num_training_steps=cfg.OPTIM.N_EPOCHS * len(train_loader),
+        )
+    else:
+        net = setup_energy(base_model, cfg, logger, setup_energy_optimizer)
+        cls_params = net.parameters()
+        cls_optimizer = setup_optimizer(cls_params, cfg, logger)
+
+        eval_every = 5
+        cls_scheduler = lr_scheduler.MultiStepLR(
+            cls_optimizer,
+            milestones=[m * len(train_loader) for m in cfg.OPTIM.SCHEDULER_MILESTONES],
+            gamma=cfg.OPTIM.SCHEDULER_GAMMA,
+        )
     
     # for TET, we want to update all params for cls loss, but only BN for energy loss
-    cls_params = net.parameters()
-
-    cls_optimizer = setup_optimizer(cls_params, cfg, logger)
-    energy_optimizer = net.optimizer
-
-    save_every = 5
-    epochs = 200
-    cls_scheduler = lr_scheduler.MultiStepLR(
-        cls_optimizer,
-        milestones=[60, 120, 160],
-        gamma=0.2,
-    )
-    # possibly also use energy_scheduler?
+   
+    # energy_optimizer = net.optimizer
 
     epochs_no_improvement = 0
     best_eval_acc = float('-inf')
@@ -122,7 +135,7 @@ def train(cfg, base_model, device):
     train_energy_losses = []
     train_cls_losses = []
     eval_accs = []
-    for epoch in tqdm(range(1, epochs + 1), desc="Training", unit="epoch", mininterval=5):
+    for epoch in tqdm(range(1, cfg.OPTIM.N_EPOCHS + 1), desc="Training", unit="epoch", mininterval=5):
         # train_base(epoch, model, train_loader, optimizer, scheduler, cfg)
 
         net.train()
@@ -141,6 +154,7 @@ def train(cfg, base_model, device):
             final_loss = cfg.OPTIM.LAMBDA_CLS * cls_loss + cfg.OPTIM.LAMBDA_ENERGY * energy_loss
             final_loss.backward()
             cls_optimizer.step()
+            cls_scheduler.step()
 
             # cls_loss.backward(retain_graph=True)
             # energy_loss.backward()
@@ -155,23 +169,25 @@ def train(cfg, base_model, device):
         train_total_losses.append(epoch_total_loss.item() / len(train_loader))
         train_energy_losses.append(epoch_energy_loss.item() / len(train_loader))
         train_cls_losses.append(epoch_cls_loss.item() / len(train_loader))
-        cls_scheduler.step()
+
 
         # eval and saving
-        if epoch % save_every == 0:
-            net.eval()
-            eval_acc = eval_without_reset(net, cfg, logger, device, test_loader)
-            eval_accs.append(eval_acc)
-            net.train()
+        if epoch % eval_every == 0:
             if not os.path.exists('ckpt'):
                 os.makedirs('ckpt')
             if not os.path.exists(os.path.join('ckpt', cfg.CORRUPTION.DATASET)):
                 os.makedirs(os.path.join('ckpt', cfg.CORRUPTION.DATASET))
             if not os.path.exists(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)):
                 os.makedirs(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH))
-
+            
             torch.save(net.state_dict(), os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
-        
+            net.eval()
+            eval_acc = eval_without_reset(net, cfg, logger, device, test_loader)
+            eval_accs.append(eval_acc)
+            ckpt = torch.load(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
+            net.load_state_dict(ckpt)
+            net.train()
+
             # early stopping logic
             if epoch >= cfg.EARLY_STOP_BEGIN:
                 # check if model improved
@@ -180,7 +196,7 @@ def train(cfg, base_model, device):
                     best_eval_acc = eval_acc
 
                 else:
-                    epochs_no_improvement += save_every
+                    epochs_no_improvement += eval_every
 
                     logger.info(f"Model did not improve (eval acc: {eval_acc}, best: {best_eval_acc},"
                         f"{epochs_no_improvement}/{cfg.EARLY_STOP_PATIENCE} in a row)")
@@ -191,13 +207,13 @@ def train(cfg, base_model, device):
             
             # make intermediate plot
             try:
-                make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=save_every)
+                make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
             except Exception:
                 logging.exception(f"Error while plotting, {train_total_losses=}, {train_cls_losses=}, {train_energy_losses=}, {eval_accs=}")
     
     # make final plot
     try:
-        make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=save_every)
+        make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
     except Exception:
         logging.exception(f"Error while plotting, {train_total_losses=}, {train_cls_losses=}, {train_energy_losses=}, {eval_accs=}")
     

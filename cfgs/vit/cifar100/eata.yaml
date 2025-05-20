@@ -1,5 +1,5 @@
 SAVE_DIR: ./save/cifar100/vit_16
-DATA_DIR: /scratch-shared/tea/cifar100
+DATA_DIR: /scratch-shared/tea2/cifar100
 MODEL:
   ADAPTATION: eata
   ARCH: VIT_16
