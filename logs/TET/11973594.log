@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 339, in <module>
+    main()
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 37, in main
+    load_cfg_fom_args()
+  File "/gpfs/home5/jhutter/dl2/core/config.py", line 294, in load_cfg_fom_args
+    merge_from_file(args.cfg_file)
+  File "/gpfs/home5/jhutter/dl2/core/config.py", line 259, in merge_from_file
+    _C.merge_from_other_cfg(cfg)
+  File "/home/jhutter/.local/lib/python3.11/site-packages/yacs/config.py", line 217, in merge_from_other_cfg
+    _merge_a_into_b(cfg_other, self, self, [])
+  File "/home/jhutter/.local/lib/python3.11/site-packages/yacs/config.py", line 478, in _merge_a_into_b
+    _merge_a_into_b(v, b[k], root, key_list + [k])
+  File "/home/jhutter/.local/lib/python3.11/site-packages/yacs/config.py", line 474, in _merge_a_into_b
+    v = _check_and_coerce_cfg_value_type(v, b[k], k, full_key)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jhutter/.local/lib/python3.11/site-packages/yacs/config.py", line 534, in _check_and_coerce_cfg_value_type
+    raise ValueError(
+ValueError: Type mismatch (<class 'float'> vs. <class 'int'>) with values (1.0 vs. 1) for config key: OPTIM.LAMBDA_ENERGY
+
+JOB STATISTICS
+==============
+Job ID: 11973594
+Cluster: snellius
+User/Group: jhutter/jhutter
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:09:18 core-walltime
+Job Wall-clock time: 00:00:31
+Memory Utilized: 0.00 MB
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)
+WARNING: Efficiency statistics can only be obtained after the job has ended as seff tool is based on the accounting database data.

@@ -1,0 +1,628 @@
+[25/05/22 10:07:02] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/22 10:07:02] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar10
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 0.1
+  SGLD_STD: 0.01
+  STEPS: 40
+  UNCOND: cond
+LOG_DEST: energy_visz_test_bn_adam-2-0.001-512_cond-40-0.1-0.01-10000-0.05_250522-100702.txt
+LOG_TIME: 250522-100702
+MODEL:
+  ADAPTATION: energy
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_BN
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 512
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 10
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 2
+  TEST_BATCH_SIZE: 128
+  WD: 0.0
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+wandb: Currently logged in as: janhutter (jan-hutter) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.11
+wandb: Run data is saved locally in /gpfs/home5/jhutter/dl2/wandb/run-20250522_100703-pmu1s25o
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run visualize-n_steps-cond-lr
+wandb: ⭐️ View project at https://wandb.ai/jan-hutter/TET
+wandb: 🚀 View run at https://wandb.ai/jan-hutter/TET/runs/pmu1s25o
+/home/jhutter/.local/lib/python3.11/site-packages/robustbench/utils.py:165: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
+[25/05/22 10:07:05] [main_visz.py:  104]: test-time adaptation: ENERGY
+[25/05/22 10:07:05] [param.py:   18]: adapting weights of batch-normalization layer
+[25/05/22 10:07:05] [setada.py:  138]: model for adaptation: WideResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(16, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(16, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block2): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 320, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(160, 320, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block3): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 640, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(320, 640, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=640, out_features=10, bias=True)
+)
+[25/05/22 10:07:05] [setada.py:  139]: params for adaptation: ['block1.layer.0.bn1.weight', 'block1.layer.0.bn1.bias', 'block1.layer.0.bn2.weight', 'block1.layer.0.bn2.bias', 'block1.layer.1.bn1.weight', 'block1.layer.1.bn1.bias', 'block1.layer.1.bn2.weight', 'block1.layer.1.bn2.bias', 'block1.layer.2.bn1.weight', 'block1.layer.2.bn1.bias', 'block1.layer.2.bn2.weight', 'block1.layer.2.bn2.bias', 'block1.layer.3.bn1.weight', 'block1.layer.3.bn1.bias', 'block1.layer.3.bn2.weight', 'block1.layer.3.bn2.bias', 'block2.layer.0.bn1.weight', 'block2.layer.0.bn1.bias', 'block2.layer.0.bn2.weight', 'block2.layer.0.bn2.bias', 'block2.layer.1.bn1.weight', 'block2.layer.1.bn1.bias', 'block2.layer.1.bn2.weight', 'block2.layer.1.bn2.bias', 'block2.layer.2.bn1.weight', 'block2.layer.2.bn1.bias', 'block2.layer.2.bn2.weight', 'block2.layer.2.bn2.bias', 'block2.layer.3.bn1.weight', 'block2.layer.3.bn1.bias', 'block2.layer.3.bn2.weight', 'block2.layer.3.bn2.bias', 'block3.layer.0.bn1.weight', 'block3.layer.0.bn1.bias', 'block3.layer.0.bn2.weight', 'block3.layer.0.bn2.bias', 'block3.layer.1.bn1.weight', 'block3.layer.1.bn1.bias', 'block3.layer.1.bn2.weight', 'block3.layer.1.bn2.bias', 'block3.layer.2.bn1.weight', 'block3.layer.2.bn1.bias', 'block3.layer.2.bn2.weight', 'block3.layer.2.bn2.bias', 'block3.layer.3.bn1.weight', 'block3.layer.3.bn1.bias', 'block3.layer.3.bn2.weight', 'block3.layer.3.bn2.bias', 'bn1.weight', 'bn1.bias']
+[25/05/22 10:07:05] [setada.py:  140]: optimizer for adaptation: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.001
+    maximize: False
+    weight_decay: 0.0
+)
+[25/05/22 10:07:05] [eval_visz.py:  114]: not resetting model
+[25/05/22 10:07:13] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 10:07:37] [eval_visz.py:   64]: batch_acc: 0.94140625
+[25/05/22 10:07:37] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 10:07:59] [eval_visz.py:   64]: batch_acc: 0.953125
+[25/05/22 10:07:59] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 10:08:22] [eval_visz.py:   64]: batch_acc: 0.9453125
+[25/05/22 10:08:22] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 10:08:45] [eval_visz.py:   64]: batch_acc: 0.94140625
+[25/05/22 10:08:45] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 10:09:08] [eval_visz.py:   64]: batch_acc: 0.939453125
+[25/05/22 10:09:08] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 10:09:31] [eval_visz.py:   64]: batch_acc: 0.95703125
+[25/05/22 10:09:31] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 10:09:54] [eval_visz.py:   64]: batch_acc: 0.951171875
+[25/05/22 10:09:54] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 10:10:18] [eval_visz.py:   64]: batch_acc: 0.94140625
+[25/05/22 10:10:18] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 10:10:42] [eval_visz.py:   64]: batch_acc: 0.9375
+[25/05/22 10:10:42] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 10:11:06] [eval_visz.py:   64]: batch_acc: 0.935546875
+[25/05/22 10:11:06] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 10:11:30] [eval_visz.py:   64]: batch_acc: 0.94140625
+[25/05/22 10:11:30] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 10:11:55] [eval_visz.py:   64]: batch_acc: 0.935546875
+[25/05/22 10:11:55] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 10:12:19] [eval_visz.py:   64]: batch_acc: 0.91796875
+[25/05/22 10:12:19] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 10:12:44] [eval_visz.py:   64]: batch_acc: 0.9296875
+[25/05/22 10:12:44] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 10:13:09] [eval_visz.py:   64]: batch_acc: 0.943359375
+[25/05/22 10:13:09] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 10:13:34] [eval_visz.py:   64]: batch_acc: 0.962890625
+[25/05/22 10:13:34] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 10:14:00] [eval_visz.py:   64]: batch_acc: 0.951171875
+[25/05/22 10:14:00] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 10:14:25] [eval_visz.py:   64]: batch_acc: 0.931640625
+[25/05/22 10:14:25] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 10:14:51] [eval_visz.py:   64]: batch_acc: 0.94921875
+[25/05/22 10:14:51] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 10:15:14] [eval_visz.py:   64]: batch_acc: 0.9411764740943909
+[25/05/22 10:15:14] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 10:16:00] [eval_visz.py:   64]: batch_acc: 0.93359375
+[25/05/22 10:16:00] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 10:16:46] [eval_visz.py:   64]: batch_acc: 0.947265625
+[25/05/22 10:16:46] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 10:17:32] [eval_visz.py:   64]: batch_acc: 0.939453125
+[25/05/22 10:17:32] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 10:18:19] [eval_visz.py:   64]: batch_acc: 0.943359375
+[25/05/22 10:18:19] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 10:19:06] [eval_visz.py:   64]: batch_acc: 0.97265625
+[25/05/22 10:19:06] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 10:19:54] [eval_visz.py:   64]: batch_acc: 0.953125
+[25/05/22 10:19:54] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 10:20:41] [eval_visz.py:   64]: batch_acc: 0.943359375
+[25/05/22 10:20:41] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 10:21:29] [eval_visz.py:   64]: batch_acc: 0.92578125
+[25/05/22 10:21:29] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 10:22:17] [eval_visz.py:   64]: batch_acc: 0.92578125
+[25/05/22 10:22:17] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 10:23:05] [eval_visz.py:   64]: batch_acc: 0.9296875
+[25/05/22 10:23:05] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 10:23:53] [eval_visz.py:   64]: batch_acc: 0.95703125
+[25/05/22 10:23:53] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 10:24:42] [eval_visz.py:   64]: batch_acc: 0.9375
+[25/05/22 10:24:42] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 10:25:30] [eval_visz.py:   64]: batch_acc: 0.9375
+[25/05/22 10:25:30] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 10:26:19] [eval_visz.py:   64]: batch_acc: 0.9453125
+[25/05/22 10:26:19] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 10:27:08] [eval_visz.py:   64]: batch_acc: 0.91796875
+[25/05/22 10:27:08] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 10:27:56] [eval_visz.py:   64]: batch_acc: 0.935546875
+[25/05/22 10:27:56] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 10:28:45] [eval_visz.py:   64]: batch_acc: 0.931640625
+[25/05/22 10:28:45] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 10:29:34] [eval_visz.py:   64]: batch_acc: 0.94921875
+[25/05/22 10:29:34] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 10:30:23] [eval_visz.py:   64]: batch_acc: 0.9140625
+[25/05/22 10:30:23] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 10:31:05] [eval_visz.py:   64]: batch_acc: 0.9154411554336548
+[25/05/22 10:31:05] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 10:31:54] [eval_visz.py:   64]: batch_acc: 0.919921875
+[25/05/22 10:31:54] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 10:32:43] [eval_visz.py:   64]: batch_acc: 0.923828125
+[25/05/22 10:32:43] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 10:33:32] [eval_visz.py:   64]: batch_acc: 0.943359375
+[25/05/22 10:33:32] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 10:34:20] [eval_visz.py:   64]: batch_acc: 0.935546875
+[25/05/22 10:34:20] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 10:35:09] [eval_visz.py:   64]: batch_acc: 0.912109375
+[25/05/22 10:35:09] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 10:35:58] [eval_visz.py:   64]: batch_acc: 0.919921875
+[25/05/22 10:35:58] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 10:36:47] [eval_visz.py:   64]: batch_acc: 0.923828125
+[25/05/22 10:36:47] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 10:37:36] [eval_visz.py:   64]: batch_acc: 0.91796875
+[25/05/22 10:37:36] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 10:38:25] [eval_visz.py:   64]: batch_acc: 0.935546875
+[25/05/22 10:38:25] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 10:39:14] [eval_visz.py:   64]: batch_acc: 0.951171875
+[25/05/22 10:39:14] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 10:40:03] [eval_visz.py:   64]: batch_acc: 0.92578125
+[25/05/22 10:40:03] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 10:40:52] [eval_visz.py:   64]: batch_acc: 0.943359375
+[25/05/22 10:40:52] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 10:41:41] [eval_visz.py:   64]: batch_acc: 0.93359375
+[25/05/22 10:41:41] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 10:42:30] [eval_visz.py:   64]: batch_acc: 0.94140625
+[25/05/22 10:42:30] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 10:43:19] [eval_visz.py:   64]: batch_acc: 0.927734375
+[25/05/22 10:43:19] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 10:44:08] [eval_visz.py:   64]: batch_acc: 0.916015625
+[25/05/22 10:44:08] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 10:44:57] [eval_visz.py:   64]: batch_acc: 0.923828125
+[25/05/22 10:44:57] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 10:45:46] [eval_visz.py:   64]: batch_acc: 0.921875
+[25/05/22 10:45:46] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 10:46:35] [eval_visz.py:   64]: batch_acc: 0.943359375
+[25/05/22 10:46:35] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 10:47:17] [eval_visz.py:   64]: batch_acc: 0.9264705777168274
+[25/05/22 10:47:18] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 10:48:28] [eval_visz.py:   64]: batch_acc: 0.9140625
+[25/05/22 10:48:28] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 10:49:39] [eval_visz.py:   64]: batch_acc: 0.935546875
+[25/05/22 10:49:39] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 10:50:49] [eval_visz.py:   64]: batch_acc: 0.93359375
+[25/05/22 10:50:49] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 10:52:00] [eval_visz.py:   64]: batch_acc: 0.91796875
+[25/05/22 10:52:00] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 10:53:10] [eval_visz.py:   64]: batch_acc: 0.931640625
+[25/05/22 10:53:10] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 10:54:21] [eval_visz.py:   64]: batch_acc: 0.9375
+[25/05/22 10:54:21] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 10:55:31] [eval_visz.py:   64]: batch_acc: 0.927734375
+[25/05/22 10:55:31] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 10:56:42] [eval_visz.py:   64]: batch_acc: 0.91015625
+[25/05/22 10:56:42] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 10:57:52] [eval_visz.py:   64]: batch_acc: 0.90234375
+[25/05/22 10:57:52] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 10:59:03] [eval_visz.py:   64]: batch_acc: 0.908203125
+[25/05/22 10:59:03] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 11:00:14] [eval_visz.py:   64]: batch_acc: 0.921875
+[25/05/22 11:00:14] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 11:01:25] [eval_visz.py:   64]: batch_acc: 0.896484375
+[25/05/22 11:01:25] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 11:02:35] [eval_visz.py:   64]: batch_acc: 0.91796875
+[25/05/22 11:02:35] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 11:03:47] [eval_visz.py:   64]: batch_acc: 0.9296875
+[25/05/22 11:03:47] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 11:04:58] [eval_visz.py:   64]: batch_acc: 0.916015625
+[25/05/22 11:04:58] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 11:06:08] [eval_visz.py:   64]: batch_acc: 0.923828125
+[25/05/22 11:06:08] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 11:07:19] [eval_visz.py:   64]: batch_acc: 0.890625
+[25/05/22 11:07:19] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 11:08:30] [eval_visz.py:   64]: batch_acc: 0.9140625
+[25/05/22 11:08:30] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 11:09:41] [eval_visz.py:   64]: batch_acc: 0.880859375
+[25/05/22 11:09:41] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 11:10:41] [eval_visz.py:   64]: batch_acc: 0.8786764740943909
+[25/05/22 11:10:41] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 11:11:52] [eval_visz.py:   64]: batch_acc: 0.896484375
+[25/05/22 11:11:52] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 11:13:03] [eval_visz.py:   64]: batch_acc: 0.880859375
+[25/05/22 11:13:03] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 11:14:13] [eval_visz.py:   64]: batch_acc: 0.8828125
+[25/05/22 11:14:13] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 11:15:24] [eval_visz.py:   64]: batch_acc: 0.90234375
+[25/05/22 11:15:24] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 11:16:34] [eval_visz.py:   64]: batch_acc: 0.84765625
+[25/05/22 11:16:34] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 11:17:45] [eval_visz.py:   64]: batch_acc: 0.86328125
+[25/05/22 11:17:45] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 11:18:56] [eval_visz.py:   64]: batch_acc: 0.81640625
+[25/05/22 11:18:56] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 11:20:07] [eval_visz.py:   64]: batch_acc: 0.833984375
+[25/05/22 11:20:07] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 11:21:17] [eval_visz.py:   64]: batch_acc: 0.8203125
+[25/05/22 11:21:17] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 11:22:28] [eval_visz.py:   64]: batch_acc: 0.771484375
+[25/05/22 11:22:28] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 11:23:39] [eval_visz.py:   64]: batch_acc: 0.7734375
+[25/05/22 11:23:39] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 11:24:49] [eval_visz.py:   64]: batch_acc: 0.76171875
+[25/05/22 11:24:49] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 11:26:00] [eval_visz.py:   64]: batch_acc: 0.75
+[25/05/22 11:26:00] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 11:27:11] [eval_visz.py:   64]: batch_acc: 0.734375
+[25/05/22 11:27:11] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 11:28:22] [eval_visz.py:   64]: batch_acc: 0.71484375
+[25/05/22 11:28:22] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 11:29:32] [eval_visz.py:   64]: batch_acc: 0.740234375
+[25/05/22 11:29:32] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 11:30:43] [eval_visz.py:   64]: batch_acc: 0.693359375
+[25/05/22 11:30:43] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 11:31:54] [eval_visz.py:   64]: batch_acc: 0.6875
+[25/05/22 11:31:54] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 11:33:05] [eval_visz.py:   64]: batch_acc: 0.6796875
+[25/05/22 11:33:05] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 11:34:05] [eval_visz.py:   64]: batch_acc: 0.6654411554336548
+[25/05/22 11:34:05] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 11:35:16] [eval_visz.py:   64]: batch_acc: 0.697265625
+[25/05/22 11:35:16] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 11:36:27] [eval_visz.py:   64]: batch_acc: 0.6875
+[25/05/22 11:36:27] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 11:37:37] [eval_visz.py:   64]: batch_acc: 0.66796875
+[25/05/22 11:37:37] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 11:38:48] [eval_visz.py:   64]: batch_acc: 0.658203125
+[25/05/22 11:38:48] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 11:39:59] [eval_visz.py:   64]: batch_acc: 0.6640625
+[25/05/22 11:39:59] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 11:41:10] [eval_visz.py:   64]: batch_acc: 0.66796875
+[25/05/22 11:41:10] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 11:42:20] [eval_visz.py:   64]: batch_acc: 0.671875
+[25/05/22 11:42:20] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 11:43:31] [eval_visz.py:   64]: batch_acc: 0.662109375
+[25/05/22 11:43:31] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 11:44:42] [eval_visz.py:   64]: batch_acc: 0.66796875
+[25/05/22 11:44:42] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 11:45:53] [eval_visz.py:   64]: batch_acc: 0.603515625
+[25/05/22 11:45:53] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 11:47:03] [eval_visz.py:   64]: batch_acc: 0.623046875
+[25/05/22 11:47:03] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 11:48:14] [eval_visz.py:   64]: batch_acc: 0.666015625
+[25/05/22 11:48:14] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 11:49:25] [eval_visz.py:   64]: batch_acc: 0.646484375
+[25/05/22 11:49:25] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 11:50:36] [eval_visz.py:   64]: batch_acc: 0.6171875
+[25/05/22 11:50:36] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 11:51:47] [eval_visz.py:   64]: batch_acc: 0.62109375
+[25/05/22 11:51:47] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 11:52:58] [eval_visz.py:   64]: batch_acc: 0.55078125
+[25/05/22 11:52:58] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 11:54:08] [eval_visz.py:   64]: batch_acc: 0.603515625
+[25/05/22 11:54:08] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 11:55:19] [eval_visz.py:   64]: batch_acc: 0.603515625
+[25/05/22 11:55:19] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 11:56:30] [eval_visz.py:   64]: batch_acc: 0.578125
+[25/05/22 11:56:30] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 11:57:30] [eval_visz.py:   64]: batch_acc: 0.5772058963775635
+[25/05/22 11:57:31] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 11:58:41] [eval_visz.py:   64]: batch_acc: 0.615234375
+[25/05/22 11:58:41] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 11:59:52] [eval_visz.py:   64]: batch_acc: 0.5859375
+[25/05/22 11:59:52] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 12:01:03] [eval_visz.py:   64]: batch_acc: 0.595703125
+[25/05/22 12:01:03] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 12:02:14] [eval_visz.py:   64]: batch_acc: 0.59375
+[25/05/22 12:02:14] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 12:03:25] [eval_visz.py:   64]: batch_acc: 0.59375
+[25/05/22 12:03:25] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 12:04:36] [eval_visz.py:   64]: batch_acc: 0.58203125
+[25/05/22 12:04:36] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 12:05:47] [eval_visz.py:   64]: batch_acc: 0.5703125
+[25/05/22 12:05:47] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 12:06:58] [eval_visz.py:   64]: batch_acc: 0.56640625
+[25/05/22 12:06:58] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 12:08:09] [eval_visz.py:   64]: batch_acc: 0.609375
+[25/05/22 12:08:09] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 12:09:21] [eval_visz.py:   64]: batch_acc: 0.572265625
+[25/05/22 12:09:21] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 12:10:32] [eval_visz.py:   64]: batch_acc: 0.525390625
+[25/05/22 12:10:32] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 12:11:43] [eval_visz.py:   64]: batch_acc: 0.5234375
+[25/05/22 12:11:43] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 12:12:54] [eval_visz.py:   64]: batch_acc: 0.55078125
+[25/05/22 12:12:54] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 12:14:05] [eval_visz.py:   64]: batch_acc: 0.595703125
+[25/05/22 12:14:05] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 12:15:16] [eval_visz.py:   64]: batch_acc: 0.560546875
+[25/05/22 12:15:16] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 12:16:27] [eval_visz.py:   64]: batch_acc: 0.578125
+[25/05/22 12:16:27] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 12:17:38] [eval_visz.py:   64]: batch_acc: 0.58203125
+[25/05/22 12:17:38] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 12:18:49] [eval_visz.py:   64]: batch_acc: 0.5625
+[25/05/22 12:18:49] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 12:20:00] [eval_visz.py:   64]: batch_acc: 0.57421875
+[25/05/22 12:20:00] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 12:21:00] [eval_visz.py:   64]: batch_acc: 0.5147058963775635
+[25/05/22 12:21:00] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 12:22:33] [eval_visz.py:   64]: batch_acc: 0.57421875
+[25/05/22 12:22:33] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 12:24:06] [eval_visz.py:   64]: batch_acc: 0.564453125
+[25/05/22 12:24:06] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 12:25:39] [eval_visz.py:   64]: batch_acc: 0.595703125
+[25/05/22 12:25:39] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 12:27:11] [eval_visz.py:   64]: batch_acc: 0.58203125
+[25/05/22 12:27:11] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 12:28:44] [eval_visz.py:   64]: batch_acc: 0.56640625
+[25/05/22 12:28:44] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 12:30:17] [eval_visz.py:   64]: batch_acc: 0.552734375
+[25/05/22 12:30:17] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 12:31:49] [eval_visz.py:   64]: batch_acc: 0.5390625
+[25/05/22 12:31:49] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 12:33:22] [eval_visz.py:   64]: batch_acc: 0.576171875
+[25/05/22 12:33:22] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 12:34:55] [eval_visz.py:   64]: batch_acc: 0.560546875
+[25/05/22 12:34:55] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 12:36:28] [eval_visz.py:   64]: batch_acc: 0.5546875
+[25/05/22 12:36:28] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 12:38:01] [eval_visz.py:   64]: batch_acc: 0.55859375
+[25/05/22 12:38:01] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 12:39:33] [eval_visz.py:   64]: batch_acc: 0.5625
+[25/05/22 12:39:33] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 12:41:06] [eval_visz.py:   64]: batch_acc: 0.55859375
+[25/05/22 12:41:06] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 12:42:39] [eval_visz.py:   64]: batch_acc: 0.607421875
+[25/05/22 12:42:39] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 12:44:12] [eval_visz.py:   64]: batch_acc: 0.53125
+[25/05/22 12:44:12] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 12:45:45] [eval_visz.py:   64]: batch_acc: 0.56640625
+[25/05/22 12:45:45] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 12:47:18] [eval_visz.py:   64]: batch_acc: 0.513671875
+[25/05/22 12:47:18] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 12:48:51] [eval_visz.py:   64]: batch_acc: 0.515625
+[25/05/22 12:48:51] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 12:50:23] [eval_visz.py:   64]: batch_acc: 0.515625
+[25/05/22 12:50:23] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 12:51:42] [eval_visz.py:   64]: batch_acc: 0.5735294222831726
+[25/05/22 12:51:43] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 12:53:15] [eval_visz.py:   64]: batch_acc: 0.53125
+[25/05/22 12:53:15] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 12:54:48] [eval_visz.py:   64]: batch_acc: 0.546875
+[25/05/22 12:54:48] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 12:56:21] [eval_visz.py:   64]: batch_acc: 0.55078125
+[25/05/22 12:56:21] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 12:57:54] [eval_visz.py:   64]: batch_acc: 0.52734375
+[25/05/22 12:57:54] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 12:59:27] [eval_visz.py:   64]: batch_acc: 0.546875
+[25/05/22 12:59:27] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 13:01:00] [eval_visz.py:   64]: batch_acc: 0.568359375
+[25/05/22 13:01:00] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 13:02:33] [eval_visz.py:   64]: batch_acc: 0.541015625
+[25/05/22 13:02:33] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 13:04:06] [eval_visz.py:   64]: batch_acc: 0.515625
+[25/05/22 13:04:06] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 13:05:39] [eval_visz.py:   64]: batch_acc: 0.533203125
+[25/05/22 13:05:39] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 13:07:12] [eval_visz.py:   64]: batch_acc: 0.548828125
+[25/05/22 13:07:12] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 13:08:45] [eval_visz.py:   64]: batch_acc: 0.56640625
+[25/05/22 13:08:45] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 13:10:18] [eval_visz.py:   64]: batch_acc: 0.5546875
+[25/05/22 13:10:18] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 13:11:51] [eval_visz.py:   64]: batch_acc: 0.580078125
+[25/05/22 13:11:51] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 13:13:24] [eval_visz.py:   64]: batch_acc: 0.53515625
+[25/05/22 13:13:24] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 13:14:58] [eval_visz.py:   64]: batch_acc: 0.576171875
+[25/05/22 13:14:58] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 13:16:31] [eval_visz.py:   64]: batch_acc: 0.5390625
+[25/05/22 13:16:31] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 13:18:04] [eval_visz.py:   64]: batch_acc: 0.517578125
+[25/05/22 13:18:04] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 13:19:37] [eval_visz.py:   64]: batch_acc: 0.5546875
+[25/05/22 13:19:37] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 13:21:10] [eval_visz.py:   64]: batch_acc: 0.548828125
+[25/05/22 13:21:10] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 13:22:29] [eval_visz.py:   64]: batch_acc: 0.5183823704719543
+[25/05/22 13:22:29] [eval_visz.py:   48]: batch_counter=0
+[25/05/22 13:24:24] [eval_visz.py:   64]: batch_acc: 0.5390625
+[25/05/22 13:24:24] [eval_visz.py:   48]: batch_counter=1
+[25/05/22 13:26:19] [eval_visz.py:   64]: batch_acc: 0.5703125
+[25/05/22 13:26:19] [eval_visz.py:   48]: batch_counter=2
+[25/05/22 13:28:14] [eval_visz.py:   64]: batch_acc: 0.548828125
+[25/05/22 13:28:14] [eval_visz.py:   48]: batch_counter=3
+[25/05/22 13:30:09] [eval_visz.py:   64]: batch_acc: 0.578125
+[25/05/22 13:30:09] [eval_visz.py:   48]: batch_counter=4
+[25/05/22 13:32:04] [eval_visz.py:   64]: batch_acc: 0.529296875
+[25/05/22 13:32:04] [eval_visz.py:   48]: batch_counter=5
+[25/05/22 13:33:59] [eval_visz.py:   64]: batch_acc: 0.541015625
+[25/05/22 13:33:59] [eval_visz.py:   48]: batch_counter=6
+[25/05/22 13:35:54] [eval_visz.py:   64]: batch_acc: 0.5234375
+[25/05/22 13:35:54] [eval_visz.py:   48]: batch_counter=7
+[25/05/22 13:37:49] [eval_visz.py:   64]: batch_acc: 0.513671875
+[25/05/22 13:37:49] [eval_visz.py:   48]: batch_counter=8
+[25/05/22 13:39:44] [eval_visz.py:   64]: batch_acc: 0.533203125
+[25/05/22 13:39:44] [eval_visz.py:   48]: batch_counter=9
+[25/05/22 13:41:39] [eval_visz.py:   64]: batch_acc: 0.5234375
+[25/05/22 13:41:39] [eval_visz.py:   48]: batch_counter=10
+[25/05/22 13:43:34] [eval_visz.py:   64]: batch_acc: 0.51953125
+[25/05/22 13:43:34] [eval_visz.py:   48]: batch_counter=11
+[25/05/22 13:45:29] [eval_visz.py:   64]: batch_acc: 0.525390625
+[25/05/22 13:45:29] [eval_visz.py:   48]: batch_counter=12
+[25/05/22 13:47:24] [eval_visz.py:   64]: batch_acc: 0.51953125
+[25/05/22 13:47:24] [eval_visz.py:   48]: batch_counter=13
+[25/05/22 13:49:19] [eval_visz.py:   64]: batch_acc: 0.560546875
+[25/05/22 13:49:19] [eval_visz.py:   48]: batch_counter=14
+[25/05/22 13:51:14] [eval_visz.py:   64]: batch_acc: 0.509765625
+[25/05/22 13:51:14] [eval_visz.py:   48]: batch_counter=15
+[25/05/22 13:53:09] [eval_visz.py:   64]: batch_acc: 0.53515625
+[25/05/22 13:53:09] [eval_visz.py:   48]: batch_counter=16
+[25/05/22 13:55:04] [eval_visz.py:   64]: batch_acc: 0.5234375
+[25/05/22 13:55:04] [eval_visz.py:   48]: batch_counter=17
+[25/05/22 13:56:59] [eval_visz.py:   64]: batch_acc: 0.525390625
+[25/05/22 13:56:59] [eval_visz.py:   48]: batch_counter=18
+[25/05/22 13:58:54] [eval_visz.py:   64]: batch_acc: 0.50390625
+[25/05/22 13:58:54] [eval_visz.py:   48]: batch_counter=19
+[25/05/22 14:00:32] [eval_visz.py:   64]: batch_acc: 0.5183823704719543
+[25/05/22 14:00:32] [eval_visz.py:  119]: acc: 53.21%
+Files already downloaded and verified
+torch.Size([10000, 3, 32, 32]) 10000
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mvisualize-n_steps-cond-lr[0m at: [34mhttps://wandb.ai/jan-hutter/TET/runs/pmu1s25o[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250522_100703-pmu1s25o/logs[0m

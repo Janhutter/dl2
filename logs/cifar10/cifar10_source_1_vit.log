@@ -1,0 +1,428 @@
+[25/05/09 18:52:30] [utils.py:   79]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/09 18:52:30] [utils.py:   80]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea/cifar10
+DESC: 
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: source_ln_adam-1-0.001-200_250509-185230.txt
+LOG_TIME: 250509-185230
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['ln']
+  ARCH: VIT_16
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 200
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/vit/cifar10/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Some weights of ViTForImageClassification were not initialized from the model checkpoint at google/vit-base-patch16-224-in21k and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/gpfs/home5/scur2578/tea/main.py:50: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(os.path.join(cfg.CKPT_DIR ,'{}/{}.pth'.format(cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)))
+[25/05/09 18:52:31] [main.py:   59]: test-time adaptation: NONE
+[25/05/09 18:52:31] [setada.py:   19]: model for evaluation: VisionTransformer(
+  (vit): ViTForImageClassification(
+    (vit): ViTModel(
+      (embeddings): ViTEmbeddings(
+        (patch_embeddings): ViTPatchEmbeddings(
+          (projection): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+      )
+      (encoder): ViTEncoder(
+        (layer): ModuleList(
+          (0-11): 12 x ViTLayer(
+            (attention): ViTAttention(
+              (attention): ViTSelfAttention(
+                (query): Linear(in_features=768, out_features=768, bias=True)
+                (key): Linear(in_features=768, out_features=768, bias=True)
+                (value): Linear(in_features=768, out_features=768, bias=True)
+              )
+              (output): ViTSelfOutput(
+                (dense): Linear(in_features=768, out_features=768, bias=True)
+                (dropout): Dropout(p=0.0, inplace=False)
+              )
+            )
+            (intermediate): ViTIntermediate(
+              (dense): Linear(in_features=768, out_features=3072, bias=True)
+              (intermediate_act_fn): GELUActivation()
+            )
+            (output): ViTOutput(
+              (dense): Linear(in_features=3072, out_features=768, bias=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+            )
+            (layernorm_before): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (layernorm_after): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+          )
+        )
+      )
+      (layernorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+    )
+    (classifier): Linear(in_features=768, out_features=10, bias=True)
+  )
+)
+[25/05/09 18:52:31] [eval.py:   73]: not resetting model
+[25/05/09 18:52:51] [eval.py:   80]: acc % [gaussian_noise5]: 72.45%
+[25/05/09 18:52:51] [eval.py:   73]: not resetting model
+[25/05/09 18:53:08] [eval.py:   80]: acc % [gaussian_noise4]: 77.89%
+[25/05/09 18:53:09] [eval.py:   73]: not resetting model
+[25/05/09 18:53:25] [eval.py:   80]: acc % [gaussian_noise3]: 81.53%
+[25/05/09 18:53:25] [eval.py:   73]: not resetting model
+[25/05/09 18:53:42] [eval.py:   80]: acc % [gaussian_noise2]: 89.46%
+[25/05/09 18:53:42] [eval.py:   73]: not resetting model
+[25/05/09 18:53:56] [eval.py:   80]: acc % [gaussian_noise1]: 94.76%
+[25/05/09 18:53:56] [eval.py:   73]: not resetting model
+[25/05/09 18:54:13] [eval.py:   80]: acc % [shot_noise5]: 76.84%
+[25/05/09 18:54:13] [eval.py:   73]: not resetting model
+[25/05/09 18:54:27] [eval.py:   80]: acc % [shot_noise4]: 83.21%
+[25/05/09 18:54:27] [eval.py:   73]: not resetting model
+[25/05/09 18:54:42] [eval.py:   80]: acc % [shot_noise3]: 87.12%
+[25/05/09 18:54:42] [eval.py:   73]: not resetting model
+[25/05/09 18:54:56] [eval.py:   80]: acc % [shot_noise2]: 94.17%
+[25/05/09 18:54:56] [eval.py:   73]: not resetting model
+[25/05/09 18:55:10] [eval.py:   80]: acc % [shot_noise1]: 96.06%
+[25/05/09 18:55:10] [eval.py:   73]: not resetting model
+[25/05/09 18:55:28] [eval.py:   80]: acc % [impulse_noise5]: 69.64%
+[25/05/09 18:55:28] [eval.py:   73]: not resetting model
+[25/05/09 18:55:42] [eval.py:   80]: acc % [impulse_noise4]: 77.71%
+[25/05/09 18:55:42] [eval.py:   73]: not resetting model
+[25/05/09 18:55:56] [eval.py:   80]: acc % [impulse_noise3]: 87.39%
+[25/05/09 18:55:56] [eval.py:   73]: not resetting model
+[25/05/09 18:56:10] [eval.py:   80]: acc % [impulse_noise2]: 91.40%
+[25/05/09 18:56:10] [eval.py:   73]: not resetting model
+[25/05/09 18:56:27] [eval.py:   80]: acc % [impulse_noise1]: 95.32%
+[25/05/09 18:56:27] [eval.py:   73]: not resetting model
+[25/05/09 18:56:42] [eval.py:   80]: acc % [defocus_blur5]: 91.78%
+[25/05/09 18:56:42] [eval.py:   73]: not resetting model
+[25/05/09 18:56:58] [eval.py:   80]: acc % [defocus_blur4]: 96.10%
+[25/05/09 18:56:58] [eval.py:   73]: not resetting model
+[25/05/09 18:57:14] [eval.py:   80]: acc % [defocus_blur3]: 97.33%
+[25/05/09 18:57:14] [eval.py:   73]: not resetting model
+[25/05/09 18:57:31] [eval.py:   80]: acc % [defocus_blur2]: 97.94%
+[25/05/09 18:57:31] [eval.py:   73]: not resetting model
+[25/05/09 18:57:45] [eval.py:   80]: acc % [defocus_blur1]: 98.35%
+[25/05/09 18:57:45] [eval.py:   73]: not resetting model
+[25/05/09 18:58:03] [eval.py:   80]: acc % [glass_blur5]: 66.01%
+[25/05/09 18:58:03] [eval.py:   73]: not resetting model
+[25/05/09 18:58:21] [eval.py:   80]: acc % [glass_blur4]: 67.44%
+[25/05/09 18:58:21] [eval.py:   73]: not resetting model
+[25/05/09 18:58:38] [eval.py:   80]: acc % [glass_blur3]: 78.62%
+[25/05/09 18:58:38] [eval.py:   73]: not resetting model
+[25/05/09 18:58:52] [eval.py:   80]: acc % [glass_blur2]: 80.82%
+[25/05/09 18:58:52] [eval.py:   73]: not resetting model
+[25/05/09 18:59:06] [eval.py:   80]: acc % [glass_blur1]: 80.88%
+[25/05/09 18:59:06] [eval.py:   73]: not resetting model
+[25/05/09 18:59:22] [eval.py:   80]: acc % [motion_blur5]: 87.78%
+[25/05/09 18:59:22] [eval.py:   73]: not resetting model
+[25/05/09 18:59:36] [eval.py:   80]: acc % [motion_blur4]: 91.57%
+[25/05/09 18:59:36] [eval.py:   73]: not resetting model
+[25/05/09 18:59:50] [eval.py:   80]: acc % [motion_blur3]: 91.59%
+[25/05/09 18:59:50] [eval.py:   73]: not resetting model
+[25/05/09 19:00:04] [eval.py:   80]: acc % [motion_blur2]: 95.04%
+[25/05/09 19:00:04] [eval.py:   73]: not resetting model
+[25/05/09 19:00:17] [eval.py:   80]: acc % [motion_blur1]: 96.93%
+[25/05/09 19:00:17] [eval.py:   73]: not resetting model
+[25/05/09 19:00:33] [eval.py:   80]: acc % [zoom_blur5]: 92.92%
+[25/05/09 19:00:33] [eval.py:   73]: not resetting model
+[25/05/09 19:00:47] [eval.py:   80]: acc % [zoom_blur4]: 95.15%
+[25/05/09 19:00:47] [eval.py:   73]: not resetting model
+[25/05/09 19:01:01] [eval.py:   80]: acc % [zoom_blur3]: 96.07%
+[25/05/09 19:01:01] [eval.py:   73]: not resetting model
+[25/05/09 19:01:15] [eval.py:   80]: acc % [zoom_blur2]: 96.88%
+[25/05/09 19:01:15] [eval.py:   73]: not resetting model
+[25/05/09 19:01:29] [eval.py:   80]: acc % [zoom_blur1]: 96.74%
+[25/05/09 19:01:29] [eval.py:   73]: not resetting model
+[25/05/09 19:01:45] [eval.py:   80]: acc % [snow5]: 92.23%
+[25/05/09 19:01:45] [eval.py:   73]: not resetting model
+[25/05/09 19:01:58] [eval.py:   80]: acc % [snow4]: 93.45%
+[25/05/09 19:01:58] [eval.py:   73]: not resetting model
+[25/05/09 19:02:12] [eval.py:   80]: acc % [snow3]: 95.02%
+[25/05/09 19:02:12] [eval.py:   73]: not resetting model
+[25/05/09 19:02:26] [eval.py:   80]: acc % [snow2]: 95.13%
+[25/05/09 19:02:26] [eval.py:   73]: not resetting model
+[25/05/09 19:02:40] [eval.py:   80]: acc % [snow1]: 97.37%
+[25/05/09 19:02:40] [eval.py:   73]: not resetting model
+[25/05/09 19:02:56] [eval.py:   80]: acc % [frost5]: 90.74%
+[25/05/09 19:02:56] [eval.py:   73]: not resetting model
+[25/05/09 19:03:10] [eval.py:   80]: acc % [frost4]: 93.92%
+[25/05/09 19:03:10] [eval.py:   73]: not resetting model
+[25/05/09 19:03:24] [eval.py:   80]: acc % [frost3]: 94.29%
+[25/05/09 19:03:24] [eval.py:   73]: not resetting model
+[25/05/09 19:03:38] [eval.py:   80]: acc % [frost2]: 96.66%
+[25/05/09 19:03:38] [eval.py:   73]: not resetting model
+[25/05/09 19:03:52] [eval.py:   80]: acc % [frost1]: 97.84%
+[25/05/09 19:03:52] [eval.py:   73]: not resetting model
+[25/05/09 19:04:08] [eval.py:   80]: acc % [fog5]: 84.97%
+[25/05/09 19:04:08] [eval.py:   73]: not resetting model
+[25/05/09 19:04:22] [eval.py:   80]: acc % [fog4]: 94.37%
+[25/05/09 19:04:22] [eval.py:   73]: not resetting model
+[25/05/09 19:04:35] [eval.py:   80]: acc % [fog3]: 96.61%
+[25/05/09 19:04:35] [eval.py:   73]: not resetting model
+[25/05/09 19:04:49] [eval.py:   80]: acc % [fog2]: 97.57%
+[25/05/09 19:04:49] [eval.py:   73]: not resetting model
+[25/05/09 19:05:03] [eval.py:   80]: acc % [fog1]: 98.27%
+[25/05/09 19:05:03] [eval.py:   73]: not resetting model
+[25/05/09 19:05:20] [eval.py:   80]: acc % [brightness5]: 96.91%
+[25/05/09 19:05:20] [eval.py:   73]: not resetting model
+[25/05/09 19:05:33] [eval.py:   80]: acc % [brightness4]: 97.84%
+[25/05/09 19:05:33] [eval.py:   73]: not resetting model
+[25/05/09 19:05:47] [eval.py:   80]: acc % [brightness3]: 98.13%
+[25/05/09 19:05:47] [eval.py:   73]: not resetting model
+[25/05/09 19:06:02] [eval.py:   80]: acc % [brightness2]: 98.44%
+[25/05/09 19:06:02] [eval.py:   73]: not resetting model
+[25/05/09 19:06:16] [eval.py:   80]: acc % [brightness1]: 98.46%
+[25/05/09 19:06:16] [eval.py:   73]: not resetting model
+[25/05/09 19:06:33] [eval.py:   80]: acc % [contrast5]: 76.19%
+[25/05/09 19:06:33] [eval.py:   73]: not resetting model
+[25/05/09 19:06:47] [eval.py:   80]: acc % [contrast4]: 94.18%
+[25/05/09 19:06:47] [eval.py:   73]: not resetting model
+[25/05/09 19:07:01] [eval.py:   80]: acc % [contrast3]: 96.48%
+[25/05/09 19:07:01] [eval.py:   73]: not resetting model
+[25/05/09 19:07:15] [eval.py:   80]: acc % [contrast2]: 97.46%
+[25/05/09 19:07:15] [eval.py:   73]: not resetting model
+[25/05/09 19:07:30] [eval.py:   80]: acc % [contrast1]: 98.40%
+[25/05/09 19:07:30] [eval.py:   73]: not resetting model
+[25/05/09 19:07:46] [eval.py:   80]: acc % [elastic_transform5]: 79.95%
+[25/05/09 19:07:46] [eval.py:   73]: not resetting model
+[25/05/09 19:08:00] [eval.py:   80]: acc % [elastic_transform4]: 89.56%
+[25/05/09 19:08:00] [eval.py:   73]: not resetting model
+[25/05/09 19:08:14] [eval.py:   80]: acc % [elastic_transform3]: 95.56%
+[25/05/09 19:08:14] [eval.py:   73]: not resetting model
+[25/05/09 19:08:28] [eval.py:   80]: acc % [elastic_transform2]: 96.74%
+[25/05/09 19:08:28] [eval.py:   73]: not resetting model
+[25/05/09 19:08:42] [eval.py:   80]: acc % [elastic_transform1]: 96.79%
+[25/05/09 19:08:42] [eval.py:   73]: not resetting model
+[25/05/09 19:09:03] [eval.py:   80]: acc % [pixelate5]: 60.18%
+[25/05/09 19:09:03] [eval.py:   73]: not resetting model
+[25/05/09 19:09:17] [eval.py:   80]: acc % [pixelate4]: 82.68%
+[25/05/09 19:09:17] [eval.py:   73]: not resetting model
+[25/05/09 19:09:31] [eval.py:   80]: acc % [pixelate3]: 93.82%
+[25/05/09 19:09:31] [eval.py:   73]: not resetting model
+[25/05/09 19:09:45] [eval.py:   80]: acc % [pixelate2]: 95.20%
+[25/05/09 19:09:45] [eval.py:   73]: not resetting model
+[25/05/09 19:09:59] [eval.py:   80]: acc % [pixelate1]: 97.72%
+[25/05/09 19:09:59] [eval.py:   73]: not resetting model
+[25/05/09 19:10:16] [eval.py:   80]: acc % [jpeg_compression5]: 85.59%
+[25/05/09 19:10:16] [eval.py:   73]: not resetting model
+[25/05/09 19:10:31] [eval.py:   80]: acc % [jpeg_compression4]: 88.65%
+[25/05/09 19:10:31] [eval.py:   73]: not resetting model
+[25/05/09 19:10:45] [eval.py:   80]: acc % [jpeg_compression3]: 90.64%
+[25/05/09 19:10:45] [eval.py:   73]: not resetting model
+[25/05/09 19:10:59] [eval.py:   80]: acc % [jpeg_compression2]: 91.95%
+[25/05/09 19:10:59] [eval.py:   73]: not resetting model
+[25/05/09 19:11:14] [eval.py:   80]: acc % [jpeg_compression1]: 94.88%
+[25/05/09 19:11:14] [eval.py:   86]: 
+                         1        2         3        4        5       avg
+gaussian_noise     0.72450  0.77890  0.815300  0.89460  0.94760  0.832180
+shot_noise         0.76840  0.83210  0.871200  0.94170  0.96060  0.874800
+impulse_noise      0.69640  0.77710  0.873900  0.91400  0.95320  0.842920
+defocus_blur       0.91780  0.96100  0.973300  0.97940  0.98350  0.963000
+glass_blur         0.66010  0.67440  0.786200  0.80820  0.80880  0.747540
+motion_blur        0.87780  0.91570  0.915900  0.95040  0.96930  0.925820
+zoom_blur          0.92920  0.95150  0.960700  0.96880  0.96740  0.955520
+snow               0.92230  0.93450  0.950200  0.95130  0.97370  0.946400
+frost              0.90740  0.93920  0.942900  0.96660  0.97840  0.946900
+fog                0.84970  0.94370  0.966100  0.97570  0.98270  0.943580
+brightness         0.96910  0.97840  0.981300  0.98440  0.98460  0.979560
+contrast           0.76190  0.94180  0.964800  0.97460  0.98400  0.925420
+elastic_transform  0.79950  0.89560  0.955600  0.96740  0.96790  0.917200
+pixelate           0.60180  0.82680  0.938200  0.95200  0.97720  0.859200
+jpeg_compression   0.85590  0.88650  0.906400  0.91950  0.94880  0.903420
+average            0.81612  0.88248  0.920133  0.94324  0.95918  0.904231
+[25/05/09 19:11:14] [eval.py:  129]: not resetting model
+[25/05/09 19:11:35] [eval.py:  139]: Test set Accuracy: 0.9846
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+VIT_16
+torch.Size([10000, 3, 224, 224]) 10000
+Files already downloaded and verified
+torch.Size([10000, 3, 224, 224]) 10000

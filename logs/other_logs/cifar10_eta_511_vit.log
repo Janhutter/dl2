@@ -1,0 +1,393 @@
+[25/05/18 12:04:40] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/18 12:04:40] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 224
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar10
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: eta_ln_adam-1-0.0001-128_250518-120440.txt
+LOG_TIME: 250518-120440
+MODEL:
+  ADAPTATION: eata
+  ADA_PARAM: ['ln']
+  ARCH: VIT_16
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.0001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WD: 0.0
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 511
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/vit/cifar10/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Some weights of the model checkpoint at google/vit-base-patch16-224-in21k were not used when initializing ViTForImageClassification: ['pooler.dense.bias', 'pooler.dense.weight']
+- This IS expected if you are initializing ViTForImageClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing ViTForImageClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of ViTForImageClassification were not initialized from the model checkpoint at google/vit-base-patch16-224-in21k and are newly initialized: ['classifier.weight', 'classifier.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/gpfs/home5/jhutter/dl2/main.py:50: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(os.path.join(cfg.CKPT_DIR ,'{}/{}.pth'.format(cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)))
+[25/05/18 12:04:42] [main.py:   69]: test-time adaptation: EATA
+[25/05/18 12:04:42] [param.py:   64]: adapting weights of layer-normalization layer
+[25/05/18 12:04:42] [setada.py:  110]: model for adaptation: VisionTransformer(
+  (vit): ViTForImageClassification(
+    (vit): ViTModel(
+      (embeddings): ViTEmbeddings(
+        (patch_embeddings): ViTPatchEmbeddings(
+          (projection): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+      )
+      (encoder): ViTEncoder(
+        (layer): ModuleList(
+          (0-11): 12 x ViTLayer(
+            (attention): ViTAttention(
+              (attention): ViTSelfAttention(
+                (query): Linear(in_features=768, out_features=768, bias=True)
+                (key): Linear(in_features=768, out_features=768, bias=True)
+                (value): Linear(in_features=768, out_features=768, bias=True)
+                (dropout): Dropout(p=0.0, inplace=False)
+              )
+              (output): ViTSelfOutput(
+                (dense): Linear(in_features=768, out_features=768, bias=True)
+                (dropout): Dropout(p=0.0, inplace=False)
+              )
+            )
+            (intermediate): ViTIntermediate(
+              (dense): Linear(in_features=768, out_features=3072, bias=True)
+              (intermediate_act_fn): GELUActivation()
+            )
+            (output): ViTOutput(
+              (dense): Linear(in_features=3072, out_features=768, bias=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+            )
+            (layernorm_before): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (layernorm_after): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+          )
+        )
+      )
+      (layernorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+    )
+    (classifier): Linear(in_features=768, out_features=10, bias=True)
+  )
+)
+[25/05/18 12:04:42] [setada.py:  111]: params for adaptation: ['vit.vit.encoder.layer.0.layernorm_before.weight', 'vit.vit.encoder.layer.0.layernorm_before.bias', 'vit.vit.encoder.layer.0.layernorm_after.weight', 'vit.vit.encoder.layer.0.layernorm_after.bias', 'vit.vit.encoder.layer.1.layernorm_before.weight', 'vit.vit.encoder.layer.1.layernorm_before.bias', 'vit.vit.encoder.layer.1.layernorm_after.weight', 'vit.vit.encoder.layer.1.layernorm_after.bias', 'vit.vit.encoder.layer.2.layernorm_before.weight', 'vit.vit.encoder.layer.2.layernorm_before.bias', 'vit.vit.encoder.layer.2.layernorm_after.weight', 'vit.vit.encoder.layer.2.layernorm_after.bias', 'vit.vit.encoder.layer.3.layernorm_before.weight', 'vit.vit.encoder.layer.3.layernorm_before.bias', 'vit.vit.encoder.layer.3.layernorm_after.weight', 'vit.vit.encoder.layer.3.layernorm_after.bias', 'vit.vit.encoder.layer.4.layernorm_before.weight', 'vit.vit.encoder.layer.4.layernorm_before.bias', 'vit.vit.encoder.layer.4.layernorm_after.weight', 'vit.vit.encoder.layer.4.layernorm_after.bias', 'vit.vit.encoder.layer.5.layernorm_before.weight', 'vit.vit.encoder.layer.5.layernorm_before.bias', 'vit.vit.encoder.layer.5.layernorm_after.weight', 'vit.vit.encoder.layer.5.layernorm_after.bias', 'vit.vit.encoder.layer.6.layernorm_before.weight', 'vit.vit.encoder.layer.6.layernorm_before.bias', 'vit.vit.encoder.layer.6.layernorm_after.weight', 'vit.vit.encoder.layer.6.layernorm_after.bias', 'vit.vit.encoder.layer.7.layernorm_before.weight', 'vit.vit.encoder.layer.7.layernorm_before.bias', 'vit.vit.encoder.layer.7.layernorm_after.weight', 'vit.vit.encoder.layer.7.layernorm_after.bias', 'vit.vit.encoder.layer.8.layernorm_before.weight', 'vit.vit.encoder.layer.8.layernorm_before.bias', 'vit.vit.encoder.layer.8.layernorm_after.weight', 'vit.vit.encoder.layer.8.layernorm_after.bias', 'vit.vit.encoder.layer.9.layernorm_before.weight', 'vit.vit.encoder.layer.9.layernorm_before.bias', 'vit.vit.encoder.layer.9.layernorm_after.weight', 'vit.vit.encoder.layer.9.layernorm_after.bias', 'vit.vit.encoder.layer.10.layernorm_before.weight', 'vit.vit.encoder.layer.10.layernorm_before.bias', 'vit.vit.encoder.layer.10.layernorm_after.weight', 'vit.vit.encoder.layer.10.layernorm_after.bias', 'vit.vit.encoder.layer.11.layernorm_before.weight', 'vit.vit.encoder.layer.11.layernorm_before.bias', 'vit.vit.encoder.layer.11.layernorm_after.weight', 'vit.vit.encoder.layer.11.layernorm_after.bias', 'vit.vit.layernorm.weight', 'vit.vit.layernorm.bias']
+[25/05/18 12:04:42] [setada.py:  112]: optimizer for adaptation: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0.0
+)
+[25/05/18 12:04:42] [eval.py:   72]: resetting model
+/home/jhutter/.local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:632: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+[25/05/18 12:05:18] [eval.py:   80]: acc % [gaussian_noise5]: 72.88%
+[25/05/18 12:05:18] [eval.py:   72]: resetting model
+[25/05/18 12:05:52] [eval.py:   80]: acc % [gaussian_noise4]: 77.86%
+[25/05/18 12:05:52] [eval.py:   72]: resetting model
+[25/05/18 12:06:25] [eval.py:   80]: acc % [gaussian_noise3]: 81.54%
+[25/05/18 12:06:25] [eval.py:   72]: resetting model
+[25/05/18 12:06:58] [eval.py:   80]: acc % [gaussian_noise2]: 89.45%
+[25/05/18 12:06:58] [eval.py:   72]: resetting model
+[25/05/18 12:07:31] [eval.py:   80]: acc % [gaussian_noise1]: 94.76%
+[25/05/18 12:07:31] [eval.py:   72]: resetting model
+[25/05/18 12:08:04] [eval.py:   80]: acc % [shot_noise5]: 76.84%
+[25/05/18 12:08:04] [eval.py:   72]: resetting model
+[25/05/18 12:08:37] [eval.py:   80]: acc % [shot_noise4]: 83.20%
+[25/05/18 12:08:37] [eval.py:   72]: resetting model
+[25/05/18 12:09:11] [eval.py:   80]: acc % [shot_noise3]: 87.12%
+[25/05/18 12:09:11] [eval.py:   72]: resetting model
+[25/05/18 12:09:44] [eval.py:   80]: acc % [shot_noise2]: 94.17%
+[25/05/18 12:09:44] [eval.py:   72]: resetting model
+[25/05/18 12:10:18] [eval.py:   80]: acc % [shot_noise1]: 96.05%
+[25/05/18 12:10:18] [eval.py:   72]: resetting model
+[25/05/18 12:10:52] [eval.py:   80]: acc % [impulse_noise5]: 69.63%
+[25/05/18 12:10:52] [eval.py:   72]: resetting model
+[25/05/18 12:11:25] [eval.py:   80]: acc % [impulse_noise4]: 77.72%
+[25/05/18 12:11:26] [eval.py:   72]: resetting model
+[25/05/18 12:11:59] [eval.py:   80]: acc % [impulse_noise3]: 87.39%
+[25/05/18 12:11:59] [eval.py:   72]: resetting model
+[25/05/18 12:12:33] [eval.py:   80]: acc % [impulse_noise2]: 91.40%
+[25/05/18 12:12:33] [eval.py:   72]: resetting model
+[25/05/18 12:13:06] [eval.py:   80]: acc % [impulse_noise1]: 95.33%
+[25/05/18 12:13:06] [eval.py:   72]: resetting model
+[25/05/18 12:13:39] [eval.py:   80]: acc % [defocus_blur5]: 91.76%
+[25/05/18 12:13:39] [eval.py:   72]: resetting model
+[25/05/18 12:14:11] [eval.py:   80]: acc % [defocus_blur4]: 96.10%
+[25/05/18 12:14:11] [eval.py:   72]: resetting model
+[25/05/18 12:14:45] [eval.py:   80]: acc % [defocus_blur3]: 97.34%
+[25/05/18 12:14:45] [eval.py:   72]: resetting model
+[25/05/18 12:15:18] [eval.py:   80]: acc % [defocus_blur2]: 97.94%
+[25/05/18 12:15:18] [eval.py:   72]: resetting model
+[25/05/18 12:15:52] [eval.py:   80]: acc % [defocus_blur1]: 98.35%
+[25/05/18 12:15:52] [eval.py:   72]: resetting model
+[25/05/18 12:16:25] [eval.py:   80]: acc % [glass_blur5]: 66.00%
+[25/05/18 12:16:25] [eval.py:   72]: resetting model
+[25/05/18 12:16:58] [eval.py:   80]: acc % [glass_blur4]: 67.46%
+[25/05/18 12:16:58] [eval.py:   72]: resetting model
+[25/05/18 12:17:31] [eval.py:   80]: acc % [glass_blur3]: 78.63%
+[25/05/18 12:17:31] [eval.py:   72]: resetting model
+[25/05/18 12:18:04] [eval.py:   80]: acc % [glass_blur2]: 80.81%
+[25/05/18 12:18:04] [eval.py:   72]: resetting model
+[25/05/18 12:18:38] [eval.py:   80]: acc % [glass_blur1]: 80.88%
+[25/05/18 12:18:38] [eval.py:   72]: resetting model
+[25/05/18 12:19:11] [eval.py:   80]: acc % [motion_blur5]: 87.77%
+[25/05/18 12:19:11] [eval.py:   72]: resetting model
+[25/05/18 12:19:44] [eval.py:   80]: acc % [motion_blur4]: 91.55%
+[25/05/18 12:19:44] [eval.py:   72]: resetting model
+[25/05/18 12:20:17] [eval.py:   80]: acc % [motion_blur3]: 91.59%
+[25/05/18 12:20:17] [eval.py:   72]: resetting model
+[25/05/18 12:20:50] [eval.py:   80]: acc % [motion_blur2]: 95.04%
+[25/05/18 12:20:50] [eval.py:   72]: resetting model
+[25/05/18 12:21:24] [eval.py:   80]: acc % [motion_blur1]: 96.94%
+[25/05/18 12:21:24] [eval.py:   72]: resetting model
+[25/05/18 12:21:57] [eval.py:   80]: acc % [zoom_blur5]: 92.91%
+[25/05/18 12:21:57] [eval.py:   72]: resetting model
+[25/05/18 12:22:30] [eval.py:   80]: acc % [zoom_blur4]: 95.15%
+[25/05/18 12:22:30] [eval.py:   72]: resetting model
+[25/05/18 12:23:04] [eval.py:   80]: acc % [zoom_blur3]: 96.08%
+[25/05/18 12:23:04] [eval.py:   72]: resetting model
+[25/05/18 12:23:36] [eval.py:   80]: acc % [zoom_blur2]: 96.88%
+[25/05/18 12:23:37] [eval.py:   72]: resetting model
+[25/05/18 12:24:10] [eval.py:   80]: acc % [zoom_blur1]: 96.74%
+[25/05/18 12:24:10] [eval.py:   72]: resetting model
+[25/05/18 12:24:43] [eval.py:   80]: acc % [snow5]: 92.23%
+[25/05/18 12:24:43] [eval.py:   72]: resetting model
+[25/05/18 12:25:16] [eval.py:   80]: acc % [snow4]: 93.47%
+[25/05/18 12:25:16] [eval.py:   72]: resetting model
+[25/05/18 12:25:50] [eval.py:   80]: acc % [snow3]: 95.02%
+[25/05/18 12:25:50] [eval.py:   72]: resetting model
+[25/05/18 12:26:22] [eval.py:   80]: acc % [snow2]: 95.13%
+[25/05/18 12:26:22] [eval.py:   72]: resetting model
+[25/05/18 12:26:56] [eval.py:   80]: acc % [snow1]: 97.38%
+[25/05/18 12:26:56] [eval.py:   72]: resetting model
+[25/05/18 12:27:29] [eval.py:   80]: acc % [frost5]: 90.75%
+[25/05/18 12:27:29] [eval.py:   72]: resetting model
+[25/05/18 12:28:02] [eval.py:   80]: acc % [frost4]: 93.91%
+[25/05/18 12:28:02] [eval.py:   72]: resetting model
+[25/05/18 12:28:35] [eval.py:   80]: acc % [frost3]: 94.29%
+[25/05/18 12:28:35] [eval.py:   72]: resetting model
+[25/05/18 12:29:08] [eval.py:   80]: acc % [frost2]: 96.66%
+[25/05/18 12:29:08] [eval.py:   72]: resetting model
+[25/05/18 12:29:41] [eval.py:   80]: acc % [frost1]: 97.84%
+[25/05/18 12:29:41] [eval.py:   72]: resetting model
+[25/05/18 12:30:14] [eval.py:   80]: acc % [fog5]: 84.97%
+[25/05/18 12:30:14] [eval.py:   72]: resetting model
+[25/05/18 12:30:48] [eval.py:   80]: acc % [fog4]: 94.39%
+[25/05/18 12:30:48] [eval.py:   72]: resetting model
+[25/05/18 12:31:21] [eval.py:   80]: acc % [fog3]: 96.60%
+[25/05/18 12:31:21] [eval.py:   72]: resetting model
+[25/05/18 12:31:54] [eval.py:   80]: acc % [fog2]: 97.58%
+[25/05/18 12:31:54] [eval.py:   72]: resetting model
+[25/05/18 12:32:27] [eval.py:   80]: acc % [fog1]: 98.28%
+[25/05/18 12:32:27] [eval.py:   72]: resetting model
+[25/05/18 12:33:01] [eval.py:   80]: acc % [brightness5]: 96.91%
+[25/05/18 12:33:01] [eval.py:   72]: resetting model
+[25/05/18 12:33:34] [eval.py:   80]: acc % [brightness4]: 97.84%
+[25/05/18 12:33:34] [eval.py:   72]: resetting model
+[25/05/18 12:34:07] [eval.py:   80]: acc % [brightness3]: 98.13%
+[25/05/18 12:34:07] [eval.py:   72]: resetting model
+[25/05/18 12:34:41] [eval.py:   80]: acc % [brightness2]: 98.44%
+[25/05/18 12:34:41] [eval.py:   72]: resetting model
+[25/05/18 12:35:14] [eval.py:   80]: acc % [brightness1]: 98.46%
+[25/05/18 12:35:14] [eval.py:   72]: resetting model
+[25/05/18 12:35:47] [eval.py:   80]: acc % [contrast5]: 76.18%
+[25/05/18 12:35:47] [eval.py:   72]: resetting model
+[25/05/18 12:36:20] [eval.py:   80]: acc % [contrast4]: 94.17%
+[25/05/18 12:36:20] [eval.py:   72]: resetting model
+[25/05/18 12:36:53] [eval.py:   80]: acc % [contrast3]: 96.48%
+[25/05/18 12:36:53] [eval.py:   72]: resetting model
+[25/05/18 12:37:26] [eval.py:   80]: acc % [contrast2]: 97.46%
+[25/05/18 12:37:26] [eval.py:   72]: resetting model
+[25/05/18 12:37:59] [eval.py:   80]: acc % [contrast1]: 98.40%
+[25/05/18 12:37:59] [eval.py:   72]: resetting model
+[25/05/18 12:38:32] [eval.py:   80]: acc % [elastic_transform5]: 79.96%
+[25/05/18 12:38:32] [eval.py:   72]: resetting model
+[25/05/18 12:39:04] [eval.py:   80]: acc % [elastic_transform4]: 89.59%
+[25/05/18 12:39:04] [eval.py:   72]: resetting model
+[25/05/18 12:39:38] [eval.py:   80]: acc % [elastic_transform3]: 95.56%
+[25/05/18 12:39:38] [eval.py:   72]: resetting model
+[25/05/18 12:40:11] [eval.py:   80]: acc % [elastic_transform2]: 96.74%
+[25/05/18 12:40:11] [eval.py:   72]: resetting model
+[25/05/18 12:40:44] [eval.py:   80]: acc % [elastic_transform1]: 96.79%
+[25/05/18 12:40:44] [eval.py:   72]: resetting model
+[25/05/18 12:41:17] [eval.py:   80]: acc % [pixelate5]: 60.18%
+[25/05/18 12:41:17] [eval.py:   72]: resetting model
+[25/05/18 12:41:50] [eval.py:   80]: acc % [pixelate4]: 82.68%
+[25/05/18 12:41:50] [eval.py:   72]: resetting model
+[25/05/18 12:42:23] [eval.py:   80]: acc % [pixelate3]: 93.82%
+[25/05/18 12:42:23] [eval.py:   72]: resetting model
+[25/05/18 12:42:57] [eval.py:   80]: acc % [pixelate2]: 95.21%
+[25/05/18 12:42:57] [eval.py:   72]: resetting model
+[25/05/18 12:43:30] [eval.py:   80]: acc % [pixelate1]: 97.72%
+[25/05/18 12:43:30] [eval.py:   72]: resetting model
+[25/05/18 12:44:03] [eval.py:   80]: acc % [jpeg_compression5]: 85.59%
+[25/05/18 12:44:03] [eval.py:   72]: resetting model
+[25/05/18 12:44:35] [eval.py:   80]: acc % [jpeg_compression4]: 88.67%
+[25/05/18 12:44:35] [eval.py:   72]: resetting model
+[25/05/18 12:45:09] [eval.py:   80]: acc % [jpeg_compression3]: 90.63%
+[25/05/18 12:45:09] [eval.py:   72]: resetting model
+[25/05/18 12:45:41] [eval.py:   80]: acc % [jpeg_compression2]: 91.93%
+[25/05/18 12:45:42] [eval.py:   72]: resetting model
+[25/05/18 12:46:15] [eval.py:   80]: acc % [jpeg_compression1]: 94.87%
+[25/05/18 12:46:15] [eval.py:   86]: 
+                          1         2         3         4         5       avg
+gaussian_noise     0.728800  0.778600  0.815400  0.894500  0.947600  0.832980
+shot_noise         0.768400  0.832000  0.871200  0.941700  0.960500  0.874760
+impulse_noise      0.696300  0.777200  0.873900  0.914000  0.953300  0.842940
+defocus_blur       0.917600  0.961000  0.973400  0.979400  0.983500  0.962980
+glass_blur         0.660000  0.674600  0.786300  0.808100  0.808800  0.747560
+motion_blur        0.877700  0.915500  0.915900  0.950400  0.969400  0.925780
+zoom_blur          0.929100  0.951500  0.960800  0.968800  0.967400  0.955520
+snow               0.922300  0.934700  0.950200  0.951300  0.973800  0.946460
+frost              0.907500  0.939100  0.942900  0.966600  0.978400  0.946900
+fog                0.849700  0.943900  0.966000  0.975800  0.982800  0.943640
+brightness         0.969100  0.978400  0.981300  0.984400  0.984600  0.979560
+contrast           0.761800  0.941700  0.964800  0.974600  0.984000  0.925380
+elastic_transform  0.799600  0.895900  0.955600  0.967400  0.967900  0.917280
+pixelate           0.601800  0.826800  0.938200  0.952100  0.977200  0.859220
+jpeg_compression   0.855900  0.886700  0.906300  0.919300  0.948700  0.903380
+average            0.816373  0.882507  0.920147  0.943227  0.959193  0.904289
+[25/05/18 12:46:15] [eval.py:  127]: resetting model
+/home/jhutter/.local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:632: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+[25/05/18 12:46:49] [eval.py:  139]: Test set Accuracy: 0.9846
+fishers None
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+torch.Size([10000, 3, 224, 224]) 10000
+Files already downloaded and verified
+torch.Size([10000, 3, 224, 224]) 10000

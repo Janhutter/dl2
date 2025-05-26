@@ -68,7 +68,7 @@ def setup_optimizer_with_warmup(params, cfg, logger):
                 # new_lr = 0.5 * optimizer.initial_lr * (1 + math.cos(math.pi * decay_step / remaining_steps))
                 
                 # Option 3: Exponential decay after warmup (uncomment if desired)
-                decay_rate = 0.996 # getattr(cfg.OPTIM, 'DECAY_RATE', 0.99)
+                decay_rate = 0.9975 # getattr(cfg.OPTIM, 'DECAY_RATE', 0.99)
                 new_lr = optimizer.initial_lr * (decay_rate ** (optimizer.step_count - warmup_steps))
                 logger.info(f"step {optimizer.step_count - warmup_steps}, LR: {new_lr:.6f}")
             

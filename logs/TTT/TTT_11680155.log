@@ -1,0 +1,696 @@
+/var/spool/slurm/slurmd/job11680155/slurm_script: line 9: deactivate: No such file or directory
+[25/05/09 12:32:18] [utils.py:   79]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/09 12:32:18] [utils.py:   80]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea/cifar10
+DESC: 
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_TTT_bn_sgd-1-0.1-128_250509-123218.txt
+LOG_TIME: 250509-123218
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_BN
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.1
+  METHOD: sgd
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0005
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+[25/05/09 12:32:19] [utils.py:   79]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/09 12:32:19] [utils.py:   80]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea/cifar10
+DESC: 
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_TTT_bn_sgd-1-0.1-128_250509-123218.txt
+LOG_TIME: 250509-123218
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_BN
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.1
+  METHOD: sgd
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0005
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Building model...
+Files already downloaded and verified
+Files already downloaded and verified
+
+  0%|          | 0/75 [00:00<?, ?it/s][25/05/09 12:35:00] [train_TTT.py:  135]: Train epoch: 1, loss_net: 0.013567, acc_net: 35.42%, loss_ssh: 0.008851, acc_ssh: 198.83%
+
+  1%|▏         | 1/75 [02:30<3:05:11, 150.16s/it][25/05/09 12:37:26] [train_TTT.py:  135]: Train epoch: 2, loss_net: 0.012517, acc_net: 40.34%, loss_ssh: 0.008385, acc_ssh: 211.69%
+
+  3%|▎         | 2/75 [04:56<2:59:53, 147.86s/it][25/05/09 12:39:52] [train_TTT.py:  135]: Train epoch: 3, loss_net: 0.011864, acc_net: 43.77%, loss_ssh: 0.008115, acc_ssh: 221.09%
+
+  4%|▍         | 3/75 [07:22<2:56:34, 147.15s/it][25/05/09 12:42:19] [train_TTT.py:  135]: Train epoch: 4, loss_net: 0.011179, acc_net: 47.11%, loss_ssh: 0.007776, acc_ssh: 230.39%
+
+  5%|▌         | 4/75 [09:48<2:53:42, 146.79s/it][25/05/09 12:44:45] [train_TTT.py:  135]: Train epoch: 5, loss_net: 0.010360, acc_net: 51.18%, loss_ssh: 0.007402, acc_ssh: 240.35%
+
+  7%|▋         | 5/75 [12:15<2:50:59, 146.57s/it][25/05/09 12:47:11] [train_TTT.py:  135]: Train epoch: 6, loss_net: 0.009643, acc_net: 55.23%, loss_ssh: 0.007049, acc_ssh: 248.92%
+
+  8%|▊         | 6/75 [14:41<2:48:22, 146.41s/it][25/05/09 12:49:37] [train_TTT.py:  135]: Train epoch: 7, loss_net: 0.008983, acc_net: 58.36%, loss_ssh: 0.006720, acc_ssh: 257.42%
+
+  9%|▉         | 7/75 [17:07<2:45:45, 146.26s/it][25/05/09 12:52:04] [train_TTT.py:  135]: Train epoch: 8, loss_net: 0.008376, acc_net: 61.17%, loss_ssh: 0.006416, acc_ssh: 265.22%
+
+ 11%|█         | 8/75 [19:33<2:43:30, 146.43s/it][25/05/09 12:54:30] [train_TTT.py:  135]: Train epoch: 9, loss_net: 0.007823, acc_net: 64.08%, loss_ssh: 0.006132, acc_ssh: 272.24%
+
+ 12%|█▏        | 9/75 [22:00<2:40:58, 146.34s/it][25/05/09 12:56:56] [train_TTT.py:  135]: Train epoch: 10, loss_net: 0.007275, acc_net: 66.65%, loss_ssh: 0.005878, acc_ssh: 277.96%
+
+ 13%|█▎        | 10/75 [24:26<2:38:32, 146.35s/it][25/05/09 12:59:22] [train_TTT.py:  135]: Train epoch: 11, loss_net: 0.006785, acc_net: 69.05%, loss_ssh: 0.005602, acc_ssh: 284.77%
+
+ 15%|█▍        | 11/75 [26:52<2:36:04, 146.32s/it][25/05/09 13:01:49] [train_TTT.py:  135]: Train epoch: 12, loss_net: 0.006378, acc_net: 70.87%, loss_ssh: 0.005394, acc_ssh: 289.39%
+
+ 16%|█▌        | 12/75 [29:19<2:33:37, 146.31s/it][25/05/09 13:04:15] [train_TTT.py:  135]: Train epoch: 13, loss_net: 0.005982, acc_net: 72.93%, loss_ssh: 0.005161, acc_ssh: 295.01%
+
+ 17%|█▋        | 13/75 [31:45<2:31:12, 146.34s/it][25/05/09 13:06:41] [train_TTT.py:  135]: Train epoch: 14, loss_net: 0.005614, acc_net: 74.52%, loss_ssh: 0.004963, acc_ssh: 299.65%
+
+ 19%|█▊        | 14/75 [34:11<2:28:47, 146.35s/it][25/05/09 13:09:08] [train_TTT.py:  135]: Train epoch: 15, loss_net: 0.005268, acc_net: 76.30%, loss_ssh: 0.004774, acc_ssh: 303.90%
+[25/05/09 13:09:08] [train_TTT.py:  139]: epoch: 15
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 1/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 2/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 3/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 4/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 5/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 6/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 7/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 8/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 9/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 10/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 11/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 12/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 13/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 14/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 15/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 16/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 17/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 18/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 19/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 20/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 21/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 22/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 23/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 24/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 25/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 26/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 27/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 28/79
+[25/05/09 13:09:08] [eval.py:   47]: Test Batch Process: 29/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 30/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 31/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 32/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 33/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 34/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 35/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 36/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 37/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 38/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 39/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 40/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 41/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 42/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 43/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 44/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 45/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 46/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 47/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 48/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 49/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 50/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 51/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 52/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 53/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 54/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 55/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 56/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 57/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 58/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 59/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 60/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 61/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 62/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 63/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 64/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 65/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 66/79
+[25/05/09 13:09:09] [eval.py:   47]: Test Batch Process: 67/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 68/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 69/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 70/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 71/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 72/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 73/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 74/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 75/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 76/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 77/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 78/79
+[25/05/09 13:09:10] [eval.py:   47]: Test Batch Process: 79/79
+[25/05/09 13:09:10] [train_TTT.py:  156]: Test set Accuracy: 71.64
+
+ 20%|██        | 15/75 [36:40<2:27:05, 147.09s/it][25/05/09 13:11:36] [train_TTT.py:  135]: Train epoch: 16, loss_net: 0.004962, acc_net: 77.66%, loss_ssh: 0.004593, acc_ssh: 308.05%
+
+ 21%|██▏       | 16/75 [39:06<2:24:23, 146.84s/it][25/05/09 13:14:03] [train_TTT.py:  135]: Train epoch: 17, loss_net: 0.004673, acc_net: 79.03%, loss_ssh: 0.004400, acc_ssh: 312.14%
+
+ 23%|██▎       | 17/75 [41:33<2:21:52, 146.77s/it][25/05/09 13:16:30] [train_TTT.py:  135]: Train epoch: 18, loss_net: 0.004372, acc_net: 80.37%, loss_ssh: 0.004244, acc_ssh: 316.01%
+
+ 24%|██▍       | 18/75 [44:00<2:19:23, 146.72s/it][25/05/09 13:18:56] [train_TTT.py:  135]: Train epoch: 19, loss_net: 0.004115, acc_net: 81.66%, loss_ssh: 0.004096, acc_ssh: 318.96%
+
+ 25%|██▌       | 19/75 [46:26<2:16:57, 146.73s/it][25/05/09 13:21:23] [train_TTT.py:  135]: Train epoch: 20, loss_net: 0.003888, acc_net: 82.69%, loss_ssh: 0.003944, acc_ssh: 322.37%
+
+ 27%|██▋       | 20/75 [48:53<2:14:23, 146.61s/it][25/05/09 13:23:49] [train_TTT.py:  135]: Train epoch: 21, loss_net: 0.003676, acc_net: 83.70%, loss_ssh: 0.003814, acc_ssh: 324.93%
+
+ 28%|██▊       | 21/75 [51:19<2:11:51, 146.51s/it][25/05/09 13:26:15] [train_TTT.py:  135]: Train epoch: 22, loss_net: 0.003463, acc_net: 84.72%, loss_ssh: 0.003700, acc_ssh: 327.55%
+
+ 29%|██▉       | 22/75 [53:45<2:09:24, 146.49s/it][25/05/09 13:28:42] [train_TTT.py:  135]: Train epoch: 23, loss_net: 0.003260, acc_net: 85.48%, loss_ssh: 0.003580, acc_ssh: 329.93%
+
+ 31%|███       | 23/75 [56:12<2:06:53, 146.42s/it][25/05/09 13:31:08] [train_TTT.py:  135]: Train epoch: 24, loss_net: 0.003108, acc_net: 86.08%, loss_ssh: 0.003448, acc_ssh: 332.64%
+
+ 32%|███▏      | 24/75 [58:38<2:04:29, 146.45s/it][25/05/09 13:33:35] [train_TTT.py:  135]: Train epoch: 25, loss_net: 0.002988, acc_net: 86.71%, loss_ssh: 0.003364, acc_ssh: 334.43%
+
+ 33%|███▎      | 25/75 [1:01:05<2:02:03, 146.47s/it][25/05/09 13:36:06] [train_TTT.py:  135]: Train epoch: 26, loss_net: 0.002782, acc_net: 87.68%, loss_ssh: 0.003267, acc_ssh: 335.77%
+
+ 35%|███▍      | 26/75 [1:03:36<2:00:44, 147.84s/it][25/05/09 13:39:24] [train_TTT.py:  135]: Train epoch: 27, loss_net: 0.002658, acc_net: 88.17%, loss_ssh: 0.003166, acc_ssh: 338.58%
+
+ 36%|███▌      | 27/75 [1:06:54<2:10:25, 163.04s/it][25/05/09 13:41:52] [train_TTT.py:  135]: Train epoch: 28, loss_net: 0.002534, acc_net: 88.78%, loss_ssh: 0.003067, acc_ssh: 340.62%
+
+ 37%|███▋      | 28/75 [1:09:22<2:04:11, 158.55s/it][25/05/09 13:44:18] [train_TTT.py:  135]: Train epoch: 29, loss_net: 0.002402, acc_net: 89.50%, loss_ssh: 0.002990, acc_ssh: 341.94%
+
+ 39%|███▊      | 29/75 [1:11:48<1:58:41, 154.81s/it][25/05/09 13:46:45] [train_TTT.py:  135]: Train epoch: 30, loss_net: 0.002300, acc_net: 89.78%, loss_ssh: 0.002915, acc_ssh: 343.72%
+[25/05/09 13:46:45] [train_TTT.py:  139]: epoch: 30
+[25/05/09 13:46:45] [eval.py:   47]: Test Batch Process: 1/79
+[25/05/09 13:46:45] [eval.py:   47]: Test Batch Process: 2/79
+[25/05/09 13:46:45] [eval.py:   47]: Test Batch Process: 3/79
+[25/05/09 13:46:45] [eval.py:   47]: Test Batch Process: 4/79
+[25/05/09 13:46:45] [eval.py:   47]: Test Batch Process: 5/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 6/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 7/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 8/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 9/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 10/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 11/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 12/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 13/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 14/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 15/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 16/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 17/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 18/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 19/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 20/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 21/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 22/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 23/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 24/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 25/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 26/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 27/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 28/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 29/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 30/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 31/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 32/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 33/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 34/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 35/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 36/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 37/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 38/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 39/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 40/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 41/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 42/79
+[25/05/09 13:46:46] [eval.py:   47]: Test Batch Process: 43/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 44/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 45/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 46/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 47/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 48/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 49/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 50/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 51/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 52/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 53/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 54/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 55/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 56/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 57/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 58/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 59/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 60/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 61/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 62/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 63/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 64/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 65/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 66/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 67/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 68/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 69/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 70/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 71/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 72/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 73/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 74/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 75/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 76/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 77/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 78/79
+[25/05/09 13:46:47] [eval.py:   47]: Test Batch Process: 79/79
+[25/05/09 13:46:47] [train_TTT.py:  156]: Test set Accuracy: 82.08
+
+ 40%|████      | 30/75 [1:14:18<1:54:51, 153.15s/it][25/05/09 13:49:14] [train_TTT.py:  135]: Train epoch: 31, loss_net: 0.002176, acc_net: 90.45%, loss_ssh: 0.002850, acc_ssh: 344.84%
+
+ 41%|████▏     | 31/75 [1:16:44<1:50:45, 151.03s/it][25/05/09 13:51:40] [train_TTT.py:  135]: Train epoch: 32, loss_net: 0.002055, acc_net: 90.93%, loss_ssh: 0.002766, acc_ssh: 346.70%
+
+ 43%|████▎     | 32/75 [1:19:10<1:47:12, 149.59s/it][25/05/09 13:54:06] [train_TTT.py:  135]: Train epoch: 33, loss_net: 0.001970, acc_net: 91.28%, loss_ssh: 0.002696, acc_ssh: 348.17%
+
+ 44%|████▍     | 33/75 [1:21:36<1:43:59, 148.57s/it][25/05/09 13:56:32] [train_TTT.py:  135]: Train epoch: 34, loss_net: 0.001850, acc_net: 91.74%, loss_ssh: 0.002626, acc_ssh: 349.58%
+
+ 45%|████▌     | 34/75 [1:24:02<1:41:02, 147.86s/it][25/05/09 13:58:59] [train_TTT.py:  135]: Train epoch: 35, loss_net: 0.001781, acc_net: 92.14%, loss_ssh: 0.002542, acc_ssh: 351.30%
+
+ 47%|████▋     | 35/75 [1:26:28<1:38:13, 147.34s/it][25/05/09 14:01:25] [train_TTT.py:  135]: Train epoch: 36, loss_net: 0.001714, acc_net: 92.38%, loss_ssh: 0.002508, acc_ssh: 351.66%
+
+ 48%|████▊     | 36/75 [1:28:55<1:35:35, 147.07s/it][25/05/09 14:03:51] [train_TTT.py:  135]: Train epoch: 37, loss_net: 0.001613, acc_net: 92.92%, loss_ssh: 0.002422, acc_ssh: 353.74%
+
+ 49%|████▉     | 37/75 [1:31:21<1:32:57, 146.77s/it][25/05/09 14:06:18] [train_TTT.py:  135]: Train epoch: 38, loss_net: 0.001543, acc_net: 93.19%, loss_ssh: 0.002375, acc_ssh: 354.71%
+
+ 51%|█████     | 38/75 [1:33:47<1:30:26, 146.67s/it][25/05/09 14:08:44] [train_TTT.py:  135]: Train epoch: 39, loss_net: 0.001455, acc_net: 93.71%, loss_ssh: 0.002320, acc_ssh: 355.81%
+
+ 52%|█████▏    | 39/75 [1:36:14<1:27:53, 146.49s/it][25/05/09 14:11:10] [train_TTT.py:  135]: Train epoch: 40, loss_net: 0.001389, acc_net: 93.78%, loss_ssh: 0.002266, acc_ssh: 356.97%
+
+ 53%|█████▎    | 40/75 [1:38:40<1:25:22, 146.34s/it][25/05/09 14:13:36] [train_TTT.py:  135]: Train epoch: 41, loss_net: 0.001322, acc_net: 94.27%, loss_ssh: 0.002218, acc_ssh: 357.41%
+
+ 55%|█████▍    | 41/75 [1:41:06<1:22:54, 146.30s/it][25/05/09 14:16:02] [train_TTT.py:  135]: Train epoch: 42, loss_net: 0.001255, acc_net: 94.55%, loss_ssh: 0.002166, acc_ssh: 358.57%
+
+ 56%|█████▌    | 42/75 [1:43:32<1:20:27, 146.28s/it][25/05/09 14:18:29] [train_TTT.py:  135]: Train epoch: 43, loss_net: 0.001222, acc_net: 94.61%, loss_ssh: 0.002111, acc_ssh: 359.98%
+
+ 57%|█████▋    | 43/75 [1:45:59<1:18:07, 146.47s/it][25/05/09 14:20:55] [train_TTT.py:  135]: Train epoch: 44, loss_net: 0.001100, acc_net: 95.23%, loss_ssh: 0.002064, acc_ssh: 360.90%
+
+ 59%|█████▊    | 44/75 [1:48:25<1:15:41, 146.49s/it][25/05/09 14:23:22] [train_TTT.py:  135]: Train epoch: 45, loss_net: 0.001088, acc_net: 95.31%, loss_ssh: 0.002013, acc_ssh: 361.68%
+[25/05/09 14:23:22] [train_TTT.py:  139]: epoch: 45
+[25/05/09 14:23:22] [eval.py:   47]: Test Batch Process: 1/79
+[25/05/09 14:23:22] [eval.py:   47]: Test Batch Process: 2/79
+[25/05/09 14:23:22] [eval.py:   47]: Test Batch Process: 3/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 4/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 5/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 6/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 7/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 8/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 9/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 10/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 11/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 12/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 13/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 14/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 15/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 16/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 17/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 18/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 19/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 20/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 21/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 22/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 23/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 24/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 25/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 26/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 27/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 28/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 29/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 30/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 31/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 32/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 33/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 34/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 35/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 36/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 37/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 38/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 39/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 40/79
+[25/05/09 14:23:23] [eval.py:   47]: Test Batch Process: 41/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 42/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 43/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 44/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 45/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 46/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 47/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 48/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 49/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 50/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 51/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 52/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 53/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 54/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 55/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 56/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 57/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 58/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 59/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 60/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 61/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 62/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 63/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 64/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 65/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 66/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 67/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 68/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 69/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 70/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 71/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 72/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 73/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 74/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 75/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 76/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 77/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 78/79
+[25/05/09 14:23:24] [eval.py:   47]: Test Batch Process: 79/79
+[25/05/09 14:23:25] [train_TTT.py:  156]: Test set Accuracy: 84.7
+
+ 60%|██████    | 45/75 [1:50:55<1:13:39, 147.33s/it][25/05/09 14:25:52] [train_TTT.py:  135]: Train epoch: 46, loss_net: 0.001041, acc_net: 95.44%, loss_ssh: 0.001960, acc_ssh: 362.49%
+
+ 61%|██████▏   | 46/75 [1:53:22<1:11:08, 147.18s/it][25/05/09 14:28:18] [train_TTT.py:  135]: Train epoch: 47, loss_net: 0.000984, acc_net: 95.73%, loss_ssh: 0.001914, acc_ssh: 363.99%
+
+ 63%|██████▎   | 47/75 [1:55:48<1:08:35, 147.00s/it][25/05/09 14:30:44] [train_TTT.py:  135]: Train epoch: 48, loss_net: 0.000926, acc_net: 95.99%, loss_ssh: 0.001872, acc_ssh: 364.55%
+
+ 64%|██████▍   | 48/75 [1:58:14<1:06:02, 146.76s/it][25/05/09 14:33:10] [train_TTT.py:  135]: Train epoch: 49, loss_net: 0.000875, acc_net: 96.22%, loss_ssh: 0.001830, acc_ssh: 365.21%
+
+ 65%|██████▌   | 49/75 [2:00:40<1:03:30, 146.57s/it][25/05/09 14:35:37] [train_TTT.py:  135]: Train epoch: 50, loss_net: 0.000837, acc_net: 96.34%, loss_ssh: 0.001792, acc_ssh: 366.02%
+
+ 67%|██████▋   | 50/75 [2:03:07<1:01:03, 146.55s/it][25/05/09 14:38:04] [train_TTT.py:  135]: Train epoch: 51, loss_net: 0.000834, acc_net: 96.33%, loss_ssh: 0.001762, acc_ssh: 366.75%
+
+ 68%|██████▊   | 51/75 [2:05:34<58:37, 146.57s/it]  [25/05/09 14:40:30] [train_TTT.py:  135]: Train epoch: 52, loss_net: 0.000772, acc_net: 96.65%, loss_ssh: 0.001708, acc_ssh: 367.67%
+
+ 69%|██████▉   | 52/75 [2:08:00<56:09, 146.49s/it][25/05/09 14:42:56] [train_TTT.py:  135]: Train epoch: 53, loss_net: 0.000732, acc_net: 96.94%, loss_ssh: 0.001667, acc_ssh: 368.48%
+
+ 71%|███████   | 53/75 [2:10:26<53:42, 146.47s/it][25/05/09 14:45:23] [train_TTT.py:  135]: Train epoch: 54, loss_net: 0.000699, acc_net: 97.03%, loss_ssh: 0.001625, acc_ssh: 369.63%
+
+ 72%|███████▏  | 54/75 [2:12:53<51:18, 146.59s/it][25/05/09 14:47:49] [train_TTT.py:  135]: Train epoch: 55, loss_net: 0.000703, acc_net: 96.94%, loss_ssh: 0.001594, acc_ssh: 370.04%
+
+ 73%|███████▎  | 55/75 [2:15:19<48:49, 146.48s/it][25/05/09 14:50:16] [train_TTT.py:  135]: Train epoch: 56, loss_net: 0.000633, acc_net: 97.32%, loss_ssh: 0.001546, acc_ssh: 370.92%
+
+ 75%|███████▍  | 56/75 [2:17:46<46:21, 146.40s/it][25/05/09 14:52:42] [train_TTT.py:  135]: Train epoch: 57, loss_net: 0.000611, acc_net: 97.40%, loss_ssh: 0.001508, acc_ssh: 371.61%
+
+ 76%|███████▌  | 57/75 [2:20:12<43:56, 146.46s/it][25/05/09 14:55:09] [train_TTT.py:  135]: Train epoch: 58, loss_net: 0.000581, acc_net: 97.52%, loss_ssh: 0.001465, acc_ssh: 372.26%
+
+ 77%|███████▋  | 58/75 [2:22:39<41:30, 146.49s/it][25/05/09 14:57:39] [train_TTT.py:  135]: Train epoch: 59, loss_net: 0.000563, acc_net: 97.61%, loss_ssh: 0.001436, acc_ssh: 372.77%
+
+ 79%|███████▊  | 59/75 [2:25:09<39:22, 147.63s/it][25/05/09 15:00:06] [train_TTT.py:  135]: Train epoch: 60, loss_net: 0.000539, acc_net: 97.76%, loss_ssh: 0.001395, acc_ssh: 373.65%
+[25/05/09 15:00:06] [train_TTT.py:  139]: epoch: 60
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 1/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 2/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 3/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 4/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 5/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 6/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 7/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 8/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 9/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 10/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 11/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 12/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 13/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 14/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 15/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 16/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 17/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 18/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 19/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 20/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 21/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 22/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 23/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 24/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 25/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 26/79
+[25/05/09 15:00:06] [eval.py:   47]: Test Batch Process: 27/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 28/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 29/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 30/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 31/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 32/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 33/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 34/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 35/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 36/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 37/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 38/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 39/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 40/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 41/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 42/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 43/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 44/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 45/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 46/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 47/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 48/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 49/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 50/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 51/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 52/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 53/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 54/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 55/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 56/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 57/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 58/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 59/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 60/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 61/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 62/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 63/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 64/79
+[25/05/09 15:00:07] [eval.py:   47]: Test Batch Process: 65/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 66/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 67/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 68/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 69/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 70/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 71/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 72/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 73/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 74/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 75/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 76/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 77/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 78/79
+[25/05/09 15:00:08] [eval.py:   47]: Test Batch Process: 79/79
+[25/05/09 15:00:08] [train_TTT.py:  156]: Test set Accuracy: 85.41
+
+ 80%|████████  | 60/75 [2:27:38<37:00, 148.05s/it][25/05/09 15:02:35] [train_TTT.py:  135]: Train epoch: 61, loss_net: 0.000512, acc_net: 97.91%, loss_ssh: 0.001366, acc_ssh: 374.51%
+
+ 81%|████████▏ | 61/75 [2:30:05<34:27, 147.66s/it][25/05/09 15:05:01] [train_TTT.py:  135]: Train epoch: 62, loss_net: 0.000483, acc_net: 97.97%, loss_ssh: 0.001330, acc_ssh: 374.76%
+
+ 83%|████████▎ | 62/75 [2:32:31<31:53, 147.19s/it][25/05/09 15:07:27] [train_TTT.py:  135]: Train epoch: 63, loss_net: 0.000454, acc_net: 98.13%, loss_ssh: 0.001300, acc_ssh: 375.57%
+
+ 84%|████████▍ | 63/75 [2:34:57<29:23, 146.95s/it][25/05/09 15:09:54] [train_TTT.py:  135]: Train epoch: 64, loss_net: 0.000448, acc_net: 98.14%, loss_ssh: 0.001267, acc_ssh: 376.39%
+
+ 85%|████████▌ | 64/75 [2:37:24<26:55, 146.84s/it][25/05/09 15:12:22] [train_TTT.py:  135]: Train epoch: 65, loss_net: 0.000427, acc_net: 98.27%, loss_ssh: 0.001224, acc_ssh: 377.23%
+
+ 87%|████████▋ | 65/75 [2:39:52<24:31, 147.19s/it][25/05/09 15:14:50] [train_TTT.py:  135]: Train epoch: 66, loss_net: 0.000425, acc_net: 98.16%, loss_ssh: 0.001206, acc_ssh: 377.26%
+
+ 88%|████████▊ | 66/75 [2:42:20<22:08, 147.56s/it][25/05/09 15:17:17] [train_TTT.py:  135]: Train epoch: 67, loss_net: 0.000414, acc_net: 98.27%, loss_ssh: 0.001180, acc_ssh: 377.91%
+
+ 89%|████████▉ | 67/75 [2:44:47<19:37, 147.20s/it][25/05/09 15:19:43] [train_TTT.py:  135]: Train epoch: 68, loss_net: 0.000375, acc_net: 98.43%, loss_ssh: 0.001159, acc_ssh: 378.16%
+
+ 91%|█████████ | 68/75 [2:47:13<17:08, 146.97s/it][25/05/09 15:22:10] [train_TTT.py:  135]: Train epoch: 69, loss_net: 0.000368, acc_net: 98.51%, loss_ssh: 0.001099, acc_ssh: 379.70%
+
+ 92%|█████████▏| 69/75 [2:49:40<14:41, 146.86s/it][25/05/09 15:24:36] [train_TTT.py:  135]: Train epoch: 70, loss_net: 0.000365, acc_net: 98.48%, loss_ssh: 0.001087, acc_ssh: 379.59%
+
+ 93%|█████████▎| 70/75 [2:52:06<12:13, 146.75s/it][25/05/09 15:27:04] [train_TTT.py:  135]: Train epoch: 71, loss_net: 0.000333, acc_net: 98.66%, loss_ssh: 0.001050, acc_ssh: 380.18%
+
+ 95%|█████████▍| 71/75 [2:54:34<09:48, 147.06s/it][25/05/09 15:29:31] [train_TTT.py:  135]: Train epoch: 72, loss_net: 0.000335, acc_net: 98.65%, loss_ssh: 0.001031, acc_ssh: 381.03%
+
+ 96%|█████████▌| 72/75 [2:57:00<07:20, 146.88s/it][25/05/09 15:31:57] [train_TTT.py:  135]: Train epoch: 73, loss_net: 0.000326, acc_net: 98.64%, loss_ssh: 0.001013, acc_ssh: 381.13%
+
+ 97%|█████████▋| 73/75 [2:59:27<04:53, 146.90s/it][25/05/09 15:34:31] [train_TTT.py:  135]: Train epoch: 74, loss_net: 0.000313, acc_net: 98.71%, loss_ssh: 0.000972, acc_ssh: 381.94%
+
+ 99%|█████████▊| 74/75 [3:02:01<02:29, 149.04s/it][25/05/09 15:37:00] [train_TTT.py:  135]: Train epoch: 75, loss_net: 0.000292, acc_net: 98.82%, loss_ssh: 0.000939, acc_ssh: 382.54%
+[25/05/09 15:37:00] [train_TTT.py:  139]: epoch: 75
+[25/05/09 15:37:01] [eval.py:   47]: Test Batch Process: 1/79
+[25/05/09 15:37:02] [eval.py:   47]: Test Batch Process: 2/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 3/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 4/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 5/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 6/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 7/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 8/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 9/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 10/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 11/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 12/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 13/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 14/79
+[25/05/09 15:37:03] [eval.py:   47]: Test Batch Process: 15/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 16/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 17/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 18/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 19/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 20/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 21/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 22/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 23/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 24/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 25/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 26/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 27/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 28/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 29/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 30/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 31/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 32/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 33/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 34/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 35/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 36/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 37/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 38/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 39/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 40/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 41/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 42/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 43/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 44/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 45/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 46/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 47/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 48/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 49/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 50/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 51/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 52/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 53/79
+[25/05/09 15:37:04] [eval.py:   47]: Test Batch Process: 54/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 55/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 56/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 57/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 58/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 59/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 60/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 61/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 62/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 63/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 64/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 65/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 66/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 67/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 68/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 69/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 70/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 71/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 72/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 73/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 74/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 75/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 76/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 77/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 78/79
+[25/05/09 15:37:05] [eval.py:   47]: Test Batch Process: 79/79
+[25/05/09 15:37:05] [train_TTT.py:  156]: Test set Accuracy: 86.49
+
+100%|██████████| 75/75 [3:04:35<00:00, 150.51s/it]
+100%|██████████| 75/75 [3:04:35<00:00, 147.68s/it]
+
+JOB STATISTICS
+==============
+Job ID: 11680155
+Cluster: snellius
+User/Group: scur2578/scur2578
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 03:22:04
+CPU Efficiency: 6.07% of 2-07:31:12 core-walltime
+Job Wall-clock time: 03:05:04
+Memory Utilized: 1.41 GB
+Memory Efficiency: 1.18% of 120.00 GB (120.00 GB/node)

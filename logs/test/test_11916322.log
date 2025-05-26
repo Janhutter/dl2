@@ -1,0 +1,538 @@
+[25/05/18 12:06:34] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/18 12:06:34] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar100
+  IMG_SIZE: 224
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 100
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar100
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_ln_sgd-1-0.01-512_250518-120634.txt
+LOG_TIME: 250518-120634
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['ln']
+  ARCH: VIT_16
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 512
+  BETA: 0.9
+  CLIP_NORM: True
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WD: 0.0
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar100/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Some weights of the model checkpoint at google/vit-base-patch16-224-in21k were not used when initializing ViTForImageClassification: ['pooler.dense.bias', 'pooler.dense.weight']
+- This IS expected if you are initializing ViTForImageClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing ViTForImageClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of ViTForImageClassification were not initialized from the model checkpoint at google/vit-base-patch16-224-in21k and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[25/05/18 12:06:36] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/18 12:06:36] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar100
+  IMG_SIZE: 224
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 100
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar100
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_ln_sgd-1-0.01-512_250518-120634.txt
+LOG_TIME: 250518-120634
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['ln']
+  ARCH: VIT_16
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 512
+  BETA: 0.9
+  CLIP_NORM: True
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WD: 0.0
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar100/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Downloading https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz to /scratch-shared/tea2/cifar100/cifar-100-python.tar.gz
+  0%|          | 0.00/169M [00:00<?, ?B/s]  0%|          | 32.8k/169M [00:00<14:24, 196kB/s]  0%|          | 197k/169M [00:00<04:26, 634kB/s]   0%|          | 524k/169M [00:00<01:52, 1.50MB/s]  1%|          | 1.34M/169M [00:00<00:46, 3.62MB/s]  2%|▏         | 2.59M/169M [00:00<00:26, 6.38MB/s]  3%|▎         | 5.21M/169M [00:00<00:13, 12.5MB/s]  5%|▌         | 8.75M/169M [00:00<00:08, 19.5MB/s]  7%|▋         | 12.3M/169M [00:00<00:06, 24.4MB/s]  9%|▉         | 15.6M/169M [00:01<00:06, 25.5MB/s] 12%|█▏        | 19.9M/169M [00:01<00:04, 30.4MB/s] 14%|█▍        | 23.4M/169M [00:01<00:05, 28.6MB/s] 16%|█▌        | 27.0M/169M [00:01<00:04, 30.5MB/s] 18%|█▊        | 30.1M/169M [00:01<00:04, 30.6MB/s] 20%|█▉        | 33.3M/169M [00:01<00:04, 30.8MB/s] 22%|██▏       | 36.5M/169M [00:01<00:04, 31.1MB/s] 23%|██▎       | 39.7M/169M [00:01<00:04, 31.4MB/s] 25%|██▌       | 43.0M/169M [00:01<00:03, 31.6MB/s] 27%|██▋       | 46.3M/169M [00:02<00:03, 31.9MB/s] 29%|██▉       | 49.6M/169M [00:02<00:03, 32.1MB/s] 31%|███▏      | 52.8M/169M [00:02<00:03, 31.8MB/s] 33%|███▎      | 56.1M/169M [00:02<00:03, 31.9MB/s] 35%|███▌      | 59.3M/169M [00:02<00:03, 31.1MB/s] 37%|███▋      | 62.5M/169M [00:02<00:03, 31.2MB/s] 39%|███▉      | 65.7M/169M [00:02<00:03, 31.4MB/s] 41%|████      | 68.9M/169M [00:02<00:03, 31.6MB/s] 43%|████▎     | 72.2M/169M [00:02<00:03, 31.8MB/s] 45%|████▍     | 75.4M/169M [00:02<00:02, 31.2MB/s] 47%|████▋     | 78.6M/169M [00:03<00:02, 31.6MB/s] 48%|████▊     | 82.0M/169M [00:03<00:02, 32.0MB/s] 50%|█████     | 85.2M/169M [00:03<00:02, 32.1MB/s] 52%|█████▏    | 88.4M/169M [00:03<00:02, 30.9MB/s] 54%|█████▍    | 91.7M/169M [00:03<00:02, 31.2MB/s] 56%|█████▌    | 94.8M/169M [00:03<00:02, 31.2MB/s] 58%|█████▊    | 98.2M/169M [00:03<00:02, 31.8MB/s] 60%|█████▉    | 101M/169M [00:03<00:02, 31.7MB/s]  62%|██████▏   | 105M/169M [00:03<00:02, 31.5MB/s] 64%|██████▍   | 108M/169M [00:03<00:01, 31.4MB/s] 66%|██████▌   | 111M/169M [00:04<00:01, 31.8MB/s] 68%|██████▊   | 114M/169M [00:04<00:01, 31.7MB/s] 70%|██████▉   | 118M/169M [00:04<00:01, 32.2MB/s] 71%|███████▏  | 121M/169M [00:04<00:01, 31.0MB/s] 73%|███████▎  | 124M/169M [00:04<00:01, 31.3MB/s] 75%|███████▌  | 127M/169M [00:04<00:01, 31.5MB/s] 77%|███████▋  | 130M/169M [00:04<00:01, 31.5MB/s] 79%|███████▉  | 134M/169M [00:04<00:01, 31.4MB/s] 81%|████████  | 137M/169M [00:04<00:00, 32.2MB/s] 83%|████████▎ | 141M/169M [00:04<00:00, 33.7MB/s] 85%|████████▌ | 144M/169M [00:05<00:00, 32.1MB/s] 88%|████████▊ | 148M/169M [00:05<00:00, 34.1MB/s] 90%|████████▉ | 152M/169M [00:05<00:00, 34.6MB/s] 92%|█████████▏| 155M/169M [00:05<00:00, 32.1MB/s] 94%|█████████▍| 159M/169M [00:05<00:00, 32.4MB/s] 96%|█████████▌| 163M/169M [00:05<00:00, 33.3MB/s] 98%|█████████▊| 166M/169M [00:05<00:00, 34.7MB/s]100%|██████████| 169M/169M [00:05<00:00, 29.0MB/s]
+Extracting /scratch-shared/tea2/cifar100/cifar-100-python.tar.gz to /scratch-shared/tea2/cifar100
+Files already downloaded and verified
+Training:   0%|          | 0/20 [00:00<?, ?epoch/s]/home/jhutter/.local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:632: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+[25/05/18 12:14:08] [train.py:   91]: epoch: 1
+Train Epoch: 1 [0/50000 (0%)]	Loss: 4.603644
+Train Epoch: 1 [5120/50000 (10%)]	Loss: 4.607371
+Train Epoch: 1 [10240/50000 (20%)]	Loss: 4.608070
+Train Epoch: 1 [15360/50000 (31%)]	Loss: 4.606339
+Train Epoch: 1 [20480/50000 (41%)]	Loss: 4.599913
+Train Epoch: 1 [25600/50000 (51%)]	Loss: 4.591338
+Train Epoch: 1 [30720/50000 (61%)]	Loss: 4.592864
+Train Epoch: 1 [35840/50000 (71%)]	Loss: 4.582260
+Train Epoch: 1 [40960/50000 (82%)]	Loss: 4.573771
+Train Epoch: 1 [46080/50000 (92%)]	Loss: 4.563056
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  20%|██        | 4/20 [00:05<00:23,  1.45s/batch][A
+Testing:  45%|████▌     | 9/20 [00:11<00:14,  1.29s/batch][A
+Testing:  70%|███████   | 14/20 [00:17<00:07,  1.24s/batch][A
+Testing:  95%|█████████▌| 19/20 [00:23<00:01,  1.22s/batch][ATesting: 100%|██████████| 20/20 [00:24<00:00,  1.22s/batch]
+[25/05/18 12:14:33] [train.py:  109]: Test set Accuracy: 3.94
+Training:   5%|▌         | 1/20 [07:47<2:28:03, 467.54s/epoch][25/05/18 12:21:52] [train.py:   91]: epoch: 2
+Train Epoch: 2 [0/50000 (0%)]	Loss: 4.554946
+Train Epoch: 2 [5120/50000 (10%)]	Loss: 4.542614
+Train Epoch: 2 [10240/50000 (20%)]	Loss: 4.523129
+Train Epoch: 2 [15360/50000 (31%)]	Loss: 4.503147
+Train Epoch: 2 [20480/50000 (41%)]	Loss: 4.497218
+Train Epoch: 2 [25600/50000 (51%)]	Loss: 4.466345
+Train Epoch: 2 [30720/50000 (61%)]	Loss: 4.438367
+Train Epoch: 2 [35840/50000 (71%)]	Loss: 4.420874
+Train Epoch: 2 [40960/50000 (82%)]	Loss: 4.383874
+Train Epoch: 2 [46080/50000 (92%)]	Loss: 4.351266
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 12:22:17] [train.py:  109]: Test set Accuracy: 40.82
+Training:  10%|█         | 2/20 [15:32<2:19:47, 465.97s/epoch][25/05/18 12:29:36] [train.py:   91]: epoch: 3
+Train Epoch: 3 [0/50000 (0%)]	Loss: 4.313437
+Train Epoch: 3 [5120/50000 (10%)]	Loss: 4.265927
+Train Epoch: 3 [10240/50000 (20%)]	Loss: 4.227124
+Train Epoch: 3 [15360/50000 (31%)]	Loss: 4.151306
+Train Epoch: 3 [20480/50000 (41%)]	Loss: 4.108135
+Train Epoch: 3 [25600/50000 (51%)]	Loss: 4.041393
+Train Epoch: 3 [30720/50000 (61%)]	Loss: 3.959924
+Train Epoch: 3 [35840/50000 (71%)]	Loss: 3.861506
+Train Epoch: 3 [40960/50000 (82%)]	Loss: 3.778842
+Train Epoch: 3 [46080/50000 (92%)]	Loss: 3.695982
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 12:30:02] [train.py:  109]: Test set Accuracy: 76.58
+Training:  15%|█▌        | 3/20 [23:17<2:11:52, 465.46s/epoch][25/05/18 12:37:21] [train.py:   91]: epoch: 4
+Train Epoch: 4 [0/50000 (0%)]	Loss: 3.584383
+Train Epoch: 4 [5120/50000 (10%)]	Loss: 3.463103
+Train Epoch: 4 [10240/50000 (20%)]	Loss: 3.315814
+Train Epoch: 4 [15360/50000 (31%)]	Loss: 3.173122
+Train Epoch: 4 [20480/50000 (41%)]	Loss: 3.023096
+Train Epoch: 4 [25600/50000 (51%)]	Loss: 2.790441
+Train Epoch: 4 [30720/50000 (61%)]	Loss: 2.601568
+Train Epoch: 4 [35840/50000 (71%)]	Loss: 2.404459
+Train Epoch: 4 [40960/50000 (82%)]	Loss: 2.221348
+Train Epoch: 4 [46080/50000 (92%)]	Loss: 2.020659
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 12:37:47] [train.py:  109]: Test set Accuracy: 83.46
+Training:  20%|██        | 4/20 [31:02<2:04:04, 465.30s/epoch][25/05/18 12:45:06] [train.py:   91]: epoch: 5
+Train Epoch: 5 [0/50000 (0%)]	Loss: 1.870851
+Train Epoch: 5 [5120/50000 (10%)]	Loss: 1.633226
+Train Epoch: 5 [10240/50000 (20%)]	Loss: 1.546310
+Train Epoch: 5 [15360/50000 (31%)]	Loss: 1.405505
+Train Epoch: 5 [20480/50000 (41%)]	Loss: 1.283064
+Train Epoch: 5 [25600/50000 (51%)]	Loss: 1.084985
+Train Epoch: 5 [30720/50000 (61%)]	Loss: 1.003803
+Train Epoch: 5 [35840/50000 (71%)]	Loss: 0.985000
+Train Epoch: 5 [40960/50000 (82%)]	Loss: 0.908110
+Train Epoch: 5 [46080/50000 (92%)]	Loss: 0.793520
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 12:45:32] [train.py:  109]: Test set Accuracy: 87.39
+Training:  25%|██▌       | 5/20 [38:47<1:56:17, 465.14s/epoch][25/05/18 12:52:51] [train.py:   91]: epoch: 6
+Train Epoch: 6 [0/50000 (0%)]	Loss: 0.782360
+Train Epoch: 6 [5120/50000 (10%)]	Loss: 0.720569
+Train Epoch: 6 [10240/50000 (20%)]	Loss: 0.655498
+Train Epoch: 6 [15360/50000 (31%)]	Loss: 0.643946
+Train Epoch: 6 [20480/50000 (41%)]	Loss: 0.564537
+Train Epoch: 6 [25600/50000 (51%)]	Loss: 0.545438
+Train Epoch: 6 [30720/50000 (61%)]	Loss: 0.573726
+Train Epoch: 6 [35840/50000 (71%)]	Loss: 0.520461
+Train Epoch: 6 [40960/50000 (82%)]	Loss: 0.505674
+Train Epoch: 6 [46080/50000 (92%)]	Loss: 0.430047
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 12:53:17] [train.py:  109]: Test set Accuracy: 89.15
+Training:  30%|███       | 6/20 [46:32<1:48:30, 465.06s/epoch][25/05/18 13:00:36] [train.py:   91]: epoch: 7
+Train Epoch: 7 [0/50000 (0%)]	Loss: 0.472733
+Train Epoch: 7 [5120/50000 (10%)]	Loss: 0.456302
+Train Epoch: 7 [10240/50000 (20%)]	Loss: 0.382154
+Train Epoch: 7 [15360/50000 (31%)]	Loss: 0.451392
+Train Epoch: 7 [20480/50000 (41%)]	Loss: 0.434068
+Train Epoch: 7 [25600/50000 (51%)]	Loss: 0.380431
+Train Epoch: 7 [30720/50000 (61%)]	Loss: 0.377790
+Train Epoch: 7 [35840/50000 (71%)]	Loss: 0.378172
+Train Epoch: 7 [40960/50000 (82%)]	Loss: 0.384799
+Train Epoch: 7 [46080/50000 (92%)]	Loss: 0.320148
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 13:01:02] [train.py:  109]: Test set Accuracy: 89.8
+Training:  35%|███▌      | 7/20 [54:17<1:40:45, 465.03s/epoch][25/05/18 13:08:21] [train.py:   91]: epoch: 8
+Train Epoch: 8 [0/50000 (0%)]	Loss: 0.319298
+Train Epoch: 8 [5120/50000 (10%)]	Loss: 0.336346
+Train Epoch: 8 [10240/50000 (20%)]	Loss: 0.357034
+Train Epoch: 8 [15360/50000 (31%)]	Loss: 0.271043
+Train Epoch: 8 [20480/50000 (41%)]	Loss: 0.255059
+Train Epoch: 8 [25600/50000 (51%)]	Loss: 0.355603
+Train Epoch: 8 [30720/50000 (61%)]	Loss: 0.321919
+Train Epoch: 8 [35840/50000 (71%)]	Loss: 0.259288
+Train Epoch: 8 [40960/50000 (82%)]	Loss: 0.305582
+Train Epoch: 8 [46080/50000 (92%)]	Loss: 0.306333
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.45s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:24<00:02,  1.27s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.30s/batch]
+[25/05/18 13:08:47] [train.py:  109]: Test set Accuracy: 90.68
+Training:  40%|████      | 8/20 [1:02:02<1:33:00, 465.07s/epoch][25/05/18 13:16:06] [train.py:   91]: epoch: 9
+Train Epoch: 9 [0/50000 (0%)]	Loss: 0.262013
+Train Epoch: 9 [5120/50000 (10%)]	Loss: 0.260199
+Train Epoch: 9 [10240/50000 (20%)]	Loss: 0.283210
+Train Epoch: 9 [15360/50000 (31%)]	Loss: 0.286076
+Train Epoch: 9 [20480/50000 (41%)]	Loss: 0.262605
+Train Epoch: 9 [25600/50000 (51%)]	Loss: 0.238554
+Train Epoch: 9 [30720/50000 (61%)]	Loss: 0.283155
+Train Epoch: 9 [35840/50000 (71%)]	Loss: 0.243855
+Train Epoch: 9 [40960/50000 (82%)]	Loss: 0.279850
+Train Epoch: 9 [46080/50000 (92%)]	Loss: 0.233887
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 13:16:32] [train.py:  109]: Test set Accuracy: 90.97
+Training:  45%|████▌     | 9/20 [1:09:47<1:25:15, 465.00s/epoch][25/05/18 13:23:51] [train.py:   91]: epoch: 10
+Train Epoch: 10 [0/50000 (0%)]	Loss: 0.236501
+Train Epoch: 10 [5120/50000 (10%)]	Loss: 0.214495
+Train Epoch: 10 [10240/50000 (20%)]	Loss: 0.211234
+Train Epoch: 10 [15360/50000 (31%)]	Loss: 0.190407
+Train Epoch: 10 [20480/50000 (41%)]	Loss: 0.234666
+Train Epoch: 10 [25600/50000 (51%)]	Loss: 0.219681
+Train Epoch: 10 [30720/50000 (61%)]	Loss: 0.168336
+Train Epoch: 10 [35840/50000 (71%)]	Loss: 0.278637
+Train Epoch: 10 [40960/50000 (82%)]	Loss: 0.190727
+Train Epoch: 10 [46080/50000 (92%)]	Loss: 0.249313
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 13:24:17] [train.py:  109]: Test set Accuracy: 91.0
+Training:  50%|█████     | 10/20 [1:17:32<1:17:30, 465.04s/epoch][25/05/18 13:31:36] [train.py:   91]: epoch: 11
+Train Epoch: 11 [0/50000 (0%)]	Loss: 0.256203
+Train Epoch: 11 [5120/50000 (10%)]	Loss: 0.180945
+Train Epoch: 11 [10240/50000 (20%)]	Loss: 0.211178
+Train Epoch: 11 [15360/50000 (31%)]	Loss: 0.227076
+Train Epoch: 11 [20480/50000 (41%)]	Loss: 0.207829
+Train Epoch: 11 [25600/50000 (51%)]	Loss: 0.189314
+Train Epoch: 11 [30720/50000 (61%)]	Loss: 0.155807
+Train Epoch: 11 [35840/50000 (71%)]	Loss: 0.186160
+Train Epoch: 11 [40960/50000 (82%)]	Loss: 0.248710
+Train Epoch: 11 [46080/50000 (92%)]	Loss: 0.210317
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 13:32:02] [train.py:  109]: Test set Accuracy: 91.52
+Training:  55%|█████▌    | 11/20 [1:25:17<1:09:44, 464.99s/epoch][25/05/18 13:39:21] [train.py:   91]: epoch: 12
+Train Epoch: 12 [0/50000 (0%)]	Loss: 0.204779
+Train Epoch: 12 [5120/50000 (10%)]	Loss: 0.216757
+Train Epoch: 12 [10240/50000 (20%)]	Loss: 0.185254
+Train Epoch: 12 [15360/50000 (31%)]	Loss: 0.214246
+Train Epoch: 12 [20480/50000 (41%)]	Loss: 0.191923
+Train Epoch: 12 [25600/50000 (51%)]	Loss: 0.152180
+Train Epoch: 12 [30720/50000 (61%)]	Loss: 0.169560
+Train Epoch: 12 [35840/50000 (71%)]	Loss: 0.185349
+Train Epoch: 12 [40960/50000 (82%)]	Loss: 0.177984
+Train Epoch: 12 [46080/50000 (92%)]	Loss: 0.158503
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 13:39:47] [train.py:  109]: Test set Accuracy: 91.51
+Training:  60%|██████    | 12/20 [1:33:01<1:01:59, 464.97s/epoch][25/05/18 13:47:06] [train.py:   91]: epoch: 13
+Train Epoch: 13 [0/50000 (0%)]	Loss: 0.172305
+Train Epoch: 13 [5120/50000 (10%)]	Loss: 0.187900
+Train Epoch: 13 [10240/50000 (20%)]	Loss: 0.169869
+Train Epoch: 13 [15360/50000 (31%)]	Loss: 0.147542
+Train Epoch: 13 [20480/50000 (41%)]	Loss: 0.190259
+Train Epoch: 13 [25600/50000 (51%)]	Loss: 0.126940
+Train Epoch: 13 [30720/50000 (61%)]	Loss: 0.141534
+Train Epoch: 13 [35840/50000 (71%)]	Loss: 0.211633
+Train Epoch: 13 [40960/50000 (82%)]	Loss: 0.155933
+Train Epoch: 13 [46080/50000 (92%)]	Loss: 0.130286
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:24<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 13:47:32] [train.py:  109]: Test set Accuracy: 91.78
+Training:  65%|██████▌   | 13/20 [1:40:47<54:15, 465.02s/epoch]  [25/05/18 13:54:51] [train.py:   91]: epoch: 14
+Train Epoch: 14 [0/50000 (0%)]	Loss: 0.135104
+Train Epoch: 14 [5120/50000 (10%)]	Loss: 0.123401
+Train Epoch: 14 [10240/50000 (20%)]	Loss: 0.159781
+Train Epoch: 14 [15360/50000 (31%)]	Loss: 0.133944
+Train Epoch: 14 [20480/50000 (41%)]	Loss: 0.139524
+Train Epoch: 14 [25600/50000 (51%)]	Loss: 0.132499
+Train Epoch: 14 [30720/50000 (61%)]	Loss: 0.148666
+Train Epoch: 14 [35840/50000 (71%)]	Loss: 0.130202
+Train Epoch: 14 [40960/50000 (82%)]	Loss: 0.149537
+Train Epoch: 14 [46080/50000 (92%)]	Loss: 0.140772
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 13:55:17] [train.py:  109]: Test set Accuracy: 91.77
+Training:  70%|███████   | 14/20 [1:48:32<46:29, 464.99s/epoch][25/05/18 14:02:36] [train.py:   91]: epoch: 15
+Train Epoch: 15 [0/50000 (0%)]	Loss: 0.111968
+Train Epoch: 15 [5120/50000 (10%)]	Loss: 0.084638
+Train Epoch: 15 [10240/50000 (20%)]	Loss: 0.140485
+Train Epoch: 15 [15360/50000 (31%)]	Loss: 0.117903
+Train Epoch: 15 [20480/50000 (41%)]	Loss: 0.124027
+Train Epoch: 15 [25600/50000 (51%)]	Loss: 0.131903
+Train Epoch: 15 [30720/50000 (61%)]	Loss: 0.103675
+Train Epoch: 15 [35840/50000 (71%)]	Loss: 0.167094
+Train Epoch: 15 [40960/50000 (82%)]	Loss: 0.118082
+Train Epoch: 15 [46080/50000 (92%)]	Loss: 0.185623
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:24<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 14:03:02] [train.py:  109]: Test set Accuracy: 91.69
+Training:  75%|███████▌  | 15/20 [1:56:17<38:44, 464.99s/epoch][25/05/18 14:10:21] [train.py:   91]: epoch: 16
+Train Epoch: 16 [0/50000 (0%)]	Loss: 0.108477
+Train Epoch: 16 [5120/50000 (10%)]	Loss: 0.105147
+Train Epoch: 16 [10240/50000 (20%)]	Loss: 0.106522
+Train Epoch: 16 [15360/50000 (31%)]	Loss: 0.149864
+Train Epoch: 16 [20480/50000 (41%)]	Loss: 0.146504
+Train Epoch: 16 [25600/50000 (51%)]	Loss: 0.116144
+Train Epoch: 16 [30720/50000 (61%)]	Loss: 0.160564
+Train Epoch: 16 [35840/50000 (71%)]	Loss: 0.127731
+Train Epoch: 16 [40960/50000 (82%)]	Loss: 0.139275
+Train Epoch: 16 [46080/50000 (92%)]	Loss: 0.129420
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:24<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 14:10:47] [train.py:  109]: Test set Accuracy: 91.59
+Training:  80%|████████  | 16/20 [2:04:01<30:59, 464.98s/epoch][25/05/18 14:18:06] [train.py:   91]: epoch: 17
+Train Epoch: 17 [0/50000 (0%)]	Loss: 0.149030
+Train Epoch: 17 [5120/50000 (10%)]	Loss: 0.125365
+Train Epoch: 17 [10240/50000 (20%)]	Loss: 0.131742
+Train Epoch: 17 [15360/50000 (31%)]	Loss: 0.082639
+Train Epoch: 17 [20480/50000 (41%)]	Loss: 0.108497
+Train Epoch: 17 [25600/50000 (51%)]	Loss: 0.111991
+Train Epoch: 17 [30720/50000 (61%)]	Loss: 0.140684
+Train Epoch: 17 [35840/50000 (71%)]	Loss: 0.083414
+Train Epoch: 17 [40960/50000 (82%)]	Loss: 0.124401
+Train Epoch: 17 [46080/50000 (92%)]	Loss: 0.130134
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:24<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 14:18:32] [train.py:  109]: Test set Accuracy: 91.64
+Training:  85%|████████▌ | 17/20 [2:11:47<23:15, 465.02s/epoch][25/05/18 14:25:51] [train.py:   91]: epoch: 18
+Train Epoch: 18 [0/50000 (0%)]	Loss: 0.089228
+Train Epoch: 18 [5120/50000 (10%)]	Loss: 0.121847
+Train Epoch: 18 [10240/50000 (20%)]	Loss: 0.152799
+Train Epoch: 18 [15360/50000 (31%)]	Loss: 0.107302
+Train Epoch: 18 [20480/50000 (41%)]	Loss: 0.123662
+Train Epoch: 18 [25600/50000 (51%)]	Loss: 0.118111
+Train Epoch: 18 [30720/50000 (61%)]	Loss: 0.120963
+Train Epoch: 18 [35840/50000 (71%)]	Loss: 0.132164
+Train Epoch: 18 [40960/50000 (82%)]	Loss: 0.108804
+Train Epoch: 18 [46080/50000 (92%)]	Loss: 0.157033
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.04s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:23<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 14:26:17] [train.py:  109]: Test set Accuracy: 91.68
+Training:  90%|█████████ | 18/20 [2:19:32<15:30, 465.03s/epoch][25/05/18 14:33:36] [train.py:   91]: epoch: 19
+Train Epoch: 19 [0/50000 (0%)]	Loss: 0.102760
+Train Epoch: 19 [5120/50000 (10%)]	Loss: 0.102323
+Train Epoch: 19 [10240/50000 (20%)]	Loss: 0.142471
+Train Epoch: 19 [15360/50000 (31%)]	Loss: 0.096479
+Train Epoch: 19 [20480/50000 (41%)]	Loss: 0.092864
+Train Epoch: 19 [25600/50000 (51%)]	Loss: 0.118403
+Train Epoch: 19 [30720/50000 (61%)]	Loss: 0.103241
+Train Epoch: 19 [35840/50000 (71%)]	Loss: 0.125276
+Train Epoch: 19 [40960/50000 (82%)]	Loss: 0.124371
+Train Epoch: 19 [46080/50000 (92%)]	Loss: 0.145275
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.44s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:24<00:02,  1.26s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.29s/batch]
+[25/05/18 14:34:02] [train.py:  109]: Test set Accuracy: 91.57
+Training:  95%|█████████▌| 19/20 [2:27:17<07:45, 465.05s/epoch][25/05/18 14:41:21] [train.py:   91]: epoch: 20
+Train Epoch: 20 [0/50000 (0%)]	Loss: 0.133420
+Train Epoch: 20 [5120/50000 (10%)]	Loss: 0.102891
+Train Epoch: 20 [10240/50000 (20%)]	Loss: 0.129951
+Train Epoch: 20 [15360/50000 (31%)]	Loss: 0.118478
+Train Epoch: 20 [20480/50000 (41%)]	Loss: 0.181686
+Train Epoch: 20 [25600/50000 (51%)]	Loss: 0.119599
+Train Epoch: 20 [30720/50000 (61%)]	Loss: 0.114944
+Train Epoch: 20 [35840/50000 (71%)]	Loss: 0.092832
+Train Epoch: 20 [40960/50000 (82%)]	Loss: 0.085900
+Train Epoch: 20 [46080/50000 (92%)]	Loss: 0.117568
+
+Testing:   0%|          | 0/20 [00:00<?, ?batch/s][A
+Testing:  15%|█▌        | 3/20 [00:06<00:34,  2.05s/batch][A
+Testing:  40%|████      | 8/20 [00:12<00:17,  1.45s/batch][A
+Testing:  65%|██████▌   | 13/20 [00:18<00:09,  1.32s/batch][A
+Testing:  90%|█████████ | 18/20 [00:24<00:02,  1.27s/batch][ATesting: 100%|██████████| 20/20 [00:25<00:00,  1.30s/batch]
+[25/05/18 14:41:47] [train.py:  109]: Test set Accuracy: 91.59
+Training: 100%|██████████| 20/20 [2:35:02<00:00, 465.04s/epoch]Training: 100%|██████████| 20/20 [2:35:02<00:00, 465.11s/epoch]
+
+JOB STATISTICS
+==============
+Job ID: 11916322
+Cluster: snellius
+User/Group: jhutter/jhutter
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 03:07:43
+CPU Efficiency: 6.70% of 1-22:40:12 core-walltime
+Job Wall-clock time: 02:35:34
+Memory Utilized: 2.78 GB
+Memory Efficiency: 2.32% of 120.00 GB (120.00 GB/node)

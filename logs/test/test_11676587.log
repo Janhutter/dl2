@@ -1,0 +1,181 @@
+/gpfs/home5/scur2578/tea/core/data.py:13: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if model_arch is 'VIT_16':
+[25/05/09 11:58:06] [utils.py:   79]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/09 11:58:06] [utils.py:   80]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea/cifar10
+DESC: 
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_ln_sgd-1-0.01-512_250509-115806.txt
+LOG_TIME: 250509-115806
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['ln']
+  ARCH: VIT_16
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 512
+  BETA: 0.9
+  CLIP_NORM: True
+  DAMPENING: 0.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/vit/cifar10/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Some weights of ViTForImageClassification were not initialized from the model checkpoint at google/vit-base-patch16-224-in21k and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[25/05/09 11:58:07] [utils.py:   79]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/09 11:58:07] [utils.py:   80]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea/cifar10
+DESC: 
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_ln_sgd-1-0.01-512_250509-115806.txt
+LOG_TIME: 250509-115806
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['ln']
+  ARCH: VIT_16
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 512
+  BETA: 0.9
+  CLIP_NORM: True
+  DAMPENING: 0.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/vit/cifar10/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Files already downloaded and verified
+Files already downloaded and verified
+  0%|          | 0/20 [00:00<?, ?it/s]  0%|          | 0/20 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/gpfs/home5/scur2578/tea/train.py", line 113, in <module>
+    main()
+  File "/gpfs/home5/scur2578/tea/train.py", line 61, in main
+    train(cfg, base_model, device)
+  File "/gpfs/home5/scur2578/tea/train.py", line 89, in train
+    train_base(epoch, model, train_loader, optimizer, scheduler, cfg)
+  File "/gpfs/home5/scur2578/tea/core/utils.py", line 114, in train_base
+    output = model(data)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/home5/scur2578/tea/core/model/vit.py", line 34, in forward
+    outputs = self.vit(pixel_values=x)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/transformers/models/vit/modeling_vit.py", line 833, in forward
+    outputs = self.vit(
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/transformers/models/vit/modeling_vit.py", line 612, in forward
+    embedding_output = self.embeddings(
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/transformers/models/vit/modeling_vit.py", line 124, in forward
+    embeddings = self.patch_embeddings(pixel_values, interpolate_pos_encoding=interpolate_pos_encoding)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/scur2578/.local/lib/python3.9/site-packages/transformers/models/vit/modeling_vit.py", line 179, in forward
+    raise ValueError(
+ValueError: Input image size (32*32) doesn't match model (224*224).
+
+JOB STATISTICS
+==============
+Job ID: 11676587
+Cluster: snellius
+User/Group: scur2578/scur2578
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:13
+CPU Efficiency: 1.85% of 00:11:42 core-walltime
+Job Wall-clock time: 00:00:39
+Memory Utilized: 1.64 MB
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)

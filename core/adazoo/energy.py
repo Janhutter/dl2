@@ -150,7 +150,7 @@ def visualize_images(path, replay_buffer_old, replay_buffer, energy_model,
     y = torch.arange(n_classes).repeat(repeat_times).to(device) 
     x_fake, _ = sample_q(energy_model, replay_buffer, n_steps=sgld_steps, sgld_lr=sgld_lr, sgld_std=sgld_std, reinit_freq=reinit_freq, batch_size=batch_size, im_sz=im_sz, n_ch=n_ch, device=device, y=y)
     images = x_fake.detach().cpu()
-    save_image(images , os.path.join(path, f'bn-explr-sample-{str(counter)}.png'), padding=2, nrow=num_cols)
+    save_image(images , os.path.join(path, f'bn-pure-sample-{str(counter)}.png'), padding=2, nrow=num_cols)
 
     num_cols=40
     images_init = replay_buffer_old.cpu()
@@ -193,7 +193,7 @@ def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sg
     # adapt (original)
     energy_loss = (- (energy_real - energy_fake))  # = Efake - Ereal
 
-    # wandb.log({"energy_real": energy_real, "energy_fake": energy_fake, "energy_loss": energy_loss})
+    wandb.log({"energy_real": energy_real, "energy_fake": energy_fake, "energy_loss": energy_loss})
 
 
     # # alternative

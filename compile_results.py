@@ -12,9 +12,9 @@ def res(models, datasets, entries=[['1'], ['1', '2', '3', '4', '5']]):
         acc_all_baseline = []
         for seed in [1, 17, 36, 91, 511]:
             if dataset == 'tin200':
-                out = read_output(f'logs/{dataset}_source_{seed}_vit.log')
+                out = read_output(f'logs/{dataset}_source_{seed}.log')
             else:
-                out = read_output(f'logs/{dataset}_source_{seed}_vit.log')
+                out = read_output(f'important_outputs/{dataset}_source_{seed}.log')
             if len(out) == 0:
                 print(f'No output for {dataset}_source_{seed}')
             out = ''.join(out)
@@ -29,11 +29,11 @@ def res(models, datasets, entries=[['1'], ['1', '2', '3', '4', '5']]):
             outs = []
             for seed in [1, 17, 36, 91, 511]:
                 if dataset == 'tin200':
-                    out = read_output(f'logs/{dataset}_{model}_{seed}_vit.log')
+                    out = read_output(f'logs/{dataset}_{model}_{seed}.log')
                 else:
-                    out = read_output(f'logs/{dataset}_{model}_{seed}_vit.log')
+                    out = read_output(f'logs/TTT/{model}_{dataset}_{seed}.log')
                 if len(out) == 0:
-                    print(f'No output for {dataset}_{model}_{seed}_vit')
+                    print(f'No output for {dataset}_{model}_{seed}')
                 outs.append(out)
             ce_5 = []
             ce_all = []
@@ -70,7 +70,7 @@ def res(models, datasets, entries=[['1'], ['1', '2', '3', '4', '5']]):
                 'ce_5': round(ce_5 * 100, 2),
                 'ce_all': round(ce_all * 100, 2),
             }
-    print(f"{results['cifar10']['source']['acc_clean']} & {results['cifar10']['source']['acc_5']} & {results['cifar10']['source']['ce_5']} & {results['cifar10']['source']['acc_all']} & {results['cifar10']['source']['ce_all']} & {results['cifar100']['source']['acc_clean']} & {results['cifar100']['source']['acc_5']} & {results['cifar100']['source']['ce_5']} & {results['cifar100']['source']['acc_all']} & {results['cifar100']['source']['ce_all']} \\\ ")
+    # print(f"{results['cifar10']['source']['acc_clean']} & {results['cifar10']['source']['acc_5']} & {results['cifar10']['source']['ce_5']} & {results['cifar10']['source']['acc_all']} & {results['cifar10']['source']['ce_all']} & {results['cifar100']['source']['acc_clean']} & {results['cifar100']['source']['acc_5']} & {results['cifar100']['source']['ce_5']} & {results['cifar100']['source']['acc_all']} & {results['cifar100']['source']['ce_all']} \\\ ")
     # print(f"{results['cifar10']['norm']['acc_clean']} & {results['cifar10']['norm']['acc_5']} & {results['cifar10']['norm']['ce_5']} & {results['cifar10']['norm']['acc_all']} & {results['cifar10']['norm']['ce_all']} & {results['cifar100']['norm']['acc_clean']} & {results['cifar100']['norm']['acc_5']} & {results['cifar100']['norm']['ce_5']} & {results['cifar100']['norm']['acc_all']} & {results['cifar100']['norm']['ce_all']} & {results['tin200']['norm']['acc_clean']} & {results['tin200']['norm']['acc_5']} & {results['tin200']['norm']['ce_5']} & {results['tin200']['norm']['acc_all']} & {results['tin200']['norm']['ce_all']} \\\ ")
     # print(f"{results['cifar10']['pl']['acc_clean']} & {results['cifar10']['pl']['acc_5']} & {results['cifar10']['pl']['ce_5']} & {results['cifar10']['pl']['acc_all']} & {results['cifar10']['pl']['ce_all']} & {results['cifar100']['pl']['acc_clean']} & {results['cifar100']['pl']['acc_5']} & {results['cifar100']['pl']['ce_5']} & {results['cifar100']['pl']['acc_all']} & {results['cifar100']['pl']['ce_all']} & {results['tin200']['pl']['acc_clean']} & {results['tin200']['pl']['acc_5']} & {results['tin200']['pl']['ce_5']} & {results['tin200']['pl']['acc_all']} & {results['tin200']['pl']['ce_all']} \\\ ")
     # shot
@@ -78,13 +78,13 @@ def res(models, datasets, entries=[['1'], ['1', '2', '3', '4', '5']]):
     # tent
     # print(f"{results['cifar10']['tent']['acc_clean']} & {results['cifar10']['tent']['acc_5']} & {results['cifar10']['tent']['ce_5']} & {results['cifar10']['tent']['acc_all']} & {results['cifar10']['tent']['ce_all']} & {results['cifar100']['tent']['acc_clean']} & {results['cifar100']['tent']['acc_5']} & {results['cifar100']['tent']['ce_5']} & {results['cifar100']['tent']['acc_all']} & {results['cifar100']['tent']['ce_all']} & {results['tin200']['tent']['acc_clean']} & {results['tin200']['tent']['acc_5']} & {results['tin200']['tent']['ce_5']} & {results['tin200']['tent']['acc_all']} & {results['tin200']['tent']['ce_all']} \\\ ")
     # eta
-    print(f"{results['cifar10']['eta']['acc_clean']} & {results['cifar10']['eta']['acc_5']} & {results['cifar10']['eta']['ce_5']} & {results['cifar10']['eta']['acc_all']} & {results['cifar10']['eta']['ce_all']} & {results['cifar100']['eta']['acc_clean']} & {results['cifar100']['eta']['acc_5']} & {results['cifar100']['eta']['ce_5']} & {results['cifar100']['eta']['acc_all']} & {results['cifar100']['eta']['ce_all']}\\\ ")
+    # print(f"{results['cifar10']['eta']['acc_clean']} & {results['cifar10']['eta']['acc_5']} & {results['cifar10']['eta']['ce_5']} & {results['cifar10']['eta']['acc_all']} & {results['cifar10']['eta']['ce_all']} & {results['cifar100']['eta']['acc_clean']} & {results['cifar100']['eta']['acc_5']} & {results['cifar100']['eta']['ce_5']} & {results['cifar100']['eta']['acc_all']} & {results['cifar100']['eta']['ce_all']}\\\ ")
     # eata
-    print(f"{results['cifar10']['eata']['acc_clean']} & {results['cifar10']['eata']['acc_5']} & {results['cifar10']['eata']['ce_5']} & {results['cifar10']['eata']['acc_all']} & {results['cifar10']['eata']['ce_all']} & {results['cifar100']['eata']['acc_clean']} & {results['cifar100']['eata']['acc_5']} & {results['cifar100']['eata']['ce_5']} & {results['cifar100']['eata']['acc_all']} & {results['cifar100']['eata']['ce_all']} \\\ ")
+    # print(f"{results['cifar10']['eata']['acc_clean']} & {results['cifar10']['eata']['acc_5']} & {results['cifar10']['eata']['ce_5']} & {results['cifar10']['eata']['acc_all']} & {results['cifar10']['eata']['ce_all']} & {results['cifar100']['eata']['acc_clean']} & {results['cifar100']['eata']['acc_5']} & {results['cifar100']['eata']['ce_5']} & {results['cifar100']['eata']['acc_all']} & {results['cifar100']['eata']['ce_all']} \\\ ")
     # sar
     # print(f"{results['cifar10']['sar']['acc_clean']} & {results['cifar10']['sar']['acc_5']} & {results['cifar10']['sar']['ce_5']} & {results['cifar10']['sar']['acc_all']} & {results['cifar10']['sar']['ce_all']} & {results['cifar100']['sar']['acc_clean']} & {results['cifar100']['sar']['acc_5']} & {results['cifar100']['sar']['ce_5']} & {results['cifar100']['sar']['acc_all']} & {results['cifar100']['sar']['ce_all']} & {results['tin200']['sar']['acc_clean']} & {results['tin200']['sar']['acc_5']} & {results['tin200']['sar']['ce_5']} & {results['tin200']['sar']['acc_all']} & {results['tin200']['sar']['ce_all']} \\\ ")
     # energy
-    print(f"{results['cifar10']['energy']['acc_clean']} & {results['cifar10']['energy']['acc_5']} & {results['cifar10']['energy']['ce_5']} & {results['cifar10']['energy']['acc_all']} & {results['cifar10']['energy']['ce_all']} & {results['cifar100']['energy']['acc_clean']} & {results['cifar100']['energy']['acc_5']} & {results['cifar100']['energy']['ce_5']} & {results['cifar100']['energy']['acc_all']} & {results['cifar100']['energy']['ce_all']} & {results['tin200']['energy']['acc_clean']} & {results['tin200']['energy']['acc_5']} & {results['tin200']['energy']['ce_5']} & {results['tin200']['energy']['acc_all']} & {results['tin200']['energy']['ce_all']} \\\ ")
+    print(f"{results['cifar10']['ttt']['acc_clean']} & {results['cifar10']['ttt']['acc_5']} & {results['cifar10']['ttt']['ce_5']} & {results['cifar10']['ttt']['acc_all']} & {results['cifar10']['ttt']['ce_all']} & {results['cifar100']['ttt']['acc_clean']} & {results['cifar100']['ttt']['acc_5']} & {results['cifar100']['ttt']['ce_5']} & {results['cifar100']['ttt']['acc_all']} & {results['cifar100']['ttt']['ce_all']} \\\ ")
 
 
 
@@ -115,7 +115,7 @@ def read_output(path):
 if __name__ == '__main__':
     # read_output('logs/cifar10_source_1.log')
     # models = ['source', 'norm', 'tent', 'eta', 'eata', 'energy', 'sar', 'shot', 'pl']
-    models = ['source', 'eta', 'eata']
+    models = ['ttt']
 
     # datasets = ['cifar10', 'cifar100', 'tin200']
     datasets = ['cifar10', 'cifar100']

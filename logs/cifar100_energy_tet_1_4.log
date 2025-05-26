@@ -1,0 +1,386 @@
+[25/05/26 09:39:21] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/26 09:39:21] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar100
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 100
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar100
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 0.1
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: energy_tet_bn_sgd-1-0.01-200_uncond-20-0.1-0.01-10000-0.05_250526-093921.txt
+LOG_TIME: 250526-093921
+MODEL:
+  ADAPTATION: energy
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_TET_3
+  CHECKPOINT_PTH: None
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 200
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 200
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WARMUP_START_LR: 1e-06
+  WARMUP_STEPS: 1000
+  WD: 0.0
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10-tet
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+[25/05/26 09:39:22] [main.py:   75]: test-time adaptation: TET
+[25/05/26 09:39:22] [param.py:   18]: adapting weights of batch-normalization layer
+[25/05/26 09:39:23] [setada.py:  138]: model for adaptation: WideResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(16, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(16, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block2): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 320, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(160, 320, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block3): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 640, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(320, 640, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=640, out_features=100, bias=True)
+)
+[25/05/26 09:39:23] [setada.py:  139]: params for adaptation: ['block1.layer.0.bn1.weight', 'block1.layer.0.bn1.bias', 'block1.layer.0.bn2.weight', 'block1.layer.0.bn2.bias', 'block1.layer.1.bn1.weight', 'block1.layer.1.bn1.bias', 'block1.layer.1.bn2.weight', 'block1.layer.1.bn2.bias', 'block1.layer.2.bn1.weight', 'block1.layer.2.bn1.bias', 'block1.layer.2.bn2.weight', 'block1.layer.2.bn2.bias', 'block1.layer.3.bn1.weight', 'block1.layer.3.bn1.bias', 'block1.layer.3.bn2.weight', 'block1.layer.3.bn2.bias', 'block2.layer.0.bn1.weight', 'block2.layer.0.bn1.bias', 'block2.layer.0.bn2.weight', 'block2.layer.0.bn2.bias', 'block2.layer.1.bn1.weight', 'block2.layer.1.bn1.bias', 'block2.layer.1.bn2.weight', 'block2.layer.1.bn2.bias', 'block2.layer.2.bn1.weight', 'block2.layer.2.bn1.bias', 'block2.layer.2.bn2.weight', 'block2.layer.2.bn2.bias', 'block2.layer.3.bn1.weight', 'block2.layer.3.bn1.bias', 'block2.layer.3.bn2.weight', 'block2.layer.3.bn2.bias', 'block3.layer.0.bn1.weight', 'block3.layer.0.bn1.bias', 'block3.layer.0.bn2.weight', 'block3.layer.0.bn2.bias', 'block3.layer.1.bn1.weight', 'block3.layer.1.bn1.bias', 'block3.layer.1.bn2.weight', 'block3.layer.1.bn2.bias', 'block3.layer.2.bn1.weight', 'block3.layer.2.bn1.bias', 'block3.layer.2.bn2.weight', 'block3.layer.2.bn2.bias', 'block3.layer.3.bn1.weight', 'block3.layer.3.bn1.bias', 'block3.layer.3.bn2.weight', 'block3.layer.3.bn2.bias', 'bn1.weight', 'bn1.bias']
+[25/05/26 09:39:23] [setada.py:  140]: optimizer for adaptation: SGD (
+Parameter Group 0
+    dampening: 0.0
+    differentiable: False
+    foreach: None
+    fused: None
+    lr: 0.01
+    maximize: False
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0
+)
+[25/05/26 09:39:23] [eval.py:   67]: resetting model
+[25/05/26 09:40:47] [eval.py:   75]: acc % [gaussian_noise5]: 47.45%
+[25/05/26 09:40:47] [eval.py:   67]: resetting model
+[25/05/26 09:42:10] [eval.py:   75]: acc % [gaussian_noise4]: 50.28%
+[25/05/26 09:42:10] [eval.py:   67]: resetting model
+[25/05/26 09:43:33] [eval.py:   75]: acc % [gaussian_noise3]: 53.74%
+[25/05/26 09:43:33] [eval.py:   67]: resetting model
+[25/05/26 09:44:56] [eval.py:   75]: acc % [gaussian_noise2]: 59.07%
+[25/05/26 09:44:56] [eval.py:   67]: resetting model
+[25/05/26 09:46:19] [eval.py:   75]: acc % [gaussian_noise1]: 65.13%
+[25/05/26 09:46:19] [eval.py:   67]: resetting model
+[25/05/26 09:47:42] [eval.py:   75]: acc % [shot_noise5]: 48.82%
+[25/05/26 09:47:42] [eval.py:   67]: resetting model
+[25/05/26 09:49:05] [eval.py:   75]: acc % [shot_noise4]: 53.88%
+[25/05/26 09:49:05] [eval.py:   67]: resetting model
+[25/05/26 09:50:28] [eval.py:   75]: acc % [shot_noise3]: 57.47%
+[25/05/26 09:50:28] [eval.py:   67]: resetting model
+[25/05/26 09:51:52] [eval.py:   75]: acc % [shot_noise2]: 65.11%
+[25/05/26 09:51:52] [eval.py:   67]: resetting model
+[25/05/26 09:53:15] [eval.py:   75]: acc % [shot_noise1]: 68.52%
+[25/05/26 09:53:15] [eval.py:   67]: resetting model
+[25/05/26 09:54:38] [eval.py:   75]: acc % [impulse_noise5]: 38.45%
+[25/05/26 09:54:38] [eval.py:   67]: resetting model
+[25/05/26 09:56:02] [eval.py:   75]: acc % [impulse_noise4]: 46.15%
+[25/05/26 09:56:02] [eval.py:   67]: resetting model
+[25/05/26 09:57:25] [eval.py:   75]: acc % [impulse_noise3]: 55.05%
+[25/05/26 09:57:25] [eval.py:   67]: resetting model
+[25/05/26 09:58:48] [eval.py:   75]: acc % [impulse_noise2]: 60.66%
+[25/05/26 09:58:48] [eval.py:   67]: resetting model
+[25/05/26 10:00:11] [eval.py:   75]: acc % [impulse_noise1]: 66.81%
+[25/05/26 10:00:11] [eval.py:   67]: resetting model
+[25/05/26 10:01:35] [eval.py:   75]: acc % [defocus_blur5]: 65.98%
+[25/05/26 10:01:35] [eval.py:   67]: resetting model
+[25/05/26 10:02:58] [eval.py:   75]: acc % [defocus_blur4]: 70.58%
+[25/05/26 10:02:58] [eval.py:   67]: resetting model
+[25/05/26 10:04:21] [eval.py:   75]: acc % [defocus_blur3]: 72.84%
+[25/05/26 10:04:21] [eval.py:   67]: resetting model
+[25/05/26 10:05:44] [eval.py:   75]: acc % [defocus_blur2]: 74.10%
+[25/05/26 10:05:44] [eval.py:   67]: resetting model
+[25/05/26 10:07:07] [eval.py:   75]: acc % [defocus_blur1]: 74.27%
+[25/05/26 10:07:07] [eval.py:   67]: resetting model
+[25/05/26 10:08:30] [eval.py:   75]: acc % [glass_blur5]: 46.12%
+[25/05/26 10:08:30] [eval.py:   67]: resetting model
+[25/05/26 10:09:53] [eval.py:   75]: acc % [glass_blur4]: 45.05%
+[25/05/26 10:09:53] [eval.py:   67]: resetting model
+[25/05/26 10:11:16] [eval.py:   75]: acc % [glass_blur3]: 56.84%
+[25/05/26 10:11:17] [eval.py:   67]: resetting model
+[25/05/26 10:12:40] [eval.py:   75]: acc % [glass_blur2]: 57.19%
+[25/05/26 10:12:40] [eval.py:   67]: resetting model
+[25/05/26 10:14:03] [eval.py:   75]: acc % [glass_blur1]: 57.17%
+[25/05/26 10:14:03] [eval.py:   67]: resetting model
+[25/05/26 10:15:26] [eval.py:   75]: acc % [motion_blur5]: 63.98%
+[25/05/26 10:15:26] [eval.py:   67]: resetting model
+[25/05/26 10:16:50] [eval.py:   75]: acc % [motion_blur4]: 66.40%
+[25/05/26 10:16:50] [eval.py:   67]: resetting model
+[25/05/26 10:18:13] [eval.py:   75]: acc % [motion_blur3]: 66.41%
+[25/05/26 10:18:13] [eval.py:   67]: resetting model
+[25/05/26 10:19:36] [eval.py:   75]: acc % [motion_blur2]: 69.17%
+[25/05/26 10:19:36] [eval.py:   67]: resetting model
+[25/05/26 10:20:59] [eval.py:   75]: acc % [motion_blur1]: 71.92%
+[25/05/26 10:20:59] [eval.py:   67]: resetting model
+[25/05/26 10:22:23] [eval.py:   75]: acc % [zoom_blur5]: 66.57%
+[25/05/26 10:22:23] [eval.py:   67]: resetting model
+[25/05/26 10:23:46] [eval.py:   75]: acc % [zoom_blur4]: 68.97%
+[25/05/26 10:23:46] [eval.py:   67]: resetting model
+[25/05/26 10:25:09] [eval.py:   75]: acc % [zoom_blur3]: 70.38%
+[25/05/26 10:25:09] [eval.py:   67]: resetting model
+[25/05/26 10:26:32] [eval.py:   75]: acc % [zoom_blur2]: 71.77%
+[25/05/26 10:26:32] [eval.py:   67]: resetting model
+[25/05/26 10:27:56] [eval.py:   75]: acc % [zoom_blur1]: 72.33%
+[25/05/26 10:27:56] [eval.py:   67]: resetting model
+[25/05/26 10:29:19] [eval.py:   75]: acc % [snow5]: 58.74%
+[25/05/26 10:29:19] [eval.py:   67]: resetting model
+[25/05/26 10:30:42] [eval.py:   75]: acc % [snow4]: 59.88%
+[25/05/26 10:30:42] [eval.py:   67]: resetting model
+[25/05/26 10:32:05] [eval.py:   75]: acc % [snow3]: 62.71%
+[25/05/26 10:32:05] [eval.py:   67]: resetting model
+[25/05/26 10:33:28] [eval.py:   75]: acc % [snow2]: 63.82%
+[25/05/26 10:33:28] [eval.py:   67]: resetting model
+[25/05/26 10:34:52] [eval.py:   75]: acc % [snow1]: 69.46%
+[25/05/26 10:34:52] [eval.py:   67]: resetting model
+[25/05/26 10:36:15] [eval.py:   75]: acc % [frost5]: 57.91%
+[25/05/26 10:36:15] [eval.py:   67]: resetting model
+[25/05/26 10:37:38] [eval.py:   75]: acc % [frost4]: 62.21%
+[25/05/26 10:37:38] [eval.py:   67]: resetting model
+[25/05/26 10:39:01] [eval.py:   75]: acc % [frost3]: 62.85%
+[25/05/26 10:39:01] [eval.py:   67]: resetting model
+[25/05/26 10:40:24] [eval.py:   75]: acc % [frost2]: 66.11%
+[25/05/26 10:40:25] [eval.py:   67]: resetting model
+[25/05/26 10:41:48] [eval.py:   75]: acc % [frost1]: 70.25%
+[25/05/26 10:41:48] [eval.py:   67]: resetting model
+[25/05/26 10:43:11] [eval.py:   75]: acc % [fog5]: 61.43%
+[25/05/26 10:43:11] [eval.py:   67]: resetting model
+[25/05/26 10:44:35] [eval.py:   75]: acc % [fog4]: 68.60%
+[25/05/26 10:44:35] [eval.py:   67]: resetting model
+[25/05/26 10:45:58] [eval.py:   75]: acc % [fog3]: 71.49%
+[25/05/26 10:45:58] [eval.py:   67]: resetting model
+[25/05/26 10:47:21] [eval.py:   75]: acc % [fog2]: 72.38%
+[25/05/26 10:47:21] [eval.py:   67]: resetting model
+[25/05/26 10:48:44] [eval.py:   75]: acc % [fog1]: 73.81%
+[25/05/26 10:48:44] [eval.py:   67]: resetting model
+[25/05/26 10:50:08] [eval.py:   75]: acc % [brightness5]: 69.91%
+[25/05/26 10:50:08] [eval.py:   67]: resetting model
+[25/05/26 10:51:31] [eval.py:   75]: acc % [brightness4]: 72.20%
+[25/05/26 10:51:31] [eval.py:   67]: resetting model
+[25/05/26 10:52:54] [eval.py:   75]: acc % [brightness3]: 73.19%
+[25/05/26 10:52:54] [eval.py:   67]: resetting model
+[25/05/26 10:54:17] [eval.py:   75]: acc % [brightness2]: 74.22%
+[25/05/26 10:54:17] [eval.py:   67]: resetting model
+[25/05/26 10:55:41] [eval.py:   75]: acc % [brightness1]: 74.29%
+[25/05/26 10:55:41] [eval.py:   67]: resetting model
+[25/05/26 10:57:04] [eval.py:   75]: acc % [contrast5]: 66.41%
+[25/05/26 10:57:04] [eval.py:   67]: resetting model
+[25/05/26 10:58:27] [eval.py:   75]: acc % [contrast4]: 71.34%
+[25/05/26 10:58:27] [eval.py:   67]: resetting model
+[25/05/26 10:59:51] [eval.py:   75]: acc % [contrast3]: 72.25%
+[25/05/26 10:59:51] [eval.py:   67]: resetting model
+[25/05/26 11:01:14] [eval.py:   75]: acc % [contrast2]: 73.01%
+[25/05/26 11:01:14] [eval.py:   67]: resetting model
+[25/05/26 11:02:37] [eval.py:   75]: acc % [contrast1]: 73.51%
+[25/05/26 11:02:37] [eval.py:   67]: resetting model
+[25/05/26 11:04:00] [eval.py:   75]: acc % [elastic_transform5]: 54.64%
+[25/05/26 11:04:00] [eval.py:   67]: resetting model
+[25/05/26 11:05:23] [eval.py:   75]: acc % [elastic_transform4]: 62.66%
+[25/05/26 11:05:23] [eval.py:   67]: resetting model
+[25/05/26 11:06:46] [eval.py:   75]: acc % [elastic_transform3]: 67.53%
+[25/05/26 11:06:46] [eval.py:   67]: resetting model
+[25/05/26 11:08:10] [eval.py:   75]: acc % [elastic_transform2]: 69.49%
+[25/05/26 11:08:10] [eval.py:   67]: resetting model
+[25/05/26 11:09:33] [eval.py:   75]: acc % [elastic_transform1]: 68.49%
+[25/05/26 11:09:33] [eval.py:   67]: resetting model
+[25/05/26 11:10:56] [eval.py:   75]: acc % [pixelate5]: 61.57%
+[25/05/26 11:10:56] [eval.py:   67]: resetting model
+[25/05/26 11:12:19] [eval.py:   75]: acc % [pixelate4]: 66.72%
+[25/05/26 11:12:19] [eval.py:   67]: resetting model
+[25/05/26 11:13:43] [eval.py:   75]: acc % [pixelate3]: 69.23%
+[25/05/26 11:13:43] [eval.py:   67]: resetting model
+[25/05/26 11:15:06] [eval.py:   75]: acc % [pixelate2]: 70.00%
+[25/05/26 11:15:06] [eval.py:   67]: resetting model
+[25/05/26 11:16:29] [eval.py:   75]: acc % [pixelate1]: 71.74%
+[25/05/26 11:16:29] [eval.py:   67]: resetting model
+[25/05/26 11:17:52] [eval.py:   75]: acc % [jpeg_compression5]: 49.63%
+[25/05/26 11:17:52] [eval.py:   67]: resetting model
+[25/05/26 11:19:16] [eval.py:   75]: acc % [jpeg_compression4]: 53.17%
+[25/05/26 11:19:16] [eval.py:   67]: resetting model
+[25/05/26 11:20:39] [eval.py:   75]: acc % [jpeg_compression3]: 55.93%
+[25/05/26 11:20:39] [eval.py:   67]: resetting model
+[25/05/26 11:22:02] [eval.py:   75]: acc % [jpeg_compression2]: 57.97%
+[25/05/26 11:22:02] [eval.py:   67]: resetting model
+[25/05/26 11:23:25] [eval.py:   75]: acc % [jpeg_compression1]: 63.27%
+[25/05/26 11:23:26] [eval.py:   81]: 
+                         1        2         3        4        5       avg
+gaussian_noise     0.47450  0.50280  0.537400  0.59070  0.65130  0.551340
+shot_noise         0.48820  0.53880  0.574700  0.65110  0.68520  0.587600
+impulse_noise      0.38450  0.46150  0.550500  0.60660  0.66810  0.534240
+defocus_blur       0.65980  0.70580  0.728400  0.74100  0.74270  0.715540
+glass_blur         0.46120  0.45050  0.568400  0.57190  0.57170  0.524740
+motion_blur        0.63980  0.66400  0.664100  0.69170  0.71920  0.675760
+zoom_blur          0.66570  0.68970  0.703800  0.71770  0.72330  0.700040
+snow               0.58740  0.59880  0.627100  0.63820  0.69460  0.629220
+frost              0.57910  0.62210  0.628500  0.66110  0.70250  0.638660
+fog                0.61430  0.68600  0.714900  0.72380  0.73810  0.695420
+brightness         0.69910  0.72200  0.731900  0.74220  0.74290  0.727620
+contrast           0.66410  0.71340  0.722500  0.73010  0.73510  0.713040
+elastic_transform  0.54640  0.62660  0.675300  0.69490  0.68490  0.645620
+pixelate           0.61570  0.66720  0.692300  0.70000  0.71740  0.678520
+jpeg_compression   0.49630  0.53170  0.559300  0.57970  0.63270  0.559940
+average            0.57174  0.61206  0.645273  0.66938  0.69398  0.638487
+[25/05/26 11:23:26] [eval.py:  122]: resetting model
+[25/05/26 11:24:49] [eval.py:  134]: Test set Accuracy: 0.7433
+Building model...
+Files already downloaded and verified

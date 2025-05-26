@@ -1,0 +1,253 @@
+[25/05/26 13:39:50] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/26 13:39:50] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar100
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 100
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea3/cifar100
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: ttt_bn_adam-1-0.001-200_250526-133950.txt
+LOG_TIME: 250526-133950
+MODEL:
+  ADAPTATION: ttt
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_TTT
+  CHECKPOINT_PTH: None
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 200
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 200
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WARMUP_START_LR: 1e-06
+  WARMUP_STEPS: 1000
+  WD: 0.0
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 17
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar100/bn-wrn-28-10-ttt
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+[25/05/26 13:40:49] [ttt_eval_2.py:  212]: Test set Accuracy: 0.5848
+[25/05/26 13:41:46] [ttt_eval_2.py:  184]: acc % [gaussian_noise5]: 30.65%
+[25/05/26 13:42:43] [ttt_eval_2.py:  184]: acc % [gaussian_noise4]: 31.06%
+[25/05/26 13:43:39] [ttt_eval_2.py:  184]: acc % [gaussian_noise3]: 35.20%
+[25/05/26 13:44:36] [ttt_eval_2.py:  184]: acc % [gaussian_noise2]: 42.37%
+[25/05/26 13:45:33] [ttt_eval_2.py:  184]: acc % [gaussian_noise1]: 49.19%
+[25/05/26 13:46:30] [ttt_eval_2.py:  184]: acc % [shot_noise5]: 31.55%
+[25/05/26 13:47:27] [ttt_eval_2.py:  184]: acc % [shot_noise4]: 36.77%
+[25/05/26 13:48:24] [ttt_eval_2.py:  184]: acc % [shot_noise3]: 42.17%
+[25/05/26 13:49:20] [ttt_eval_2.py:  184]: acc % [shot_noise2]: 48.97%
+[25/05/26 13:50:17] [ttt_eval_2.py:  184]: acc % [shot_noise1]: 51.03%
+[25/05/26 13:51:14] [ttt_eval_2.py:  184]: acc % [impulse_noise5]: 23.16%
+[25/05/26 13:52:11] [ttt_eval_2.py:  184]: acc % [impulse_noise4]: 27.86%
+[25/05/26 13:53:08] [ttt_eval_2.py:  184]: acc % [impulse_noise3]: 34.71%
+[25/05/26 13:54:04] [ttt_eval_2.py:  184]: acc % [impulse_noise2]: 43.07%
+[25/05/26 13:55:01] [ttt_eval_2.py:  184]: acc % [impulse_noise1]: 48.73%
+[25/05/26 13:55:58] [ttt_eval_2.py:  184]: acc % [defocus_blur5]: 48.74%
+[25/05/26 13:56:55] [ttt_eval_2.py:  184]: acc % [defocus_blur4]: 50.95%
+[25/05/26 13:57:52] [ttt_eval_2.py:  184]: acc % [defocus_blur3]: 54.44%
+[25/05/26 13:58:48] [ttt_eval_2.py:  184]: acc % [defocus_blur2]: 56.50%
+[25/05/26 13:59:45] [ttt_eval_2.py:  184]: acc % [defocus_blur1]: 57.40%
+[25/05/26 14:00:42] [ttt_eval_2.py:  184]: acc % [glass_blur5]: 31.93%
+[25/05/26 14:01:39] [ttt_eval_2.py:  184]: acc % [glass_blur4]: 30.62%
+[25/05/26 14:02:36] [ttt_eval_2.py:  184]: acc % [glass_blur3]: 37.68%
+[25/05/26 14:03:33] [ttt_eval_2.py:  184]: acc % [glass_blur2]: 38.96%
+[25/05/26 14:04:30] [ttt_eval_2.py:  184]: acc % [glass_blur1]: 38.98%
+[25/05/26 14:05:27] [ttt_eval_2.py:  184]: acc % [motion_blur5]: 33.82%
+[25/05/26 14:06:23] [ttt_eval_2.py:  184]: acc % [motion_blur4]: 38.41%
+[25/05/26 14:07:20] [ttt_eval_2.py:  184]: acc % [motion_blur3]: 36.77%
+[25/05/26 14:08:17] [ttt_eval_2.py:  184]: acc % [motion_blur2]: 41.13%
+[25/05/26 14:09:14] [ttt_eval_2.py:  184]: acc % [motion_blur1]: 49.20%
+[25/05/26 14:10:12] [ttt_eval_2.py:  184]: acc % [zoom_blur5]: 37.74%
+[25/05/26 14:11:09] [ttt_eval_2.py:  184]: acc % [zoom_blur4]: 41.73%
+[25/05/26 14:12:06] [ttt_eval_2.py:  184]: acc % [zoom_blur3]: 37.69%
+[25/05/26 14:13:03] [ttt_eval_2.py:  184]: acc % [zoom_blur2]: 39.77%
+[25/05/26 14:14:00] [ttt_eval_2.py:  184]: acc % [zoom_blur1]: 34.58%
+[25/05/26 14:14:57] [ttt_eval_2.py:  184]: acc % [snow5]: 32.38%
+[25/05/26 14:15:54] [ttt_eval_2.py:  184]: acc % [snow4]: 34.93%
+[25/05/26 14:16:51] [ttt_eval_2.py:  184]: acc % [snow3]: 36.41%
+[25/05/26 14:17:48] [ttt_eval_2.py:  184]: acc % [snow2]: 35.28%
+[25/05/26 14:18:45] [ttt_eval_2.py:  184]: acc % [snow1]: 42.98%
+[25/05/26 14:19:41] [ttt_eval_2.py:  184]: acc % [frost5]: 37.33%
+[25/05/26 14:20:38] [ttt_eval_2.py:  184]: acc % [frost4]: 42.44%
+[25/05/26 14:21:35] [ttt_eval_2.py:  184]: acc % [frost3]: 41.56%
+[25/05/26 14:22:32] [ttt_eval_2.py:  184]: acc % [frost2]: 48.33%
+[25/05/26 14:23:29] [ttt_eval_2.py:  184]: acc % [frost1]: 51.82%
+[25/05/26 14:24:26] [ttt_eval_2.py:  184]: acc % [fog5]: 33.44%
+[25/05/26 14:25:22] [ttt_eval_2.py:  184]: acc % [fog4]: 36.46%
+[25/05/26 14:26:19] [ttt_eval_2.py:  184]: acc % [fog3]: 49.24%
+[25/05/26 14:27:16] [ttt_eval_2.py:  184]: acc % [fog2]: 53.43%
+[25/05/26 14:28:13] [ttt_eval_2.py:  184]: acc % [fog1]: 55.01%
+[25/05/26 14:29:10] [ttt_eval_2.py:  184]: acc % [brightness5]: 41.69%
+[25/05/26 14:30:06] [ttt_eval_2.py:  184]: acc % [brightness4]: 53.85%
+[25/05/26 14:31:03] [ttt_eval_2.py:  184]: acc % [brightness3]: 54.96%
+[25/05/26 14:32:00] [ttt_eval_2.py:  184]: acc % [brightness2]: 57.82%
+[25/05/26 14:32:57] [ttt_eval_2.py:  184]: acc % [brightness1]: 56.73%
+[25/05/26 14:33:54] [ttt_eval_2.py:  184]: acc % [contrast5]: 35.41%
+[25/05/26 14:34:50] [ttt_eval_2.py:  184]: acc % [contrast4]: 43.56%
+[25/05/26 14:35:47] [ttt_eval_2.py:  184]: acc % [contrast3]: 50.60%
+[25/05/26 14:36:44] [ttt_eval_2.py:  184]: acc % [contrast2]: 51.18%
+[25/05/26 14:37:41] [ttt_eval_2.py:  184]: acc % [contrast1]: 54.48%
+[25/05/26 14:38:38] [ttt_eval_2.py:  184]: acc % [elastic_transform5]: 41.10%
+[25/05/26 14:39:34] [ttt_eval_2.py:  184]: acc % [elastic_transform4]: 46.15%
+[25/05/26 14:40:31] [ttt_eval_2.py:  184]: acc % [elastic_transform3]: 49.58%
+[25/05/26 14:41:28] [ttt_eval_2.py:  184]: acc % [elastic_transform2]: 51.59%
+[25/05/26 14:42:25] [ttt_eval_2.py:  184]: acc % [elastic_transform1]: 49.92%
+[25/05/26 14:43:21] [ttt_eval_2.py:  184]: acc % [pixelate5]: 40.96%
+[25/05/26 14:44:18] [ttt_eval_2.py:  184]: acc % [pixelate4]: 48.30%
+[25/05/26 14:45:15] [ttt_eval_2.py:  184]: acc % [pixelate3]: 52.17%
+[25/05/26 14:46:12] [ttt_eval_2.py:  184]: acc % [pixelate2]: 51.32%
+[25/05/26 14:47:09] [ttt_eval_2.py:  184]: acc % [pixelate1]: 50.90%
+[25/05/26 14:48:05] [ttt_eval_2.py:  184]: acc % [jpeg_compression5]: 37.31%
+[25/05/26 14:49:02] [ttt_eval_2.py:  184]: acc % [jpeg_compression4]: 39.00%
+[25/05/26 14:49:59] [ttt_eval_2.py:  184]: acc % [jpeg_compression3]: 39.95%
+[25/05/26 14:50:56] [ttt_eval_2.py:  184]: acc % [jpeg_compression2]: 40.36%
+[25/05/26 14:51:53] [ttt_eval_2.py:  184]: acc % [jpeg_compression1]: 46.18%
+[25/05/26 14:51:53] [ttt_eval_2.py:  190]: 
+                         1         2        3        4        5       avg
+gaussian_noise     0.30650  0.310600  0.35200  0.42370  0.49190  0.376940
+shot_noise         0.31550  0.367700  0.42170  0.48970  0.51030  0.420980
+impulse_noise      0.23160  0.278600  0.34710  0.43070  0.48730  0.355060
+defocus_blur       0.48740  0.509500  0.54440  0.56500  0.57400  0.536060
+glass_blur         0.31930  0.306200  0.37680  0.38960  0.38980  0.356340
+motion_blur        0.33820  0.384100  0.36770  0.41130  0.49200  0.398660
+zoom_blur          0.37740  0.417300  0.37690  0.39770  0.34580  0.383020
+snow               0.32380  0.349300  0.36410  0.35280  0.42980  0.363960
+frost              0.37330  0.424400  0.41560  0.48330  0.51820  0.442960
+fog                0.33440  0.364600  0.49240  0.53430  0.55010  0.455160
+brightness         0.41690  0.538500  0.54960  0.57820  0.56730  0.530100
+contrast           0.35410  0.435600  0.50600  0.51180  0.54480  0.470460
+elastic_transform  0.41100  0.461500  0.49580  0.51590  0.49920  0.476680
+pixelate           0.40960  0.483000  0.52170  0.51320  0.50900  0.487300
+jpeg_compression   0.37310  0.390000  0.39950  0.40360  0.46180  0.405600
+average            0.35814  0.401393  0.43542  0.46672  0.49142  0.430619
+Building model...
+Files already downloaded and verified
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...
+Building model...

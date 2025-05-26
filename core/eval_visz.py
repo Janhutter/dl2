@@ -76,7 +76,7 @@ def clean_accuracy(cfg, model, x, y, n_epochs=1, batch_size = 100, logger=None, 
             if not os.path.exists(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)):
                 os.makedirs(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH))
 
-            torch.save(model.state_dict(), os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"visz_epoch_{epoch_idx}-bn.pth"))
+            torch.save(model.state_dict(), os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"visz_pt_epoch_{epoch_idx}_bn.pth"))
 
 
     return epoch_acc

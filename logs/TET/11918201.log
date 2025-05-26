@@ -1,0 +1,238 @@
+[25/05/18 14:25:29] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/18 14:25:29] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 224
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar10
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 0.1
+  SGLD_STD: 0.01
+  STEPS: 10
+  UNCOND: uncond
+LOG_DEST: pretrain_TET_all_sgd-1-0.01-128_250518-142529.txt
+LOG_TIME: 250518-142529
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['all']
+  ARCH: VIT_16_TET
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: True
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 0.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WD: 0.0
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/vit/cifar10/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Some weights of the model checkpoint at google/vit-base-patch16-224-in21k were not used when initializing ViTForImageClassification: ['pooler.dense.weight', 'pooler.dense.bias']
+- This IS expected if you are initializing ViTForImageClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing ViTForImageClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of ViTForImageClassification were not initialized from the model checkpoint at google/vit-base-patch16-224-in21k and are newly initialized: ['classifier.weight', 'classifier.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[25/05/18 14:25:33] [param.py:   14]: adapting all weights
+[25/05/18 14:25:44] [setada.py:  138]: model for adaptation: VisionTransformer(
+  (vit): ViTForImageClassification(
+    (vit): ViTModel(
+      (embeddings): ViTEmbeddings(
+        (patch_embeddings): ViTPatchEmbeddings(
+          (projection): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+        )
+        (dropout): Dropout(p=0.0, inplace=False)
+      )
+      (encoder): ViTEncoder(
+        (layer): ModuleList(
+          (0-11): 12 x ViTLayer(
+            (attention): ViTAttention(
+              (attention): ViTSelfAttention(
+                (query): Linear(in_features=768, out_features=768, bias=True)
+                (key): Linear(in_features=768, out_features=768, bias=True)
+                (value): Linear(in_features=768, out_features=768, bias=True)
+                (dropout): Dropout(p=0.0, inplace=False)
+              )
+              (output): ViTSelfOutput(
+                (dense): Linear(in_features=768, out_features=768, bias=True)
+                (dropout): Dropout(p=0.0, inplace=False)
+              )
+            )
+            (intermediate): ViTIntermediate(
+              (dense): Linear(in_features=768, out_features=3072, bias=True)
+              (intermediate_act_fn): GELUActivation()
+            )
+            (output): ViTOutput(
+              (dense): Linear(in_features=3072, out_features=768, bias=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+            )
+            (layernorm_before): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (layernorm_after): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+          )
+        )
+      )
+      (layernorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+    )
+    (classifier): Linear(in_features=768, out_features=10, bias=True)
+  )
+)
+[25/05/18 14:25:44] [setada.py:  139]: params for adaptation: all
+[25/05/18 14:25:44] [setada.py:  140]: optimizer for adaptation: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.001
+    maximize: False
+    weight_decay: 0.0
+)
+Files already downloaded and verified
+Files already downloaded and verified
+Training:   0%|          | 0/20 [00:00<?, ?epoch/s]/home/jhutter/.local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:632: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   1%|▏         | 1/79 [00:09<12:30,  9.63s/batch][A
+Testing:   3%|▎         | 2/79 [00:18<11:48,  9.21s/batch][A
+Testing:   4%|▍         | 3/79 [00:27<11:29,  9.07s/batch][A
+Testing:   5%|▌         | 4/79 [00:36<11:15,  9.01s/batch][A
+Testing:   6%|▋         | 5/79 [00:45<11:04,  8.98s/batch][A
+Testing:   8%|▊         | 6/79 [00:54<10:53,  8.95s/batch][A
+Testing:   9%|▉         | 7/79 [01:03<10:43,  8.94s/batch][A
+Testing:  10%|█         | 8/79 [01:12<10:34,  8.93s/batch][A
+Testing:  11%|█▏        | 9/79 [01:20<10:24,  8.93s/batch][A
+Testing:  13%|█▎        | 10/79 [01:29<10:15,  8.92s/batch][A
+Testing:  14%|█▍        | 11/79 [01:38<10:06,  8.92s/batch][A
+Testing:  15%|█▌        | 12/79 [01:47<09:57,  8.92s/batch][A
+Testing:  16%|█▋        | 13/79 [01:56<09:48,  8.92s/batch][A
+Testing:  18%|█▊        | 14/79 [02:05<09:39,  8.91s/batch][A
+Testing:  19%|█▉        | 15/79 [02:14<09:30,  8.91s/batch][A
+Testing:  20%|██        | 16/79 [02:23<09:21,  8.91s/batch][A
+Testing:  22%|██▏       | 17/79 [02:32<09:12,  8.91s/batch][A
+Testing:  23%|██▎       | 18/79 [02:41<09:03,  8.91s/batch][A
+Testing:  24%|██▍       | 19/79 [02:50<08:54,  8.91s/batch][A
+Testing:  25%|██▌       | 20/79 [02:58<08:45,  8.91s/batch][A
+Testing:  27%|██▋       | 21/79 [03:07<08:36,  8.91s/batch][A
+Testing:  28%|██▊       | 22/79 [03:16<08:27,  8.91s/batch][A
+Testing:  29%|██▉       | 23/79 [03:25<08:18,  8.91s/batch][A
+Testing:  30%|███       | 24/79 [03:34<08:09,  8.91s/batch][A
+Testing:  32%|███▏      | 25/79 [03:43<08:00,  8.91s/batch][A
+Testing:  33%|███▎      | 26/79 [03:52<07:52,  8.91s/batch][A
+Testing:  34%|███▍      | 27/79 [04:01<07:43,  8.91s/batch][A
+Testing:  35%|███▌      | 28/79 [04:10<07:34,  8.91s/batch][A
+Testing:  37%|███▋      | 29/79 [04:19<07:25,  8.91s/batch][A
+Testing:  38%|███▊      | 30/79 [04:28<07:16,  8.91s/batch][A
+Testing:  39%|███▉      | 31/79 [04:36<07:07,  8.91s/batch][A
+Testing:  41%|████      | 32/79 [04:45<06:58,  8.91s/batch][A
+Testing:  42%|████▏     | 33/79 [04:54<06:49,  8.90s/batch][A
+Testing:  43%|████▎     | 34/79 [05:03<06:40,  8.90s/batch][A
+Testing:  44%|████▍     | 35/79 [05:12<06:31,  8.90s/batch][A
+Testing:  46%|████▌     | 36/79 [05:21<06:22,  8.90s/batch][A
+Testing:  47%|████▋     | 37/79 [05:30<06:13,  8.90s/batch][A
+Testing:  48%|████▊     | 38/79 [05:39<06:04,  8.90s/batch][A
+Testing:  49%|████▉     | 39/79 [05:48<05:56,  8.90s/batch][A
+Testing:  51%|█████     | 40/79 [05:57<05:47,  8.90s/batch][A
+Testing:  52%|█████▏    | 41/79 [06:05<05:38,  8.90s/batch][A
+Testing:  53%|█████▎    | 42/79 [06:14<05:29,  8.90s/batch][A
+Testing:  54%|█████▍    | 43/79 [06:23<05:20,  8.90s/batch][A
+Testing:  56%|█████▌    | 44/79 [06:32<05:11,  8.90s/batch][A
+Testing:  57%|█████▋    | 45/79 [06:41<05:02,  8.90s/batch][A
+Testing:  58%|█████▊    | 46/79 [06:50<04:53,  8.90s/batch][A
+Testing:  59%|█████▉    | 47/79 [06:59<04:44,  8.90s/batch][A
+Testing:  61%|██████    | 48/79 [07:08<04:35,  8.90s/batch][A
+Testing:  62%|██████▏   | 49/79 [07:17<04:26,  8.90s/batch][A
+Testing:  63%|██████▎   | 50/79 [07:26<04:18,  8.90s/batch][A
+Testing:  65%|██████▍   | 51/79 [07:34<04:09,  8.90s/batch][A
+Testing:  66%|██████▌   | 52/79 [07:43<04:00,  8.90s/batch][A
+Testing:  67%|██████▋   | 53/79 [07:52<03:51,  8.90s/batch][A
+Testing:  68%|██████▊   | 54/79 [08:01<03:42,  8.90s/batch][A
+Testing:  70%|██████▉   | 55/79 [08:10<03:33,  8.90s/batch][A
+Testing:  71%|███████   | 56/79 [08:19<03:24,  8.90s/batch][A
+Testing:  72%|███████▏  | 57/79 [08:28<03:15,  8.89s/batch][A
+Testing:  73%|███████▎  | 58/79 [08:37<03:06,  8.90s/batch][A
+Testing:  75%|███████▍  | 59/79 [08:46<02:57,  8.89s/batch][A
+Testing:  76%|███████▌  | 60/79 [08:54<02:49,  8.90s/batch][A
+Testing:  77%|███████▋  | 61/79 [09:03<02:40,  8.89s/batch][A
+Testing:  78%|███████▊  | 62/79 [09:12<02:31,  8.90s/batch][A
+Testing:  80%|███████▉  | 63/79 [09:21<02:22,  8.90s/batch][A
+Testing:  81%|████████  | 64/79 [09:30<02:13,  8.89s/batch][A
+Testing:  82%|████████▏ | 65/79 [09:39<02:04,  8.90s/batch][A
+Testing:  84%|████████▎ | 66/79 [09:48<01:55,  8.90s/batch][A
+Testing:  85%|████████▍ | 67/79 [09:57<01:46,  8.89s/batch][A
+Testing:  86%|████████▌ | 68/79 [10:06<01:37,  8.89s/batch][A
+Testing:  87%|████████▋ | 69/79 [10:15<01:28,  8.89s/batch][A
+Testing:  89%|████████▊ | 70/79 [10:23<01:20,  8.89s/batch][A
+Testing:  90%|████████▉ | 71/79 [10:32<01:11,  8.89s/batch][A
+Testing:  91%|█████████ | 72/79 [10:41<01:02,  8.90s/batch][A
+Testing:  92%|█████████▏| 73/79 [10:50<00:53,  8.90s/batch][A
+Testing:  94%|█████████▎| 74/79 [10:59<00:44,  8.90s/batch][A
+Testing:  95%|█████████▍| 75/79 [11:08<00:35,  8.89s/batch][A
+Testing:  96%|█████████▌| 76/79 [11:17<00:26,  8.89s/batch][A
+Testing:  97%|█████████▋| 77/79 [11:26<00:17,  8.89s/batch][A
+Testing:  99%|█████████▊| 78/79 [11:35<00:08,  8.89s/batch][ATesting: 100%|██████████| 79/79 [11:36<00:00,  8.82s/batch]
+[25/05/18 15:33:17] [train_TET.py:  226]: Test set Accuracy: 9.83
+Training:   5%|▌         | 1/20 [1:07:33<21:23:31, 4053.23s/epoch]slurmstepd: error: *** JOB 11918201 ON gcn23 CANCELLED AT 2025-05-18T15:38:04 ***
+
+JOB STATISTICS
+==============
+Job ID: 11918201
+Cluster: snellius
+User/Group: jhutter/jhutter
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 21:51:54 core-walltime
+Job Wall-clock time: 01:12:53
+Memory Utilized: 0.00 MB
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)

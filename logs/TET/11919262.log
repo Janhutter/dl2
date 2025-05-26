@@ -1,0 +1,294 @@
+[25/05/18 17:14:09] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/18 17:14:09] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar10
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 0.1
+  SGLD_STD: 0.01
+  STEPS: 10
+  UNCOND: uncond
+LOG_DEST: pretrain_TET_bn_sgd-1-0.3-1024_250518-171409.txt
+LOG_TIME: 250518-171409
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_TET
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 1024
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.3
+  METHOD: sgd
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WD: 0.0005
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10-tet
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+[25/05/18 17:14:12] [param.py:   18]: adapting weights of batch-normalization layer
+[25/05/18 17:14:12] [setada.py:  138]: model for adaptation: WideResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(16, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(16, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block2): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 320, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(160, 320, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block3): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 640, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(320, 640, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=640, out_features=10, bias=True)
+)
+[25/05/18 17:14:12] [setada.py:  139]: params for adaptation: ['block1.layer.0.bn1.weight', 'block1.layer.0.bn1.bias', 'block1.layer.0.bn2.weight', 'block1.layer.0.bn2.bias', 'block1.layer.1.bn1.weight', 'block1.layer.1.bn1.bias', 'block1.layer.1.bn2.weight', 'block1.layer.1.bn2.bias', 'block1.layer.2.bn1.weight', 'block1.layer.2.bn1.bias', 'block1.layer.2.bn2.weight', 'block1.layer.2.bn2.bias', 'block1.layer.3.bn1.weight', 'block1.layer.3.bn1.bias', 'block1.layer.3.bn2.weight', 'block1.layer.3.bn2.bias', 'block2.layer.0.bn1.weight', 'block2.layer.0.bn1.bias', 'block2.layer.0.bn2.weight', 'block2.layer.0.bn2.bias', 'block2.layer.1.bn1.weight', 'block2.layer.1.bn1.bias', 'block2.layer.1.bn2.weight', 'block2.layer.1.bn2.bias', 'block2.layer.2.bn1.weight', 'block2.layer.2.bn1.bias', 'block2.layer.2.bn2.weight', 'block2.layer.2.bn2.bias', 'block2.layer.3.bn1.weight', 'block2.layer.3.bn1.bias', 'block2.layer.3.bn2.weight', 'block2.layer.3.bn2.bias', 'block3.layer.0.bn1.weight', 'block3.layer.0.bn1.bias', 'block3.layer.0.bn2.weight', 'block3.layer.0.bn2.bias', 'block3.layer.1.bn1.weight', 'block3.layer.1.bn1.bias', 'block3.layer.1.bn2.weight', 'block3.layer.1.bn2.bias', 'block3.layer.2.bn1.weight', 'block3.layer.2.bn1.bias', 'block3.layer.2.bn2.weight', 'block3.layer.2.bn2.bias', 'block3.layer.3.bn1.weight', 'block3.layer.3.bn1.bias', 'block3.layer.3.bn2.weight', 'block3.layer.3.bn2.bias', 'bn1.weight', 'bn1.bias']
+[25/05/18 17:14:12] [setada.py:  140]: optimizer for adaptation: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.001
+    maximize: False
+    weight_decay: 0.0
+)
+Building model...
+Files already downloaded and verified
+Files already downloaded and verified
+Training:   0%|          | 0/200 [00:00<?, ?epoch/s]Training:   0%|          | 1/200 [03:37<12:01:52, 217.65s/epoch]Training:   1%|          | 2/200 [07:11<11:50:55, 215.43s/epoch]Training:   2%|▏         | 3/200 [10:44<11:44:09, 214.46s/epoch]Training:   2%|▏         | 4/200 [14:18<11:39:04, 214.00s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   9%|▉         | 7/79 [00:05<00:51,  1.39batch/s][A
+Testing:  20%|██        | 16/79 [00:10<00:39,  1.59batch/s][A
+Testing:  32%|███▏      | 25/79 [00:15<00:32,  1.65batch/s][A
+Testing:  43%|████▎     | 34/79 [00:20<00:26,  1.68batch/s][A
+Testing:  54%|█████▍    | 43/79 [00:25<00:21,  1.70batch/s][A
+Testing:  66%|██████▌   | 52/79 [00:31<00:15,  1.71batch/s][A
+Testing:  77%|███████▋  | 61/79 [00:36<00:10,  1.72batch/s][A
+Testing:  89%|████████▊ | 70/79 [00:41<00:05,  1.72batch/s][ATesting: 100%|██████████| 79/79 [00:46<00:00,  1.70batch/s]
+[25/05/18 17:32:50] [train_TET.py:  228]: Test set Accuracy: 20.16
+/gpfs/home5/jhutter/dl2/train_TET.py:190: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
+Training:   2%|▎         | 5/200 [18:38<12:29:40, 230.67s/epoch]Training:   3%|▎         | 6/200 [22:11<12:06:44, 224.76s/epoch]Training:   4%|▎         | 7/200 [25:44<11:50:42, 220.95s/epoch]Training:   4%|▍         | 8/200 [29:17<11:38:59, 218.43s/epoch]Training:   4%|▍         | 9/200 [32:50<11:29:57, 216.74s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:  11%|█▏        | 9/79 [00:05<00:42,  1.65batch/s][A
+Testing:  23%|██▎       | 18/79 [00:10<00:35,  1.70batch/s][A
+Testing:  34%|███▍      | 27/79 [00:15<00:30,  1.71batch/s][A
+Testing:  46%|████▌     | 36/79 [00:21<00:25,  1.72batch/s][A
+Testing:  57%|█████▋    | 45/79 [00:26<00:19,  1.72batch/s][A
+Testing:  68%|██████▊   | 54/79 [00:31<00:14,  1.72batch/s][A
+Testing:  80%|███████▉  | 63/79 [00:36<00:09,  1.73batch/s][A
+Testing:  91%|█████████ | 72/79 [00:41<00:04,  1.73batch/s][ATesting: 100%|██████████| 79/79 [00:45<00:00,  1.74batch/s]
+[25/05/18 17:51:22] [train_TET.py:  228]: Test set Accuracy: 24.05
+Training:   5%|▌         | 10/200 [37:09<12:07:42, 229.80s/epoch]Training:   6%|▌         | 11/200 [40:43<11:47:50, 224.71s/epoch]Training:   6%|▌         | 12/200 [44:16<11:33:03, 221.19s/epoch]Training:   6%|▋         | 13/200 [47:49<11:21:32, 218.68s/epoch]Training:   7%|▋         | 14/200 [51:21<11:12:29, 216.93s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:  11%|█▏        | 9/79 [00:05<00:42,  1.66batch/s][A
+Testing:  23%|██▎       | 18/79 [00:10<00:35,  1.70batch/s][A
+Testing:  34%|███▍      | 27/79 [00:15<00:30,  1.71batch/s][A
+Testing:  46%|████▌     | 36/79 [00:21<00:24,  1.72batch/s][A
+Testing:  57%|█████▋    | 45/79 [00:26<00:19,  1.72batch/s][A
+Testing:  68%|██████▊   | 54/79 [00:31<00:14,  1.73batch/s][A
+Testing:  80%|███████▉  | 63/79 [00:36<00:09,  1.73batch/s][A
+Testing:  91%|█████████ | 72/79 [00:41<00:04,  1.73batch/s][ATesting: 100%|██████████| 79/79 [00:45<00:00,  1.74batch/s]
+[25/05/18 18:09:53] [train_TET.py:  228]: Test set Accuracy: 25.72
+Training:   8%|▊         | 15/200 [55:40<11:47:40, 229.52s/epoch]Training:   8%|▊         | 16/200 [59:13<11:28:35, 224.54s/epoch]Training:   8%|▊         | 17/200 [1:02:46<11:13:58, 220.98s/epoch]Training:   9%|▉         | 18/200 [1:06:18<11:02:43, 218.48s/epoch]Training:  10%|▉         | 19/200 [1:09:51<10:53:47, 216.72s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:  11%|█▏        | 9/79 [00:05<00:42,  1.65batch/s][A
+Testing:  23%|██▎       | 18/79 [00:10<00:35,  1.70batch/s][A
+Testing:  34%|███▍      | 27/79 [00:15<00:30,  1.71batch/s][A
+Testing:  46%|████▌     | 36/79 [00:21<00:25,  1.72batch/s][A
+Testing:  57%|█████▋    | 45/79 [00:26<00:19,  1.72batch/s][A
+Testing:  68%|██████▊   | 54/79 [00:31<00:14,  1.73batch/s][A
+Testing:  80%|███████▉  | 63/79 [00:36<00:09,  1.73batch/s][A
+Testing:  91%|█████████ | 72/79 [00:41<00:04,  1.73batch/s][ATesting: 100%|██████████| 79/79 [00:45<00:00,  1.74batch/s]
+[25/05/18 18:28:22] [train_TET.py:  228]: Test set Accuracy: 27.7
+Training:  10%|█         | 20/200 [1:14:10<11:27:57, 229.32s/epoch]Training:  10%|█         | 21/200 [1:17:43<11:09:21, 224.37s/epoch]Training:  11%|█         | 22/200 [1:21:15<10:55:18, 220.89s/epoch]Training:  12%|█▏        | 23/200 [1:24:48<10:44:22, 218.43s/epoch]Training:  12%|█▏        | 24/200 [1:28:21<10:35:39, 216.70s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:  11%|█▏        | 9/79 [00:05<00:42,  1.66batch/s][A
+Testing:  23%|██▎       | 18/79 [00:10<00:35,  1.70batch/s][A
+Testing:  34%|███▍      | 27/79 [00:15<00:30,  1.71batch/s][A
+Testing:  46%|████▌     | 36/79 [00:21<00:24,  1.72batch/s][A
+Testing:  57%|█████▋    | 45/79 [00:26<00:19,  1.72batch/s][A
+Testing:  68%|██████▊   | 54/79 [00:31<00:14,  1.73batch/s][A
+Testing:  80%|███████▉  | 63/79 [00:36<00:09,  1.73batch/s][A
+Testing:  91%|█████████ | 72/79 [00:41<00:04,  1.73batch/s][ATesting: 100%|██████████| 79/79 [00:45<00:00,  1.74batch/s]
+[25/05/18 18:46:51] [train_TET.py:  228]: Test set Accuracy: 28.87
+Training:  12%|█▎        | 25/200 [1:32:39<11:08:28, 229.19s/epoch]Training:  13%|█▎        | 26/200 [1:36:12<10:50:16, 224.23s/epoch]Training:  14%|█▎        | 27/200 [1:39:44<10:36:20, 220.70s/epoch]Training:  14%|█▍        | 28/200 [1:43:17<10:25:34, 218.22s/epoch]Training:  14%|█▍        | 29/200 [1:46:49<10:17:05, 216.52s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:  11%|█▏        | 9/79 [00:05<00:42,  1.65batch/s][A
+Testing:  23%|██▎       | 18/79 [00:10<00:35,  1.70batch/s][A
+Testing:  34%|███▍      | 27/79 [00:15<00:30,  1.71batch/s][A
+Testing:  46%|████▌     | 36/79 [00:21<00:25,  1.72batch/s][A
+Testing:  57%|█████▋    | 45/79 [00:26<00:19,  1.72batch/s][A
+Testing:  68%|██████▊   | 54/79 [00:31<00:14,  1.73batch/s][A
+Testing:  80%|███████▉  | 63/79 [00:36<00:09,  1.73batch/s][A
+Testing:  91%|█████████ | 72/79 [00:41<00:04,  1.73batch/s][ATesting: 100%|██████████| 79/79 [00:45<00:00,  1.74batch/s]
+[25/05/18 19:05:20] [train_TET.py:  228]: Test set Accuracy: 22.96
+Training:  15%|█▌        | 30/200 [1:51:07<10:48:55, 229.03s/epoch]slurmstepd: error: *** JOB 11919262 ON gcn32 CANCELLED AT 2025-05-18T19:08:04 ***
+
+JOB STATISTICS
+==============
+Job ID: 11919262
+Cluster: snellius
+User/Group: jhutter/jhutter
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 1-10:15:00 core-walltime
+Job Wall-clock time: 01:54:10
+Memory Utilized: 2.09 GB
+Memory Efficiency: 1.74% of 120.00 GB (120.00 GB/node)

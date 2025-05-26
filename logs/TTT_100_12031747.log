@@ -1,0 +1,277 @@
+[25/05/26 09:25:59] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/26 09:25:59] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar100
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 100
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar100
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_TTT_bn_sgd-1-0.1-128_250526-092559.txt
+LOG_TIME: 250526-092559
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_BN
+  CHECKPOINT_PTH: None
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.1
+  METHOD: sgd
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 200
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WARMUP_START_LR: 1e-06
+  WARMUP_STEPS: 1000
+  WD: 0.0005
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar100/bn-wrn-28-10-ttt
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+[25/05/26 09:26:00] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/26 09:26:00] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar100
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 100
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar100
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_TTT_bn_sgd-1-0.1-128_250526-092559.txt
+LOG_TIME: 250526-092559
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_BN
+  CHECKPOINT_PTH: None
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.1
+  METHOD: sgd
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 200
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WARMUP_START_LR: 1e-06
+  WARMUP_STEPS: 1000
+  WD: 0.0005
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar100/bn-wrn-28-10-ttt
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Building model...
+Files already downloaded and verified
+Files already downloaded and verified
+Training:   0%|          | 0/75 [00:00<?, ?epoch/s][25/05/26 09:28:22] [train_TTT.py:  134]: Train epoch: 1, loss_net: 0.032125, acc_net: 6.80%, loss_ssh: 0.009720, acc_ssh: 174.31%
+Training:   1%|▏         | 1/75 [02:19<2:52:39, 139.99s/epoch][25/05/26 09:30:39] [train_TTT.py:  134]: Train epoch: 2, loss_net: 0.030756, acc_net: 9.29%, loss_ssh: 0.009455, acc_ssh: 180.98%
+Training:   3%|▎         | 2/75 [04:36<2:47:49, 137.94s/epoch][25/05/26 09:32:55] [train_TTT.py:  134]: Train epoch: 3, loss_net: 0.029975, acc_net: 10.73%, loss_ssh: 0.009354, acc_ssh: 184.09%
+Training:   4%|▍         | 3/75 [06:52<2:44:33, 137.14s/epoch][25/05/26 09:35:11] [train_TTT.py:  134]: Train epoch: 4, loss_net: 0.029259, acc_net: 12.26%, loss_ssh: 0.009255, acc_ssh: 188.00%
+Training:   5%|▌         | 4/75 [09:09<2:41:57, 136.87s/epoch][25/05/26 09:37:28] [train_TTT.py:  134]: Train epoch: 5, loss_net: 0.028633, acc_net: 13.39%, loss_ssh: 0.009139, acc_ssh: 191.36%
+Training:   7%|▋         | 5/75 [11:25<2:39:27, 136.68s/epoch][25/05/26 09:39:44] [train_TTT.py:  134]: Train epoch: 6, loss_net: 0.028008, acc_net: 14.99%, loss_ssh: 0.009030, acc_ssh: 194.61%
+Training:   8%|▊         | 6/75 [13:42<2:37:12, 136.70s/epoch][25/05/26 09:42:01] [train_TTT.py:  134]: Train epoch: 7, loss_net: 0.027342, acc_net: 16.48%, loss_ssh: 0.008914, acc_ssh: 198.93%
+Training:   9%|▉         | 7/75 [15:58<2:34:51, 136.64s/epoch][25/05/26 09:44:18] [train_TTT.py:  134]: Train epoch: 8, loss_net: 0.026703, acc_net: 18.22%, loss_ssh: 0.008778, acc_ssh: 202.43%
+Training:  11%|█         | 8/75 [18:15<2:32:36, 136.67s/epoch][25/05/26 09:46:34] [train_TTT.py:  134]: Train epoch: 9, loss_net: 0.026030, acc_net: 19.64%, loss_ssh: 0.008632, acc_ssh: 207.34%
+Training:  12%|█▏        | 9/75 [20:32<2:30:19, 136.66s/epoch][25/05/26 09:48:51] [train_TTT.py:  134]: Train epoch: 10, loss_net: 0.025313, acc_net: 21.20%, loss_ssh: 0.008472, acc_ssh: 211.91%
+Training:  13%|█▎        | 10/75 [22:48<2:27:57, 136.58s/epoch][25/05/26 09:51:07] [train_TTT.py:  134]: Train epoch: 11, loss_net: 0.024511, acc_net: 22.98%, loss_ssh: 0.008331, acc_ssh: 216.28%
+Training:  15%|█▍        | 11/75 [25:04<2:25:38, 136.54s/epoch][25/05/26 09:53:24] [train_TTT.py:  134]: Train epoch: 12, loss_net: 0.023718, acc_net: 24.70%, loss_ssh: 0.008179, acc_ssh: 220.60%
+Training:  16%|█▌        | 12/75 [27:21<2:23:27, 136.63s/epoch][25/05/26 09:55:41] [train_TTT.py:  134]: Train epoch: 13, loss_net: 0.022931, acc_net: 26.70%, loss_ssh: 0.008023, acc_ssh: 225.07%
+Training:  17%|█▋        | 13/75 [29:38<2:21:13, 136.66s/epoch][25/05/26 09:57:57] [train_TTT.py:  134]: Train epoch: 14, loss_net: 0.022186, acc_net: 28.68%, loss_ssh: 0.007898, acc_ssh: 228.15%
+Training:  19%|█▊        | 14/75 [31:55<2:18:53, 136.62s/epoch][25/05/26 10:00:14] [train_TTT.py:  134]: Train epoch: 15, loss_net: 0.021456, acc_net: 30.11%, loss_ssh: 0.007769, acc_ssh: 231.58%
+[25/05/26 10:00:14] [train_TTT.py:  138]: epoch: 15
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:02<00:00, 38.87batch/s]
+[25/05/26 10:00:16] [train_TTT.py:  155]: Test set Accuracy: 27.84
+Training:  20%|██        | 15/75 [34:14<2:17:21, 137.36s/epoch][25/05/26 10:02:33] [train_TTT.py:  134]: Train epoch: 16, loss_net: 0.020809, acc_net: 31.91%, loss_ssh: 0.007647, acc_ssh: 234.28%
+Training:  21%|██▏       | 16/75 [36:30<2:14:53, 137.18s/epoch][25/05/26 10:04:50] [train_TTT.py:  134]: Train epoch: 17, loss_net: 0.020167, acc_net: 33.50%, loss_ssh: 0.007497, acc_ssh: 238.53%
+Training:  23%|██▎       | 17/75 [38:47<2:12:27, 137.03s/epoch][25/05/26 10:07:06] [train_TTT.py:  134]: Train epoch: 18, loss_net: 0.019550, acc_net: 35.13%, loss_ssh: 0.007369, acc_ssh: 242.02%
+Training:  24%|██▍       | 18/75 [41:04<2:10:00, 136.86s/epoch][25/05/26 10:09:23] [train_TTT.py:  134]: Train epoch: 19, loss_net: 0.018943, acc_net: 36.85%, loss_ssh: 0.007218, acc_ssh: 246.51%
+Training:  25%|██▌       | 19/75 [43:20<2:07:41, 136.82s/epoch][25/05/26 10:11:40] [train_TTT.py:  134]: Train epoch: 20, loss_net: 0.018381, acc_net: 38.37%, loss_ssh: 0.007077, acc_ssh: 249.46%
+Training:  27%|██▋       | 20/75 [45:37<2:05:23, 136.79s/epoch][25/05/26 10:13:56] [train_TTT.py:  134]: Train epoch: 21, loss_net: 0.017839, acc_net: 39.85%, loss_ssh: 0.006964, acc_ssh: 252.37%
+Training:  28%|██▊       | 21/75 [47:53<2:03:01, 136.70s/epoch][25/05/26 10:16:13] [train_TTT.py:  134]: Train epoch: 22, loss_net: 0.017255, acc_net: 41.39%, loss_ssh: 0.006828, acc_ssh: 255.54%
+Training:  29%|██▉       | 22/75 [50:10<2:00:45, 136.70s/epoch][25/05/26 10:18:29] [train_TTT.py:  134]: Train epoch: 23, loss_net: 0.016765, acc_net: 42.93%, loss_ssh: 0.006664, acc_ssh: 259.92%
+Training:  31%|███       | 23/75 [52:27<1:58:24, 136.62s/epoch][25/05/26 10:20:46] [train_TTT.py:  134]: Train epoch: 24, loss_net: 0.016250, acc_net: 44.00%, loss_ssh: 0.006561, acc_ssh: 262.39%
+Training:  32%|███▏      | 24/75 [54:43<1:56:09, 136.65s/epoch][25/05/26 10:23:03] [train_TTT.py:  134]: Train epoch: 25, loss_net: 0.015750, acc_net: 45.41%, loss_ssh: 0.006428, acc_ssh: 265.52%
+Training:  33%|███▎      | 25/75 [57:00<1:53:53, 136.66s/epoch][25/05/26 10:25:19] [train_TTT.py:  134]: Train epoch: 26, loss_net: 0.015291, acc_net: 47.01%, loss_ssh: 0.006313, acc_ssh: 268.26%
+Training:  35%|███▍      | 26/75 [59:17<1:51:34, 136.63s/epoch][25/05/26 10:27:36] [train_TTT.py:  134]: Train epoch: 27, loss_net: 0.014815, acc_net: 48.53%, loss_ssh: 0.006195, acc_ssh: 271.24%
+Training:  36%|███▌      | 27/75 [1:01:33<1:49:16, 136.60s/epoch][25/05/26 10:29:52] [train_TTT.py:  134]: Train epoch: 28, loss_net: 0.014395, acc_net: 49.87%, loss_ssh: 0.006088, acc_ssh: 273.79%
+Training:  37%|███▋      | 28/75 [1:03:50<1:46:57, 136.55s/epoch][25/05/26 10:32:08] [train_TTT.py:  134]: Train epoch: 29, loss_net: 0.013959, acc_net: 50.85%, loss_ssh: 0.005995, acc_ssh: 276.57%
+Training:  39%|███▊      | 29/75 [1:06:06<1:44:36, 136.45s/epoch][25/05/26 10:34:25] [train_TTT.py:  134]: Train epoch: 30, loss_net: 0.013528, acc_net: 52.47%, loss_ssh: 0.005873, acc_ssh: 278.69%
+[25/05/26 10:34:25] [train_TTT.py:  138]: epoch: 30
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:01<00:00, 40.81batch/s]
+[25/05/26 10:34:27] [train_TTT.py:  155]: Test set Accuracy: 46.28
+Training:  40%|████      | 30/75 [1:08:24<1:42:46, 137.03s/epoch][25/05/26 10:36:43] [train_TTT.py:  134]: Train epoch: 31, loss_net: 0.013122, acc_net: 53.74%, loss_ssh: 0.005774, acc_ssh: 281.09%
+Training:  41%|████▏     | 31/75 [1:10:41<1:40:21, 136.85s/epoch][25/05/26 10:39:00] [train_TTT.py:  134]: Train epoch: 32, loss_net: 0.012700, acc_net: 55.02%, loss_ssh: 0.005671, acc_ssh: 283.78%
+Training:  43%|████▎     | 32/75 [1:12:57<1:37:59, 136.74s/epoch][25/05/26 10:41:16] [train_TTT.py:  134]: Train epoch: 33, loss_net: 0.012335, acc_net: 55.99%, loss_ssh: 0.005581, acc_ssh: 285.37%
+Training:  44%|████▍     | 33/75 [1:15:13<1:35:37, 136.60s/epoch][25/05/26 10:43:32] [train_TTT.py:  134]: Train epoch: 34, loss_net: 0.011977, acc_net: 57.26%, loss_ssh: 0.005480, acc_ssh: 287.67%
+Training:  45%|████▌     | 34/75 [1:17:30<1:33:18, 136.56s/epoch][25/05/26 10:45:49] [train_TTT.py:  134]: Train epoch: 35, loss_net: 0.011649, acc_net: 58.49%, loss_ssh: 0.005397, acc_ssh: 289.63%
+Training:  47%|████▋     | 35/75 [1:19:46<1:30:59, 136.48s/epoch][25/05/26 10:48:05] [train_TTT.py:  134]: Train epoch: 36, loss_net: 0.011333, acc_net: 59.42%, loss_ssh: 0.005302, acc_ssh: 291.82%
+Training:  48%|████▊     | 36/75 [1:22:03<1:28:43, 136.49s/epoch][25/05/26 10:50:22] [train_TTT.py:  134]: Train epoch: 37, loss_net: 0.010942, acc_net: 60.64%, loss_ssh: 0.005209, acc_ssh: 293.48%
+Training:  49%|████▉     | 37/75 [1:24:19<1:26:23, 136.42s/epoch][25/05/26 10:52:38] [train_TTT.py:  134]: Train epoch: 38, loss_net: 0.010624, acc_net: 61.66%, loss_ssh: 0.005139, acc_ssh: 295.43%
+Training:  51%|█████     | 38/75 [1:26:35<1:24:08, 136.44s/epoch][25/05/26 10:54:55] [train_TTT.py:  134]: Train epoch: 39, loss_net: 0.010308, acc_net: 62.79%, loss_ssh: 0.005034, acc_ssh: 297.84%
+Training:  52%|█████▏    | 39/75 [1:28:52<1:21:53, 136.48s/epoch][25/05/26 10:57:11] [train_TTT.py:  134]: Train epoch: 40, loss_net: 0.009977, acc_net: 63.83%, loss_ssh: 0.004974, acc_ssh: 298.82%
+Training:  53%|█████▎    | 40/75 [1:31:08<1:19:34, 136.42s/epoch][25/05/26 10:59:27] [train_TTT.py:  134]: Train epoch: 41, loss_net: 0.009674, acc_net: 64.82%, loss_ssh: 0.004869, acc_ssh: 301.37%
+Training:  55%|█████▍    | 41/75 [1:33:25<1:17:18, 136.43s/epoch][25/05/26 11:01:44] [train_TTT.py:  134]: Train epoch: 42, loss_net: 0.009409, acc_net: 65.64%, loss_ssh: 0.004790, acc_ssh: 302.50%
+Training:  56%|█████▌    | 42/75 [1:35:41<1:15:01, 136.41s/epoch][25/05/26 11:04:00] [train_TTT.py:  134]: Train epoch: 43, loss_net: 0.009141, acc_net: 66.69%, loss_ssh: 0.004714, acc_ssh: 304.75%
+Training:  57%|█████▋    | 43/75 [1:37:57<1:12:46, 136.44s/epoch][25/05/26 11:06:16] [train_TTT.py:  134]: Train epoch: 44, loss_net: 0.008861, acc_net: 67.48%, loss_ssh: 0.004650, acc_ssh: 306.23%
+Training:  59%|█████▊    | 44/75 [1:40:14<1:10:28, 136.39s/epoch][25/05/26 11:08:33] [train_TTT.py:  134]: Train epoch: 45, loss_net: 0.008604, acc_net: 68.60%, loss_ssh: 0.004568, acc_ssh: 307.74%
+[25/05/26 11:08:33] [train_TTT.py:  138]: epoch: 45
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:01<00:00, 40.81batch/s]
+[25/05/26 11:08:35] [train_TTT.py:  155]: Test set Accuracy: 53.78
+Training:  60%|██████    | 45/75 [1:42:32<1:08:31, 137.06s/epoch][25/05/26 11:10:52] [train_TTT.py:  134]: Train epoch: 46, loss_net: 0.008286, acc_net: 69.67%, loss_ssh: 0.004501, acc_ssh: 309.25%
+Training:  61%|██████▏   | 46/75 [1:44:49<1:06:10, 136.91s/epoch][25/05/26 11:13:08] [train_TTT.py:  134]: Train epoch: 47, loss_net: 0.008054, acc_net: 70.17%, loss_ssh: 0.004430, acc_ssh: 310.98%
+Training:  63%|██████▎   | 47/75 [1:47:05<1:03:48, 136.74s/epoch][25/05/26 11:15:24] [train_TTT.py:  134]: Train epoch: 48, loss_net: 0.007823, acc_net: 71.20%, loss_ssh: 0.004334, acc_ssh: 312.84%
+Training:  64%|██████▍   | 48/75 [1:49:21<1:01:27, 136.58s/epoch][25/05/26 11:17:41] [train_TTT.py:  134]: Train epoch: 49, loss_net: 0.007559, acc_net: 72.14%, loss_ssh: 0.004286, acc_ssh: 314.20%
+Training:  65%|██████▌   | 49/75 [1:51:38<59:09, 136.53s/epoch]  [25/05/26 11:19:57] [train_TTT.py:  134]: Train epoch: 50, loss_net: 0.007328, acc_net: 72.75%, loss_ssh: 0.004224, acc_ssh: 315.30%
+Training:  67%|██████▋   | 50/75 [1:53:54<56:52, 136.52s/epoch][25/05/26 11:22:13] [train_TTT.py:  134]: Train epoch: 51, loss_net: 0.007073, acc_net: 73.76%, loss_ssh: 0.004140, acc_ssh: 317.17%
+Training:  68%|██████▊   | 51/75 [1:56:11<54:34, 136.44s/epoch][25/05/26 11:24:30] [train_TTT.py:  134]: Train epoch: 52, loss_net: 0.006863, acc_net: 74.41%, loss_ssh: 0.004075, acc_ssh: 318.60%
+Training:  69%|██████▉   | 52/75 [1:58:27<52:18, 136.45s/epoch][25/05/26 11:26:46] [train_TTT.py:  134]: Train epoch: 53, loss_net: 0.006640, acc_net: 75.31%, loss_ssh: 0.004005, acc_ssh: 320.25%
+Training:  71%|███████   | 53/75 [2:00:44<50:03, 136.50s/epoch][25/05/26 11:29:03] [train_TTT.py:  134]: Train epoch: 54, loss_net: 0.006381, acc_net: 76.23%, loss_ssh: 0.003952, acc_ssh: 320.65%
+Training:  72%|███████▏  | 54/75 [2:03:00<47:44, 136.42s/epoch][25/05/26 11:31:19] [train_TTT.py:  134]: Train epoch: 55, loss_net: 0.006140, acc_net: 76.99%, loss_ssh: 0.003879, acc_ssh: 322.44%
+Training:  73%|███████▎  | 55/75 [2:05:16<45:27, 136.39s/epoch][25/05/26 11:33:35] [train_TTT.py:  134]: Train epoch: 56, loss_net: 0.005893, acc_net: 77.99%, loss_ssh: 0.003805, acc_ssh: 324.21%
+Training:  75%|███████▍  | 56/75 [2:07:33<43:11, 136.41s/epoch][25/05/26 11:35:52] [train_TTT.py:  134]: Train epoch: 57, loss_net: 0.005754, acc_net: 78.49%, loss_ssh: 0.003734, acc_ssh: 325.77%
+Training:  76%|███████▌  | 57/75 [2:09:49<40:56, 136.45s/epoch][25/05/26 11:38:08] [train_TTT.py:  134]: Train epoch: 58, loss_net: 0.005518, acc_net: 79.33%, loss_ssh: 0.003677, acc_ssh: 327.19%
+Training:  77%|███████▋  | 58/75 [2:12:06<38:38, 136.39s/epoch][25/05/26 11:40:25] [train_TTT.py:  134]: Train epoch: 59, loss_net: 0.005325, acc_net: 80.20%, loss_ssh: 0.003617, acc_ssh: 327.79%
+Training:  79%|███████▊  | 59/75 [2:14:22<36:22, 136.42s/epoch][25/05/26 11:42:41] [train_TTT.py:  134]: Train epoch: 60, loss_net: 0.005110, acc_net: 81.01%, loss_ssh: 0.003560, acc_ssh: 329.51%
+[25/05/26 11:42:41] [train_TTT.py:  138]: epoch: 60
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:01<00:00, 41.03batch/s]
+[25/05/26 11:42:43] [train_TTT.py:  155]: Test set Accuracy: 57.42
+Training:  80%|████████  | 60/75 [2:16:40<34:15, 137.04s/epoch][25/05/26 11:45:00] [train_TTT.py:  134]: Train epoch: 61, loss_net: 0.004913, acc_net: 81.93%, loss_ssh: 0.003484, acc_ssh: 331.06%
+Training:  81%|████████▏ | 61/75 [2:18:57<31:55, 136.84s/epoch][25/05/26 11:47:16] [train_TTT.py:  134]: Train epoch: 62, loss_net: 0.004719, acc_net: 82.36%, loss_ssh: 0.003440, acc_ssh: 331.83%
+Training:  83%|████████▎ | 62/75 [2:21:13<29:37, 136.75s/epoch][25/05/26 11:49:33] [train_TTT.py:  134]: Train epoch: 63, loss_net: 0.004549, acc_net: 83.18%, loss_ssh: 0.003372, acc_ssh: 333.22%
+Training:  84%|████████▍ | 63/75 [2:23:30<27:20, 136.68s/epoch][25/05/26 11:51:49] [train_TTT.py:  134]: Train epoch: 64, loss_net: 0.004355, acc_net: 83.85%, loss_ssh: 0.003301, acc_ssh: 334.53%
+Training:  85%|████████▌ | 64/75 [2:25:46<25:02, 136.57s/epoch][25/05/26 11:54:05] [train_TTT.py:  134]: Train epoch: 65, loss_net: 0.004201, acc_net: 84.37%, loss_ssh: 0.003230, acc_ssh: 336.20%
+Training:  87%|████████▋ | 65/75 [2:28:03<22:45, 136.54s/epoch][25/05/26 11:56:22] [train_TTT.py:  134]: Train epoch: 66, loss_net: 0.003974, acc_net: 85.47%, loss_ssh: 0.003171, acc_ssh: 337.55%
+Training:  88%|████████▊ | 66/75 [2:30:19<20:28, 136.53s/epoch][25/05/26 11:58:38] [train_TTT.py:  134]: Train epoch: 67, loss_net: 0.003790, acc_net: 86.15%, loss_ssh: 0.003110, acc_ssh: 338.72%
+Training:  89%|████████▉ | 67/75 [2:32:36<18:11, 136.45s/epoch][25/05/26 12:00:55] [train_TTT.py:  134]: Train epoch: 68, loss_net: 0.003643, acc_net: 86.48%, loss_ssh: 0.003043, acc_ssh: 340.31%
+Training:  91%|█████████ | 68/75 [2:34:52<15:54, 136.42s/epoch][25/05/26 12:03:11] [train_TTT.py:  134]: Train epoch: 69, loss_net: 0.003449, acc_net: 87.46%, loss_ssh: 0.002966, acc_ssh: 341.75%
+Training:  92%|█████████▏| 69/75 [2:37:08<13:38, 136.46s/epoch][25/05/26 12:05:28] [train_TTT.py:  134]: Train epoch: 70, loss_net: 0.003328, acc_net: 87.72%, loss_ssh: 0.002905, acc_ssh: 343.26%
+Training:  93%|█████████▎| 70/75 [2:39:25<11:22, 136.48s/epoch][25/05/26 12:07:44] [train_TTT.py:  134]: Train epoch: 71, loss_net: 0.003188, acc_net: 88.46%, loss_ssh: 0.002872, acc_ssh: 343.45%
+Training:  95%|█████████▍| 71/75 [2:41:41<09:05, 136.40s/epoch][25/05/26 12:10:00] [train_TTT.py:  134]: Train epoch: 72, loss_net: 0.003082, acc_net: 88.69%, loss_ssh: 0.002789, acc_ssh: 345.50%
+Training:  96%|█████████▌| 72/75 [2:43:58<06:49, 136.41s/epoch][25/05/26 12:12:17] [train_TTT.py:  134]: Train epoch: 73, loss_net: 0.002864, acc_net: 89.93%, loss_ssh: 0.002749, acc_ssh: 346.10%
+Training:  97%|█████████▋| 73/75 [2:46:14<04:32, 136.37s/epoch][25/05/26 12:14:33] [train_TTT.py:  134]: Train epoch: 74, loss_net: 0.002744, acc_net: 90.28%, loss_ssh: 0.002675, acc_ssh: 347.58%
+Training:  99%|█████████▊| 74/75 [2:48:30<02:16, 136.39s/epoch][25/05/26 12:16:49] [train_TTT.py:  134]: Train epoch: 75, loss_net: 0.002638, acc_net: 90.75%, loss_ssh: 0.002605, acc_ssh: 348.76%
+[25/05/26 12:16:49] [train_TTT.py:  138]: epoch: 75
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:01<00:00, 41.18batch/s]
+[25/05/26 12:16:51] [train_TTT.py:  155]: Test set Accuracy: 58.62
+Training: 100%|██████████| 75/75 [2:50:49<00:00, 136.99s/epoch]Training: 100%|██████████| 75/75 [2:50:49<00:00, 136.66s/epoch]
+
+JOB STATISTICS
+==============
+Job ID: 12031747
+Cluster: snellius
+User/Group: jhutter/jhutter
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 03:07:58
+CPU Efficiency: 6.10% of 2-03:20:24 core-walltime
+Job Wall-clock time: 02:51:08
+Memory Utilized: 1.56 GB
+Memory Efficiency: 1.30% of 120.00 GB (120.00 GB/node)

@@ -1,0 +1,14 @@
+
+JOB STATISTICS
+==============
+Job ID: 12035258
+Cluster: snellius
+User/Group: jbibo/jbibo
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 01:12:25
+CPU Efficiency: 5.52% of 21:51:00 core-walltime
+Job Wall-clock time: 01:12:50
+Memory Utilized: 1.27 GB
+Memory Efficiency: 1.06% of 120.00 GB (120.00 GB/node)

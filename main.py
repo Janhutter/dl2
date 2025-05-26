@@ -63,7 +63,8 @@ def main():
     elif 'WRN2810_TTT' in cfg.MODEL.ARCH:
         base_model = build_model_wrn2810bn(cfg.CORRUPTION.NUM_CLASSES).to(device)
         net, ext, head, ssh = build_model_TTT(base_model)
-        ckpt = torch.load('/home/jhutter/dl2/ckpt/cifar10/WRN2810_BN_TTT.pth',  weights_only=False)
+        # ckpt = torch.load('/home/jhutter/dl2/ckpt/cifar10/WRN2810_BN_TTT.pth',  weights_only=False)
+        ckpt = torch.load('/home/jbibo/dl2/ckpt/WRN2810_BN_TTT.pth',  weights_only=False)
     else:
         raise NotImplementedError
 

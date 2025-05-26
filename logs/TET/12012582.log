@@ -1,0 +1,406 @@
+[25/05/24 16:42:37] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/24 16:42:37] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar10
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 0.1
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_TET_all_sgd-1-0.1-1024_uncond-20-0.1-0.01-10000-0.05_250524-164237.txt
+LOG_TIME: 250524-164237
+MODEL:
+  ADAPTATION: energy
+  ADA_PARAM: ['all']
+  ARCH: WRN2810_TET_3
+  CHECKPOINT_PTH: None
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 1024
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 0.001
+  LR: 0.1
+  METHOD: sgd
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 200
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WARMUP_START_LR: 1e-06
+  WARMUP_STEPS: 1000
+  WD: 0.0005
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10-tet
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+wandb: Currently logged in as: schaapman-henk (jan-hutter) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.11
+wandb: Run data is saved locally in /gpfs/home5/jhutter/dl2/wandb/run-20250524_164238-lvad48r0
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run train_tet_energy_scheduler
+wandb: ⭐️ View project at https://wandb.ai/jan-hutter/TET
+wandb: 🚀 View run at https://wandb.ai/jan-hutter/TET/runs/lvad48r0
+[25/05/24 16:42:44] [param.py:   14]: adapting all weights
+[25/05/24 16:42:45] [setada.py:  138]: model for adaptation: WideResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(16, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(16, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block2): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 320, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(160, 320, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block3): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 640, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(320, 640, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=640, out_features=10, bias=True)
+)
+[25/05/24 16:42:45] [setada.py:  139]: params for adaptation: all
+[25/05/24 16:42:45] [setada.py:  140]: optimizer for adaptation: SGD (
+Parameter Group 0
+    dampening: 0.0
+    differentiable: False
+    foreach: None
+    fused: None
+    lr: 0.1
+    maximize: False
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0005
+)
+Building model...
+Files already downloaded and verified
+Files already downloaded and verified
+Training:   0%|          | 0/200 [00:00<?, ?epoch/s]curr_energy_lambda: 1e-05
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.59batch/s]
+[25/05/24 16:49:07] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 26.57
+/gpfs/home5/jhutter/dl2/train_TET_energy_scheduler.py:248: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
+Training:   0%|          | 1/200 [06:22<21:09:52, 382.88s/epoch]curr_energy_lambda: 0.000115544
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.75batch/s]
+[25/05/24 16:55:22] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 25.05
+Training:   1%|          | 2/200 [12:37<20:47:47, 378.12s/epoch]curr_energy_lambda: 0.00012709840000000002
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 21.11batch/s]
+[25/05/24 17:01:37] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 27.08
+Training:   2%|▏         | 3/200 [18:52<20:36:35, 376.63s/epoch]curr_energy_lambda: 0.00013980824000000004
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 21.59batch/s]
+[25/05/24 17:07:52] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 30.55
+Training:   2%|▏         | 4/200 [25:07<20:28:10, 375.97s/epoch]curr_energy_lambda: 0.00015378906400000006
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 21.67batch/s]
+[25/05/24 17:14:07] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 31.14
+Training:   2%|▎         | 5/200 [31:22<20:20:43, 375.61s/epoch]curr_energy_lambda: 0.0001691679704000001
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.15batch/s]
+[25/05/24 17:20:22] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 35.99
+Training:   3%|▎         | 6/200 [37:37<20:14:03, 375.48s/epoch]curr_energy_lambda: 0.0001860847674400001
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:04<00:00, 18.98batch/s]
+[25/05/24 17:26:37] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 34.91
+Training:   4%|▎         | 7/200 [43:53<20:07:45, 375.47s/epoch]curr_energy_lambda: 0.00020469324418400013
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.64batch/s]
+[25/05/24 17:32:53] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 37.16
+Training:   4%|▍         | 8/200 [50:08<20:01:03, 375.33s/epoch]curr_energy_lambda: 0.00022516256860240016
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.56batch/s]
+[25/05/24 17:39:07] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 25.56
+Training:   4%|▍         | 9/200 [56:23<19:54:20, 375.19s/epoch]curr_energy_lambda: 0.00024767882546264017
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   1%|▏         | 1/79 [00:05<06:51,  5.28s/batch][ATesting: 100%|██████████| 79/79 [00:06<00:00, 11.30batch/s]
+[25/05/24 17:45:26] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 36.28
+Training:   5%|▌         | 10/200 [1:02:41<19:51:05, 376.13s/epoch]curr_energy_lambda: 0.0002724467080089042
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.06batch/s]
+[25/05/24 17:51:41] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 38.5
+Training:   6%|▌         | 11/200 [1:08:56<19:43:52, 375.83s/epoch]curr_energy_lambda: 0.0002996913788097946
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:04<00:00, 19.57batch/s]
+[25/05/24 17:57:56] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 30.24
+Training:   6%|▌         | 12/200 [1:15:11<19:37:06, 375.67s/epoch]curr_energy_lambda: 0.0003296605166907741
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.81batch/s]
+[25/05/24 18:04:11] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 37.31
+Training:   6%|▋         | 13/200 [1:21:26<19:30:03, 375.42s/epoch]curr_energy_lambda: 0.00036262656835985154
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 21.75batch/s]
+[25/05/24 18:10:26] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 36.78
+Training:   7%|▋         | 14/200 [1:27:41<19:23:18, 375.26s/epoch]curr_energy_lambda: 0.00039888922519583673
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.24batch/s]
+[25/05/24 18:16:41] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 41.06
+Training:   8%|▊         | 15/200 [1:33:56<19:16:40, 375.14s/epoch]curr_energy_lambda: 0.00043877814771542043
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:05<00:00, 15.50batch/s]
+[25/05/24 18:22:57] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 42.42
+Training:   8%|▊         | 16/200 [1:40:12<19:11:30, 375.49s/epoch]curr_energy_lambda: 0.0004826559624869625
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:04<00:00, 18.21batch/s]
+[25/05/24 18:29:13] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 30.13
+Training:   8%|▊         | 17/200 [1:46:28<19:05:20, 375.52s/epoch]curr_energy_lambda: 0.0005309215587356588
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.94batch/s]
+[25/05/24 18:35:28] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 22.81
+Training:   9%|▉         | 18/200 [1:52:43<18:58:55, 375.47s/epoch]curr_energy_lambda: 0.0005840137146092247
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.59batch/s]
+[25/05/24 18:41:43] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 41.08
+Training:  10%|▉         | 19/200 [1:58:58<18:51:56, 375.23s/epoch]curr_energy_lambda: 0.0006424150860701472
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:04<00:00, 18.35batch/s]
+[25/05/24 18:47:58] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 39.77
+Training:  10%|█         | 20/200 [2:05:13<18:45:52, 375.29s/epoch]curr_energy_lambda: 0.0007066565946771621
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:05<00:00, 15.59batch/s]
+[25/05/24 18:54:14] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 41.0
+/gpfs/home5/jhutter/dl2/train_TET_energy_scheduler.py:88: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  fig, ax1 = plt.subplots()
+Training:  10%|█         | 21/200 [2:11:29<18:40:31, 375.59s/epoch]curr_energy_lambda: 0.0007773222541448783
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:04<00:00, 17.89batch/s]
+[25/05/24 19:00:30] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 35.54
+Training:  11%|█         | 22/200 [2:17:45<18:34:26, 375.66s/epoch]curr_energy_lambda: 0.0008550544795593662
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:  14%|█▍        | 11/79 [00:05<00:30,  2.20batch/s][ATesting: 100%|██████████| 79/79 [00:06<00:00, 12.11batch/s]
+[25/05/24 19:06:48] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 33.56
+Training:  12%|█▏        | 23/200 [2:24:03<18:29:52, 376.23s/epoch]curr_energy_lambda: 0.0009405599275153029
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.77batch/s]
+[25/05/24 19:13:02] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 26.31
+Training:  12%|█▏        | 24/200 [2:30:17<18:22:10, 375.74s/epoch]curr_energy_lambda: 0.0010346159202668332
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.16batch/s]
+[25/05/24 19:19:17] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 40.08
+Training:  12%|█▎        | 25/200 [2:36:33<18:15:21, 375.55s/epoch]curr_energy_lambda: 0.0011380775122935166
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.70batch/s]
+[25/05/24 19:25:32] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 38.22
+Training:  13%|█▎        | 26/200 [2:42:47<18:08:03, 375.20s/epoch]curr_energy_lambda: 0.0012518852635228683
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.64batch/s]
+[25/05/24 19:31:46] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 37.57
+Training:  14%|█▎        | 27/200 [2:49:02<18:01:17, 375.02s/epoch]curr_energy_lambda: 0.0013770737898751552
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.44batch/s]
+[25/05/24 19:38:01] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 54.29
+Training:  14%|█▍        | 28/200 [2:55:16<17:54:59, 375.00s/epoch]curr_energy_lambda: 0.0015147811688626708
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:04<00:00, 18.89batch/s]
+[25/05/24 19:44:16] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 32.23
+Training:  14%|█▍        | 29/200 [3:01:32<17:48:50, 375.03s/epoch]curr_energy_lambda: 0.001666259285748938
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:05<00:00, 14.02batch/s]
+[25/05/24 19:50:33] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 35.59
+Training:  15%|█▌        | 30/200 [3:07:48<17:44:03, 375.55s/epoch]curr_energy_lambda: 0.001832885214323832
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 21.61batch/s]
+[25/05/24 19:56:48] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 35.2
+Training:  16%|█▌        | 31/200 [3:14:03<17:37:04, 375.29s/epoch]curr_energy_lambda: 0.002016173735756215
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.36batch/s]
+[25/05/24 20:03:03] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 30.08
+Training:  16%|█▌        | 32/200 [3:20:18<17:30:15, 375.09s/epoch]curr_energy_lambda: 0.0022177911093318368
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:  95%|█████████▍| 75/79 [00:05<00:00, 14.96batch/s][ATesting: 100%|██████████| 79/79 [00:05<00:00, 15.17batch/s]
+[25/05/24 20:09:19] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 39.75
+Training:  16%|█▋        | 33/200 [3:26:34<17:25:00, 375.45s/epoch]curr_energy_lambda: 0.0024395702202650205
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.41batch/s]
+[25/05/24 20:15:33] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 34.48
+Training:  17%|█▋        | 34/200 [3:32:48<17:17:56, 375.16s/epoch]curr_energy_lambda: 0.0026835272422915226
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.39batch/s]
+[25/05/24 20:21:48] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 28.76
+Training:  18%|█▊        | 35/200 [3:39:03<17:11:24, 375.06s/epoch]curr_energy_lambda: 0.0029518799665206753
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 19.82batch/s]
+[25/05/24 20:28:03] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 24.8
+Training:  18%|█▊        | 36/200 [3:45:18<17:05:03, 375.02s/epoch]curr_energy_lambda: 0.003247067963172743
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:05<00:00, 15.45batch/s]
+[25/05/24 20:34:19] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 29.59
+Training:  18%|█▊        | 37/200 [3:51:35<16:59:55, 375.43s/epoch]curr_energy_lambda: 0.0035717747594900175
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 23.00batch/s]
+[25/05/24 20:40:34] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 27.26
+Training:  19%|█▉        | 38/200 [3:57:49<16:52:51, 375.13s/epoch]curr_energy_lambda: 0.003928952235439019
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 20.74batch/s]
+[25/05/24 20:46:49] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 18.09
+Training:  20%|█▉        | 39/200 [4:04:04<16:46:16, 375.01s/epoch]curr_energy_lambda: 0.004321847458982921
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][ATesting: 100%|██████████| 79/79 [00:03<00:00, 22.63batch/s]
+[25/05/24 20:53:03] [train_TET_energy_scheduler.py:  286]: Test set Accuracy: 17.81
+Training:  20%|██        | 40/200 [4:10:18<16:39:35, 374.85s/epoch]curr_energy_lambda: 0.004754032204881214
+slurmstepd: error: *** JOB 12012582 ON gcn43 CANCELLED AT 2025-05-24T20:55:23 ***
+
+JOB STATISTICS
+==============
+Job ID: 12012582
+Cluster: snellius
+User/Group: jhutter/jhutter
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 3-03:56:24 core-walltime
+Job Wall-clock time: 04:13:08
+Memory Utilized: 2.58 GB
+Memory Efficiency: 2.15% of 120.00 GB (120.00 GB/node)

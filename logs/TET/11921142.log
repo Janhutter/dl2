@@ -1,0 +1,3866 @@
+[25/05/18 20:43:40] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/18 20:43:40] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar10
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 0.1
+  SGLD_STD: 0.01
+  STEPS: 10
+  UNCOND: uncond
+LOG_DEST: pretrain_TET_bn_sgd-1-0.3-1024_250518-204340.txt
+LOG_TIME: 250518-204340
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_TET
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 1024
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: -1.0
+  LR: 0.3
+  METHOD: sgd
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 200
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WD: 0.0005
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10-tet
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+[25/05/18 20:43:43] [param.py:   18]: adapting weights of batch-normalization layer
+[25/05/18 20:43:43] [setada.py:  138]: model for adaptation: WideResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(16, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(16, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block2): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 320, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(160, 320, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block3): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 640, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(320, 640, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=640, out_features=10, bias=True)
+)
+[25/05/18 20:43:43] [setada.py:  139]: params for adaptation: ['block1.layer.0.bn1.weight', 'block1.layer.0.bn1.bias', 'block1.layer.0.bn2.weight', 'block1.layer.0.bn2.bias', 'block1.layer.1.bn1.weight', 'block1.layer.1.bn1.bias', 'block1.layer.1.bn2.weight', 'block1.layer.1.bn2.bias', 'block1.layer.2.bn1.weight', 'block1.layer.2.bn1.bias', 'block1.layer.2.bn2.weight', 'block1.layer.2.bn2.bias', 'block1.layer.3.bn1.weight', 'block1.layer.3.bn1.bias', 'block1.layer.3.bn2.weight', 'block1.layer.3.bn2.bias', 'block2.layer.0.bn1.weight', 'block2.layer.0.bn1.bias', 'block2.layer.0.bn2.weight', 'block2.layer.0.bn2.bias', 'block2.layer.1.bn1.weight', 'block2.layer.1.bn1.bias', 'block2.layer.1.bn2.weight', 'block2.layer.1.bn2.bias', 'block2.layer.2.bn1.weight', 'block2.layer.2.bn1.bias', 'block2.layer.2.bn2.weight', 'block2.layer.2.bn2.bias', 'block2.layer.3.bn1.weight', 'block2.layer.3.bn1.bias', 'block2.layer.3.bn2.weight', 'block2.layer.3.bn2.bias', 'block3.layer.0.bn1.weight', 'block3.layer.0.bn1.bias', 'block3.layer.0.bn2.weight', 'block3.layer.0.bn2.bias', 'block3.layer.1.bn1.weight', 'block3.layer.1.bn1.bias', 'block3.layer.1.bn2.weight', 'block3.layer.1.bn2.bias', 'block3.layer.2.bn1.weight', 'block3.layer.2.bn1.bias', 'block3.layer.2.bn2.weight', 'block3.layer.2.bn2.bias', 'block3.layer.3.bn1.weight', 'block3.layer.3.bn1.bias', 'block3.layer.3.bn2.weight', 'block3.layer.3.bn2.bias', 'bn1.weight', 'bn1.bias']
+[25/05/18 20:43:43] [setada.py:  140]: optimizer for adaptation: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.001
+    maximize: False
+    weight_decay: 0.0
+)
+Building model...
+Files already downloaded and verified
+Files already downloaded and verified
+
+Training:   0%|          | 0/200 [00:00<?, ?epoch/s][25/05/18 20:43:50] [energy.py:  198]: 
+energy_real=tensor(2.4728, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4810, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0082, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:43:54] [energy.py:  198]: 
+energy_real=tensor(2.4736, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4811, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0075, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:43:59] [energy.py:  198]: 
+energy_real=tensor(2.4724, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4808, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0084, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:03] [energy.py:  198]: 
+energy_real=tensor(2.4725, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4804, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0079, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:07] [energy.py:  198]: 
+energy_real=tensor(2.4713, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4798, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0085, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:12] [energy.py:  198]: 
+energy_real=tensor(2.4704, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4792, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0088, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:16] [energy.py:  198]: 
+energy_real=tensor(2.4697, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4784, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0086, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:21] [energy.py:  198]: 
+energy_real=tensor(2.4689, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4776, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0088, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:25] [energy.py:  198]: 
+energy_real=tensor(2.4677, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4766, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0089, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:29] [energy.py:  198]: 
+energy_real=tensor(2.4658, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4758, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0100, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:34] [energy.py:  198]: 
+energy_real=tensor(2.4661, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4751, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0091, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:38] [energy.py:  198]: 
+energy_real=tensor(2.4645, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4743, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0098, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:42] [energy.py:  198]: 
+energy_real=tensor(2.4643, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4736, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0093, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:47] [energy.py:  198]: 
+energy_real=tensor(2.4633, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4729, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0096, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:51] [energy.py:  198]: 
+energy_real=tensor(2.4622, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4721, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0099, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:44:56] [energy.py:  198]: 
+energy_real=tensor(2.4616, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4715, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0099, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:00] [energy.py:  198]: 
+energy_real=tensor(2.4612, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4708, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0096, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:04] [energy.py:  198]: 
+energy_real=tensor(2.4599, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4704, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0105, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:09] [energy.py:  198]: 
+energy_real=tensor(2.4599, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4699, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0100, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:13] [energy.py:  198]: 
+energy_real=tensor(2.4590, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4693, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0103, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:17] [energy.py:  198]: 
+energy_real=tensor(2.4588, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4689, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0102, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:22] [energy.py:  198]: 
+energy_real=tensor(2.4585, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4684, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0099, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:26] [energy.py:  198]: 
+energy_real=tensor(2.4576, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4680, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0104, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:31] [energy.py:  198]: 
+energy_real=tensor(2.4570, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4678, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0108, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:35] [energy.py:  198]: 
+energy_real=tensor(2.4576, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4676, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0100, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:39] [energy.py:  198]: 
+energy_real=tensor(2.4565, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4675, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0110, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:44] [energy.py:  198]: 
+energy_real=tensor(2.4569, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4676, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0106, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:48] [energy.py:  198]: 
+energy_real=tensor(2.4570, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4674, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0104, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:52] [energy.py:  198]: 
+energy_real=tensor(2.4572, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4675, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0103, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:45:57] [energy.py:  198]: 
+energy_real=tensor(2.4562, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4674, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0112, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:01] [energy.py:  198]: 
+energy_real=tensor(2.4575, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4679, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0104, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:06] [energy.py:  198]: 
+energy_real=tensor(2.4574, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4681, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0107, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:10] [energy.py:  198]: 
+energy_real=tensor(2.4572, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4685, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0113, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:14] [energy.py:  198]: 
+energy_real=tensor(2.4578, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4686, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0108, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:19] [energy.py:  198]: 
+energy_real=tensor(2.4574, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4689, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0116, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:23] [energy.py:  198]: 
+energy_real=tensor(2.4586, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4694, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0109, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:28] [energy.py:  198]: 
+energy_real=tensor(2.4588, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4697, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0108, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:32] [energy.py:  198]: 
+energy_real=tensor(2.4590, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4700, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0110, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:36] [energy.py:  198]: 
+energy_real=tensor(2.4587, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4703, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0116, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:41] [energy.py:  198]: 
+energy_real=tensor(2.4594, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4705, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0111, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:45] [energy.py:  198]: 
+energy_real=tensor(2.4595, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4710, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0115, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:49] [energy.py:  198]: 
+energy_real=tensor(2.4596, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4715, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0119, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:54] [energy.py:  198]: 
+energy_real=tensor(2.4607, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4718, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0110, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:46:58] [energy.py:  198]: 
+energy_real=tensor(2.4608, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4721, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0113, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:03] [energy.py:  198]: 
+energy_real=tensor(2.4618, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4727, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0109, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:07] [energy.py:  198]: 
+energy_real=tensor(2.4621, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4730, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0109, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:11] [energy.py:  198]: 
+energy_real=tensor(2.4613, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4735, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0123, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:16] [energy.py:  198]: 
+energy_real=tensor(2.4621, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4740, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0118, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:22] [energy.py:  198]: 
+energy_real=tensor(2.4629, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4742, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0113, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Training:   0%|          | 1/200 [03:38<12:06:20, 219.00s/epoch][25/05/18 20:47:27] [energy.py:  198]: 
+energy_real=tensor(2.4631, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4749, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0118, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:31] [energy.py:  198]: 
+energy_real=tensor(2.4637, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4754, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0117, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:36] [energy.py:  198]: 
+energy_real=tensor(2.4639, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4759, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0121, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:40] [energy.py:  198]: 
+energy_real=tensor(2.4645, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4765, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0120, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:45] [energy.py:  198]: 
+energy_real=tensor(2.4657, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4771, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0114, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:49] [energy.py:  198]: 
+energy_real=tensor(2.4658, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4778, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0119, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:53] [energy.py:  198]: 
+energy_real=tensor(2.4655, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4785, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0131, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:47:58] [energy.py:  198]: 
+energy_real=tensor(2.4666, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4789, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0122, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:02] [energy.py:  198]: 
+energy_real=tensor(2.4665, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4794, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0129, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:07] [energy.py:  198]: 
+energy_real=tensor(2.4681, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4800, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0120, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:11] [energy.py:  198]: 
+energy_real=tensor(2.4686, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4807, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0121, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:15] [energy.py:  198]: 
+energy_real=tensor(2.4691, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4814, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0123, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:20] [energy.py:  198]: 
+energy_real=tensor(2.4702, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4819, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0116, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:24] [energy.py:  198]: 
+energy_real=tensor(2.4692, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4825, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0132, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:29] [energy.py:  198]: 
+energy_real=tensor(2.4707, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4829, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0122, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:33] [energy.py:  198]: 
+energy_real=tensor(2.4708, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4836, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0128, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:37] [energy.py:  198]: 
+energy_real=tensor(2.4717, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4844, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0128, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:42] [energy.py:  198]: 
+energy_real=tensor(2.4723, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4845, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0122, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:46] [energy.py:  198]: 
+energy_real=tensor(2.4729, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4851, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0122, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:50] [energy.py:  198]: 
+energy_real=tensor(2.4724, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4858, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0134, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:55] [energy.py:  198]: 
+energy_real=tensor(2.4720, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4865, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0145, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:48:59] [energy.py:  198]: 
+energy_real=tensor(2.4747, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4870, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0123, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:04] [energy.py:  198]: 
+energy_real=tensor(2.4745, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4876, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0131, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:08] [energy.py:  198]: 
+energy_real=tensor(2.4764, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4883, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0119, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:12] [energy.py:  198]: 
+energy_real=tensor(2.4764, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4889, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0125, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:17] [energy.py:  198]: 
+energy_real=tensor(2.4757, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4899, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0143, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:21] [energy.py:  198]: 
+energy_real=tensor(2.4782, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4906, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0124, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:26] [energy.py:  198]: 
+energy_real=tensor(2.4787, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4912, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0125, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:30] [energy.py:  198]: 
+energy_real=tensor(2.4795, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4921, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0126, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:34] [energy.py:  198]: 
+energy_real=tensor(2.4801, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4928, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0126, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:39] [energy.py:  198]: 
+energy_real=tensor(2.4811, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4935, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0124, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:43] [energy.py:  198]: 
+energy_real=tensor(2.4801, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4943, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0142, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:47] [energy.py:  198]: 
+energy_real=tensor(2.4823, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4951, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0128, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:52] [energy.py:  198]: 
+energy_real=tensor(2.4791, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4961, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0169, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:49:56] [energy.py:  198]: 
+energy_real=tensor(2.4838, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4968, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0130, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:01] [energy.py:  198]: 
+energy_real=tensor(2.4823, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4978, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0154, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:05] [energy.py:  198]: 
+energy_real=tensor(2.4858, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4986, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0128, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:09] [energy.py:  198]: 
+energy_real=tensor(2.4853, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.4996, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0143, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:14] [energy.py:  198]: 
+energy_real=tensor(2.4863, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5003, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0140, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:18] [energy.py:  198]: 
+energy_real=tensor(2.4874, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5012, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0138, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:23] [energy.py:  198]: 
+energy_real=tensor(2.4873, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5020, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0147, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:27] [energy.py:  198]: 
+energy_real=tensor(2.4898, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5030, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0132, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:31] [energy.py:  198]: 
+energy_real=tensor(2.4889, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5041, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0152, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:36] [energy.py:  198]: 
+energy_real=tensor(2.4919, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5047, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0128, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:40] [energy.py:  198]: 
+energy_real=tensor(2.4895, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5058, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0162, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:44] [energy.py:  198]: 
+energy_real=tensor(2.4901, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5067, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0166, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:49] [energy.py:  198]: 
+energy_real=tensor(2.4917, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5078, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0160, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:53] [energy.py:  198]: 
+energy_real=tensor(2.4929, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5087, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0158, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:50:57] [energy.py:  198]: 
+energy_real=tensor(2.4964, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5096, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0131, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Training:   1%|          | 2/200 [07:14<11:55:18, 216.76s/epoch][25/05/18 20:51:02] [energy.py:  198]: 
+energy_real=tensor(2.4939, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5107, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0168, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:06] [energy.py:  198]: 
+energy_real=tensor(2.4949, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5115, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0166, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:11] [energy.py:  198]: 
+energy_real=tensor(2.4954, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5125, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0171, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:15] [energy.py:  198]: 
+energy_real=tensor(2.4954, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5136, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0182, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:19] [energy.py:  198]: 
+energy_real=tensor(2.4963, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5145, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0182, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:24] [energy.py:  198]: 
+energy_real=tensor(2.4981, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5157, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0176, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:28] [energy.py:  198]: 
+energy_real=tensor(2.4992, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5168, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0176, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:32] [energy.py:  198]: 
+energy_real=tensor(2.4973, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5178, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0205, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:37] [energy.py:  198]: 
+energy_real=tensor(2.4975, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5188, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0213, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:41] [energy.py:  198]: 
+energy_real=tensor(2.5013, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5200, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0187, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:46] [energy.py:  198]: 
+energy_real=tensor(2.5021, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5211, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0190, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:50] [energy.py:  198]: 
+energy_real=tensor(2.5025, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5222, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0197, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:54] [energy.py:  198]: 
+energy_real=tensor(2.5019, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5232, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0212, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:51:59] [energy.py:  198]: 
+energy_real=tensor(2.5041, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5243, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0202, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:03] [energy.py:  198]: 
+energy_real=tensor(2.5056, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5256, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0200, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:08] [energy.py:  198]: 
+energy_real=tensor(2.5048, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5266, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0219, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:12] [energy.py:  198]: 
+energy_real=tensor(2.5065, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5279, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0214, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:16] [energy.py:  198]: 
+energy_real=tensor(2.5062, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5290, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0229, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:21] [energy.py:  198]: 
+energy_real=tensor(2.5071, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5302, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0231, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:25] [energy.py:  198]: 
+energy_real=tensor(2.5090, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5312, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0222, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:30] [energy.py:  198]: 
+energy_real=tensor(2.5083, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5325, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0242, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:34] [energy.py:  198]: 
+energy_real=tensor(2.5055, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5337, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0282, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:38] [energy.py:  198]: 
+energy_real=tensor(2.5086, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5349, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0262, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:43] [energy.py:  198]: 
+energy_real=tensor(2.5054, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5365, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0311, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:47] [energy.py:  198]: 
+energy_real=tensor(2.5100, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5377, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0277, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:51] [energy.py:  198]: 
+energy_real=tensor(2.5125, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5390, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0265, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:52:56] [energy.py:  198]: 
+energy_real=tensor(2.5119, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5404, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0285, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:00] [energy.py:  198]: 
+energy_real=tensor(2.5126, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5417, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0291, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:05] [energy.py:  198]: 
+energy_real=tensor(2.5126, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5429, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0303, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:09] [energy.py:  198]: 
+energy_real=tensor(2.5158, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5443, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0286, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:13] [energy.py:  198]: 
+energy_real=tensor(2.5123, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5455, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0332, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:18] [energy.py:  198]: 
+energy_real=tensor(2.5162, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5470, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0308, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:22] [energy.py:  198]: 
+energy_real=tensor(2.5144, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5483, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0338, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:27] [energy.py:  198]: 
+energy_real=tensor(2.5166, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5496, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0330, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:31] [energy.py:  198]: 
+energy_real=tensor(2.5176, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5510, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0334, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:35] [energy.py:  198]: 
+energy_real=tensor(2.5148, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5525, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0376, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:40] [energy.py:  198]: 
+energy_real=tensor(2.5194, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5541, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0347, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:44] [energy.py:  198]: 
+energy_real=tensor(2.5196, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5554, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0358, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:48] [energy.py:  198]: 
+energy_real=tensor(2.5192, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5570, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0378, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:53] [energy.py:  198]: 
+energy_real=tensor(2.5202, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5587, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0385, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:53:57] [energy.py:  198]: 
+energy_real=tensor(2.5167, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5601, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0433, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:02] [energy.py:  198]: 
+energy_real=tensor(2.5210, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5615, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0405, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:06] [energy.py:  198]: 
+energy_real=tensor(2.5183, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5630, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0447, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:10] [energy.py:  198]: 
+energy_real=tensor(2.5233, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5645, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0412, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:15] [energy.py:  198]: 
+energy_real=tensor(2.5266, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5661, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0394, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:19] [energy.py:  198]: 
+energy_real=tensor(2.5219, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5675, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0456, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:24] [energy.py:  198]: 
+energy_real=tensor(2.5221, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5689, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0468, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:28] [energy.py:  198]: 
+energy_real=tensor(2.5204, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5702, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0498, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:32] [energy.py:  198]: 
+energy_real=tensor(2.5177, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5718, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0540, device='cuda:0', grad_fn=<NegBackward0>)
+
+Training:   2%|▏         | 3/200 [10:48<11:48:36, 215.82s/epoch][25/05/18 20:54:36] [energy.py:  198]: 
+energy_real=tensor(2.5238, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5735, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0497, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:41] [energy.py:  198]: 
+energy_real=tensor(2.5222, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5753, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0531, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:45] [energy.py:  198]: 
+energy_real=tensor(2.5203, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5768, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0566, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:50] [energy.py:  198]: 
+energy_real=tensor(2.5245, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5782, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0536, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:54] [energy.py:  198]: 
+energy_real=tensor(2.5235, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5801, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0566, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:54:58] [energy.py:  198]: 
+energy_real=tensor(2.5192, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5816, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0624, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:03] [energy.py:  198]: 
+energy_real=tensor(2.5251, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5835, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0584, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:07] [energy.py:  198]: 
+energy_real=tensor(2.5212, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5851, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0639, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:12] [energy.py:  198]: 
+energy_real=tensor(2.5228, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5870, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0642, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:16] [energy.py:  198]: 
+energy_real=tensor(2.5209, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5885, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0676, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:20] [energy.py:  198]: 
+energy_real=tensor(2.5224, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5905, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0681, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:25] [energy.py:  198]: 
+energy_real=tensor(2.5221, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5920, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0699, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:29] [energy.py:  198]: 
+energy_real=tensor(2.5255, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5937, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0682, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:34] [energy.py:  198]: 
+energy_real=tensor(2.5303, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5956, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0653, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:38] [energy.py:  198]: 
+energy_real=tensor(2.5284, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5976, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0691, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:42] [energy.py:  198]: 
+energy_real=tensor(2.5265, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.5992, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0727, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:47] [energy.py:  198]: 
+energy_real=tensor(2.5258, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6008, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0750, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:51] [energy.py:  198]: 
+energy_real=tensor(2.5226, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6028, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0803, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:55:55] [energy.py:  198]: 
+energy_real=tensor(2.5269, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6049, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0780, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:00] [energy.py:  198]: 
+energy_real=tensor(2.5230, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6069, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0838, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:04] [energy.py:  198]: 
+energy_real=tensor(2.5225, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6088, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0864, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:09] [energy.py:  198]: 
+energy_real=tensor(2.5264, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6109, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0844, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:13] [energy.py:  198]: 
+energy_real=tensor(2.5227, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6128, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0901, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:17] [energy.py:  198]: 
+energy_real=tensor(2.5215, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6148, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0933, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:22] [energy.py:  198]: 
+energy_real=tensor(2.5225, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6166, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0941, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:26] [energy.py:  198]: 
+energy_real=tensor(2.5236, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6190, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0954, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:31] [energy.py:  198]: 
+energy_real=tensor(2.5208, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6211, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1003, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:35] [energy.py:  198]: 
+energy_real=tensor(2.5220, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6230, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1010, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:39] [energy.py:  198]: 
+energy_real=tensor(2.5152, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6251, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1099, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:44] [energy.py:  198]: 
+energy_real=tensor(2.5225, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6270, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1045, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:48] [energy.py:  198]: 
+energy_real=tensor(2.5232, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6292, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1060, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:52] [energy.py:  198]: 
+energy_real=tensor(2.5177, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6312, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1135, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:56:57] [energy.py:  198]: 
+energy_real=tensor(2.5197, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6335, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1138, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:01] [energy.py:  198]: 
+energy_real=tensor(2.5250, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6358, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1108, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:06] [energy.py:  198]: 
+energy_real=tensor(2.5187, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6380, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1193, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:10] [energy.py:  198]: 
+energy_real=tensor(2.5164, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6397, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1233, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:14] [energy.py:  198]: 
+energy_real=tensor(2.5219, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6422, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1203, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:19] [energy.py:  198]: 
+energy_real=tensor(2.5207, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6441, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1235, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:23] [energy.py:  198]: 
+energy_real=tensor(2.5148, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6464, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1316, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:28] [energy.py:  198]: 
+energy_real=tensor(2.5180, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6484, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1304, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:32] [energy.py:  198]: 
+energy_real=tensor(2.5169, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6509, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1340, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:36] [energy.py:  198]: 
+energy_real=tensor(2.5116, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6532, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1417, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:41] [energy.py:  198]: 
+energy_real=tensor(2.5135, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6557, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1422, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:45] [energy.py:  198]: 
+energy_real=tensor(2.5155, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6577, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1423, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:49] [energy.py:  198]: 
+energy_real=tensor(2.5157, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6599, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1442, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:54] [energy.py:  198]: 
+energy_real=tensor(2.5066, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6622, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1556, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:57:58] [energy.py:  198]: 
+energy_real=tensor(2.5107, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6647, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1540, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:03] [energy.py:  198]: 
+energy_real=tensor(2.5160, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6669, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1509, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:06] [energy.py:  198]: 
+energy_real=tensor(2.5078, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6697, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1619, device='cuda:0', grad_fn=<NegBackward0>)
+
+Training:   2%|▏         | 4/200 [14:23<11:43:29, 215.35s/epoch][25/05/18 20:58:11] [energy.py:  198]: 
+energy_real=tensor(2.5050, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6719, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1669, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:16] [energy.py:  198]: 
+energy_real=tensor(2.5016, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6742, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1726, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:20] [energy.py:  198]: 
+energy_real=tensor(2.5061, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6768, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1707, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:24] [energy.py:  198]: 
+energy_real=tensor(2.4964, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6797, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1833, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:29] [energy.py:  198]: 
+energy_real=tensor(2.5060, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6821, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1761, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:33] [energy.py:  198]: 
+energy_real=tensor(2.5042, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6847, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1804, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:37] [energy.py:  198]: 
+energy_real=tensor(2.5025, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6871, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1847, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:42] [energy.py:  198]: 
+energy_real=tensor(2.4946, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6900, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1954, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:46] [energy.py:  198]: 
+energy_real=tensor(2.5008, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6923, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1915, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:51] [energy.py:  198]: 
+energy_real=tensor(2.4978, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6953, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1975, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:55] [energy.py:  198]: 
+energy_real=tensor(2.4839, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.6976, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2136, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:58:59] [energy.py:  198]: 
+energy_real=tensor(2.4925, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7006, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2081, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:04] [energy.py:  198]: 
+energy_real=tensor(2.4886, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7031, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2145, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:08] [energy.py:  198]: 
+energy_real=tensor(2.4861, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7061, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2199, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:13] [energy.py:  198]: 
+energy_real=tensor(2.4862, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7084, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2221, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:17] [energy.py:  198]: 
+energy_real=tensor(2.4906, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7112, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2207, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:21] [energy.py:  198]: 
+energy_real=tensor(2.4870, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7138, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2268, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:26] [energy.py:  198]: 
+energy_real=tensor(2.4901, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7168, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2267, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:30] [energy.py:  198]: 
+energy_real=tensor(2.4727, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7198, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2471, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:34] [energy.py:  198]: 
+energy_real=tensor(2.4725, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7225, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2500, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:39] [energy.py:  198]: 
+energy_real=tensor(2.4782, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7252, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2469, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:43] [energy.py:  198]: 
+energy_real=tensor(2.4715, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7281, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2566, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:48] [energy.py:  198]: 
+energy_real=tensor(2.4597, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7317, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2719, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:52] [energy.py:  198]: 
+energy_real=tensor(2.4635, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7343, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2709, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 20:59:56] [energy.py:  198]: 
+energy_real=tensor(2.4679, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7379, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2700, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:01] [energy.py:  198]: 
+energy_real=tensor(2.4654, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7409, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2756, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:05] [energy.py:  198]: 
+energy_real=tensor(2.4566, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7441, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2874, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:10] [energy.py:  198]: 
+energy_real=tensor(2.4627, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7466, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2839, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:14] [energy.py:  198]: 
+energy_real=tensor(2.4535, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7503, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2967, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:18] [energy.py:  198]: 
+energy_real=tensor(2.4479, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7533, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3053, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:23] [energy.py:  198]: 
+energy_real=tensor(2.4517, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7573, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3056, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:27] [energy.py:  198]: 
+energy_real=tensor(2.4528, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7608, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3080, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:31] [energy.py:  198]: 
+energy_real=tensor(2.4453, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7634, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3181, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:36] [energy.py:  198]: 
+energy_real=tensor(2.4504, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7670, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3167, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:40] [energy.py:  198]: 
+energy_real=tensor(2.4261, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7701, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3440, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:45] [energy.py:  198]: 
+energy_real=tensor(2.4344, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7743, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3399, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:49] [energy.py:  198]: 
+energy_real=tensor(2.4237, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7773, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3536, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:53] [energy.py:  198]: 
+energy_real=tensor(2.4398, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7810, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3412, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:00:58] [energy.py:  198]: 
+energy_real=tensor(2.4255, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7843, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3588, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:02] [energy.py:  198]: 
+energy_real=tensor(2.4042, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7877, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3835, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:07] [energy.py:  198]: 
+energy_real=tensor(2.3981, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7922, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3941, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:11] [energy.py:  198]: 
+energy_real=tensor(2.4103, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7961, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3858, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:15] [energy.py:  198]: 
+energy_real=tensor(2.4240, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7996, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3756, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:20] [energy.py:  198]: 
+energy_real=tensor(2.3995, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8031, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4037, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:24] [energy.py:  198]: 
+energy_real=tensor(2.3998, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8074, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4076, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:28] [energy.py:  198]: 
+energy_real=tensor(2.3980, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8115, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4135, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:33] [energy.py:  198]: 
+energy_real=tensor(2.3961, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8159, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4198, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:37] [energy.py:  198]: 
+energy_real=tensor(2.3936, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8189, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4252, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:41] [energy.py:  198]: 
+energy_real=tensor(2.3959, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8231, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4271, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A[25/05/18 21:01:43] [energy.py:  198]: 
+energy_real=tensor(2.4012, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8274, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4263, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:43] [energy.py:  198]: 
+energy_real=tensor(2.4008, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8270, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4262, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:44] [energy.py:  198]: 
+energy_real=tensor(2.4091, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8267, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4176, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:45] [energy.py:  198]: 
+energy_real=tensor(2.4096, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8254, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4157, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:45] [energy.py:  198]: 
+energy_real=tensor(2.4186, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8248, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4062, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:46] [energy.py:  198]: 
+energy_real=tensor(2.4671, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8249, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3579, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:46] [energy.py:  198]: 
+energy_real=tensor(2.4006, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8244, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4238, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:   9%|▉         | 7/79 [00:05<00:51,  1.39batch/s][A[25/05/18 21:01:47] [energy.py:  198]: 
+energy_real=tensor(2.4434, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8220, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3786, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:48] [energy.py:  198]: 
+energy_real=tensor(2.4087, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8220, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4133, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:48] [energy.py:  198]: 
+energy_real=tensor(2.4420, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8207, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3787, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:49] [energy.py:  198]: 
+energy_real=tensor(2.4472, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8209, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3737, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:49] [energy.py:  198]: 
+energy_real=tensor(2.4666, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8193, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3528, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:50] [energy.py:  198]: 
+energy_real=tensor(2.4396, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8198, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3801, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:50] [energy.py:  198]: 
+energy_real=tensor(2.4655, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8182, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3528, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:51] [energy.py:  198]: 
+energy_real=tensor(2.4966, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8187, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3221, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:52] [energy.py:  198]: 
+energy_real=tensor(2.4613, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8188, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3575, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  20%|██        | 16/79 [00:10<00:39,  1.58batch/s][A[25/05/18 21:01:52] [energy.py:  198]: 
+energy_real=tensor(2.4902, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8171, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3269, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:53] [energy.py:  198]: 
+energy_real=tensor(2.4653, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8173, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3521, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:53] [energy.py:  198]: 
+energy_real=tensor(2.4432, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8156, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3724, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:54] [energy.py:  198]: 
+energy_real=tensor(2.4730, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8155, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3425, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:55] [energy.py:  198]: 
+energy_real=tensor(2.4690, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8137, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3447, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:55] [energy.py:  198]: 
+energy_real=tensor(2.5091, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8130, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3039, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:56] [energy.py:  198]: 
+energy_real=tensor(2.4661, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8124, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3463, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:56] [energy.py:  198]: 
+energy_real=tensor(2.4649, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8117, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3468, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:57] [energy.py:  198]: 
+energy_real=tensor(2.4896, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8122, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3225, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  32%|███▏      | 25/79 [00:15<00:32,  1.64batch/s][A[25/05/18 21:01:57] [energy.py:  198]: 
+energy_real=tensor(2.5261, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8103, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2842, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:58] [energy.py:  198]: 
+energy_real=tensor(2.4707, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8097, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3390, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:59] [energy.py:  198]: 
+energy_real=tensor(2.5227, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8091, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2864, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:01:59] [energy.py:  198]: 
+energy_real=tensor(2.5004, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8084, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3080, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:00] [energy.py:  198]: 
+energy_real=tensor(2.5080, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8080, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2999, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:00] [energy.py:  198]: 
+energy_real=tensor(2.5077, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8075, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2998, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:01] [energy.py:  198]: 
+energy_real=tensor(2.5331, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8049, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2718, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:02] [energy.py:  198]: 
+energy_real=tensor(2.5469, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8042, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2573, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:02] [energy.py:  198]: 
+energy_real=tensor(2.5430, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8037, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2607, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  43%|████▎     | 34/79 [00:20<00:27,  1.67batch/s][A[25/05/18 21:02:03] [energy.py:  198]: 
+energy_real=tensor(2.5701, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8034, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2333, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:03] [energy.py:  198]: 
+energy_real=tensor(2.5682, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8028, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2346, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:04] [energy.py:  198]: 
+energy_real=tensor(2.5376, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8023, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2648, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:05] [energy.py:  198]: 
+energy_real=tensor(2.5441, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8012, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2570, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:05] [energy.py:  198]: 
+energy_real=tensor(2.5452, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8003, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2551, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:06] [energy.py:  198]: 
+energy_real=tensor(2.5783, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7998, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2215, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:06] [energy.py:  198]: 
+energy_real=tensor(2.5657, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7990, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2333, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:07] [energy.py:  198]: 
+energy_real=tensor(2.5696, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7981, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2285, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:07] [energy.py:  198]: 
+energy_real=tensor(2.5782, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7977, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2196, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  54%|█████▍    | 43/79 [00:26<00:21,  1.68batch/s][A[25/05/18 21:02:08] [energy.py:  198]: 
+energy_real=tensor(2.5787, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7963, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2176, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:09] [energy.py:  198]: 
+energy_real=tensor(2.5878, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7953, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2075, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:09] [energy.py:  198]: 
+energy_real=tensor(2.5976, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7955, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1979, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:10] [energy.py:  198]: 
+energy_real=tensor(2.5633, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7948, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2315, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:10] [energy.py:  198]: 
+energy_real=tensor(2.5846, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7934, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2089, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:11] [energy.py:  198]: 
+energy_real=tensor(2.6033, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7931, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1899, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:12] [energy.py:  198]: 
+energy_real=tensor(2.6057, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7924, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1866, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:12] [energy.py:  198]: 
+energy_real=tensor(2.6069, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7923, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1854, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:13] [energy.py:  198]: 
+energy_real=tensor(2.6147, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7906, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1759, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  66%|██████▌   | 52/79 [00:31<00:15,  1.69batch/s][A[25/05/18 21:02:13] [energy.py:  198]: 
+energy_real=tensor(2.6030, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7902, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1872, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:14] [energy.py:  198]: 
+energy_real=tensor(2.6085, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7902, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1816, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:14] [energy.py:  198]: 
+energy_real=tensor(2.6249, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7886, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1638, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:15] [energy.py:  198]: 
+energy_real=tensor(2.6419, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7887, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1469, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:16] [energy.py:  198]: 
+energy_real=tensor(2.6275, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7894, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1619, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:16] [energy.py:  198]: 
+energy_real=tensor(2.6460, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7870, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1410, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:17] [energy.py:  198]: 
+energy_real=tensor(2.6570, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7880, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1309, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:17] [energy.py:  198]: 
+energy_real=tensor(2.6428, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7869, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1441, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:18] [energy.py:  198]: 
+energy_real=tensor(2.6424, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7868, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1444, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  77%|███████▋  | 61/79 [00:36<00:10,  1.70batch/s][A[25/05/18 21:02:19] [energy.py:  198]: 
+energy_real=tensor(2.6541, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7863, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1322, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:19] [energy.py:  198]: 
+energy_real=tensor(2.6369, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7852, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1483, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:20] [energy.py:  198]: 
+energy_real=tensor(2.6734, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7851, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1117, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:20] [energy.py:  198]: 
+energy_real=tensor(2.6603, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7835, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1232, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:21] [energy.py:  198]: 
+energy_real=tensor(2.6704, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7843, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1138, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:21] [energy.py:  198]: 
+energy_real=tensor(2.6725, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7830, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1105, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:22] [energy.py:  198]: 
+energy_real=tensor(2.6924, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7837, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0913, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:23] [energy.py:  198]: 
+energy_real=tensor(2.6886, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7830, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0944, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:23] [energy.py:  198]: 
+energy_real=tensor(2.7307, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7811, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0503, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  89%|████████▊ | 70/79 [00:41<00:05,  1.70batch/s][A[25/05/18 21:02:24] [energy.py:  198]: 
+energy_real=tensor(2.6970, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7810, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0841, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:24] [energy.py:  198]: 
+energy_real=tensor(2.7091, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7811, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0720, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:25] [energy.py:  198]: 
+energy_real=tensor(2.7072, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7811, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0739, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:26] [energy.py:  198]: 
+energy_real=tensor(2.7172, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7824, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0652, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:26] [energy.py:  198]: 
+energy_real=tensor(2.7208, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7807, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0599, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:27] [energy.py:  198]: 
+energy_real=tensor(2.6947, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7798, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0851, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:27] [energy.py:  198]: 
+energy_real=tensor(2.7298, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7808, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0511, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:28] [energy.py:  198]: 
+energy_real=tensor(2.7264, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7800, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0536, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:28] [energy.py:  198]: 
+energy_real=tensor(2.7820, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.7794, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.0026, device='cuda:0', grad_fn=<NegBackward0>)
+
+Testing: 100%|██████████| 79/79 [00:46<00:00,  1.69batch/s]
+[25/05/18 21:02:28] [train_TET.py:  224]: Test set Accuracy: 22.34
+/gpfs/home5/jhutter/dl2/train_TET.py:186: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
+Training:   2%|▎         | 5/200 [18:45<12:34:34, 232.18s/epoch][25/05/18 21:02:33] [energy.py:  198]: 
+energy_real=tensor(2.3848, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8283, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4435, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:38] [energy.py:  198]: 
+energy_real=tensor(2.3740, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8320, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4579, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:42] [energy.py:  198]: 
+energy_real=tensor(2.3817, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8367, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4550, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:47] [energy.py:  198]: 
+energy_real=tensor(2.3679, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8403, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4723, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:51] [energy.py:  198]: 
+energy_real=tensor(2.3693, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8452, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4759, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:02:55] [energy.py:  198]: 
+energy_real=tensor(2.3684, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8494, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4810, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:00] [energy.py:  198]: 
+energy_real=tensor(2.3565, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8538, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4973, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:04] [energy.py:  198]: 
+energy_real=tensor(2.3576, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8578, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5002, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:08] [energy.py:  198]: 
+energy_real=tensor(2.3679, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8621, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4941, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:13] [energy.py:  198]: 
+energy_real=tensor(2.3673, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8665, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4993, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:17] [energy.py:  198]: 
+energy_real=tensor(2.3327, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8704, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5377, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:22] [energy.py:  198]: 
+energy_real=tensor(2.3596, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8745, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5148, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:26] [energy.py:  198]: 
+energy_real=tensor(2.3409, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8787, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5378, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:30] [energy.py:  198]: 
+energy_real=tensor(2.3400, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8838, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5438, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:35] [energy.py:  198]: 
+energy_real=tensor(2.3358, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8888, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5530, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:39] [energy.py:  198]: 
+energy_real=tensor(2.3298, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8931, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5633, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:44] [energy.py:  198]: 
+energy_real=tensor(2.3069, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.8971, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5902, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:48] [energy.py:  198]: 
+energy_real=tensor(2.3227, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9026, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5798, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:52] [energy.py:  198]: 
+energy_real=tensor(2.3189, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9070, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5881, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:03:57] [energy.py:  198]: 
+energy_real=tensor(2.3061, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9121, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6060, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:01] [energy.py:  198]: 
+energy_real=tensor(2.3050, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9169, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6119, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:05] [energy.py:  198]: 
+energy_real=tensor(2.2791, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9226, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6435, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:10] [energy.py:  198]: 
+energy_real=tensor(2.2946, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9274, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6329, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:14] [energy.py:  198]: 
+energy_real=tensor(2.3027, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9323, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6296, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:19] [energy.py:  198]: 
+energy_real=tensor(2.2993, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9368, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6374, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:23] [energy.py:  198]: 
+energy_real=tensor(2.2803, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9418, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6616, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:27] [energy.py:  198]: 
+energy_real=tensor(2.2742, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9480, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6738, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:32] [energy.py:  198]: 
+energy_real=tensor(2.2779, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9527, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6747, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:36] [energy.py:  198]: 
+energy_real=tensor(2.2726, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9578, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6852, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:40] [energy.py:  198]: 
+energy_real=tensor(2.2618, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9629, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7011, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:45] [energy.py:  198]: 
+energy_real=tensor(2.2721, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9696, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6975, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:49] [energy.py:  198]: 
+energy_real=tensor(2.2538, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9745, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7207, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:54] [energy.py:  198]: 
+energy_real=tensor(2.2307, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9797, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7491, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:04:58] [energy.py:  198]: 
+energy_real=tensor(2.2615, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9853, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7238, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:02] [energy.py:  198]: 
+energy_real=tensor(2.2386, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9913, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7527, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:07] [energy.py:  198]: 
+energy_real=tensor(2.2389, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(2.9976, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7587, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:11] [energy.py:  198]: 
+energy_real=tensor(2.2001, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0031, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8030, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:16] [energy.py:  198]: 
+energy_real=tensor(2.2495, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0086, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7591, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:20] [energy.py:  198]: 
+energy_real=tensor(2.2355, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0137, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7783, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:24] [energy.py:  198]: 
+energy_real=tensor(2.2370, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0205, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7835, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:29] [energy.py:  198]: 
+energy_real=tensor(2.2402, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0260, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7857, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:33] [energy.py:  198]: 
+energy_real=tensor(2.2145, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0315, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8170, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:37] [energy.py:  198]: 
+energy_real=tensor(2.2238, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0371, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8133, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:42] [energy.py:  198]: 
+energy_real=tensor(2.2014, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0434, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8420, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:46] [energy.py:  198]: 
+energy_real=tensor(2.2075, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0493, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8418, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:51] [energy.py:  198]: 
+energy_real=tensor(2.2080, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0546, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8466, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:55] [energy.py:  198]: 
+energy_real=tensor(2.1797, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0603, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8807, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:05:59] [energy.py:  198]: 
+energy_real=tensor(2.1734, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0677, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8943, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:03] [energy.py:  198]: 
+energy_real=tensor(2.1860, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0741, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8881, device='cuda:0', grad_fn=<NegBackward0>)
+
+Training:   3%|▎         | 6/200 [22:20<12:11:29, 226.24s/epoch][25/05/18 21:06:08] [energy.py:  198]: 
+energy_real=tensor(2.1897, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0807, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8910, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:12] [energy.py:  198]: 
+energy_real=tensor(2.1893, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0864, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8970, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:17] [energy.py:  198]: 
+energy_real=tensor(2.1599, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.0932, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9333, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:21] [energy.py:  198]: 
+energy_real=tensor(2.1563, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1005, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9443, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:25] [energy.py:  198]: 
+energy_real=tensor(2.1784, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1073, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9289, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:30] [energy.py:  198]: 
+energy_real=tensor(2.1678, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1120, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9441, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:34] [energy.py:  198]: 
+energy_real=tensor(2.1533, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1209, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9675, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:39] [energy.py:  198]: 
+energy_real=tensor(2.1447, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1279, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9832, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:43] [energy.py:  198]: 
+energy_real=tensor(2.1220, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1345, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0126, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:47] [energy.py:  198]: 
+energy_real=tensor(2.1201, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1422, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0221, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:52] [energy.py:  198]: 
+energy_real=tensor(2.1576, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1498, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9922, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:06:56] [energy.py:  198]: 
+energy_real=tensor(2.1638, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1562, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9924, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:00] [energy.py:  198]: 
+energy_real=tensor(2.1199, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1624, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0425, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:05] [energy.py:  198]: 
+energy_real=tensor(2.0969, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1710, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0740, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:09] [energy.py:  198]: 
+energy_real=tensor(2.1559, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1799, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0239, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:14] [energy.py:  198]: 
+energy_real=tensor(2.1539, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1824, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0285, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:18] [energy.py:  198]: 
+energy_real=tensor(2.1393, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1946, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0553, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:22] [energy.py:  198]: 
+energy_real=tensor(2.1488, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.1983, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0495, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:27] [energy.py:  198]: 
+energy_real=tensor(2.0992, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2079, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1087, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:31] [energy.py:  198]: 
+energy_real=tensor(2.0699, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2171, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1472, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:35] [energy.py:  198]: 
+energy_real=tensor(2.1208, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2242, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1034, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:40] [energy.py:  198]: 
+energy_real=tensor(2.1685, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2323, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0637, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:44] [energy.py:  198]: 
+energy_real=tensor(2.1367, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2090, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0722, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:49] [energy.py:  198]: 
+energy_real=tensor(2.1251, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2459, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1208, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:53] [energy.py:  198]: 
+energy_real=tensor(2.1135, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2543, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1408, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:07:57] [energy.py:  198]: 
+energy_real=tensor(2.1181, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2630, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1449, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:02] [energy.py:  198]: 
+energy_real=tensor(2.1039, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2716, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1677, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:06] [energy.py:  198]: 
+energy_real=tensor(2.1418, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2792, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1374, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:10] [energy.py:  198]: 
+energy_real=tensor(2.1037, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2860, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1823, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:15] [energy.py:  198]: 
+energy_real=tensor(2.1647, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2955, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1308, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:19] [energy.py:  198]: 
+energy_real=tensor(2.2099, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2569, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0470, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:24] [energy.py:  198]: 
+energy_real=tensor(2.2356, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2654, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0298, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:28] [energy.py:  198]: 
+energy_real=tensor(2.1998, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2742, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0743, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:32] [energy.py:  198]: 
+energy_real=tensor(2.1877, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.2889, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1012, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:37] [energy.py:  198]: 
+energy_real=tensor(2.1703, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3043, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1340, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:41] [energy.py:  198]: 
+energy_real=tensor(2.1600, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3192, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1592, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:45] [energy.py:  198]: 
+energy_real=tensor(2.1266, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3321, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.2055, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:50] [energy.py:  198]: 
+energy_real=tensor(2.1695, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3413, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1718, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:54] [energy.py:  198]: 
+energy_real=tensor(2.1586, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3524, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1938, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:08:59] [energy.py:  198]: 
+energy_real=tensor(2.1673, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3631, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1958, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:03] [energy.py:  198]: 
+energy_real=tensor(2.1248, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3721, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.2473, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:07] [energy.py:  198]: 
+energy_real=tensor(2.1035, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3811, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.2776, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:12] [energy.py:  198]: 
+energy_real=tensor(2.1158, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3904, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.2747, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:16] [energy.py:  198]: 
+energy_real=tensor(2.0970, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.3986, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3016, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:20] [energy.py:  198]: 
+energy_real=tensor(2.1034, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4087, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3053, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:25] [energy.py:  198]: 
+energy_real=tensor(2.1208, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4174, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.2966, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:29] [energy.py:  198]: 
+energy_real=tensor(2.1100, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4265, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3165, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:34] [energy.py:  198]: 
+energy_real=tensor(2.0831, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4371, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3540, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:37] [energy.py:  198]: 
+energy_real=tensor(2.1794, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4480, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.2686, device='cuda:0', grad_fn=<NegBackward0>)
+
+Training:   4%|▎         | 7/200 [25:54<11:55:08, 222.32s/epoch][25/05/18 21:09:42] [energy.py:  198]: 
+energy_real=tensor(2.0996, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4558, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3562, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:46] [energy.py:  198]: 
+energy_real=tensor(2.1293, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4648, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3355, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:51] [energy.py:  198]: 
+energy_real=tensor(2.1341, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4756, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3415, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:09:55] [energy.py:  198]: 
+energy_real=tensor(2.1304, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4859, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3555, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:00] [energy.py:  198]: 
+energy_real=tensor(2.0673, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.4961, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4288, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:04] [energy.py:  198]: 
+energy_real=tensor(2.0870, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5060, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4190, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:08] [energy.py:  198]: 
+energy_real=tensor(2.0836, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5165, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4329, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:13] [energy.py:  198]: 
+energy_real=tensor(2.0942, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5261, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4319, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:17] [energy.py:  198]: 
+energy_real=tensor(2.0974, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5386, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4412, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:22] [energy.py:  198]: 
+energy_real=tensor(2.0653, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5498, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4845, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:26] [energy.py:  198]: 
+energy_real=tensor(2.0647, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5616, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4969, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:30] [energy.py:  198]: 
+energy_real=tensor(2.1906, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5736, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3831, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:35] [energy.py:  198]: 
+energy_real=tensor(2.1366, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5745, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4379, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:39] [energy.py:  198]: 
+energy_real=tensor(2.1881, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5822, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3941, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:43] [energy.py:  198]: 
+energy_real=tensor(2.2209, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.5669, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3460, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:48] [energy.py:  198]: 
+energy_real=tensor(2.1634, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6029, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4395, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:52] [energy.py:  198]: 
+energy_real=tensor(2.2270, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6178, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3908, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:10:57] [energy.py:  198]: 
+energy_real=tensor(2.1346, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6308, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4962, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:01] [energy.py:  198]: 
+energy_real=tensor(2.1167, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6417, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5250, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:05] [energy.py:  198]: 
+energy_real=tensor(2.0636, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6515, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5879, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:10] [energy.py:  198]: 
+energy_real=tensor(2.0782, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6623, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5841, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:14] [energy.py:  198]: 
+energy_real=tensor(2.0945, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6738, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5792, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:18] [energy.py:  198]: 
+energy_real=tensor(2.2333, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6864, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4531, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:23] [energy.py:  198]: 
+energy_real=tensor(2.1131, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.6960, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5829, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:27] [energy.py:  198]: 
+energy_real=tensor(2.1294, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7045, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5751, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:32] [energy.py:  198]: 
+energy_real=tensor(2.1686, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7131, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5445, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:36] [energy.py:  198]: 
+energy_real=tensor(2.1255, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7240, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5985, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:40] [energy.py:  198]: 
+energy_real=tensor(2.1252, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7372, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6120, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:45] [energy.py:  198]: 
+energy_real=tensor(2.1114, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7507, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6393, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:49] [energy.py:  198]: 
+energy_real=tensor(2.1037, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7631, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6594, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:53] [energy.py:  198]: 
+energy_real=tensor(2.0916, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7765, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6849, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:11:58] [energy.py:  198]: 
+energy_real=tensor(2.1325, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7892, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6568, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:02] [energy.py:  198]: 
+energy_real=tensor(2.0964, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8015, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7051, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:07] [energy.py:  198]: 
+energy_real=tensor(2.0992, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8142, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7150, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:11] [energy.py:  198]: 
+energy_real=tensor(2.0993, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8270, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7277, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:15] [energy.py:  198]: 
+energy_real=tensor(2.1019, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8399, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7380, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:20] [energy.py:  198]: 
+energy_real=tensor(2.1014, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8537, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7523, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:24] [energy.py:  198]: 
+energy_real=tensor(2.0913, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8669, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7756, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:28] [energy.py:  198]: 
+energy_real=tensor(2.0649, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8814, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8165, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:33] [energy.py:  198]: 
+energy_real=tensor(2.1020, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8968, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7948, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:37] [energy.py:  198]: 
+energy_real=tensor(2.0653, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9123, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8470, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:42] [energy.py:  198]: 
+energy_real=tensor(2.0864, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9300, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8435, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:46] [energy.py:  198]: 
+energy_real=tensor(2.1484, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9459, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7974, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:50] [energy.py:  198]: 
+energy_real=tensor(2.1104, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9628, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8524, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:55] [energy.py:  198]: 
+energy_real=tensor(2.0627, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9793, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9165, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:12:59] [energy.py:  198]: 
+energy_real=tensor(2.1202, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9973, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8771, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:04] [energy.py:  198]: 
+energy_real=tensor(2.0888, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0142, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9254, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:08] [energy.py:  198]: 
+energy_real=tensor(2.1508, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0319, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8811, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:12] [energy.py:  198]: 
+energy_real=tensor(2.0932, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0487, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9554, device='cuda:0', grad_fn=<NegBackward0>)
+
+Training:   4%|▍         | 8/200 [29:28<11:43:15, 219.77s/epoch][25/05/18 21:13:16] [energy.py:  198]: 
+energy_real=tensor(2.0887, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0662, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9775, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:21] [energy.py:  198]: 
+energy_real=tensor(2.0687, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0836, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0149, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:25] [energy.py:  198]: 
+energy_real=tensor(2.0931, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1021, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0091, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:30] [energy.py:  198]: 
+energy_real=tensor(2.0858, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1188, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0330, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:34] [energy.py:  198]: 
+energy_real=tensor(2.0703, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1393, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0689, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:38] [energy.py:  198]: 
+energy_real=tensor(2.0647, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1594, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0948, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:43] [energy.py:  198]: 
+energy_real=tensor(2.0648, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1821, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1174, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:47] [energy.py:  198]: 
+energy_real=tensor(2.0824, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2026, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1202, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:51] [energy.py:  198]: 
+energy_real=tensor(2.1018, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2253, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1235, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:13:56] [energy.py:  198]: 
+energy_real=tensor(2.0578, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2462, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1884, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:00] [energy.py:  198]: 
+energy_real=tensor(2.0843, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2700, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1857, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:05] [energy.py:  198]: 
+energy_real=tensor(2.0934, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2951, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2017, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:09] [energy.py:  198]: 
+energy_real=tensor(2.0765, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3190, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2426, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:13] [energy.py:  198]: 
+energy_real=tensor(2.0691, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3461, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2769, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:18] [energy.py:  198]: 
+energy_real=tensor(2.0669, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3723, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3055, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:22] [energy.py:  198]: 
+energy_real=tensor(2.0992, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.4017, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3025, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:26] [energy.py:  198]: 
+energy_real=tensor(2.0762, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.4292, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3530, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:31] [energy.py:  198]: 
+energy_real=tensor(2.0637, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.4586, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3949, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:35] [energy.py:  198]: 
+energy_real=tensor(2.1488, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.4866, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3377, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:40] [energy.py:  198]: 
+energy_real=tensor(2.1119, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5169, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4050, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:44] [energy.py:  198]: 
+energy_real=tensor(2.1092, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5454, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4362, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:48] [energy.py:  198]: 
+energy_real=tensor(2.1323, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5807, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4484, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:53] [energy.py:  198]: 
+energy_real=tensor(2.1048, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6131, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5083, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:14:57] [energy.py:  198]: 
+energy_real=tensor(2.1256, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6483, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5227, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:02] [energy.py:  198]: 
+energy_real=tensor(2.1602, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6781, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5179, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:06] [energy.py:  198]: 
+energy_real=tensor(2.2054, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7147, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5094, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:10] [energy.py:  198]: 
+energy_real=tensor(2.2756, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.7936, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5180, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:15] [energy.py:  198]: 
+energy_real=tensor(2.4320, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5665, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1345, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:19] [energy.py:  198]: 
+energy_real=tensor(2.3852, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7761, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3908, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:23] [energy.py:  198]: 
+energy_real=tensor(2.2499, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8196, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5697, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:28] [energy.py:  198]: 
+energy_real=tensor(2.2562, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8553, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5991, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:32] [energy.py:  198]: 
+energy_real=tensor(2.2923, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8910, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5987, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:37] [energy.py:  198]: 
+energy_real=tensor(2.2152, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9285, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.7133, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:41] [energy.py:  198]: 
+energy_real=tensor(2.1820, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9690, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.7871, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:45] [energy.py:  198]: 
+energy_real=tensor(2.2213, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0141, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.7929, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:50] [energy.py:  198]: 
+energy_real=tensor(2.2475, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0598, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.8122, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:54] [energy.py:  198]: 
+energy_real=tensor(2.1546, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1051, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.9505, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:15:58] [energy.py:  198]: 
+energy_real=tensor(2.1282, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1564, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.0282, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:03] [energy.py:  198]: 
+energy_real=tensor(2.1539, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2143, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.0604, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:07] [energy.py:  198]: 
+energy_real=tensor(2.1606, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2723, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.1117, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:12] [energy.py:  198]: 
+energy_real=tensor(2.2168, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3345, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.1176, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:16] [energy.py:  198]: 
+energy_real=tensor(2.2292, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3937, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.1645, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:20] [energy.py:  198]: 
+energy_real=tensor(2.1766, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4548, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.2782, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:25] [energy.py:  198]: 
+energy_real=tensor(2.2741, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.5195, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.2454, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:29] [energy.py:  198]: 
+energy_real=tensor(2.1602, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.5806, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.4204, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:33] [energy.py:  198]: 
+energy_real=tensor(2.1966, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.6484, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.4518, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:38] [energy.py:  198]: 
+energy_real=tensor(2.2130, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.7137, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.5006, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:42] [energy.py:  198]: 
+energy_real=tensor(2.1883, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.7842, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.5959, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:46] [energy.py:  198]: 
+energy_real=tensor(2.1673, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.8541, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.6868, device='cuda:0', grad_fn=<NegBackward0>)
+
+Training:   4%|▍         | 9/200 [33:03<11:34:09, 218.06s/epoch][25/05/18 21:16:51] [energy.py:  198]: 
+energy_real=tensor(2.2145, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.9257, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.7111, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:16:55] [energy.py:  198]: 
+energy_real=tensor(2.1590, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.9990, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.8400, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:00] [energy.py:  198]: 
+energy_real=tensor(2.2653, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.0752, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.8099, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:04] [energy.py:  198]: 
+energy_real=tensor(2.1895, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.1500, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.9605, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:08] [energy.py:  198]: 
+energy_real=tensor(2.1654, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.2238, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(4.0584, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:13] [energy.py:  198]: 
+energy_real=tensor(2.2275, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.3030, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(4.0755, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:17] [energy.py:  198]: 
+energy_real=tensor(2.3129, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.3789, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(4.0661, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:21] [energy.py:  198]: 
+energy_real=tensor(2.1369, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.4501, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(4.3132, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:26] [energy.py:  198]: 
+energy_real=tensor(2.4279, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.5303, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(4.1024, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:30] [energy.py:  198]: 
+energy_real=tensor(2.7288, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2537, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5249, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:35] [energy.py:  198]: 
+energy_real=tensor(2.7883, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1683, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3800, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:39] [energy.py:  198]: 
+energy_real=tensor(2.7129, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2663, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5534, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:43] [energy.py:  198]: 
+energy_real=tensor(2.6025, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3107, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7083, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:48] [energy.py:  198]: 
+energy_real=tensor(2.5528, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2727, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7199, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:52] [energy.py:  198]: 
+energy_real=tensor(2.6319, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2498, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6179, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:17:56] [energy.py:  198]: 
+energy_real=tensor(2.4969, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2081, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7111, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:01] [energy.py:  198]: 
+energy_real=tensor(2.4689, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2298, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7610, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:05] [energy.py:  198]: 
+energy_real=tensor(2.4650, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1485, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6834, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:09] [energy.py:  198]: 
+energy_real=tensor(2.5764, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1315, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5551, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:14] [energy.py:  198]: 
+energy_real=tensor(2.3499, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0446, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6947, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:18] [energy.py:  198]: 
+energy_real=tensor(2.2711, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0799, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8088, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:23] [energy.py:  198]: 
+energy_real=tensor(2.4035, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0794, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6759, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:27] [energy.py:  198]: 
+energy_real=tensor(2.4004, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0293, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6289, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:31] [energy.py:  198]: 
+energy_real=tensor(2.3008, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1213, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8204, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:36] [energy.py:  198]: 
+energy_real=tensor(2.3886, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0785, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6898, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:40] [energy.py:  198]: 
+energy_real=tensor(2.3841, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0641, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6800, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:44] [energy.py:  198]: 
+energy_real=tensor(2.3451, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0426, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6975, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:49] [energy.py:  198]: 
+energy_real=tensor(2.3247, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0589, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7342, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:53] [energy.py:  198]: 
+energy_real=tensor(2.3886, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9319, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5433, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:18:58] [energy.py:  198]: 
+energy_real=tensor(2.2869, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9389, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6519, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:02] [energy.py:  198]: 
+energy_real=tensor(2.2749, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0121, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7373, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:06] [energy.py:  198]: 
+energy_real=tensor(2.1927, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0602, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8674, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:11] [energy.py:  198]: 
+energy_real=tensor(2.2325, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0100, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7774, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:15] [energy.py:  198]: 
+energy_real=tensor(2.2036, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0493, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8457, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:19] [energy.py:  198]: 
+energy_real=tensor(2.2017, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1199, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9182, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:24] [energy.py:  198]: 
+energy_real=tensor(2.3137, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0747, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7610, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:28] [energy.py:  198]: 
+energy_real=tensor(2.2188, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0142, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7954, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:32] [energy.py:  198]: 
+energy_real=tensor(2.1907, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9132, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7225, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:37] [energy.py:  198]: 
+energy_real=tensor(2.4449, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0617, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.6168, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:41] [energy.py:  198]: 
+energy_real=tensor(2.2629, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2025, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9396, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:46] [energy.py:  198]: 
+energy_real=tensor(2.2073, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1896, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9823, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:50] [energy.py:  198]: 
+energy_real=tensor(2.2851, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3120, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0269, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:54] [energy.py:  198]: 
+energy_real=tensor(2.2668, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2451, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9783, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:19:59] [energy.py:  198]: 
+energy_real=tensor(2.3366, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3089, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9722, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:03] [energy.py:  198]: 
+energy_real=tensor(2.3192, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5002, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1810, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:07] [energy.py:  198]: 
+energy_real=tensor(2.2495, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3582, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1088, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:12] [energy.py:  198]: 
+energy_real=tensor(2.3007, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6701, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3694, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:16] [energy.py:  198]: 
+energy_real=tensor(2.2617, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5459, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2842, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:20] [energy.py:  198]: 
+energy_real=tensor(2.3796, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.4416, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0620, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A[25/05/18 21:20:21] [energy.py:  198]: 
+energy_real=tensor(4.4205, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8119, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3914, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:22] [energy.py:  198]: 
+energy_real=tensor(2.6968, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.2892, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.5924, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:22] [energy.py:  198]: 
+energy_real=tensor(3.4639, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.0858, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6219, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:23] [energy.py:  198]: 
+energy_real=tensor(2.8734, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9923, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1189, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:23] [energy.py:  198]: 
+energy_real=tensor(2.7890, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6307, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8417, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:24] [energy.py:  198]: 
+energy_real=tensor(2.6814, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7761, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0947, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:25] [energy.py:  198]: 
+energy_real=tensor(2.8289, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0329, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2040, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:25] [energy.py:  198]: 
+energy_real=tensor(2.6302, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3570, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7268, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:26] [energy.py:  198]: 
+energy_real=tensor(3.8717, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.8837, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0120, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  11%|█▏        | 9/79 [00:05<00:42,  1.64batch/s][A[25/05/18 21:20:26] [energy.py:  198]: 
+energy_real=tensor(3.4832, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3703, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.8871, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:27] [energy.py:  198]: 
+energy_real=tensor(2.6966, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.1138, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4172, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:27] [energy.py:  198]: 
+energy_real=tensor(3.1018, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5673, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4656, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:28] [energy.py:  198]: 
+energy_real=tensor(4.3505, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7971, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4467, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:29] [energy.py:  198]: 
+energy_real=tensor(3.4167, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.3338, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9171, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:29] [energy.py:  198]: 
+energy_real=tensor(3.0710, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(3.9742, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9032, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:30] [energy.py:  198]: 
+energy_real=tensor(3.1892, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.4046, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.2154, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:30] [energy.py:  198]: 
+energy_real=tensor(3.8432, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2260, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.3828, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:31] [energy.py:  198]: 
+energy_real=tensor(3.3451, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8105, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4654, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  23%|██▎       | 18/79 [00:10<00:36,  1.68batch/s][A[25/05/18 21:20:32] [energy.py:  198]: 
+energy_real=tensor(3.2306, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6794, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4488, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:32] [energy.py:  198]: 
+energy_real=tensor(4.0382, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8118, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.7737, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:33] [energy.py:  198]: 
+energy_real=tensor(4.3175, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7874, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4699, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:33] [energy.py:  198]: 
+energy_real=tensor(4.6102, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2769, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.6667, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:34] [energy.py:  198]: 
+energy_real=tensor(4.9666, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8587, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.1079, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:34] [energy.py:  198]: 
+energy_real=tensor(4.3679, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5052, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1373, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:35] [energy.py:  198]: 
+energy_real=tensor(4.7003, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9371, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.2368, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:36] [energy.py:  198]: 
+energy_real=tensor(5.3594, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1701, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.1893, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:36] [energy.py:  198]: 
+energy_real=tensor(4.1265, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2062, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.0797, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  34%|███▍      | 27/79 [00:15<00:30,  1.70batch/s][A[25/05/18 21:20:37] [energy.py:  198]: 
+energy_real=tensor(5.2701, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1689, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.1012, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:37] [energy.py:  198]: 
+energy_real=tensor(5.9254, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.1545, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.2290, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:38] [energy.py:  198]: 
+energy_real=tensor(5.3052, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.7449, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4397, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:39] [energy.py:  198]: 
+energy_real=tensor(5.8411, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.0080, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.1669, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:39] [energy.py:  198]: 
+energy_real=tensor(4.7423, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.1897, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4473, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:40] [energy.py:  198]: 
+energy_real=tensor(5.8593, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3638, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.4955, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:40] [energy.py:  198]: 
+energy_real=tensor(5.0408, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4128, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3720, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:41] [energy.py:  198]: 
+energy_real=tensor(5.7855, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2167, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.5689, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:41] [energy.py:  198]: 
+energy_real=tensor(5.9155, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3466, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.5689, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  46%|████▌     | 36/79 [00:21<00:25,  1.70batch/s][A[25/05/18 21:20:42] [energy.py:  198]: 
+energy_real=tensor(4.0810, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.1233, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.0423, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:43] [energy.py:  198]: 
+energy_real=tensor(6.0377, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3862, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.6515, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:43] [energy.py:  198]: 
+energy_real=tensor(5.8940, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4467, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.4473, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:44] [energy.py:  198]: 
+energy_real=tensor(5.5971, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.0419, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.4448, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:44] [energy.py:  198]: 
+energy_real=tensor(5.4502, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.2110, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.7608, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:45] [energy.py:  198]: 
+energy_real=tensor(5.4130, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.8603, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.4473, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:46] [energy.py:  198]: 
+energy_real=tensor(5.4418, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4548, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0129, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:46] [energy.py:  198]: 
+energy_real=tensor(5.5540, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.9211, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.3671, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:47] [energy.py:  198]: 
+energy_real=tensor(5.6910, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.5089, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.1821, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  57%|█████▋    | 45/79 [00:26<00:19,  1.71batch/s][A[25/05/18 21:20:47] [energy.py:  198]: 
+energy_real=tensor(5.6568, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.5687, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.9119, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:48] [energy.py:  198]: 
+energy_real=tensor(5.8613, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.5303, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.3310, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:49] [energy.py:  198]: 
+energy_real=tensor(6.0439, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.7888, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.2551, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:49] [energy.py:  198]: 
+energy_real=tensor(6.3326, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.0703, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.2623, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:50] [energy.py:  198]: 
+energy_real=tensor(6.0633, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.5130, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.5503, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:50] [energy.py:  198]: 
+energy_real=tensor(5.7390, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.6485, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.0904, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:51] [energy.py:  198]: 
+energy_real=tensor(6.0216, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.8501, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.1714, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:51] [energy.py:  198]: 
+energy_real=tensor(5.2160, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.7193, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5033, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:52] [energy.py:  198]: 
+energy_real=tensor(6.2171, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2360, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.9811, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  68%|██████▊   | 54/79 [00:31<00:14,  1.71batch/s][A[25/05/18 21:20:53] [energy.py:  198]: 
+energy_real=tensor(5.9643, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.9011, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.0633, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:53] [energy.py:  198]: 
+energy_real=tensor(5.8478, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.0074, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.1596, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:54] [energy.py:  198]: 
+energy_real=tensor(5.6868, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.6081, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.0787, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:54] [energy.py:  198]: 
+energy_real=tensor(6.1307, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.1637, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.0330, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:55] [energy.py:  198]: 
+energy_real=tensor(5.8239, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.5349, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.2890, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:56] [energy.py:  198]: 
+energy_real=tensor(6.0457, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3170, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.7287, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:56] [energy.py:  198]: 
+energy_real=tensor(6.3740, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.6863, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.6877, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:57] [energy.py:  198]: 
+energy_real=tensor(6.0667, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.5779, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.4888, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:57] [energy.py:  198]: 
+energy_real=tensor(5.9048, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.7026, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.2022, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  80%|███████▉  | 63/79 [00:36<00:09,  1.71batch/s][A[25/05/18 21:20:58] [energy.py:  198]: 
+energy_real=tensor(6.3341, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4521, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.8820, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:58] [energy.py:  198]: 
+energy_real=tensor(6.0570, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3805, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.6765, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:20:59] [energy.py:  198]: 
+energy_real=tensor(5.8091, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2506, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.5586, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:00] [energy.py:  198]: 
+energy_real=tensor(6.3059, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3241, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.9819, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:00] [energy.py:  198]: 
+energy_real=tensor(6.0172, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3126, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.7045, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:01] [energy.py:  198]: 
+energy_real=tensor(6.4165, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1707, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-1.2458, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:01] [energy.py:  198]: 
+energy_real=tensor(6.3476, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2997, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-1.0479, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:02] [energy.py:  198]: 
+energy_real=tensor(6.6378, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.6371, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-1.0006, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:03] [energy.py:  198]: 
+energy_real=tensor(6.2734, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.6046, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.6688, device='cuda:0', grad_fn=<NegBackward0>)
+
+
+Testing:  91%|█████████ | 72/79 [00:42<00:04,  1.71batch/s][A[25/05/18 21:21:03] [energy.py:  198]: 
+energy_real=tensor(6.4775, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4261, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-1.0514, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:04] [energy.py:  198]: 
+energy_real=tensor(6.1315, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(6.0256, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.1060, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:04] [energy.py:  198]: 
+energy_real=tensor(5.9843, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4443, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.5399, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:05] [energy.py:  198]: 
+energy_real=tensor(6.2335, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9041, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-1.3294, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:05] [energy.py:  198]: 
+energy_real=tensor(6.5596, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.6191, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.9405, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:06] [energy.py:  198]: 
+energy_real=tensor(6.3730, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4209, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(-0.9521, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:06] [energy.py:  198]: 
+energy_real=tensor(6.7745, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.3178, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(0.5432, device='cuda:0', grad_fn=<NegBackward0>)
+
+Testing: 100%|██████████| 79/79 [00:45<00:00,  1.72batch/s]
+[25/05/18 21:21:06] [train_TET.py:  224]: Test set Accuracy: 10.0
+Training:   5%|▌         | 10/200 [37:23<12:11:46, 231.09s/epoch][25/05/18 21:21:11] [energy.py:  198]: 
+energy_real=tensor(2.3028, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.5662, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2635, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:15] [energy.py:  198]: 
+energy_real=tensor(2.2537, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7140, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4603, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:20] [energy.py:  198]: 
+energy_real=tensor(2.3518, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6286, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2767, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:24] [energy.py:  198]: 
+energy_real=tensor(2.7254, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7274, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0020, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:28] [energy.py:  198]: 
+energy_real=tensor(2.4654, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6612, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1958, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:33] [energy.py:  198]: 
+energy_real=tensor(2.7971, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7515, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9544, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:37] [energy.py:  198]: 
+energy_real=tensor(2.6116, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8401, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2286, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:42] [energy.py:  198]: 
+energy_real=tensor(2.7491, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8548, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1057, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:46] [energy.py:  198]: 
+energy_real=tensor(2.8744, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7588, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.8843, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:50] [energy.py:  198]: 
+energy_real=tensor(2.7338, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7817, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0478, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:55] [energy.py:  198]: 
+energy_real=tensor(2.4523, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8791, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4268, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:21:59] [energy.py:  198]: 
+energy_real=tensor(2.9188, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8208, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9020, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:03] [energy.py:  198]: 
+energy_real=tensor(2.5413, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7907, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2494, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:08] [energy.py:  198]: 
+energy_real=tensor(2.6468, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7688, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1220, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:12] [energy.py:  198]: 
+energy_real=tensor(2.4432, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9599, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5167, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:17] [energy.py:  198]: 
+energy_real=tensor(2.5132, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6844, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1712, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:21] [energy.py:  198]: 
+energy_real=tensor(2.4170, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8645, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4475, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:25] [energy.py:  198]: 
+energy_real=tensor(2.2935, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8552, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5617, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:30] [energy.py:  198]: 
+energy_real=tensor(2.4738, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0283, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5545, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:34] [energy.py:  198]: 
+energy_real=tensor(2.3850, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7849, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3999, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:38] [energy.py:  198]: 
+energy_real=tensor(2.3152, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.6014, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2863, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:43] [energy.py:  198]: 
+energy_real=tensor(2.4661, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9022, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4361, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:47] [energy.py:  198]: 
+energy_real=tensor(2.2549, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8476, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5926, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:51] [energy.py:  198]: 
+energy_real=tensor(2.3935, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0248, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.6312, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:22:56] [energy.py:  198]: 
+energy_real=tensor(2.2406, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9158, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.6751, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:00] [energy.py:  198]: 
+energy_real=tensor(2.2298, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2288, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.9991, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:05] [energy.py:  198]: 
+energy_real=tensor(2.6692, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1992, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5301, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:09] [energy.py:  198]: 
+energy_real=tensor(2.7026, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9194, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2168, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:13] [energy.py:  198]: 
+energy_real=tensor(2.9546, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0491, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.0945, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:18] [energy.py:  198]: 
+energy_real=tensor(2.7999, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0786, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2786, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:22] [energy.py:  198]: 
+energy_real=tensor(2.6798, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0225, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3427, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:26] [energy.py:  198]: 
+energy_real=tensor(2.6704, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1538, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4834, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:31] [energy.py:  198]: 
+energy_real=tensor(2.6508, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1072, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4564, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:35] [energy.py:  198]: 
+energy_real=tensor(2.5840, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0542, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4702, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:40] [energy.py:  198]: 
+energy_real=tensor(2.4163, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1379, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.7216, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:44] [energy.py:  198]: 
+energy_real=tensor(2.3929, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4526, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.0597, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:48] [energy.py:  198]: 
+energy_real=tensor(2.4399, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3047, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.8648, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:53] [energy.py:  198]: 
+energy_real=tensor(2.3453, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0448, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.6995, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:23:57] [energy.py:  198]: 
+energy_real=tensor(2.4266, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9325, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5058, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:01] [energy.py:  198]: 
+energy_real=tensor(2.5572, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2173, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.6600, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:06] [energy.py:  198]: 
+energy_real=tensor(2.4487, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1452, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.6966, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:10] [energy.py:  198]: 
+energy_real=tensor(2.5388, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1883, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.6496, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:14] [energy.py:  198]: 
+energy_real=tensor(2.5693, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1312, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5619, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:19] [energy.py:  198]: 
+energy_real=tensor(2.4070, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2683, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.8613, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:23] [energy.py:  198]: 
+energy_real=tensor(2.4793, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3087, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.8295, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:28] [energy.py:  198]: 
+energy_real=tensor(2.4972, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0305, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5334, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:32] [energy.py:  198]: 
+energy_real=tensor(2.5185, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3385, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.8200, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:36] [energy.py:  198]: 
+energy_real=tensor(2.3248, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.8297, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.5050, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:40] [energy.py:  198]: 
+energy_real=tensor(2.3083, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.9298, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(5.6215, device='cuda:0', grad_fn=<NegBackward0>)
+
+Training:   6%|▌         | 11/200 [40:57<11:51:15, 225.80s/epoch][25/05/18 21:24:45] [energy.py:  198]: 
+energy_real=tensor(3.1705, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(7.7231, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(4.5525, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:49] [energy.py:  198]: 
+energy_real=tensor(2.6914, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9056, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2142, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:53] [energy.py:  198]: 
+energy_real=tensor(2.7881, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9814, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1933, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:24:58] [energy.py:  198]: 
+energy_real=tensor(2.7197, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2577, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5380, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:02] [energy.py:  198]: 
+energy_real=tensor(3.2017, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1037, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(1.9020, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:07] [energy.py:  198]: 
+energy_real=tensor(2.6649, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9428, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2779, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:11] [energy.py:  198]: 
+energy_real=tensor(2.8240, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0300, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2059, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:15] [energy.py:  198]: 
+energy_real=tensor(2.6372, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9540, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3167, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:20] [energy.py:  198]: 
+energy_real=tensor(2.7461, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1806, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4345, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:24] [energy.py:  198]: 
+energy_real=tensor(2.8126, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.0554, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2429, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:28] [energy.py:  198]: 
+energy_real=tensor(2.6815, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8852, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.2037, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:33] [energy.py:  198]: 
+energy_real=tensor(2.4173, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.8107, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3934, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:37] [energy.py:  198]: 
+energy_real=tensor(2.2982, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9880, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.6899, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:42] [energy.py:  198]: 
+energy_real=tensor(2.5637, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7436, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.1799, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:46] [energy.py:  198]: 
+energy_real=tensor(2.4596, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.9823, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.5227, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:50] [energy.py:  198]: 
+energy_real=tensor(2.3796, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(4.7767, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.3971, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:55] [energy.py:  198]: 
+energy_real=tensor(2.6761, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1727, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.4966, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:25:59] [energy.py:  198]: 
+energy_real=tensor(2.4239, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2858, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.8619, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:26:03] [energy.py:  198]: 
+energy_real=tensor(2.4344, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3956, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.9612, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:26:08] [energy.py:  198]: 
+energy_real=tensor(2.5627, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3322, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.7695, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:26:12] [energy.py:  198]: 
+energy_real=tensor(2.4562, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.1199, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.6637, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:26:17] [energy.py:  198]: 
+energy_real=tensor(2.4408, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2481, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.8073, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:26:21] [energy.py:  198]: 
+energy_real=tensor(2.4675, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.3640, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.8965, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:26:25] [energy.py:  198]: 
+energy_real=tensor(2.3042, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.4878, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(3.1835, device='cuda:0', grad_fn=<NegBackward0>)
+
+[25/05/18 21:26:30] [energy.py:  198]: 
+energy_real=tensor(2.4854, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_fake=tensor(5.2359, device='cuda:0', grad_fn=<MeanBackward0>)
+energy_loss=tensor(2.7505, device='cuda:0', grad_fn=<NegBackward0>)
+
+slurmstepd: error: *** JOB 11921142 ON gcn24 CANCELLED AT 2025-05-18T21:26:30 ***
+
+JOB STATISTICS
+==============
+Job ID: 11921142
+Cluster: snellius
+User/Group: jhutter/jhutter
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 12:57:00 core-walltime
+Job Wall-clock time: 00:43:10
+Memory Utilized: 2.13 GB
+Memory Efficiency: 1.78% of 120.00 GB (120.00 GB/node)

@@ -5,12 +5,12 @@
 #SBATCH --gpus=1                            # number of gpus per node
 #SBATCH --partition=gpu_a100                # partition
 #SBATCH --time=03:00:00                     # total run time limit (HH:MM:SS)
-#SBATCH --output='logs/visualize_%A.log'
+#SBATCH --output='logs/ttt_cifar10_%A.log'
 
-log_file="logs/TTT/evaluation_511_10.log"
+log_file="logs/TTT/ttt_cifar10_91.log"
 source .venv/bin/activate
 alias python=~/tea/.venv/bin/python
 
 CUDA_VISIBLE_DEVICES=0  
-python main.py --cfg cfgs/cifar10/ttt.yaml &> "$log_file"
+python main.py --cfg cfgs/cifar10/ttt.yaml RNG_SEED 91 &> "$log_file"
 

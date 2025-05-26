@@ -27,7 +27,7 @@ def main():
     device = torch.device('cuda:0')
 
     wandb.init(project="TET",
-        name="visz-pt-model",
+        name="visz-pt-model-pure_tea",
         config={
         "model.ADAPTATION": cfg.MODEL.ADAPTATION,
         "model.ARCH": cfg.MODEL.ARCH,
@@ -63,12 +63,15 @@ def main():
 
     # Strip prefix in one line
     state_dict = {k.replace('energy_model.f.', ''): v for k, v in ckpt.items()}
-    base_model.load_state_dict(state_dict)
 
-    # # Debug: print available keys
-    # logger.info(f"Available keys in checkpoint: {list(ckpt.keys())}")
+    # Debug: print available keys
+    logger.info(f"Available keys in checkpoint: {list(ckpt.keys())}")
+    logger.info(f"Available keys in checkpoint: {list(state_dict.keys())}")
 
-    # # Then load the correct key - common alternatives:
+    base_model.load_state_dict(state_dict, strict=False)
+
+
+    # Then load the correct key - common alternatives:
     # if 'state_dict' in ckpt:
     #     base_model.load_state_dict(ckpt['state_dict'])
     #     logger.info(f"hello1")

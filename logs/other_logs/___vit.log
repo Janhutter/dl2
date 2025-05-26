@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/gpfs/home5/scur2578/tea/main.py", line 95, in <module>
+    main()
+  File "/gpfs/home5/scur2578/tea/main.py", line 22, in main
+    load_cfg_fom_args()
+  File "/gpfs/home5/scur2578/tea/core/config.py", line 248, in load_cfg_fom_args
+    merge_from_file(args.cfg_file)
+  File "/gpfs/home5/scur2578/tea/core/config.py", line 211, in merge_from_file
+    with g_pathmgr.open(cfg_file, "r") as f:
+  File "/home/scur2578/.local/lib/python3.9/site-packages/iopath/common/file_io.py", line 1062, in open
+    bret = handler._open(path, mode, buffering=buffering, **kwargs)  # type: ignore
+  File "/home/scur2578/.local/lib/python3.9/site-packages/iopath/common/file_io.py", line 645, in _open
+    return open(  # type: ignore
+FileNotFoundError: [Errno 2] No such file or directory: 'cfgs/vit/.yaml'

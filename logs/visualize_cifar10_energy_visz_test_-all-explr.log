@@ -1,0 +1,1109 @@
+[25/05/25 22:27:12] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/25 22:27:12] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar10
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 1000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 0.1
+  SGLD_STD: 0.01
+  STEPS: 40
+  UNCOND: cond
+LOG_DEST: energy_visz_test_all_adam-2-0.0005-512_cond-40-0.1-0.01-1000-0.05_250525-222712.txt
+LOG_TIME: 250525-222712
+MODEL:
+  ADAPTATION: energy
+  ADA_PARAM: ['all']
+  ARCH: WRN2810_BN
+  CHECKPOINT_PTH: None
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 512
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 1.0
+  LR: 0.0005
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 10
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 2
+  TEST_BATCH_SIZE: 128
+  WARMUP_START_LR: 1e-06
+  WARMUP_STEPS: 3
+  WD: 0.0
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+wandb: Currently logged in as: janhutter (jan-hutter) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.11
+wandb: Run data is saved locally in /gpfs/home5/jhutter/dl2/wandb/run-20250525_222713-2opnvu8k
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run visz-n_steps-all-explr
+wandb: ⭐️ View project at https://wandb.ai/jan-hutter/TET
+wandb: 🚀 View run at https://wandb.ai/jan-hutter/TET/runs/2opnvu8k
+/home/jhutter/.local/lib/python3.11/site-packages/robustbench/utils.py:165: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
+[25/05/25 22:27:15] [main_visz.py:  106]: test-time adaptation: ENERGY
+[25/05/25 22:27:15] [param.py:   14]: adapting all weights
+[25/05/25 22:27:15] [optim.py:   86]: Warmup scheduler configured: 3 steps, start_lr: 1e-06, target_lr: 0.0005
+[25/05/25 22:27:15] [setada.py:  167]: model for adaptation: WideResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(16, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(16, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block2): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 320, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(160, 320, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block3): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 640, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(320, 640, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=640, out_features=10, bias=True)
+)
+[25/05/25 22:27:15] [setada.py:  168]: params for adaptation: all
+[25/05/25 22:27:15] [setada.py:  169]: optimizer for adaptation: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.0005
+    maximize: False
+    weight_decay: 0.0
+)
+[25/05/25 22:27:15] [eval_visz.py:  115]: not resetting model
+[25/05/25 22:27:17] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 22:27:26] [optim.py:   59]: Warmup step 1/3, LR: 0.000167
+[25/05/25 22:27:30] [eval_visz.py:   65]: batch_acc: 0.927734375
+[25/05/25 22:27:30] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 22:27:36] [optim.py:   59]: Warmup step 2/3, LR: 0.000334
+[25/05/25 22:27:40] [eval_visz.py:   65]: batch_acc: 0.9296875
+[25/05/25 22:27:40] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 22:27:46] [optim.py:   59]: Warmup step 3/3, LR: 0.000500
+[25/05/25 22:27:50] [eval_visz.py:   65]: batch_acc: 0.892578125
+[25/05/25 22:27:50] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 22:27:57] [optim.py:   73]: step 1, LR: 0.000495
+[25/05/25 22:28:00] [eval_visz.py:   65]: batch_acc: 0.802734375
+[25/05/25 22:28:00] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 22:28:07] [optim.py:   73]: step 2, LR: 0.000490
+[25/05/25 22:28:11] [eval_visz.py:   65]: batch_acc: 0.61328125
+[25/05/25 22:28:11] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 22:28:17] [optim.py:   73]: step 3, LR: 0.000485
+[25/05/25 22:28:21] [eval_visz.py:   65]: batch_acc: 0.482421875
+[25/05/25 22:28:21] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 22:28:27] [optim.py:   73]: step 4, LR: 0.000480
+[25/05/25 22:28:31] [eval_visz.py:   65]: batch_acc: 0.439453125
+[25/05/25 22:28:31] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 22:28:38] [optim.py:   73]: step 5, LR: 0.000475
+[25/05/25 22:28:41] [eval_visz.py:   65]: batch_acc: 0.357421875
+[25/05/25 22:28:41] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 22:28:48] [optim.py:   73]: step 6, LR: 0.000471
+[25/05/25 22:28:52] [eval_visz.py:   65]: batch_acc: 0.330078125
+[25/05/25 22:28:52] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 22:28:58] [optim.py:   73]: step 7, LR: 0.000466
+[25/05/25 22:29:02] [eval_visz.py:   65]: batch_acc: 0.322265625
+[25/05/25 22:29:02] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 22:29:09] [optim.py:   73]: step 8, LR: 0.000461
+[25/05/25 22:29:12] [eval_visz.py:   65]: batch_acc: 0.326171875
+[25/05/25 22:29:12] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 22:29:19] [optim.py:   73]: step 9, LR: 0.000457
+[25/05/25 22:29:23] [eval_visz.py:   65]: batch_acc: 0.32421875
+[25/05/25 22:29:23] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 22:29:29] [optim.py:   73]: step 10, LR: 0.000452
+[25/05/25 22:29:33] [eval_visz.py:   65]: batch_acc: 0.291015625
+[25/05/25 22:29:33] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 22:29:39] [optim.py:   73]: step 11, LR: 0.000448
+[25/05/25 22:29:43] [eval_visz.py:   65]: batch_acc: 0.283203125
+[25/05/25 22:29:43] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 22:29:50] [optim.py:   73]: step 12, LR: 0.000443
+[25/05/25 22:29:53] [eval_visz.py:   65]: batch_acc: 0.294921875
+[25/05/25 22:29:53] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 22:30:00] [optim.py:   73]: step 13, LR: 0.000439
+[25/05/25 22:30:04] [eval_visz.py:   65]: batch_acc: 0.28515625
+[25/05/25 22:30:04] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 22:30:10] [optim.py:   73]: step 14, LR: 0.000434
+[25/05/25 22:30:14] [eval_visz.py:   65]: batch_acc: 0.31640625
+[25/05/25 22:30:14] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 22:30:21] [optim.py:   73]: step 15, LR: 0.000430
+[25/05/25 22:30:24] [eval_visz.py:   65]: batch_acc: 0.248046875
+[25/05/25 22:30:24] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 22:30:31] [optim.py:   73]: step 16, LR: 0.000426
+[25/05/25 22:30:35] [eval_visz.py:   65]: batch_acc: 0.3046875
+[25/05/25 22:30:35] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 22:30:40] [optim.py:   73]: step 17, LR: 0.000421
+[25/05/25 22:30:43] [eval_visz.py:   65]: batch_acc: 0.24264706671237946
+[25/05/25 22:30:43] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 22:30:50] [optim.py:   73]: step 18, LR: 0.000417
+[25/05/25 22:31:00] [optim.py:   73]: step 19, LR: 0.000413
+[25/05/25 22:31:03] [eval_visz.py:   65]: batch_acc: 0.2734375
+[25/05/25 22:31:03] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 22:31:10] [optim.py:   73]: step 20, LR: 0.000409
+[25/05/25 22:31:20] [optim.py:   73]: step 21, LR: 0.000405
+[25/05/25 22:31:23] [eval_visz.py:   65]: batch_acc: 0.283203125
+[25/05/25 22:31:23] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 22:31:30] [optim.py:   73]: step 22, LR: 0.000401
+[25/05/25 22:31:40] [optim.py:   73]: step 23, LR: 0.000397
+[25/05/25 22:31:43] [eval_visz.py:   65]: batch_acc: 0.298828125
+[25/05/25 22:31:43] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 22:31:50] [optim.py:   73]: step 24, LR: 0.000393
+[25/05/25 22:32:00] [optim.py:   73]: step 25, LR: 0.000389
+[25/05/25 22:32:04] [eval_visz.py:   65]: batch_acc: 0.298828125
+[25/05/25 22:32:04] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 22:32:10] [optim.py:   73]: step 26, LR: 0.000385
+[25/05/25 22:32:20] [optim.py:   73]: step 27, LR: 0.000381
+[25/05/25 22:32:24] [eval_visz.py:   65]: batch_acc: 0.267578125
+[25/05/25 22:32:24] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 22:32:30] [optim.py:   73]: step 28, LR: 0.000377
+[25/05/25 22:32:40] [optim.py:   73]: step 29, LR: 0.000374
+[25/05/25 22:32:44] [eval_visz.py:   65]: batch_acc: 0.2421875
+[25/05/25 22:32:44] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 22:32:50] [optim.py:   73]: step 30, LR: 0.000370
+[25/05/25 22:33:00] [optim.py:   73]: step 31, LR: 0.000366
+[25/05/25 22:33:04] [eval_visz.py:   65]: batch_acc: 0.31640625
+[25/05/25 22:33:04] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 22:33:10] [optim.py:   73]: step 32, LR: 0.000362
+[25/05/25 22:33:20] [optim.py:   73]: step 33, LR: 0.000359
+[25/05/25 22:33:24] [eval_visz.py:   65]: batch_acc: 0.28125
+[25/05/25 22:33:24] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 22:33:30] [optim.py:   73]: step 34, LR: 0.000355
+[25/05/25 22:33:41] [optim.py:   73]: step 35, LR: 0.000352
+[25/05/25 22:33:44] [eval_visz.py:   65]: batch_acc: 0.2890625
+[25/05/25 22:33:44] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 22:33:50] [optim.py:   73]: step 36, LR: 0.000348
+[25/05/25 22:34:01] [optim.py:   73]: step 37, LR: 0.000345
+[25/05/25 22:34:04] [eval_visz.py:   65]: batch_acc: 0.291015625
+[25/05/25 22:34:04] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 22:34:10] [optim.py:   73]: step 38, LR: 0.000341
+[25/05/25 22:34:21] [optim.py:   73]: step 39, LR: 0.000338
+[25/05/25 22:34:24] [eval_visz.py:   65]: batch_acc: 0.298828125
+[25/05/25 22:34:24] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 22:34:30] [optim.py:   73]: step 40, LR: 0.000334
+[25/05/25 22:34:41] [optim.py:   73]: step 41, LR: 0.000331
+[25/05/25 22:34:44] [eval_visz.py:   65]: batch_acc: 0.271484375
+[25/05/25 22:34:44] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 22:34:50] [optim.py:   73]: step 42, LR: 0.000328
+[25/05/25 22:35:01] [optim.py:   73]: step 43, LR: 0.000325
+[25/05/25 22:35:04] [eval_visz.py:   65]: batch_acc: 0.275390625
+[25/05/25 22:35:04] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 22:35:11] [optim.py:   73]: step 44, LR: 0.000321
+[25/05/25 22:35:21] [optim.py:   73]: step 45, LR: 0.000318
+[25/05/25 22:35:24] [eval_visz.py:   65]: batch_acc: 0.259765625
+[25/05/25 22:35:24] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 22:35:31] [optim.py:   73]: step 46, LR: 0.000315
+[25/05/25 22:35:41] [optim.py:   73]: step 47, LR: 0.000312
+[25/05/25 22:35:44] [eval_visz.py:   65]: batch_acc: 0.291015625
+[25/05/25 22:35:44] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 22:35:51] [optim.py:   73]: step 48, LR: 0.000309
+[25/05/25 22:36:01] [optim.py:   73]: step 49, LR: 0.000306
+[25/05/25 22:36:04] [eval_visz.py:   65]: batch_acc: 0.28515625
+[25/05/25 22:36:04] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 22:36:11] [optim.py:   73]: step 50, LR: 0.000303
+[25/05/25 22:36:21] [optim.py:   73]: step 51, LR: 0.000299
+[25/05/25 22:36:24] [eval_visz.py:   65]: batch_acc: 0.26171875
+[25/05/25 22:36:24] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 22:36:31] [optim.py:   73]: step 52, LR: 0.000296
+[25/05/25 22:36:41] [optim.py:   73]: step 53, LR: 0.000294
+[25/05/25 22:36:44] [eval_visz.py:   65]: batch_acc: 0.240234375
+[25/05/25 22:36:44] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 22:36:51] [optim.py:   73]: step 54, LR: 0.000291
+[25/05/25 22:37:01] [optim.py:   73]: step 55, LR: 0.000288
+[25/05/25 22:37:05] [eval_visz.py:   65]: batch_acc: 0.275390625
+[25/05/25 22:37:05] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 22:37:08] [optim.py:   73]: step 56, LR: 0.000285
+[25/05/25 22:37:15] [optim.py:   73]: step 57, LR: 0.000282
+[25/05/25 22:37:18] [eval_visz.py:   65]: batch_acc: 0.2867647111415863
+[25/05/25 22:37:18] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 22:37:25] [optim.py:   73]: step 58, LR: 0.000279
+[25/05/25 22:37:35] [optim.py:   73]: step 59, LR: 0.000276
+[25/05/25 22:37:38] [eval_visz.py:   65]: batch_acc: 0.283203125
+[25/05/25 22:37:38] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 22:37:45] [optim.py:   73]: step 60, LR: 0.000274
+[25/05/25 22:37:55] [optim.py:   73]: step 61, LR: 0.000271
+[25/05/25 22:37:59] [eval_visz.py:   65]: batch_acc: 0.267578125
+[25/05/25 22:37:59] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 22:38:05] [optim.py:   73]: step 62, LR: 0.000268
+[25/05/25 22:38:15] [optim.py:   73]: step 63, LR: 0.000265
+[25/05/25 22:38:19] [eval_visz.py:   65]: batch_acc: 0.2578125
+[25/05/25 22:38:19] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 22:38:25] [optim.py:   73]: step 64, LR: 0.000263
+[25/05/25 22:38:36] [optim.py:   73]: step 65, LR: 0.000260
+[25/05/25 22:38:39] [eval_visz.py:   65]: batch_acc: 0.255859375
+[25/05/25 22:38:39] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 22:38:45] [optim.py:   73]: step 66, LR: 0.000258
+[25/05/25 22:38:56] [optim.py:   73]: step 67, LR: 0.000255
+[25/05/25 22:38:59] [eval_visz.py:   65]: batch_acc: 0.25390625
+[25/05/25 22:38:59] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 22:39:05] [optim.py:   73]: step 68, LR: 0.000252
+[25/05/25 22:39:16] [optim.py:   73]: step 69, LR: 0.000250
+[25/05/25 22:39:19] [eval_visz.py:   65]: batch_acc: 0.27734375
+[25/05/25 22:39:19] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 22:39:26] [optim.py:   73]: step 70, LR: 0.000247
+[25/05/25 22:39:36] [optim.py:   73]: step 71, LR: 0.000245
+[25/05/25 22:39:39] [eval_visz.py:   65]: batch_acc: 0.248046875
+[25/05/25 22:39:39] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 22:39:46] [optim.py:   73]: step 72, LR: 0.000242
+[25/05/25 22:39:56] [optim.py:   73]: step 73, LR: 0.000240
+[25/05/25 22:39:59] [eval_visz.py:   65]: batch_acc: 0.232421875
+[25/05/25 22:39:59] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 22:40:06] [optim.py:   73]: step 74, LR: 0.000238
+[25/05/25 22:40:16] [optim.py:   73]: step 75, LR: 0.000235
+[25/05/25 22:40:19] [eval_visz.py:   65]: batch_acc: 0.27734375
+[25/05/25 22:40:19] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 22:40:26] [optim.py:   73]: step 76, LR: 0.000233
+[25/05/25 22:40:36] [optim.py:   73]: step 77, LR: 0.000231
+[25/05/25 22:40:39] [eval_visz.py:   65]: batch_acc: 0.24609375
+[25/05/25 22:40:39] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 22:40:46] [optim.py:   73]: step 78, LR: 0.000228
+[25/05/25 22:40:56] [optim.py:   73]: step 79, LR: 0.000226
+[25/05/25 22:41:00] [eval_visz.py:   65]: batch_acc: 0.248046875
+[25/05/25 22:41:00] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 22:41:06] [optim.py:   73]: step 80, LR: 0.000224
+[25/05/25 22:41:17] [optim.py:   73]: step 81, LR: 0.000222
+[25/05/25 22:41:20] [eval_visz.py:   65]: batch_acc: 0.2265625
+[25/05/25 22:41:20] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 22:41:26] [optim.py:   73]: step 82, LR: 0.000219
+[25/05/25 22:41:37] [optim.py:   73]: step 83, LR: 0.000217
+[25/05/25 22:41:40] [eval_visz.py:   65]: batch_acc: 0.25390625
+[25/05/25 22:41:40] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 22:41:46] [optim.py:   73]: step 84, LR: 0.000215
+[25/05/25 22:41:57] [optim.py:   73]: step 85, LR: 0.000213
+[25/05/25 22:42:00] [eval_visz.py:   65]: batch_acc: 0.2734375
+[25/05/25 22:42:00] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 22:42:07] [optim.py:   73]: step 86, LR: 0.000211
+[25/05/25 22:42:17] [optim.py:   73]: step 87, LR: 0.000209
+[25/05/25 22:42:20] [eval_visz.py:   65]: batch_acc: 0.232421875
+[25/05/25 22:42:20] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 22:42:27] [optim.py:   73]: step 88, LR: 0.000206
+[25/05/25 22:42:37] [optim.py:   73]: step 89, LR: 0.000204
+[25/05/25 22:42:40] [eval_visz.py:   65]: batch_acc: 0.236328125
+[25/05/25 22:42:40] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 22:42:47] [optim.py:   73]: step 90, LR: 0.000202
+[25/05/25 22:42:57] [optim.py:   73]: step 91, LR: 0.000200
+[25/05/25 22:43:00] [eval_visz.py:   65]: batch_acc: 0.25
+[25/05/25 22:43:00] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 22:43:07] [optim.py:   73]: step 92, LR: 0.000198
+[25/05/25 22:43:17] [optim.py:   73]: step 93, LR: 0.000196
+[25/05/25 22:43:21] [eval_visz.py:   65]: batch_acc: 0.25
+[25/05/25 22:43:21] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 22:43:27] [optim.py:   73]: step 94, LR: 0.000194
+[25/05/25 22:43:37] [optim.py:   73]: step 95, LR: 0.000192
+[25/05/25 22:43:41] [eval_visz.py:   65]: batch_acc: 0.248046875
+[25/05/25 22:43:41] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 22:43:44] [optim.py:   73]: step 96, LR: 0.000191
+[25/05/25 22:43:51] [optim.py:   73]: step 97, LR: 0.000189
+[25/05/25 22:43:54] [eval_visz.py:   65]: batch_acc: 0.25
+[25/05/25 22:43:55] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 22:44:01] [optim.py:   73]: step 98, LR: 0.000187
+[25/05/25 22:44:12] [optim.py:   73]: step 99, LR: 0.000185
+[25/05/25 22:44:21] [optim.py:   73]: step 100, LR: 0.000183
+[25/05/25 22:44:24] [eval_visz.py:   65]: batch_acc: 0.236328125
+[25/05/25 22:44:24] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 22:44:31] [optim.py:   73]: step 101, LR: 0.000181
+[25/05/25 22:44:41] [optim.py:   73]: step 102, LR: 0.000179
+[25/05/25 22:44:51] [optim.py:   73]: step 103, LR: 0.000178
+[25/05/25 22:44:54] [eval_visz.py:   65]: batch_acc: 0.259765625
+[25/05/25 22:44:54] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 22:45:01] [optim.py:   73]: step 104, LR: 0.000176
+[25/05/25 22:45:11] [optim.py:   73]: step 105, LR: 0.000174
+[25/05/25 22:45:21] [optim.py:   73]: step 106, LR: 0.000172
+[25/05/25 22:45:24] [eval_visz.py:   65]: batch_acc: 0.24609375
+[25/05/25 22:45:24] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 22:45:31] [optim.py:   73]: step 107, LR: 0.000171
+[25/05/25 22:45:41] [optim.py:   73]: step 108, LR: 0.000169
+[25/05/25 22:45:51] [optim.py:   73]: step 109, LR: 0.000167
+[25/05/25 22:45:54] [eval_visz.py:   65]: batch_acc: 0.2265625
+[25/05/25 22:45:54] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 22:46:01] [optim.py:   73]: step 110, LR: 0.000166
+[25/05/25 22:46:11] [optim.py:   73]: step 111, LR: 0.000164
+[25/05/25 22:46:21] [optim.py:   73]: step 112, LR: 0.000162
+[25/05/25 22:46:24] [eval_visz.py:   65]: batch_acc: 0.240234375
+[25/05/25 22:46:24] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 22:46:31] [optim.py:   73]: step 113, LR: 0.000161
+[25/05/25 22:46:41] [optim.py:   73]: step 114, LR: 0.000159
+[25/05/25 22:46:51] [optim.py:   73]: step 115, LR: 0.000157
+[25/05/25 22:46:54] [eval_visz.py:   65]: batch_acc: 0.212890625
+[25/05/25 22:46:54] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 22:47:01] [optim.py:   73]: step 116, LR: 0.000156
+[25/05/25 22:47:11] [optim.py:   73]: step 117, LR: 0.000154
+[25/05/25 22:47:21] [optim.py:   73]: step 118, LR: 0.000153
+[25/05/25 22:47:24] [eval_visz.py:   65]: batch_acc: 0.1953125
+[25/05/25 22:47:24] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 22:47:31] [optim.py:   73]: step 119, LR: 0.000151
+[25/05/25 22:47:41] [optim.py:   73]: step 120, LR: 0.000150
+[25/05/25 22:47:51] [optim.py:   73]: step 121, LR: 0.000148
+[25/05/25 22:47:54] [eval_visz.py:   65]: batch_acc: 0.2109375
+[25/05/25 22:47:54] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 22:48:01] [optim.py:   73]: step 122, LR: 0.000147
+[25/05/25 22:48:11] [optim.py:   73]: step 123, LR: 0.000145
+[25/05/25 22:48:21] [optim.py:   73]: step 124, LR: 0.000144
+[25/05/25 22:48:24] [eval_visz.py:   65]: batch_acc: 0.224609375
+[25/05/25 22:48:24] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 22:48:30] [optim.py:   73]: step 125, LR: 0.000142
+[25/05/25 22:48:41] [optim.py:   73]: step 126, LR: 0.000141
+[25/05/25 22:48:51] [optim.py:   73]: step 127, LR: 0.000140
+[25/05/25 22:48:54] [eval_visz.py:   65]: batch_acc: 0.228515625
+[25/05/25 22:48:54] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 22:49:00] [optim.py:   73]: step 128, LR: 0.000138
+[25/05/25 22:49:11] [optim.py:   73]: step 129, LR: 0.000137
+[25/05/25 22:49:21] [optim.py:   73]: step 130, LR: 0.000135
+[25/05/25 22:49:24] [eval_visz.py:   65]: batch_acc: 0.224609375
+[25/05/25 22:49:24] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 22:49:30] [optim.py:   73]: step 131, LR: 0.000134
+[25/05/25 22:49:41] [optim.py:   73]: step 132, LR: 0.000133
+[25/05/25 22:49:51] [optim.py:   73]: step 133, LR: 0.000131
+[25/05/25 22:49:54] [eval_visz.py:   65]: batch_acc: 0.220703125
+[25/05/25 22:49:54] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 22:50:00] [optim.py:   73]: step 134, LR: 0.000130
+[25/05/25 22:50:11] [optim.py:   73]: step 135, LR: 0.000129
+[25/05/25 22:50:20] [optim.py:   73]: step 136, LR: 0.000127
+[25/05/25 22:50:24] [eval_visz.py:   65]: batch_acc: 0.21484375
+[25/05/25 22:50:24] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 22:50:30] [optim.py:   73]: step 137, LR: 0.000126
+[25/05/25 22:50:41] [optim.py:   73]: step 138, LR: 0.000125
+[25/05/25 22:50:50] [optim.py:   73]: step 139, LR: 0.000124
+[25/05/25 22:50:54] [eval_visz.py:   65]: batch_acc: 0.212890625
+[25/05/25 22:50:54] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 22:51:00] [optim.py:   73]: step 140, LR: 0.000122
+[25/05/25 22:51:11] [optim.py:   73]: step 141, LR: 0.000121
+[25/05/25 22:51:20] [optim.py:   73]: step 142, LR: 0.000120
+[25/05/25 22:51:24] [eval_visz.py:   65]: batch_acc: 0.212890625
+[25/05/25 22:51:24] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 22:51:30] [optim.py:   73]: step 143, LR: 0.000119
+[25/05/25 22:51:40] [optim.py:   73]: step 144, LR: 0.000118
+[25/05/25 22:51:50] [optim.py:   73]: step 145, LR: 0.000116
+[25/05/25 22:51:53] [eval_visz.py:   65]: batch_acc: 0.20703125
+[25/05/25 22:51:53] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 22:52:00] [optim.py:   73]: step 146, LR: 0.000115
+[25/05/25 22:52:10] [optim.py:   73]: step 147, LR: 0.000114
+[25/05/25 22:52:20] [optim.py:   73]: step 148, LR: 0.000113
+[25/05/25 22:52:23] [eval_visz.py:   65]: batch_acc: 0.212890625
+[25/05/25 22:52:23] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 22:52:30] [optim.py:   73]: step 149, LR: 0.000112
+[25/05/25 22:52:40] [optim.py:   73]: step 150, LR: 0.000111
+[25/05/25 22:52:50] [optim.py:   73]: step 151, LR: 0.000110
+[25/05/25 22:52:53] [eval_visz.py:   65]: batch_acc: 0.2109375
+[25/05/25 22:52:53] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 22:53:00] [optim.py:   73]: step 152, LR: 0.000109
+[25/05/25 22:53:10] [optim.py:   73]: step 153, LR: 0.000107
+[25/05/25 22:53:20] [optim.py:   73]: step 154, LR: 0.000106
+[25/05/25 22:53:23] [eval_visz.py:   65]: batch_acc: 0.181640625
+[25/05/25 22:53:23] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 22:53:27] [optim.py:   73]: step 155, LR: 0.000105
+[25/05/25 22:53:34] [optim.py:   73]: step 156, LR: 0.000104
+[25/05/25 22:53:41] [optim.py:   73]: step 157, LR: 0.000103
+[25/05/25 22:53:44] [eval_visz.py:   65]: batch_acc: 0.1507352888584137
+[25/05/25 22:53:44] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 22:53:50] [optim.py:   73]: step 158, LR: 0.000102
+[25/05/25 22:54:01] [optim.py:   73]: step 159, LR: 0.000101
+[25/05/25 22:54:10] [optim.py:   73]: step 160, LR: 0.000100
+[25/05/25 22:54:14] [eval_visz.py:   65]: batch_acc: 0.197265625
+[25/05/25 22:54:14] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 22:54:20] [optim.py:   73]: step 161, LR: 0.000099
+[25/05/25 22:54:31] [optim.py:   73]: step 162, LR: 0.000098
+[25/05/25 22:54:40] [optim.py:   73]: step 163, LR: 0.000097
+[25/05/25 22:54:44] [eval_visz.py:   65]: batch_acc: 0.19921875
+[25/05/25 22:54:44] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 22:54:50] [optim.py:   73]: step 164, LR: 0.000096
+[25/05/25 22:55:01] [optim.py:   73]: step 165, LR: 0.000095
+[25/05/25 22:55:10] [optim.py:   73]: step 166, LR: 0.000094
+[25/05/25 22:55:14] [eval_visz.py:   65]: batch_acc: 0.19921875
+[25/05/25 22:55:14] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 22:55:20] [optim.py:   73]: step 167, LR: 0.000093
+[25/05/25 22:55:31] [optim.py:   73]: step 168, LR: 0.000092
+[25/05/25 22:55:40] [optim.py:   73]: step 169, LR: 0.000091
+[25/05/25 22:55:44] [eval_visz.py:   65]: batch_acc: 0.17578125
+[25/05/25 22:55:44] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 22:55:50] [optim.py:   73]: step 170, LR: 0.000091
+[25/05/25 22:56:00] [optim.py:   73]: step 171, LR: 0.000090
+[25/05/25 22:56:10] [optim.py:   73]: step 172, LR: 0.000089
+[25/05/25 22:56:13] [eval_visz.py:   65]: batch_acc: 0.1875
+[25/05/25 22:56:13] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 22:56:20] [optim.py:   73]: step 173, LR: 0.000088
+[25/05/25 22:56:30] [optim.py:   73]: step 174, LR: 0.000087
+[25/05/25 22:56:40] [optim.py:   73]: step 175, LR: 0.000086
+[25/05/25 22:56:43] [eval_visz.py:   65]: batch_acc: 0.19921875
+[25/05/25 22:56:43] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 22:56:50] [optim.py:   73]: step 176, LR: 0.000085
+[25/05/25 22:57:00] [optim.py:   73]: step 177, LR: 0.000084
+[25/05/25 22:57:10] [optim.py:   73]: step 178, LR: 0.000084
+[25/05/25 22:57:13] [eval_visz.py:   65]: batch_acc: 0.1953125
+[25/05/25 22:57:13] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 22:57:20] [optim.py:   73]: step 179, LR: 0.000083
+[25/05/25 22:57:30] [optim.py:   73]: step 180, LR: 0.000082
+[25/05/25 22:57:40] [optim.py:   73]: step 181, LR: 0.000081
+[25/05/25 22:57:43] [eval_visz.py:   65]: batch_acc: 0.185546875
+[25/05/25 22:57:43] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 22:57:50] [optim.py:   73]: step 182, LR: 0.000080
+[25/05/25 22:58:00] [optim.py:   73]: step 183, LR: 0.000079
+[25/05/25 22:58:10] [optim.py:   73]: step 184, LR: 0.000079
+[25/05/25 22:58:13] [eval_visz.py:   65]: batch_acc: 0.19921875
+[25/05/25 22:58:13] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 22:58:20] [optim.py:   73]: step 185, LR: 0.000078
+[25/05/25 22:58:30] [optim.py:   73]: step 186, LR: 0.000077
+[25/05/25 22:58:40] [optim.py:   73]: step 187, LR: 0.000076
+[25/05/25 22:58:43] [eval_visz.py:   65]: batch_acc: 0.228515625
+[25/05/25 22:58:43] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 22:58:50] [optim.py:   73]: step 188, LR: 0.000076
+[25/05/25 22:59:00] [optim.py:   73]: step 189, LR: 0.000075
+[25/05/25 22:59:10] [optim.py:   73]: step 190, LR: 0.000074
+[25/05/25 22:59:13] [eval_visz.py:   65]: batch_acc: 0.19140625
+[25/05/25 22:59:13] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 22:59:20] [optim.py:   73]: step 191, LR: 0.000073
+[25/05/25 22:59:30] [optim.py:   73]: step 192, LR: 0.000073
+[25/05/25 22:59:40] [optim.py:   73]: step 193, LR: 0.000072
+[25/05/25 22:59:43] [eval_visz.py:   65]: batch_acc: 0.21484375
+[25/05/25 22:59:43] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 22:59:50] [optim.py:   73]: step 194, LR: 0.000071
+[25/05/25 23:00:00] [optim.py:   73]: step 195, LR: 0.000070
+[25/05/25 23:00:10] [optim.py:   73]: step 196, LR: 0.000070
+[25/05/25 23:00:13] [eval_visz.py:   65]: batch_acc: 0.20703125
+[25/05/25 23:00:13] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 23:00:20] [optim.py:   73]: step 197, LR: 0.000069
+[25/05/25 23:00:30] [optim.py:   73]: step 198, LR: 0.000068
+[25/05/25 23:00:40] [optim.py:   73]: step 199, LR: 0.000068
+[25/05/25 23:00:43] [eval_visz.py:   65]: batch_acc: 0.169921875
+[25/05/25 23:00:43] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 23:00:50] [optim.py:   73]: step 200, LR: 0.000067
+[25/05/25 23:01:00] [optim.py:   73]: step 201, LR: 0.000066
+[25/05/25 23:01:10] [optim.py:   73]: step 202, LR: 0.000066
+[25/05/25 23:01:13] [eval_visz.py:   65]: batch_acc: 0.20703125
+[25/05/25 23:01:13] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 23:01:20] [optim.py:   73]: step 203, LR: 0.000065
+[25/05/25 23:01:30] [optim.py:   73]: step 204, LR: 0.000064
+[25/05/25 23:01:40] [optim.py:   73]: step 205, LR: 0.000064
+[25/05/25 23:01:43] [eval_visz.py:   65]: batch_acc: 0.17578125
+[25/05/25 23:01:43] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 23:01:49] [optim.py:   73]: step 206, LR: 0.000063
+[25/05/25 23:02:00] [optim.py:   73]: step 207, LR: 0.000062
+[25/05/25 23:02:10] [optim.py:   73]: step 208, LR: 0.000062
+[25/05/25 23:02:13] [eval_visz.py:   65]: batch_acc: 0.26171875
+[25/05/25 23:02:13] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 23:02:19] [optim.py:   73]: step 209, LR: 0.000061
+[25/05/25 23:02:30] [optim.py:   73]: step 210, LR: 0.000061
+[25/05/25 23:02:40] [optim.py:   73]: step 211, LR: 0.000060
+[25/05/25 23:02:43] [eval_visz.py:   65]: batch_acc: 0.220703125
+[25/05/25 23:02:43] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 23:02:49] [optim.py:   73]: step 212, LR: 0.000059
+[25/05/25 23:03:00] [optim.py:   73]: step 213, LR: 0.000059
+[25/05/25 23:03:09] [optim.py:   73]: step 214, LR: 0.000058
+[25/05/25 23:03:13] [eval_visz.py:   65]: batch_acc: 0.201171875
+[25/05/25 23:03:13] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 23:03:16] [optim.py:   73]: step 215, LR: 0.000058
+[25/05/25 23:03:23] [optim.py:   73]: step 216, LR: 0.000057
+[25/05/25 23:03:30] [optim.py:   73]: step 217, LR: 0.000056
+[25/05/25 23:03:33] [eval_visz.py:   65]: batch_acc: 0.22794117033481598
+[25/05/25 23:03:33] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 23:03:40] [optim.py:   73]: step 218, LR: 0.000056
+[25/05/25 23:03:50] [optim.py:   73]: step 219, LR: 0.000055
+[25/05/25 23:04:00] [optim.py:   73]: step 220, LR: 0.000055
+[25/05/25 23:04:03] [eval_visz.py:   65]: batch_acc: 0.216796875
+[25/05/25 23:04:03] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 23:04:10] [optim.py:   73]: step 221, LR: 0.000054
+[25/05/25 23:04:20] [optim.py:   73]: step 222, LR: 0.000054
+[25/05/25 23:04:30] [optim.py:   73]: step 223, LR: 0.000053
+[25/05/25 23:04:33] [eval_visz.py:   65]: batch_acc: 0.224609375
+[25/05/25 23:04:33] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 23:04:40] [optim.py:   73]: step 224, LR: 0.000053
+[25/05/25 23:04:50] [optim.py:   73]: step 225, LR: 0.000052
+[25/05/25 23:05:00] [optim.py:   73]: step 226, LR: 0.000052
+[25/05/25 23:05:03] [eval_visz.py:   65]: batch_acc: 0.208984375
+[25/05/25 23:05:03] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 23:05:10] [optim.py:   73]: step 227, LR: 0.000051
+[25/05/25 23:05:20] [optim.py:   73]: step 228, LR: 0.000051
+[25/05/25 23:05:30] [optim.py:   73]: step 229, LR: 0.000050
+[25/05/25 23:05:33] [eval_visz.py:   65]: batch_acc: 0.185546875
+[25/05/25 23:05:33] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 23:05:40] [optim.py:   73]: step 230, LR: 0.000050
+[25/05/25 23:05:50] [optim.py:   73]: step 231, LR: 0.000049
+[25/05/25 23:06:00] [optim.py:   73]: step 232, LR: 0.000049
+[25/05/25 23:06:03] [eval_visz.py:   65]: batch_acc: 0.205078125
+[25/05/25 23:06:03] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 23:06:09] [optim.py:   73]: step 233, LR: 0.000048
+[25/05/25 23:06:20] [optim.py:   73]: step 234, LR: 0.000048
+[25/05/25 23:06:30] [optim.py:   73]: step 235, LR: 0.000047
+[25/05/25 23:06:33] [eval_visz.py:   65]: batch_acc: 0.203125
+[25/05/25 23:06:33] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 23:06:39] [optim.py:   73]: step 236, LR: 0.000047
+[25/05/25 23:06:50] [optim.py:   73]: step 237, LR: 0.000046
+[25/05/25 23:07:00] [optim.py:   73]: step 238, LR: 0.000046
+[25/05/25 23:07:03] [eval_visz.py:   65]: batch_acc: 0.193359375
+[25/05/25 23:07:03] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 23:07:09] [optim.py:   73]: step 239, LR: 0.000045
+[25/05/25 23:07:20] [optim.py:   73]: step 240, LR: 0.000045
+[25/05/25 23:07:30] [optim.py:   73]: step 241, LR: 0.000044
+[25/05/25 23:07:33] [eval_visz.py:   65]: batch_acc: 0.2109375
+[25/05/25 23:07:33] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 23:07:39] [optim.py:   73]: step 242, LR: 0.000044
+[25/05/25 23:07:50] [optim.py:   73]: step 243, LR: 0.000043
+[25/05/25 23:07:59] [optim.py:   73]: step 244, LR: 0.000043
+[25/05/25 23:08:03] [eval_visz.py:   65]: batch_acc: 0.228515625
+[25/05/25 23:08:03] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 23:08:09] [optim.py:   73]: step 245, LR: 0.000043
+[25/05/25 23:08:20] [optim.py:   73]: step 246, LR: 0.000042
+[25/05/25 23:08:29] [optim.py:   73]: step 247, LR: 0.000042
+[25/05/25 23:08:33] [eval_visz.py:   65]: batch_acc: 0.2109375
+[25/05/25 23:08:33] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 23:08:39] [optim.py:   73]: step 248, LR: 0.000041
+[25/05/25 23:08:50] [optim.py:   73]: step 249, LR: 0.000041
+[25/05/25 23:08:59] [optim.py:   73]: step 250, LR: 0.000041
+[25/05/25 23:09:03] [eval_visz.py:   65]: batch_acc: 0.20703125
+[25/05/25 23:09:03] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 23:09:09] [optim.py:   73]: step 251, LR: 0.000040
+[25/05/25 23:09:20] [optim.py:   73]: step 252, LR: 0.000040
+[25/05/25 23:09:29] [optim.py:   73]: step 253, LR: 0.000039
+[25/05/25 23:09:33] [eval_visz.py:   65]: batch_acc: 0.1953125
+[25/05/25 23:09:33] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 23:09:39] [optim.py:   73]: step 254, LR: 0.000039
+[25/05/25 23:09:49] [optim.py:   73]: step 255, LR: 0.000039
+[25/05/25 23:09:59] [optim.py:   73]: step 256, LR: 0.000038
+[25/05/25 23:10:02] [eval_visz.py:   65]: batch_acc: 0.23046875
+[25/05/25 23:10:03] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 23:10:09] [optim.py:   73]: step 257, LR: 0.000038
+[25/05/25 23:10:19] [optim.py:   73]: step 258, LR: 0.000037
+[25/05/25 23:10:29] [optim.py:   73]: step 259, LR: 0.000037
+[25/05/25 23:10:32] [eval_visz.py:   65]: batch_acc: 0.21875
+[25/05/25 23:10:32] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 23:10:39] [optim.py:   73]: step 260, LR: 0.000037
+[25/05/25 23:10:49] [optim.py:   73]: step 261, LR: 0.000036
+[25/05/25 23:10:59] [optim.py:   73]: step 262, LR: 0.000036
+[25/05/25 23:11:02] [eval_visz.py:   65]: batch_acc: 0.240234375
+[25/05/25 23:11:02] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 23:11:09] [optim.py:   73]: step 263, LR: 0.000036
+[25/05/25 23:11:19] [optim.py:   73]: step 264, LR: 0.000035
+[25/05/25 23:11:29] [optim.py:   73]: step 265, LR: 0.000035
+[25/05/25 23:11:32] [eval_visz.py:   65]: batch_acc: 0.2109375
+[25/05/25 23:11:32] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 23:11:39] [optim.py:   73]: step 266, LR: 0.000035
+[25/05/25 23:11:49] [optim.py:   73]: step 267, LR: 0.000034
+[25/05/25 23:11:59] [optim.py:   73]: step 268, LR: 0.000034
+[25/05/25 23:12:02] [eval_visz.py:   65]: batch_acc: 0.2109375
+[25/05/25 23:12:02] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 23:12:09] [optim.py:   73]: step 269, LR: 0.000033
+[25/05/25 23:12:19] [optim.py:   73]: step 270, LR: 0.000033
+[25/05/25 23:12:29] [optim.py:   73]: step 271, LR: 0.000033
+[25/05/25 23:12:32] [eval_visz.py:   65]: batch_acc: 0.2578125
+[25/05/25 23:12:32] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 23:12:39] [optim.py:   73]: step 272, LR: 0.000032
+[25/05/25 23:12:49] [optim.py:   73]: step 273, LR: 0.000032
+[25/05/25 23:12:59] [optim.py:   73]: step 274, LR: 0.000032
+[25/05/25 23:13:02] [eval_visz.py:   65]: batch_acc: 0.240234375
+[25/05/25 23:13:02] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 23:13:06] [optim.py:   73]: step 275, LR: 0.000032
+[25/05/25 23:13:13] [optim.py:   73]: step 276, LR: 0.000031
+[25/05/25 23:13:19] [optim.py:   73]: step 277, LR: 0.000031
+[25/05/25 23:13:22] [eval_visz.py:   65]: batch_acc: 0.1617647111415863
+[25/05/25 23:13:23] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 23:13:29] [optim.py:   73]: step 278, LR: 0.000031
+[25/05/25 23:13:40] [optim.py:   73]: step 279, LR: 0.000030
+[25/05/25 23:13:49] [optim.py:   73]: step 280, LR: 0.000030
+[25/05/25 23:13:53] [eval_visz.py:   65]: batch_acc: 0.20703125
+[25/05/25 23:13:53] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 23:13:59] [optim.py:   73]: step 281, LR: 0.000030
+[25/05/25 23:14:09] [optim.py:   73]: step 282, LR: 0.000029
+[25/05/25 23:14:19] [optim.py:   73]: step 283, LR: 0.000029
+[25/05/25 23:14:23] [eval_visz.py:   65]: batch_acc: 0.2109375
+[25/05/25 23:14:23] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 23:14:29] [optim.py:   73]: step 284, LR: 0.000029
+[25/05/25 23:14:39] [optim.py:   73]: step 285, LR: 0.000029
+[25/05/25 23:14:49] [optim.py:   73]: step 286, LR: 0.000028
+[25/05/25 23:14:52] [eval_visz.py:   65]: batch_acc: 0.234375
+[25/05/25 23:14:52] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 23:14:59] [optim.py:   73]: step 287, LR: 0.000028
+[25/05/25 23:15:09] [optim.py:   73]: step 288, LR: 0.000028
+[25/05/25 23:15:19] [optim.py:   73]: step 289, LR: 0.000027
+[25/05/25 23:15:22] [eval_visz.py:   65]: batch_acc: 0.216796875
+[25/05/25 23:15:22] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 23:15:29] [optim.py:   73]: step 290, LR: 0.000027
+[25/05/25 23:15:39] [optim.py:   73]: step 291, LR: 0.000027
+[25/05/25 23:15:49] [optim.py:   73]: step 292, LR: 0.000027
+[25/05/25 23:15:52] [eval_visz.py:   65]: batch_acc: 0.244140625
+[25/05/25 23:15:52] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 23:15:59] [optim.py:   73]: step 293, LR: 0.000026
+[25/05/25 23:16:09] [optim.py:   73]: step 294, LR: 0.000026
+[25/05/25 23:16:19] [optim.py:   73]: step 295, LR: 0.000026
+[25/05/25 23:16:22] [eval_visz.py:   65]: batch_acc: 0.2265625
+[25/05/25 23:16:22] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 23:16:29] [optim.py:   73]: step 296, LR: 0.000026
+[25/05/25 23:16:39] [optim.py:   73]: step 297, LR: 0.000025
+[25/05/25 23:16:49] [optim.py:   73]: step 298, LR: 0.000025
+[25/05/25 23:16:52] [eval_visz.py:   65]: batch_acc: 0.212890625
+[25/05/25 23:16:52] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 23:16:59] [optim.py:   73]: step 299, LR: 0.000025
+[25/05/25 23:17:09] [optim.py:   73]: step 300, LR: 0.000025
+[25/05/25 23:17:19] [optim.py:   73]: step 301, LR: 0.000024
+[25/05/25 23:17:22] [eval_visz.py:   65]: batch_acc: 0.22265625
+[25/05/25 23:17:22] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 23:17:29] [optim.py:   73]: step 302, LR: 0.000024
+[25/05/25 23:17:39] [optim.py:   73]: step 303, LR: 0.000024
+[25/05/25 23:17:49] [optim.py:   73]: step 304, LR: 0.000024
+[25/05/25 23:17:52] [eval_visz.py:   65]: batch_acc: 0.23046875
+[25/05/25 23:17:52] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 23:17:59] [optim.py:   73]: step 305, LR: 0.000023
+[25/05/25 23:18:09] [optim.py:   73]: step 306, LR: 0.000023
+[25/05/25 23:18:19] [optim.py:   73]: step 307, LR: 0.000023
+[25/05/25 23:18:22] [eval_visz.py:   65]: batch_acc: 0.23046875
+[25/05/25 23:18:22] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 23:18:29] [optim.py:   73]: step 308, LR: 0.000023
+[25/05/25 23:18:39] [optim.py:   73]: step 309, LR: 0.000022
+[25/05/25 23:18:49] [optim.py:   73]: step 310, LR: 0.000022
+[25/05/25 23:18:52] [eval_visz.py:   65]: batch_acc: 0.212890625
+[25/05/25 23:18:52] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 23:18:59] [optim.py:   73]: step 311, LR: 0.000022
+[25/05/25 23:19:09] [optim.py:   73]: step 312, LR: 0.000022
+[25/05/25 23:19:19] [optim.py:   73]: step 313, LR: 0.000022
+[25/05/25 23:19:22] [eval_visz.py:   65]: batch_acc: 0.21484375
+[25/05/25 23:19:22] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 23:19:29] [optim.py:   73]: step 314, LR: 0.000021
+[25/05/25 23:19:39] [optim.py:   73]: step 315, LR: 0.000021
+[25/05/25 23:19:49] [optim.py:   73]: step 316, LR: 0.000021
+[25/05/25 23:19:52] [eval_visz.py:   65]: batch_acc: 0.216796875
+[25/05/25 23:19:52] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 23:19:59] [optim.py:   73]: step 317, LR: 0.000021
+[25/05/25 23:20:09] [optim.py:   73]: step 318, LR: 0.000020
+[25/05/25 23:20:19] [optim.py:   73]: step 319, LR: 0.000020
+[25/05/25 23:20:22] [eval_visz.py:   65]: batch_acc: 0.236328125
+[25/05/25 23:20:22] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 23:20:28] [optim.py:   73]: step 320, LR: 0.000020
+[25/05/25 23:20:39] [optim.py:   73]: step 321, LR: 0.000020
+[25/05/25 23:20:49] [optim.py:   73]: step 322, LR: 0.000020
+[25/05/25 23:20:52] [eval_visz.py:   65]: batch_acc: 0.26171875
+[25/05/25 23:20:52] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 23:20:58] [optim.py:   73]: step 323, LR: 0.000019
+[25/05/25 23:21:09] [optim.py:   73]: step 324, LR: 0.000019
+[25/05/25 23:21:19] [optim.py:   73]: step 325, LR: 0.000019
+[25/05/25 23:21:22] [eval_visz.py:   65]: batch_acc: 0.1875
+[25/05/25 23:21:22] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 23:21:28] [optim.py:   73]: step 326, LR: 0.000019
+[25/05/25 23:21:39] [optim.py:   73]: step 327, LR: 0.000019
+[25/05/25 23:21:49] [optim.py:   73]: step 328, LR: 0.000019
+[25/05/25 23:21:52] [eval_visz.py:   65]: batch_acc: 0.197265625
+[25/05/25 23:21:52] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 23:21:58] [optim.py:   73]: step 329, LR: 0.000018
+[25/05/25 23:22:09] [optim.py:   73]: step 330, LR: 0.000018
+[25/05/25 23:22:18] [optim.py:   73]: step 331, LR: 0.000018
+[25/05/25 23:22:22] [eval_visz.py:   65]: batch_acc: 0.1875
+[25/05/25 23:22:22] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 23:22:28] [optim.py:   73]: step 332, LR: 0.000018
+[25/05/25 23:22:39] [optim.py:   73]: step 333, LR: 0.000018
+[25/05/25 23:22:48] [optim.py:   73]: step 334, LR: 0.000017
+[25/05/25 23:22:52] [eval_visz.py:   65]: batch_acc: 0.1953125
+[25/05/25 23:22:52] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 23:22:55] [optim.py:   73]: step 335, LR: 0.000017
+[25/05/25 23:23:02] [optim.py:   73]: step 336, LR: 0.000017
+[25/05/25 23:23:09] [optim.py:   73]: step 337, LR: 0.000017
+[25/05/25 23:23:12] [eval_visz.py:   65]: batch_acc: 0.23529411852359772
+[25/05/25 23:23:12] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 23:23:19] [optim.py:   73]: step 338, LR: 0.000017
+[25/05/25 23:23:29] [optim.py:   73]: step 339, LR: 0.000017
+[25/05/25 23:23:39] [optim.py:   73]: step 340, LR: 0.000016
+[25/05/25 23:23:49] [optim.py:   73]: step 341, LR: 0.000016
+[25/05/25 23:23:52] [eval_visz.py:   65]: batch_acc: 0.205078125
+[25/05/25 23:23:52] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 23:23:58] [optim.py:   73]: step 342, LR: 0.000016
+[25/05/25 23:24:09] [optim.py:   73]: step 343, LR: 0.000016
+[25/05/25 23:24:19] [optim.py:   73]: step 344, LR: 0.000016
+[25/05/25 23:24:28] [optim.py:   73]: step 345, LR: 0.000016
+[25/05/25 23:24:32] [eval_visz.py:   65]: batch_acc: 0.21875
+[25/05/25 23:24:32] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 23:24:38] [optim.py:   73]: step 346, LR: 0.000015
+[25/05/25 23:24:48] [optim.py:   73]: step 347, LR: 0.000015
+[25/05/25 23:24:58] [optim.py:   73]: step 348, LR: 0.000015
+[25/05/25 23:25:08] [optim.py:   73]: step 349, LR: 0.000015
+[25/05/25 23:25:11] [eval_visz.py:   65]: batch_acc: 0.20703125
+[25/05/25 23:25:11] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 23:25:18] [optim.py:   73]: step 350, LR: 0.000015
+[25/05/25 23:25:28] [optim.py:   73]: step 351, LR: 0.000015
+[25/05/25 23:25:38] [optim.py:   73]: step 352, LR: 0.000015
+[25/05/25 23:25:48] [optim.py:   73]: step 353, LR: 0.000014
+[25/05/25 23:25:51] [eval_visz.py:   65]: batch_acc: 0.228515625
+[25/05/25 23:25:51] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 23:25:58] [optim.py:   73]: step 354, LR: 0.000014
+[25/05/25 23:26:08] [optim.py:   73]: step 355, LR: 0.000014
+[25/05/25 23:26:18] [optim.py:   73]: step 356, LR: 0.000014
+[25/05/25 23:26:27] [optim.py:   73]: step 357, LR: 0.000014
+[25/05/25 23:26:31] [eval_visz.py:   65]: batch_acc: 0.232421875
+[25/05/25 23:26:31] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 23:26:37] [optim.py:   73]: step 358, LR: 0.000014
+[25/05/25 23:26:48] [optim.py:   73]: step 359, LR: 0.000014
+[25/05/25 23:26:57] [optim.py:   73]: step 360, LR: 0.000013
+[25/05/25 23:27:07] [optim.py:   73]: step 361, LR: 0.000013
+[25/05/25 23:27:10] [eval_visz.py:   65]: batch_acc: 0.203125
+[25/05/25 23:27:10] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 23:27:17] [optim.py:   73]: step 362, LR: 0.000013
+[25/05/25 23:27:27] [optim.py:   73]: step 363, LR: 0.000013
+[25/05/25 23:27:37] [optim.py:   73]: step 364, LR: 0.000013
+[25/05/25 23:27:47] [optim.py:   73]: step 365, LR: 0.000013
+[25/05/25 23:27:50] [eval_visz.py:   65]: batch_acc: 0.21875
+[25/05/25 23:27:50] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 23:27:57] [optim.py:   73]: step 366, LR: 0.000013
+[25/05/25 23:28:07] [optim.py:   73]: step 367, LR: 0.000013
+[25/05/25 23:28:17] [optim.py:   73]: step 368, LR: 0.000012
+[25/05/25 23:28:27] [optim.py:   73]: step 369, LR: 0.000012
+[25/05/25 23:28:30] [eval_visz.py:   65]: batch_acc: 0.234375
+[25/05/25 23:28:30] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 23:28:36] [optim.py:   73]: step 370, LR: 0.000012
+[25/05/25 23:28:47] [optim.py:   73]: step 371, LR: 0.000012
+[25/05/25 23:28:57] [optim.py:   73]: step 372, LR: 0.000012
+[25/05/25 23:29:06] [optim.py:   73]: step 373, LR: 0.000012
+[25/05/25 23:29:10] [eval_visz.py:   65]: batch_acc: 0.23046875
+[25/05/25 23:29:10] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 23:29:16] [optim.py:   73]: step 374, LR: 0.000012
+[25/05/25 23:29:26] [optim.py:   73]: step 375, LR: 0.000012
+[25/05/25 23:29:36] [optim.py:   73]: step 376, LR: 0.000011
+[25/05/25 23:29:46] [optim.py:   73]: step 377, LR: 0.000011
+[25/05/25 23:29:49] [eval_visz.py:   65]: batch_acc: 0.197265625
+[25/05/25 23:29:49] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 23:29:56] [optim.py:   73]: step 378, LR: 0.000011
+[25/05/25 23:30:06] [optim.py:   73]: step 379, LR: 0.000011
+[25/05/25 23:30:16] [optim.py:   73]: step 380, LR: 0.000011
+[25/05/25 23:30:26] [optim.py:   73]: step 381, LR: 0.000011
+[25/05/25 23:30:29] [eval_visz.py:   65]: batch_acc: 0.244140625
+[25/05/25 23:30:29] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 23:30:36] [optim.py:   73]: step 382, LR: 0.000011
+[25/05/25 23:30:46] [optim.py:   73]: step 383, LR: 0.000011
+[25/05/25 23:30:56] [optim.py:   73]: step 384, LR: 0.000011
+[25/05/25 23:31:05] [optim.py:   73]: step 385, LR: 0.000010
+[25/05/25 23:31:09] [eval_visz.py:   65]: batch_acc: 0.203125
+[25/05/25 23:31:09] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 23:31:15] [optim.py:   73]: step 386, LR: 0.000010
+[25/05/25 23:31:26] [optim.py:   73]: step 387, LR: 0.000010
+[25/05/25 23:31:35] [optim.py:   73]: step 388, LR: 0.000010
+[25/05/25 23:31:45] [optim.py:   73]: step 389, LR: 0.000010
+[25/05/25 23:31:48] [eval_visz.py:   65]: batch_acc: 0.2421875
+[25/05/25 23:31:48] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 23:31:55] [optim.py:   73]: step 390, LR: 0.000010
+[25/05/25 23:32:05] [optim.py:   73]: step 391, LR: 0.000010
+[25/05/25 23:32:15] [optim.py:   73]: step 392, LR: 0.000010
+[25/05/25 23:32:25] [optim.py:   73]: step 393, LR: 0.000010
+[25/05/25 23:32:28] [eval_visz.py:   65]: batch_acc: 0.244140625
+[25/05/25 23:32:28] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 23:32:35] [optim.py:   73]: step 394, LR: 0.000010
+[25/05/25 23:32:45] [optim.py:   73]: step 395, LR: 0.000009
+[25/05/25 23:32:55] [optim.py:   73]: step 396, LR: 0.000009
+[25/05/25 23:33:05] [optim.py:   73]: step 397, LR: 0.000009
+[25/05/25 23:33:08] [eval_visz.py:   65]: batch_acc: 0.248046875
+[25/05/25 23:33:08] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 23:33:14] [optim.py:   73]: step 398, LR: 0.000009
+[25/05/25 23:33:25] [optim.py:   73]: step 399, LR: 0.000009
+[25/05/25 23:33:35] [optim.py:   73]: step 400, LR: 0.000009
+[25/05/25 23:33:44] [optim.py:   73]: step 401, LR: 0.000009
+[25/05/25 23:33:48] [eval_visz.py:   65]: batch_acc: 0.220703125
+[25/05/25 23:33:48] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 23:33:54] [optim.py:   73]: step 402, LR: 0.000009
+[25/05/25 23:34:05] [optim.py:   73]: step 403, LR: 0.000009
+[25/05/25 23:34:14] [optim.py:   73]: step 404, LR: 0.000009
+[25/05/25 23:34:24] [optim.py:   73]: step 405, LR: 0.000009
+[25/05/25 23:34:27] [eval_visz.py:   65]: batch_acc: 0.21875
+[25/05/25 23:34:27] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 23:34:34] [optim.py:   73]: step 406, LR: 0.000008
+[25/05/25 23:34:44] [optim.py:   73]: step 407, LR: 0.000008
+[25/05/25 23:34:54] [optim.py:   73]: step 408, LR: 0.000008
+[25/05/25 23:35:04] [optim.py:   73]: step 409, LR: 0.000008
+[25/05/25 23:35:07] [eval_visz.py:   65]: batch_acc: 0.21875
+[25/05/25 23:35:07] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 23:35:14] [optim.py:   73]: step 410, LR: 0.000008
+[25/05/25 23:35:24] [optim.py:   73]: step 411, LR: 0.000008
+[25/05/25 23:35:34] [optim.py:   73]: step 412, LR: 0.000008
+[25/05/25 23:35:44] [optim.py:   73]: step 413, LR: 0.000008
+[25/05/25 23:35:47] [eval_visz.py:   65]: batch_acc: 0.2421875
+[25/05/25 23:35:47] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 23:35:50] [optim.py:   73]: step 414, LR: 0.000008
+[25/05/25 23:35:58] [optim.py:   73]: step 415, LR: 0.000008
+[25/05/25 23:36:04] [optim.py:   73]: step 416, LR: 0.000008
+[25/05/25 23:36:11] [optim.py:   73]: step 417, LR: 0.000008
+[25/05/25 23:36:14] [eval_visz.py:   65]: batch_acc: 0.1985294073820114
+[25/05/25 23:36:14] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 23:36:20] [optim.py:   73]: step 418, LR: 0.000007
+[25/05/25 23:36:31] [optim.py:   73]: step 419, LR: 0.000007
+[25/05/25 23:36:41] [optim.py:   73]: step 420, LR: 0.000007
+[25/05/25 23:36:50] [optim.py:   73]: step 421, LR: 0.000007
+[25/05/25 23:36:54] [eval_visz.py:   65]: batch_acc: 0.236328125
+[25/05/25 23:36:54] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 23:37:00] [optim.py:   73]: step 422, LR: 0.000007
+[25/05/25 23:37:10] [optim.py:   73]: step 423, LR: 0.000007
+[25/05/25 23:37:20] [optim.py:   73]: step 424, LR: 0.000007
+[25/05/25 23:37:30] [optim.py:   73]: step 425, LR: 0.000007
+[25/05/25 23:37:33] [eval_visz.py:   65]: batch_acc: 0.21875
+[25/05/25 23:37:33] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 23:37:40] [optim.py:   73]: step 426, LR: 0.000007
+[25/05/25 23:37:50] [optim.py:   73]: step 427, LR: 0.000007
+[25/05/25 23:38:00] [optim.py:   73]: step 428, LR: 0.000007
+[25/05/25 23:38:10] [optim.py:   73]: step 429, LR: 0.000007
+[25/05/25 23:38:13] [eval_visz.py:   65]: batch_acc: 0.19140625
+[25/05/25 23:38:13] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 23:38:20] [optim.py:   73]: step 430, LR: 0.000007
+[25/05/25 23:38:30] [optim.py:   73]: step 431, LR: 0.000007
+[25/05/25 23:38:40] [optim.py:   73]: step 432, LR: 0.000007
+[25/05/25 23:38:49] [optim.py:   73]: step 433, LR: 0.000006
+[25/05/25 23:38:53] [eval_visz.py:   65]: batch_acc: 0.248046875
+[25/05/25 23:38:53] [eval_visz.py:   49]: batch_counter=4
+[25/05/25 23:38:59] [optim.py:   73]: step 434, LR: 0.000006
+[25/05/25 23:39:10] [optim.py:   73]: step 435, LR: 0.000006
+[25/05/25 23:39:19] [optim.py:   73]: step 436, LR: 0.000006
+[25/05/25 23:39:29] [optim.py:   73]: step 437, LR: 0.000006
+[25/05/25 23:39:32] [eval_visz.py:   65]: batch_acc: 0.220703125
+[25/05/25 23:39:32] [eval_visz.py:   49]: batch_counter=5
+[25/05/25 23:39:39] [optim.py:   73]: step 438, LR: 0.000006
+[25/05/25 23:39:49] [optim.py:   73]: step 439, LR: 0.000006
+[25/05/25 23:39:59] [optim.py:   73]: step 440, LR: 0.000006
+[25/05/25 23:40:09] [optim.py:   73]: step 441, LR: 0.000006
+[25/05/25 23:40:12] [eval_visz.py:   65]: batch_acc: 0.234375
+[25/05/25 23:40:12] [eval_visz.py:   49]: batch_counter=6
+[25/05/25 23:40:19] [optim.py:   73]: step 442, LR: 0.000006
+[25/05/25 23:40:29] [optim.py:   73]: step 443, LR: 0.000006
+[25/05/25 23:40:39] [optim.py:   73]: step 444, LR: 0.000006
+[25/05/25 23:40:49] [optim.py:   73]: step 445, LR: 0.000006
+[25/05/25 23:40:52] [eval_visz.py:   65]: batch_acc: 0.232421875
+[25/05/25 23:40:52] [eval_visz.py:   49]: batch_counter=7
+[25/05/25 23:40:58] [optim.py:   73]: step 446, LR: 0.000006
+[25/05/25 23:41:09] [optim.py:   73]: step 447, LR: 0.000006
+[25/05/25 23:41:19] [optim.py:   73]: step 448, LR: 0.000006
+[25/05/25 23:41:28] [optim.py:   73]: step 449, LR: 0.000005
+[25/05/25 23:41:32] [eval_visz.py:   65]: batch_acc: 0.23828125
+[25/05/25 23:41:32] [eval_visz.py:   49]: batch_counter=8
+[25/05/25 23:41:38] [optim.py:   73]: step 450, LR: 0.000005
+[25/05/25 23:41:49] [optim.py:   73]: step 451, LR: 0.000005
+[25/05/25 23:41:58] [optim.py:   73]: step 452, LR: 0.000005
+[25/05/25 23:42:08] [optim.py:   73]: step 453, LR: 0.000005
+[25/05/25 23:42:11] [eval_visz.py:   65]: batch_acc: 0.224609375
+[25/05/25 23:42:11] [eval_visz.py:   49]: batch_counter=9
+[25/05/25 23:42:18] [optim.py:   73]: step 454, LR: 0.000005
+[25/05/25 23:42:28] [optim.py:   73]: step 455, LR: 0.000005
+[25/05/25 23:42:38] [optim.py:   73]: step 456, LR: 0.000005
+[25/05/25 23:42:48] [optim.py:   73]: step 457, LR: 0.000005
+[25/05/25 23:42:51] [eval_visz.py:   65]: batch_acc: 0.212890625
+[25/05/25 23:42:51] [eval_visz.py:   49]: batch_counter=10
+[25/05/25 23:42:58] [optim.py:   73]: step 458, LR: 0.000005
+[25/05/25 23:43:08] [optim.py:   73]: step 459, LR: 0.000005
+[25/05/25 23:43:18] [optim.py:   73]: step 460, LR: 0.000005
+[25/05/25 23:43:28] [optim.py:   73]: step 461, LR: 0.000005
+[25/05/25 23:43:31] [eval_visz.py:   65]: batch_acc: 0.212890625
+[25/05/25 23:43:31] [eval_visz.py:   49]: batch_counter=11
+[25/05/25 23:43:37] [optim.py:   73]: step 462, LR: 0.000005
+[25/05/25 23:43:48] [optim.py:   73]: step 463, LR: 0.000005
+[25/05/25 23:43:57] [optim.py:   73]: step 464, LR: 0.000005
+[25/05/25 23:44:07] [optim.py:   73]: step 465, LR: 0.000005
+[25/05/25 23:44:10] [eval_visz.py:   65]: batch_acc: 0.21484375
+[25/05/25 23:44:10] [eval_visz.py:   49]: batch_counter=12
+[25/05/25 23:44:17] [optim.py:   73]: step 466, LR: 0.000005
+[25/05/25 23:44:27] [optim.py:   73]: step 467, LR: 0.000005
+[25/05/25 23:44:37] [optim.py:   73]: step 468, LR: 0.000005
+[25/05/25 23:44:47] [optim.py:   73]: step 469, LR: 0.000004
+[25/05/25 23:44:50] [eval_visz.py:   65]: batch_acc: 0.220703125
+[25/05/25 23:44:50] [eval_visz.py:   49]: batch_counter=13
+[25/05/25 23:44:57] [optim.py:   73]: step 470, LR: 0.000004
+[25/05/25 23:45:07] [optim.py:   73]: step 471, LR: 0.000004
+[25/05/25 23:45:17] [optim.py:   73]: step 472, LR: 0.000004
+[25/05/25 23:45:27] [optim.py:   73]: step 473, LR: 0.000004
+[25/05/25 23:45:30] [eval_visz.py:   65]: batch_acc: 0.234375
+[25/05/25 23:45:30] [eval_visz.py:   49]: batch_counter=14
+[25/05/25 23:45:36] [optim.py:   73]: step 474, LR: 0.000004
+[25/05/25 23:45:47] [optim.py:   73]: step 475, LR: 0.000004
+[25/05/25 23:45:57] [optim.py:   73]: step 476, LR: 0.000004
+[25/05/25 23:46:06] [optim.py:   73]: step 477, LR: 0.000004
+[25/05/25 23:46:10] [eval_visz.py:   65]: batch_acc: 0.234375
+[25/05/25 23:46:10] [eval_visz.py:   49]: batch_counter=15
+[25/05/25 23:46:16] [optim.py:   73]: step 478, LR: 0.000004
+[25/05/25 23:46:27] [optim.py:   73]: step 479, LR: 0.000004
+[25/05/25 23:46:36] [optim.py:   73]: step 480, LR: 0.000004
+[25/05/25 23:46:46] [optim.py:   73]: step 481, LR: 0.000004
+[25/05/25 23:46:49] [eval_visz.py:   65]: batch_acc: 0.2109375
+[25/05/25 23:46:49] [eval_visz.py:   49]: batch_counter=16
+[25/05/25 23:46:56] [optim.py:   73]: step 482, LR: 0.000004
+[25/05/25 23:47:06] [optim.py:   73]: step 483, LR: 0.000004
+[25/05/25 23:47:16] [optim.py:   73]: step 484, LR: 0.000004
+[25/05/25 23:47:26] [optim.py:   73]: step 485, LR: 0.000004
+[25/05/25 23:47:29] [eval_visz.py:   65]: batch_acc: 0.189453125
+[25/05/25 23:47:29] [eval_visz.py:   49]: batch_counter=17
+[25/05/25 23:47:36] [optim.py:   73]: step 486, LR: 0.000004
+[25/05/25 23:47:46] [optim.py:   73]: step 487, LR: 0.000004
+[25/05/25 23:47:56] [optim.py:   73]: step 488, LR: 0.000004
+[25/05/25 23:48:06] [optim.py:   73]: step 489, LR: 0.000004
+[25/05/25 23:48:09] [eval_visz.py:   65]: batch_acc: 0.208984375
+[25/05/25 23:48:09] [eval_visz.py:   49]: batch_counter=18
+[25/05/25 23:48:15] [optim.py:   73]: step 490, LR: 0.000004
+[25/05/25 23:48:26] [optim.py:   73]: step 491, LR: 0.000004
+[25/05/25 23:48:36] [optim.py:   73]: step 492, LR: 0.000004
+[25/05/25 23:48:45] [optim.py:   73]: step 493, LR: 0.000004
+[25/05/25 23:48:49] [eval_visz.py:   65]: batch_acc: 0.22265625
+[25/05/25 23:48:49] [eval_visz.py:   49]: batch_counter=19
+[25/05/25 23:48:52] [optim.py:   73]: step 494, LR: 0.000003
+[25/05/25 23:48:59] [optim.py:   73]: step 495, LR: 0.000003
+[25/05/25 23:49:06] [optim.py:   73]: step 496, LR: 0.000003
+[25/05/25 23:49:12] [optim.py:   73]: step 497, LR: 0.000003
+[25/05/25 23:49:15] [eval_visz.py:   65]: batch_acc: 0.24264706671237946
+[25/05/25 23:49:16] [eval_visz.py:   49]: batch_counter=0
+[25/05/25 23:49:22] [optim.py:   73]: step 498, LR: 0.000003
+[25/05/25 23:49:32] [optim.py:   73]: step 499, LR: 0.000003
+[25/05/25 23:49:42] [optim.py:   73]: step 500, LR: 0.000003
+[25/05/25 23:49:52] [optim.py:   73]: step 501, LR: 0.000003
+[25/05/25 23:50:02] [optim.py:   73]: step 502, LR: 0.000003
+[25/05/25 23:50:05] [eval_visz.py:   65]: batch_acc: 0.201171875
+[25/05/25 23:50:05] [eval_visz.py:   49]: batch_counter=1
+[25/05/25 23:50:12] [optim.py:   73]: step 503, LR: 0.000003
+[25/05/25 23:50:22] [optim.py:   73]: step 504, LR: 0.000003
+[25/05/25 23:50:32] [optim.py:   73]: step 505, LR: 0.000003
+[25/05/25 23:50:47] [optim.py:   73]: step 506, LR: 0.000003
+[25/05/25 23:50:57] [optim.py:   73]: step 507, LR: 0.000003
+[25/05/25 23:51:00] [eval_visz.py:   65]: batch_acc: 0.23046875
+[25/05/25 23:51:00] [eval_visz.py:   49]: batch_counter=2
+[25/05/25 23:51:07] [optim.py:   73]: step 508, LR: 0.000003
+[25/05/25 23:51:17] [optim.py:   73]: step 509, LR: 0.000003
+[25/05/25 23:51:27] [optim.py:   73]: step 510, LR: 0.000003
+[25/05/25 23:51:37] [optim.py:   73]: step 511, LR: 0.000003
+[25/05/25 23:51:56] [optim.py:   73]: step 512, LR: 0.000003
+[25/05/25 23:51:59] [eval_visz.py:   65]: batch_acc: 0.21484375
+[25/05/25 23:51:59] [eval_visz.py:   49]: batch_counter=3
+[25/05/25 23:52:06] [optim.py:   73]: step 513, LR: 0.000003

@@ -1,0 +1,837 @@
+[25/05/21 14:14:47] [utils.py:   82]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/21 14:14:47] [utils.py:   83]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea2/cifar10
+DESC: 
+EARLY_STOP_BEGIN: 70
+EARLY_STOP_PATIENCE: 30
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 0.1
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_TET_bn_sgd-1-0.1-1024_250521-141447.txt
+LOG_TIME: 250521-141447
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['bn']
+  ARCH: WRN2810_TET_2
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 1024
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LAMBDA_CLS: 1.0
+  LAMBDA_ENERGY: 0.01
+  LR: 0.1
+  METHOD: sgd
+  MOMENTUM: 0.9
+  NESTEROV: True
+  N_EPOCHS: 200
+  SCHEDULER_GAMMA: 0.2
+  SCHEDULER_MILESTONES: [60, 120, 160]
+  STEPS: 1
+  TEST_BATCH_SIZE: 128
+  WD: 0.0005
+OPTIM_ENERGY:
+  BATCH_SIZE: 128
+  BETA: 0.9
+  CLIP_NORM: False
+  DAMPENING: 0.0
+  LR: 0.001
+  METHOD: Adam
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/cifar10/bn-wrn-28-10-tet
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+[25/05/21 14:15:02] [param.py:   18]: adapting weights of batch-normalization layer
+[25/05/21 14:15:02] [setada.py:  138]: model for adaptation: WideResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(16, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(16, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block2): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 320, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(160, 320, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(320, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (block3): NetworkBlock(
+    (layer): Sequential(
+      (0): BasicBlock(
+        (bn1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 640, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(320, 640, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=640, out_features=10, bias=True)
+)
+[25/05/21 14:15:02] [setada.py:  139]: params for adaptation: ['block1.layer.0.bn1.weight', 'block1.layer.0.bn1.bias', 'block1.layer.0.bn2.weight', 'block1.layer.0.bn2.bias', 'block1.layer.1.bn1.weight', 'block1.layer.1.bn1.bias', 'block1.layer.1.bn2.weight', 'block1.layer.1.bn2.bias', 'block1.layer.2.bn1.weight', 'block1.layer.2.bn1.bias', 'block1.layer.2.bn2.weight', 'block1.layer.2.bn2.bias', 'block1.layer.3.bn1.weight', 'block1.layer.3.bn1.bias', 'block1.layer.3.bn2.weight', 'block1.layer.3.bn2.bias', 'block2.layer.0.bn1.weight', 'block2.layer.0.bn1.bias', 'block2.layer.0.bn2.weight', 'block2.layer.0.bn2.bias', 'block2.layer.1.bn1.weight', 'block2.layer.1.bn1.bias', 'block2.layer.1.bn2.weight', 'block2.layer.1.bn2.bias', 'block2.layer.2.bn1.weight', 'block2.layer.2.bn1.bias', 'block2.layer.2.bn2.weight', 'block2.layer.2.bn2.bias', 'block2.layer.3.bn1.weight', 'block2.layer.3.bn1.bias', 'block2.layer.3.bn2.weight', 'block2.layer.3.bn2.bias', 'block3.layer.0.bn1.weight', 'block3.layer.0.bn1.bias', 'block3.layer.0.bn2.weight', 'block3.layer.0.bn2.bias', 'block3.layer.1.bn1.weight', 'block3.layer.1.bn1.bias', 'block3.layer.1.bn2.weight', 'block3.layer.1.bn2.bias', 'block3.layer.2.bn1.weight', 'block3.layer.2.bn1.bias', 'block3.layer.2.bn2.weight', 'block3.layer.2.bn2.bias', 'block3.layer.3.bn1.weight', 'block3.layer.3.bn1.bias', 'block3.layer.3.bn2.weight', 'block3.layer.3.bn2.bias', 'bn1.weight', 'bn1.bias']
+[25/05/21 14:15:02] [setada.py:  140]: optimizer for adaptation: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.001
+    maximize: False
+    weight_decay: 0.0
+)
+Building model...
+Files already downloaded and verified
+Files already downloaded and verified
+Training:   0%|          | 0/200 [00:00<?, ?epoch/s]Training:   0%|          | 1/200 [00:27<1:30:42, 27.35s/epoch]Training:   1%|          | 2/200 [00:46<1:13:35, 22.30s/epoch]Training:   2%|▏         | 3/200 [01:04<1:06:56, 20.39s/epoch]Training:   2%|▏         | 4/200 [01:22<1:03:38, 19.48s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:28,  1.20s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:16,  1.11s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:09,  1.08s/batch][A
+Testing:  25%|██▌       | 20/79 [00:21<01:02,  1.07s/batch][A
+Testing:  32%|███▏      | 25/79 [00:26<00:57,  1.06s/batch][A
+Testing:  38%|███▊      | 30/79 [00:32<00:51,  1.06s/batch][A
+Testing:  44%|████▍     | 35/79 [00:37<00:46,  1.05s/batch][A
+Testing:  51%|█████     | 40/79 [00:42<00:41,  1.05s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:47<00:35,  1.05s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:53<00:30,  1.05s/batch][A
+Testing:  70%|██████▉   | 55/79 [00:58<00:25,  1.05s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:03<00:20,  1.06s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:09<00:14,  1.06s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:14<00:09,  1.06s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:19<00:04,  1.07s/batch][ATesting: 100%|██████████| 79/79 [01:23<00:00,  1.06s/batch]
+[25/05/21 14:18:06] [train_TET.py:  228]: Test set Accuracy: 20.12
+/gpfs/home5/jhutter/dl2/train_TET.py:190: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
+[25/05/21 14:18:06] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775], train_energy_losses=[], eval_accs=[20.12]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (5,) and (0,)
+Training:   2%|▎         | 5/200 [03:04<2:39:48, 49.17s/epoch]Training:   3%|▎         | 6/200 [03:22<2:05:36, 38.85s/epoch]Training:   4%|▎         | 7/200 [03:41<1:44:00, 32.33s/epoch]Training:   4%|▍         | 8/200 [04:00<1:29:54, 28.10s/epoch]Training:   4%|▍         | 9/200 [04:19<1:20:25, 25.26s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:24,  1.14s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.11s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:49<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 14:21:08] [train_TET.py:  228]: Test set Accuracy: 20.54
+[25/05/21 14:21:08] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119], train_energy_losses=[], eval_accs=[20.12, 20.54]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (10,) and (0,)
+Training:   5%|▌         | 10/200 [06:05<2:38:55, 50.19s/epoch]Training:   6%|▌         | 11/200 [06:25<2:08:13, 40.71s/epoch]Training:   6%|▌         | 12/200 [06:44<1:47:00, 34.15s/epoch]Training:   6%|▋         | 13/200 [07:03<1:32:20, 29.63s/epoch]Training:   7%|▋         | 14/200 [07:22<1:22:05, 26.48s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.16s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:18,  1.13s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.12s/batch][A
+Testing:  32%|███▏      | 25/79 [00:28<01:00,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:39<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:18<00:10,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:27<00:00,  1.10s/batch]
+[25/05/21 14:24:11] [train_TET.py:  228]: Test set Accuracy: 23.2
+[25/05/21 14:24:11] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (15,) and (0,)
+Training:   8%|▊         | 15/200 [09:09<2:36:08, 50.64s/epoch]Training:   8%|▊         | 16/200 [09:28<2:06:17, 41.18s/epoch]Training:   8%|▊         | 17/200 [09:47<1:45:31, 34.60s/epoch]Training:   9%|▉         | 18/200 [10:08<1:32:10, 30.39s/epoch]Training:  10%|▉         | 19/200 [10:27<1:21:32, 27.03s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:24,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.13s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.12s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<01:00,  1.12s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:39<00:49,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:18<00:10,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:27<00:00,  1.10s/batch]
+[25/05/21 14:27:16] [train_TET.py:  228]: Test set Accuracy: 25.94
+[25/05/21 14:27:16] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (20,) and (0,)
+Training:  10%|█         | 20/200 [12:14<2:32:44, 50.91s/epoch]Training:  10%|█         | 21/200 [12:33<2:03:29, 41.40s/epoch]Training:  11%|█         | 22/200 [12:52<1:43:08, 34.77s/epoch]Training:  12%|█▏        | 23/200 [13:11<1:28:48, 30.10s/epoch]Training:  12%|█▏        | 24/200 [13:31<1:18:43, 26.84s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.13s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.12s/batch][A
+Testing:  32%|███▏      | 25/79 [00:28<01:00,  1.12s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:39<00:49,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:18<00:10,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:27<00:00,  1.10s/batch]
+[25/05/21 14:30:20] [train_TET.py:  228]: Test set Accuracy: 26.48
+[25/05/21 14:30:20] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (25,) and (0,)
+Training:  12%|█▎        | 25/200 [15:17<2:28:08, 50.79s/epoch]Training:  13%|█▎        | 26/200 [15:37<1:59:46, 41.30s/epoch]Training:  14%|█▎        | 27/200 [15:56<1:40:01, 34.69s/epoch]Training:  14%|█▍        | 28/200 [16:15<1:26:07, 30.05s/epoch]Training:  14%|█▍        | 29/200 [16:34<1:16:22, 26.80s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:24,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.12s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<01:00,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:39<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:10,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:27<00:00,  1.10s/batch]
+[25/05/21 14:33:23] [train_TET.py:  228]: Test set Accuracy: 27.95
+[25/05/21 14:33:23] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (30,) and (0,)
+Training:  15%|█▌        | 30/200 [18:21<2:23:41, 50.72s/epoch]Training:  16%|█▌        | 31/200 [18:40<1:56:14, 41.27s/epoch]Training:  16%|█▌        | 32/200 [19:00<1:37:48, 34.93s/epoch]Training:  16%|█▋        | 33/200 [19:19<1:24:07, 30.23s/epoch]Training:  17%|█▋        | 34/200 [19:39<1:14:55, 27.08s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.13s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.12s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<01:00,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:39<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:27<00:00,  1.10s/batch]
+[25/05/21 14:36:28] [train_TET.py:  228]: Test set Accuracy: 27.95
+[25/05/21 14:36:28] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (35,) and (0,)
+Training:  18%|█▊        | 35/200 [21:26<2:19:58, 50.90s/epoch]Training:  18%|█▊        | 36/200 [21:45<1:53:06, 41.38s/epoch]Training:  18%|█▊        | 37/200 [22:04<1:34:21, 34.73s/epoch]Training:  19%|█▉        | 38/200 [22:23<1:21:12, 30.07s/epoch]Training:  20%|█▉        | 39/200 [22:42<1:12:00, 26.84s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.13s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<01:00,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:39<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 14:39:31] [train_TET.py:  228]: Test set Accuracy: 29.07
+[25/05/21 14:39:31] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    make_loss_acc_plot(train_total_losses, train_cls_losses, train_energy_losses, eval_accs, eval_interval=eval_every)
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (40,) and (0,)
+Training:  20%|██        | 40/200 [24:29<2:15:11, 50.70s/epoch]Training:  20%|██        | 41/200 [24:48<1:49:16, 41.23s/epoch]Training:  21%|██        | 42/200 [25:07<1:31:08, 34.61s/epoch]Training:  22%|██▏       | 43/200 [25:26<1:18:26, 29.98s/epoch]Training:  22%|██▏       | 44/200 [25:46<1:09:32, 26.75s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<01:00,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 14:42:34] [train_TET.py:  228]: Test set Accuracy: 27.66
+[25/05/21 14:42:34] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (45,) and (0,)
+Training:  22%|██▎       | 45/200 [27:32<2:10:42, 50.60s/epoch]Training:  23%|██▎       | 46/200 [27:51<1:45:36, 41.15s/epoch]Training:  24%|██▎       | 47/200 [28:10<1:28:06, 34.55s/epoch]Training:  24%|██▍       | 48/200 [28:29<1:15:49, 29.93s/epoch]Training:  24%|██▍       | 49/200 [28:48<1:07:11, 26.70s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 14:45:37] [train_TET.py:  228]: Test set Accuracy: 27.92
+[25/05/21 14:45:37] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (50,) and (0,)
+Training:  25%|██▌       | 50/200 [30:35<2:06:22, 50.55s/epoch]Training:  26%|██▌       | 51/200 [30:54<1:42:08, 41.13s/epoch]Training:  26%|██▌       | 52/200 [31:13<1:25:10, 34.53s/epoch]Training:  26%|██▋       | 53/200 [31:32<1:13:17, 29.92s/epoch]Training:  27%|██▋       | 54/200 [31:51<1:04:57, 26.70s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 14:48:40] [train_TET.py:  228]: Test set Accuracy: 28.71
+[25/05/21 14:48:40] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92, 28.71]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (55,) and (0,)
+Training:  28%|██▊       | 55/200 [33:37<2:02:08, 50.54s/epoch]Training:  28%|██▊       | 56/200 [33:56<1:38:39, 41.11s/epoch]Training:  28%|██▊       | 57/200 [34:16<1:22:16, 34.52s/epoch]Training:  29%|██▉       | 58/200 [34:35<1:10:46, 29.91s/epoch]Training:  30%|██▉       | 59/200 [34:54<1:02:42, 26.69s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.13s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.12s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 14:51:42] [train_TET.py:  228]: Test set Accuracy: 30.91
+[25/05/21 14:51:42] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92, 28.71, 30.91]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (60,) and (0,)
+Training:  30%|███       | 60/200 [36:40<1:57:54, 50.54s/epoch]Training:  30%|███       | 61/200 [36:59<1:35:14, 41.11s/epoch]Training:  31%|███       | 62/200 [37:18<1:19:23, 34.52s/epoch]Training:  32%|███▏      | 63/200 [37:37<1:08:16, 29.90s/epoch]Training:  32%|███▏      | 64/200 [37:57<1:00:29, 26.69s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:24,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.11s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:50<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:01<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.11s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 14:54:45] [train_TET.py:  228]: Test set Accuracy: 31.37
+[25/05/21 14:54:45] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92, 28.71, 30.91, 31.37]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (65,) and (0,)
+Training:  32%|███▎      | 65/200 [39:43<1:53:41, 50.53s/epoch]Training:  33%|███▎      | 66/200 [40:02<1:31:48, 41.11s/epoch]Training:  34%|███▎      | 67/200 [40:21<1:16:30, 34.52s/epoch]Training:  34%|███▍      | 68/200 [40:40<1:05:48, 29.91s/epoch]Training:  34%|███▍      | 69/200 [40:59<58:17, 26.70s/epoch]  
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:25,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.11s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:49<00:37,  1.10s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:00<00:26,  1.10s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:21,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.11s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.11s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.10s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 14:57:48] [train_TET.py:  228]: Test set Accuracy: 32.55
+[25/05/21 14:57:48] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92, 28.71, 30.91, 31.37, 32.55]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (70,) and (0,)
+Training:  35%|███▌      | 70/200 [42:45<1:49:24, 50.50s/epoch]Training:  36%|███▌      | 71/200 [43:05<1:28:18, 41.07s/epoch]Training:  36%|███▌      | 72/200 [43:24<1:13:36, 34.50s/epoch]Training:  36%|███▋      | 73/200 [43:43<1:03:15, 29.89s/epoch]Training:  37%|███▋      | 74/200 [44:02<55:57, 26.65s/epoch]  
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:24,  1.14s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.11s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.10s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:49<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.10s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:00<00:26,  1.10s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:20,  1.10s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:11<00:15,  1.10s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.10s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:22<00:04,  1.10s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 15:00:50] [train_TET.py:  228]: Test set Accuracy: 32.75
+[25/05/21 15:00:50] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627, 1.3778213189572703, 1.3706459512515945, 1.3688010390923948, 1.3656941627969548, 1.362652214205995], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627, 1.3778213189572703, 1.3706459512515945, 1.3688010390923948, 1.3656941627969548, 1.362652214205995], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92, 28.71, 30.91, 31.37, 32.55, 32.75]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (75,) and (0,)
+Training:  38%|███▊      | 75/200 [45:48<1:45:03, 50.43s/epoch]Training:  38%|███▊      | 76/200 [46:07<1:24:48, 41.03s/epoch]Training:  38%|███▊      | 77/200 [46:26<1:10:38, 34.46s/epoch]Training:  39%|███▉      | 78/200 [46:45<1:00:42, 29.86s/epoch]Training:  40%|███▉      | 79/200 [47:04<53:44, 26.65s/epoch]  
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:24,  1.14s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.11s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.11s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.11s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.11s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:49<00:37,  1.11s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.11s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:00<00:26,  1.11s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:20,  1.11s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:12<00:15,  1.10s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.10s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:23<00:04,  1.10s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.10s/batch]
+[25/05/21 15:03:53] [train_TET.py:  228]: Test set Accuracy: 31.11
+[25/05/21 15:03:53] [train_TET.py:  204]: Model did not improve (eval acc: 31.11, best: 32.75,5/30 in a row)
+[25/05/21 15:03:53] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627, 1.3778213189572703, 1.3706459512515945, 1.3688010390923948, 1.3656941627969548, 1.362652214205995, 1.3584358059630102, 1.3554156556421397, 1.3513502782704878, 1.3503807223573023, 1.3457323969626913], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627, 1.3778213189572703, 1.3706459512515945, 1.3688010390923948, 1.3656941627969548, 1.362652214205995, 1.3584358059630102, 1.3554156556421397, 1.3513502782704878, 1.3503807223573023, 1.3457323969626913], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92, 28.71, 30.91, 31.37, 32.55, 32.75, 31.11]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (80,) and (0,)
+Training:  40%|████      | 80/200 [48:50<1:40:53, 50.45s/epoch]Training:  40%|████      | 81/200 [49:09<1:21:23, 41.03s/epoch]Training:  41%|████      | 82/200 [49:28<1:07:44, 34.45s/epoch]Training:  42%|████▏     | 83/200 [49:48<58:16, 29.88s/epoch]  Training:  42%|████▏     | 84/200 [50:07<51:34, 26.67s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:24,  1.15s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.11s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.10s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.10s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:42,  1.10s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:49<00:37,  1.10s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:31,  1.10s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:00<00:26,  1.10s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:20,  1.10s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:11<00:15,  1.10s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.10s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:22<00:04,  1.10s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.09s/batch]
+[25/05/21 15:06:55] [train_TET.py:  228]: Test set Accuracy: 32.03
+[25/05/21 15:06:55] [train_TET.py:  204]: Model did not improve (eval acc: 32.03, best: 32.75,10/30 in a row)
+[25/05/21 15:06:55] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627, 1.3778213189572703, 1.3706459512515945, 1.3688010390923948, 1.3656941627969548, 1.362652214205995, 1.3584358059630102, 1.3554156556421397, 1.3513502782704878, 1.3503807223573023, 1.3457323969626913, 1.343087643993144, 1.3419572479870854, 1.3373702691525828, 1.335930804817044, 1.330142118492905], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627, 1.3778213189572703, 1.3706459512515945, 1.3688010390923948, 1.3656941627969548, 1.362652214205995, 1.3584358059630102, 1.3554156556421397, 1.3513502782704878, 1.3503807223573023, 1.3457323969626913, 1.343087643993144, 1.3419572479870854, 1.3373702691525828, 1.335930804817044, 1.330142118492905], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92, 28.71, 30.91, 31.37, 32.55, 32.75, 31.11, 32.03]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (85,) and (0,)
+Training:  42%|████▎     | 85/200 [51:53<1:36:35, 50.39s/epoch]Training:  43%|████▎     | 86/200 [52:12<1:17:52, 40.99s/epoch]Training:  44%|████▎     | 87/200 [52:31<1:04:48, 34.41s/epoch]Training:  44%|████▍     | 88/200 [52:50<55:43, 29.85s/epoch]  Training:  44%|████▍     | 89/200 [53:09<49:14, 26.61s/epoch]
+Testing:   0%|          | 0/79 [00:00<?, ?batch/s][A
+Testing:   6%|▋         | 5/79 [00:05<01:24,  1.14s/batch][A
+Testing:  13%|█▎        | 10/79 [00:11<01:17,  1.12s/batch][A
+Testing:  19%|█▉        | 15/79 [00:16<01:11,  1.11s/batch][A
+Testing:  25%|██▌       | 20/79 [00:22<01:05,  1.11s/batch][A
+Testing:  32%|███▏      | 25/79 [00:27<00:59,  1.11s/batch][A
+Testing:  38%|███▊      | 30/79 [00:33<00:54,  1.10s/batch][A
+Testing:  44%|████▍     | 35/79 [00:38<00:48,  1.10s/batch][A
+Testing:  51%|█████     | 40/79 [00:44<00:43,  1.10s/batch][A
+Testing:  57%|█████▋    | 45/79 [00:49<00:37,  1.10s/batch][A
+Testing:  63%|██████▎   | 50/79 [00:55<00:32,  1.10s/batch][A
+Testing:  70%|██████▉   | 55/79 [01:00<00:26,  1.10s/batch][A
+Testing:  76%|███████▌  | 60/79 [01:06<00:20,  1.10s/batch][A
+Testing:  82%|████████▏ | 65/79 [01:11<00:15,  1.10s/batch][A
+Testing:  89%|████████▊ | 70/79 [01:17<00:09,  1.10s/batch][A
+Testing:  95%|█████████▍| 75/79 [01:22<00:04,  1.10s/batch][ATesting: 100%|██████████| 79/79 [01:26<00:00,  1.09s/batch]
+[25/05/21 15:09:57] [train_TET.py:  228]: Test set Accuracy: 33.39
+[25/05/21 15:09:57] [train_TET.py:  215]: Error while plotting, train_total_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627, 1.3778213189572703, 1.3706459512515945, 1.3688010390923948, 1.3656941627969548, 1.362652214205995, 1.3584358059630102, 1.3554156556421397, 1.3513502782704878, 1.3503807223573023, 1.3457323969626913, 1.343087643993144, 1.3419572479870854, 1.3373702691525828, 1.335930804817044, 1.330142118492905, 1.3256264511419802, 1.323482591278699, 1.3209105511100925, 1.317142408721301, 1.315497417839206], train_cls_losses=[2.317510332380022, 2.286571269132653, 2.266540994449538, 2.2469499549087213, 2.2261140784438775, 2.2031341864138234, 2.179792443100287, 2.156977283711336, 2.134883958466199, 2.113153418716119, 2.0934669338926977, 2.0750396105707907, 2.057153974260603, 2.0411046865035076, 2.024769841408243, 2.0093061486069037, 1.9931710690868145, 1.9782638549804688, 1.9635957990373885, 1.9476337043606504, 1.931598118373326, 1.9155837078483737, 1.9004961909080038, 1.8851238951391103, 1.8707921553631217, 1.8558933491609535, 1.8418737917530292, 1.828302033093511, 1.8145854716398278, 1.7997368014588648, 1.7862844661790498, 1.7735239145707111, 1.7608035340601085, 1.7459941007653061, 1.7336117491430165, 1.7194424064791933, 1.7055972352319835, 1.6926661900111608, 1.680300031389509, 1.6674099357760683, 1.6551773694096779, 1.645909834881218, 1.6304930083605709, 1.61981792839206, 1.6069258086535396, 1.6000257219587053, 1.586344660544882, 1.5775084203603316, 1.5645376711475605, 1.5579874466876595, 1.5469053618761959, 1.53655414192044, 1.5210910719268176, 1.5136682938556283, 1.5022933337153221, 1.4958816839724172, 1.482736081493144, 1.4691548250159439, 1.4654625094666773, 1.4483639464086415, 1.417248317173549, 1.4081662236427774, 1.4025181361607142, 1.4015129245057398, 1.3968635091976243, 1.3919129663584184, 1.3900308414381377, 1.385041061712771, 1.3809942128706951, 1.3794412418287627, 1.3778213189572703, 1.3706459512515945, 1.3688010390923948, 1.3656941627969548, 1.362652214205995, 1.3584358059630102, 1.3554156556421397, 1.3513502782704878, 1.3503807223573023, 1.3457323969626913, 1.343087643993144, 1.3419572479870854, 1.3373702691525828, 1.335930804817044, 1.330142118492905, 1.3256264511419802, 1.323482591278699, 1.3209105511100925, 1.317142408721301, 1.315497417839206], train_energy_losses=[], eval_accs=[20.12, 20.54, 23.2, 25.94, 26.48, 27.95, 27.95, 29.07, 27.66, 27.92, 28.71, 30.91, 31.37, 32.55, 32.75, 31.11, 32.03, 33.39]
+Traceback (most recent call last):
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 213, in train
+    try:
+        ^
+  File "/gpfs/home5/jhutter/dl2/train_TET.py", line 70, in make_loss_acc_plot
+    ax1.plot(epochs, train_energy_losses, color='tab:green', label='Energy loss')
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_axes.py", line 1688, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 311, in __call__
+    yield from self._plot_args(
+               ^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (90,) and (0,)
+Training:  45%|████▌     | 90/200 [54:55<1:32:18, 50.35s/epoch]Training:  46%|████▌     | 91/200 [55:14<1:14:26, 40.97s/epoch]Training:  46%|████▌     | 92/200 [55:33<1:01:56, 34.41s/epoch]Training:  46%|████▋     | 93/200 [55:52<53:11, 29.83s/epoch]  Training:  47%|████▋     | 94/200 [56:11<47:00, 26.61s/epoch]slurmstepd: error: *** JOB 11959656 ON gcn68 CANCELLED AT 2025-05-21T15:11:24 ***
+
+JOB STATISTICS
+==============
+Job ID: 11959656
+Cluster: snellius
+User/Group: jhutter/jhutter
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:02
+CPU Efficiency: 0.00% of 17:06:54 core-walltime
+Job Wall-clock time: 00:57:03
+Memory Utilized: 1.74 GB
+Memory Efficiency: 1.45% of 120.00 GB (120.00 GB/node)

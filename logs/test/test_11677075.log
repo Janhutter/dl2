@@ -1,0 +1,779 @@
+[25/05/09 11:59:06] [utils.py:   79]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/09 11:59:06] [utils.py:   80]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea/cifar10
+DESC: 
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_ln_sgd-1-0.01-512_250509-115906.txt
+LOG_TIME: 250509-115906
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['ln']
+  ARCH: VIT_16
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 512
+  BETA: 0.9
+  CLIP_NORM: True
+  DAMPENING: 0.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/vit/cifar10/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Some weights of ViTForImageClassification were not initialized from the model checkpoint at google/vit-base-patch16-224-in21k and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[25/05/09 11:59:07] [utils.py:   79]: PyTorch Version: torch=2.5.0+cu124, cuda=12.4, cudnn=90100
+[25/05/09 11:59:07] [utils.py:   80]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: cifar10
+  IMG_SIZE: 32
+  NUM_CHANNEL: 3
+  NUM_CLASSES: 10
+  NUM_EX: 10000
+  SEVERITY: [5, 4, 3, 2, 1]
+  TYPE: ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /scratch-shared/tea/cifar10
+DESC: 
+EATA:
+  D_MARGIN: 0.05
+  E_MARGIN: 2.763102111592855
+  FISHER_ALPHA: 2000.0
+  FISHER_SIZE: 2000
+  USE_FISHER: False
+EBM:
+  BUFFER_SIZE: 10000
+  REINIT_FREQ: 0.05
+  SGLD_LR: 1.0
+  SGLD_STD: 0.01
+  STEPS: 20
+  UNCOND: uncond
+LOG_DEST: pretrain_ln_sgd-1-0.01-512_250509-115906.txt
+LOG_TIME: 250509-115906
+MODEL:
+  ADAPTATION: source
+  ADA_PARAM: ['ln']
+  ARCH: VIT_16
+  EPISODIC: False
+OPTIM:
+  BATCH_SIZE: 512
+  BETA: 0.9
+  CLIP_NORM: True
+  DAMPENING: 0.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+PL:
+  ALPHA: 0.1
+  THRESHOLD: 0.9
+RNG_SEED: 1
+SAR:
+  MARGIN_E0: 2.763102111592855
+SAVE_DIR: ./save/vit/cifar10/vit_16
+SHOT:
+  CLF_COEFF: 0.1
+  THRESHOLD: 0.9
+TEST:
+  
+Files already downloaded and verified
+Files already downloaded and verified
+  0%|          | 0/20 [00:00<?, ?it/s][25/05/09 12:00:17] [train.py:   92]: epoch: 1
+Train Epoch: 1 [0/50000 (0%)]	Loss: 2.289062
+Train Epoch: 1 [5120/50000 (10%)]	Loss: 2.291016
+Train Epoch: 1 [10240/50000 (20%)]	Loss: 2.285156
+Train Epoch: 1 [15360/50000 (31%)]	Loss: 2.251953
+Train Epoch: 1 [20480/50000 (41%)]	Loss: 2.246094
+Train Epoch: 1 [25600/50000 (51%)]	Loss: 2.203125
+Train Epoch: 1 [30720/50000 (61%)]	Loss: 2.162109
+Train Epoch: 1 [35840/50000 (71%)]	Loss: 2.119141
+Train Epoch: 1 [40960/50000 (82%)]	Loss: 2.076172
+Train Epoch: 1 [46080/50000 (92%)]	Loss: 1.997070
+[25/05/09 12:00:18] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:00:18] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:00:18] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:00:18] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:00:19] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:00:19] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:00:19] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:00:19] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:00:19] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:00:20] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:00:20] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:00:20] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:00:20] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:00:21] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:00:21] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:00:21] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:00:21] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:00:21] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:00:22] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:00:22] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:00:22] [train.py:  110]: Test set Accuracy: 79.84
+  5%|▌         | 1/20 [01:05<20:41, 65.36s/it][25/05/09 12:01:20] [train.py:   92]: epoch: 2
+Train Epoch: 2 [0/50000 (0%)]	Loss: 1.931641
+Train Epoch: 2 [5120/50000 (10%)]	Loss: 1.843750
+Train Epoch: 2 [10240/50000 (20%)]	Loss: 1.704102
+Train Epoch: 2 [15360/50000 (31%)]	Loss: 1.574219
+Train Epoch: 2 [20480/50000 (41%)]	Loss: 1.419922
+Train Epoch: 2 [25600/50000 (51%)]	Loss: 1.261719
+Train Epoch: 2 [30720/50000 (61%)]	Loss: 1.055664
+Train Epoch: 2 [35840/50000 (71%)]	Loss: 0.910645
+Train Epoch: 2 [40960/50000 (82%)]	Loss: 0.753418
+Train Epoch: 2 [46080/50000 (92%)]	Loss: 0.574707
+[25/05/09 12:01:21] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:01:21] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:01:22] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:01:22] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:01:22] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:01:22] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:01:23] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:01:23] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:01:23] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:01:23] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:01:24] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:01:24] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:01:24] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:01:24] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:01:24] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:01:25] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:01:25] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:01:25] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:01:25] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:01:26] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:01:26] [train.py:  110]: Test set Accuracy: 96.16
+ 10%|█         | 2/20 [02:08<19:16, 64.24s/it][25/05/09 12:02:23] [train.py:   92]: epoch: 3
+Train Epoch: 3 [0/50000 (0%)]	Loss: 0.510742
+Train Epoch: 3 [5120/50000 (10%)]	Loss: 0.423096
+Train Epoch: 3 [10240/50000 (20%)]	Loss: 0.332520
+Train Epoch: 3 [15360/50000 (31%)]	Loss: 0.268066
+Train Epoch: 3 [20480/50000 (41%)]	Loss: 0.251953
+Train Epoch: 3 [25600/50000 (51%)]	Loss: 0.238892
+Train Epoch: 3 [30720/50000 (61%)]	Loss: 0.196777
+Train Epoch: 3 [35840/50000 (71%)]	Loss: 0.159668
+Train Epoch: 3 [40960/50000 (82%)]	Loss: 0.168823
+Train Epoch: 3 [46080/50000 (92%)]	Loss: 0.165649
+[25/05/09 12:02:24] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:02:25] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:02:25] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:02:25] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:02:25] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:02:26] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:02:26] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:02:26] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:02:26] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:02:26] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:02:27] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:02:27] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:02:27] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:02:27] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:02:28] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:02:28] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:02:28] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:02:28] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:02:28] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:02:29] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:02:29] [train.py:  110]: Test set Accuracy: 97.45
+ 15%|█▌        | 3/20 [03:11<18:03, 63.75s/it][25/05/09 12:03:26] [train.py:   92]: epoch: 4
+Train Epoch: 4 [0/50000 (0%)]	Loss: 0.132446
+Train Epoch: 4 [5120/50000 (10%)]	Loss: 0.153198
+Train Epoch: 4 [10240/50000 (20%)]	Loss: 0.146362
+Train Epoch: 4 [15360/50000 (31%)]	Loss: 0.127319
+Train Epoch: 4 [20480/50000 (41%)]	Loss: 0.109741
+Train Epoch: 4 [25600/50000 (51%)]	Loss: 0.091003
+Train Epoch: 4 [30720/50000 (61%)]	Loss: 0.109985
+Train Epoch: 4 [35840/50000 (71%)]	Loss: 0.102722
+Train Epoch: 4 [40960/50000 (82%)]	Loss: 0.092224
+Train Epoch: 4 [46080/50000 (92%)]	Loss: 0.077515
+[25/05/09 12:03:27] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:03:28] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:03:28] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:03:28] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:03:28] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:03:29] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:03:29] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:03:29] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:03:29] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:03:29] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:03:30] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:03:30] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:03:30] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:03:30] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:03:31] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:03:31] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:03:31] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:03:31] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:03:31] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:03:32] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:03:32] [train.py:  110]: Test set Accuracy: 97.58
+ 20%|██        | 4/20 [04:15<16:55, 63.48s/it][25/05/09 12:04:29] [train.py:   92]: epoch: 5
+Train Epoch: 5 [0/50000 (0%)]	Loss: 0.078247
+Train Epoch: 5 [5120/50000 (10%)]	Loss: 0.083069
+Train Epoch: 5 [10240/50000 (20%)]	Loss: 0.063965
+Train Epoch: 5 [15360/50000 (31%)]	Loss: 0.134155
+Train Epoch: 5 [20480/50000 (41%)]	Loss: 0.070740
+Train Epoch: 5 [25600/50000 (51%)]	Loss: 0.083801
+Train Epoch: 5 [30720/50000 (61%)]	Loss: 0.068665
+Train Epoch: 5 [35840/50000 (71%)]	Loss: 0.075317
+Train Epoch: 5 [40960/50000 (82%)]	Loss: 0.086060
+Train Epoch: 5 [46080/50000 (92%)]	Loss: 0.082397
+[25/05/09 12:04:30] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:04:31] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:04:31] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:04:31] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:04:31] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:04:32] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:04:32] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:04:32] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:04:32] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:04:33] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:04:33] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:04:33] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:04:33] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:04:33] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:04:34] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:04:34] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:04:34] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:04:34] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:04:35] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:04:35] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:04:35] [train.py:  110]: Test set Accuracy: 98.03
+ 25%|██▌       | 5/20 [05:18<15:49, 63.32s/it][25/05/09 12:05:32] [train.py:   92]: epoch: 6
+Train Epoch: 6 [0/50000 (0%)]	Loss: 0.051788
+Train Epoch: 6 [5120/50000 (10%)]	Loss: 0.062195
+Train Epoch: 6 [10240/50000 (20%)]	Loss: 0.043793
+Train Epoch: 6 [15360/50000 (31%)]	Loss: 0.048767
+Train Epoch: 6 [20480/50000 (41%)]	Loss: 0.045563
+Train Epoch: 6 [25600/50000 (51%)]	Loss: 0.072632
+Train Epoch: 6 [30720/50000 (61%)]	Loss: 0.050110
+Train Epoch: 6 [35840/50000 (71%)]	Loss: 0.065735
+Train Epoch: 6 [40960/50000 (82%)]	Loss: 0.053192
+Train Epoch: 6 [46080/50000 (92%)]	Loss: 0.063293
+[25/05/09 12:05:34] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:05:34] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:05:34] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:05:34] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:05:34] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:05:35] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:05:35] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:05:35] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:05:35] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:05:36] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:05:36] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:05:36] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:05:36] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:05:37] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:05:37] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:05:37] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:05:37] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:05:37] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:05:38] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:05:38] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:05:38] [train.py:  110]: Test set Accuracy: 98.05
+ 30%|███       | 6/20 [06:21<14:45, 63.24s/it][25/05/09 12:06:35] [train.py:   92]: epoch: 7
+Train Epoch: 7 [0/50000 (0%)]	Loss: 0.042572
+Train Epoch: 7 [5120/50000 (10%)]	Loss: 0.043457
+Train Epoch: 7 [10240/50000 (20%)]	Loss: 0.062073
+Train Epoch: 7 [15360/50000 (31%)]	Loss: 0.038055
+Train Epoch: 7 [20480/50000 (41%)]	Loss: 0.037262
+Train Epoch: 7 [25600/50000 (51%)]	Loss: 0.042816
+Train Epoch: 7 [30720/50000 (61%)]	Loss: 0.053406
+Train Epoch: 7 [35840/50000 (71%)]	Loss: 0.062744
+Train Epoch: 7 [40960/50000 (82%)]	Loss: 0.050354
+Train Epoch: 7 [46080/50000 (92%)]	Loss: 0.049683
+[25/05/09 12:06:36] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:06:37] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:06:37] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:06:37] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:06:37] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:06:38] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:06:38] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:06:38] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:06:38] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:06:39] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:06:39] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:06:39] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:06:39] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:06:40] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:06:40] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:06:40] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:06:40] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:06:40] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:06:41] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:06:41] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:06:41] [train.py:  110]: Test set Accuracy: 98.12
+ 35%|███▌      | 7/20 [07:24<13:40, 63.15s/it][25/05/09 12:07:39] [train.py:   92]: epoch: 8
+Train Epoch: 8 [0/50000 (0%)]	Loss: 0.032959
+Train Epoch: 8 [5120/50000 (10%)]	Loss: 0.039246
+Train Epoch: 8 [10240/50000 (20%)]	Loss: 0.036499
+Train Epoch: 8 [15360/50000 (31%)]	Loss: 0.028717
+Train Epoch: 8 [20480/50000 (41%)]	Loss: 0.039001
+Train Epoch: 8 [25600/50000 (51%)]	Loss: 0.037445
+Train Epoch: 8 [30720/50000 (61%)]	Loss: 0.032471
+Train Epoch: 8 [35840/50000 (71%)]	Loss: 0.047424
+Train Epoch: 8 [40960/50000 (82%)]	Loss: 0.040710
+Train Epoch: 8 [46080/50000 (92%)]	Loss: 0.043488
+[25/05/09 12:07:40] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:07:40] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:07:40] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:07:41] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:07:41] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:07:41] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:07:41] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:07:41] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:07:42] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:07:42] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:07:42] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:07:42] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:07:43] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:07:43] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:07:43] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:07:43] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:07:44] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:07:44] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:07:44] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:07:44] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:07:44] [train.py:  110]: Test set Accuracy: 98.35
+ 40%|████      | 8/20 [08:28<12:41, 63.46s/it][25/05/09 12:08:43] [train.py:   92]: epoch: 9
+Train Epoch: 9 [0/50000 (0%)]	Loss: 0.023682
+Train Epoch: 9 [5120/50000 (10%)]	Loss: 0.040833
+Train Epoch: 9 [10240/50000 (20%)]	Loss: 0.031982
+Train Epoch: 9 [15360/50000 (31%)]	Loss: 0.038666
+Train Epoch: 9 [20480/50000 (41%)]	Loss: 0.039948
+Train Epoch: 9 [25600/50000 (51%)]	Loss: 0.031342
+Train Epoch: 9 [30720/50000 (61%)]	Loss: 0.033691
+Train Epoch: 9 [35840/50000 (71%)]	Loss: 0.042938
+Train Epoch: 9 [40960/50000 (82%)]	Loss: 0.049622
+Train Epoch: 9 [46080/50000 (92%)]	Loss: 0.046082
+[25/05/09 12:08:44] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:08:44] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:08:44] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:08:45] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:08:45] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:08:45] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:08:45] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:08:45] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:08:46] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:08:46] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:08:46] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:08:46] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:08:47] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:08:47] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:08:47] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:08:47] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:08:48] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:08:48] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:08:48] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:08:48] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:08:48] [train.py:  110]: Test set Accuracy: 98.25
+ 45%|████▌     | 9/20 [09:31<11:37, 63.39s/it][25/05/09 12:09:46] [train.py:   92]: epoch: 10
+Train Epoch: 10 [0/50000 (0%)]	Loss: 0.021851
+Train Epoch: 10 [5120/50000 (10%)]	Loss: 0.026352
+Train Epoch: 10 [10240/50000 (20%)]	Loss: 0.029343
+Train Epoch: 10 [15360/50000 (31%)]	Loss: 0.035919
+Train Epoch: 10 [20480/50000 (41%)]	Loss: 0.042450
+Train Epoch: 10 [25600/50000 (51%)]	Loss: 0.019333
+Train Epoch: 10 [30720/50000 (61%)]	Loss: 0.032288
+Train Epoch: 10 [35840/50000 (71%)]	Loss: 0.030228
+Train Epoch: 10 [40960/50000 (82%)]	Loss: 0.026260
+Train Epoch: 10 [46080/50000 (92%)]	Loss: 0.028595
+[25/05/09 12:09:47] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:09:48] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:09:48] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:09:48] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:09:48] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:09:49] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:09:49] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:09:49] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:09:49] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:09:49] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:09:50] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:09:50] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:09:50] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:09:50] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:09:51] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:09:51] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:09:51] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:09:51] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:09:51] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:09:52] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:09:52] [train.py:  110]: Test set Accuracy: 98.35
+ 50%|█████     | 10/20 [10:35<10:34, 63.43s/it][25/05/09 12:10:50] [train.py:   92]: epoch: 11
+Train Epoch: 11 [0/50000 (0%)]	Loss: 0.022430
+Train Epoch: 11 [5120/50000 (10%)]	Loss: 0.032898
+Train Epoch: 11 [10240/50000 (20%)]	Loss: 0.021973
+Train Epoch: 11 [15360/50000 (31%)]	Loss: 0.048920
+Train Epoch: 11 [20480/50000 (41%)]	Loss: 0.031799
+Train Epoch: 11 [25600/50000 (51%)]	Loss: 0.042114
+Train Epoch: 11 [30720/50000 (61%)]	Loss: 0.042450
+Train Epoch: 11 [35840/50000 (71%)]	Loss: 0.046570
+Train Epoch: 11 [40960/50000 (82%)]	Loss: 0.017578
+Train Epoch: 11 [46080/50000 (92%)]	Loss: 0.025055
+[25/05/09 12:10:51] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:10:51] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:10:51] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:10:51] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:10:52] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:10:52] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:10:52] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:10:52] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:10:52] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:10:53] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:10:53] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:10:53] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:10:53] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:10:54] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:10:54] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:10:54] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:10:54] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:10:54] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:10:55] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:10:55] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:10:55] [train.py:  110]: Test set Accuracy: 98.29
+ 55%|█████▌    | 11/20 [11:38<09:30, 63.37s/it][25/05/09 12:11:53] [train.py:   92]: epoch: 12
+Train Epoch: 12 [0/50000 (0%)]	Loss: 0.026123
+Train Epoch: 12 [5120/50000 (10%)]	Loss: 0.035217
+Train Epoch: 12 [10240/50000 (20%)]	Loss: 0.024612
+Train Epoch: 12 [15360/50000 (31%)]	Loss: 0.027832
+Train Epoch: 12 [20480/50000 (41%)]	Loss: 0.044373
+Train Epoch: 12 [25600/50000 (51%)]	Loss: 0.020294
+Train Epoch: 12 [30720/50000 (61%)]	Loss: 0.022110
+Train Epoch: 12 [35840/50000 (71%)]	Loss: 0.024933
+Train Epoch: 12 [40960/50000 (82%)]	Loss: 0.040527
+Train Epoch: 12 [46080/50000 (92%)]	Loss: 0.038605
+[25/05/09 12:11:54] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:11:54] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:11:54] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:11:55] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:11:55] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:11:55] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:11:55] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:11:55] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:11:56] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:11:56] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:11:56] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:11:56] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:11:57] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:11:57] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:11:57] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:11:57] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:11:57] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:11:58] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:11:58] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:11:58] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:11:58] [train.py:  110]: Test set Accuracy: 98.38
+ 60%|██████    | 12/20 [12:41<08:26, 63.32s/it][25/05/09 12:12:56] [train.py:   92]: epoch: 13
+Train Epoch: 13 [0/50000 (0%)]	Loss: 0.022522
+Train Epoch: 13 [5120/50000 (10%)]	Loss: 0.026962
+Train Epoch: 13 [10240/50000 (20%)]	Loss: 0.025253
+Train Epoch: 13 [15360/50000 (31%)]	Loss: 0.038910
+Train Epoch: 13 [20480/50000 (41%)]	Loss: 0.019012
+Train Epoch: 13 [25600/50000 (51%)]	Loss: 0.023148
+Train Epoch: 13 [30720/50000 (61%)]	Loss: 0.029968
+Train Epoch: 13 [35840/50000 (71%)]	Loss: 0.023865
+Train Epoch: 13 [40960/50000 (82%)]	Loss: 0.032166
+Train Epoch: 13 [46080/50000 (92%)]	Loss: 0.019699
+[25/05/09 12:12:57] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:12:57] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:12:57] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:12:58] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:12:58] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:12:58] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:12:58] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:12:58] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:12:59] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:12:59] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:12:59] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:12:59] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:13:00] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:13:00] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:13:00] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:13:00] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:13:00] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:13:01] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:13:01] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:13:01] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:13:01] [train.py:  110]: Test set Accuracy: 98.42
+ 65%|██████▌   | 13/20 [13:44<07:22, 63.23s/it][25/05/09 12:13:59] [train.py:   92]: epoch: 14
+Train Epoch: 14 [0/50000 (0%)]	Loss: 0.015305
+Train Epoch: 14 [5120/50000 (10%)]	Loss: 0.018890
+Train Epoch: 14 [10240/50000 (20%)]	Loss: 0.016479
+Train Epoch: 14 [15360/50000 (31%)]	Loss: 0.023331
+Train Epoch: 14 [20480/50000 (41%)]	Loss: 0.013321
+Train Epoch: 14 [25600/50000 (51%)]	Loss: 0.022049
+Train Epoch: 14 [30720/50000 (61%)]	Loss: 0.043182
+Train Epoch: 14 [35840/50000 (71%)]	Loss: 0.043274
+Train Epoch: 14 [40960/50000 (82%)]	Loss: 0.031525
+Train Epoch: 14 [46080/50000 (92%)]	Loss: 0.020340
+[25/05/09 12:14:00] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:14:00] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:14:00] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:14:01] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:14:01] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:14:01] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:14:01] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:14:02] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:14:02] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:14:02] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:14:02] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:14:03] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:14:03] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:14:03] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:14:03] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:14:04] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:14:04] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:14:04] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:14:04] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:14:04] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:14:05] [train.py:  110]: Test set Accuracy: 98.5
+ 70%|███████   | 14/20 [14:47<06:19, 63.24s/it][25/05/09 12:15:02] [train.py:   92]: epoch: 15
+Train Epoch: 15 [0/50000 (0%)]	Loss: 0.012581
+Train Epoch: 15 [5120/50000 (10%)]	Loss: 0.022934
+Train Epoch: 15 [10240/50000 (20%)]	Loss: 0.032227
+Train Epoch: 15 [15360/50000 (31%)]	Loss: 0.017365
+Train Epoch: 15 [20480/50000 (41%)]	Loss: 0.042877
+Train Epoch: 15 [25600/50000 (51%)]	Loss: 0.032288
+Train Epoch: 15 [30720/50000 (61%)]	Loss: 0.030380
+Train Epoch: 15 [35840/50000 (71%)]	Loss: 0.025085
+Train Epoch: 15 [40960/50000 (82%)]	Loss: 0.028976
+Train Epoch: 15 [46080/50000 (92%)]	Loss: 0.020554
+[25/05/09 12:15:04] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:15:04] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:15:04] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:15:04] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:15:04] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:15:05] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:15:05] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:15:05] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:15:05] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:15:06] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:15:06] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:15:06] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:15:06] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:15:06] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:15:07] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:15:07] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:15:07] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:15:07] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:15:08] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:15:08] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:15:08] [train.py:  110]: Test set Accuracy: 98.41
+ 75%|███████▌  | 15/20 [15:51<05:16, 63.29s/it][25/05/09 12:16:06] [train.py:   92]: epoch: 16
+Train Epoch: 16 [0/50000 (0%)]	Loss: 0.040680
+Train Epoch: 16 [5120/50000 (10%)]	Loss: 0.027039
+Train Epoch: 16 [10240/50000 (20%)]	Loss: 0.018021
+Train Epoch: 16 [15360/50000 (31%)]	Loss: 0.045654
+Train Epoch: 16 [20480/50000 (41%)]	Loss: 0.026794
+Train Epoch: 16 [25600/50000 (51%)]	Loss: 0.020142
+Train Epoch: 16 [30720/50000 (61%)]	Loss: 0.021561
+Train Epoch: 16 [35840/50000 (71%)]	Loss: 0.028519
+Train Epoch: 16 [40960/50000 (82%)]	Loss: 0.028076
+Train Epoch: 16 [46080/50000 (92%)]	Loss: 0.024796
+[25/05/09 12:16:07] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:16:07] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:16:07] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:16:07] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:16:08] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:16:08] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:16:08] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:16:08] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:16:08] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:16:09] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:16:09] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:16:09] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:16:09] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:16:10] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:16:10] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:16:10] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:16:10] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:16:11] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:16:11] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:16:11] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:16:11] [train.py:  110]: Test set Accuracy: 98.46
+ 80%|████████  | 16/20 [16:54<04:13, 63.34s/it][25/05/09 12:17:09] [train.py:   92]: epoch: 17
+Train Epoch: 17 [0/50000 (0%)]	Loss: 0.016769
+Train Epoch: 17 [5120/50000 (10%)]	Loss: 0.016556
+Train Epoch: 17 [10240/50000 (20%)]	Loss: 0.027985
+Train Epoch: 17 [15360/50000 (31%)]	Loss: 0.019180
+Train Epoch: 17 [20480/50000 (41%)]	Loss: 0.022720
+Train Epoch: 17 [25600/50000 (51%)]	Loss: 0.018021
+Train Epoch: 17 [30720/50000 (61%)]	Loss: 0.041595
+Train Epoch: 17 [35840/50000 (71%)]	Loss: 0.015144
+Train Epoch: 17 [40960/50000 (82%)]	Loss: 0.024017
+Train Epoch: 17 [46080/50000 (92%)]	Loss: 0.037292
+[25/05/09 12:17:10] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:17:10] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:17:11] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:17:11] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:17:11] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:17:11] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:17:11] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:17:12] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:17:12] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:17:12] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:17:12] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:17:13] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:17:13] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:17:13] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:17:13] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:17:14] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:17:14] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:17:14] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:17:14] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:17:14] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:17:15] [train.py:  110]: Test set Accuracy: 98.45
+ 85%|████████▌ | 17/20 [17:58<03:10, 63.47s/it][25/05/09 12:18:13] [train.py:   92]: epoch: 18
+Train Epoch: 18 [0/50000 (0%)]	Loss: 0.026245
+Train Epoch: 18 [5120/50000 (10%)]	Loss: 0.025986
+Train Epoch: 18 [10240/50000 (20%)]	Loss: 0.014519
+Train Epoch: 18 [15360/50000 (31%)]	Loss: 0.022980
+Train Epoch: 18 [20480/50000 (41%)]	Loss: 0.016251
+Train Epoch: 18 [25600/50000 (51%)]	Loss: 0.020584
+Train Epoch: 18 [30720/50000 (61%)]	Loss: 0.019455
+Train Epoch: 18 [35840/50000 (71%)]	Loss: 0.022873
+Train Epoch: 18 [40960/50000 (82%)]	Loss: 0.021713
+Train Epoch: 18 [46080/50000 (92%)]	Loss: 0.012932
+[25/05/09 12:18:14] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:18:14] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:18:15] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:18:15] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:18:15] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:18:15] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:18:15] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:18:16] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:18:16] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:18:16] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:18:16] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:18:17] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:18:17] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:18:17] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:18:17] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:18:18] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:18:18] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:18:18] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:18:18] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:18:19] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:18:19] [train.py:  110]: Test set Accuracy: 98.46
+ 90%|█████████ | 18/20 [19:01<02:06, 63.47s/it][25/05/09 12:19:16] [train.py:   92]: epoch: 19
+Train Epoch: 19 [0/50000 (0%)]	Loss: 0.030304
+Train Epoch: 19 [5120/50000 (10%)]	Loss: 0.021500
+Train Epoch: 19 [10240/50000 (20%)]	Loss: 0.016357
+Train Epoch: 19 [15360/50000 (31%)]	Loss: 0.022324
+Train Epoch: 19 [20480/50000 (41%)]	Loss: 0.020905
+Train Epoch: 19 [25600/50000 (51%)]	Loss: 0.025635
+Train Epoch: 19 [30720/50000 (61%)]	Loss: 0.010201
+Train Epoch: 19 [35840/50000 (71%)]	Loss: 0.020798
+Train Epoch: 19 [40960/50000 (82%)]	Loss: 0.068359
+Train Epoch: 19 [46080/50000 (92%)]	Loss: 0.022446
+[25/05/09 12:19:17] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:19:18] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:19:18] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:19:18] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:19:18] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:19:19] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:19:19] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:19:19] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:19:19] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:19:20] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:19:20] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:19:20] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:19:20] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:19:21] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:19:21] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:19:21] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:19:21] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:19:21] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:19:22] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:19:22] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:19:22] [train.py:  110]: Test set Accuracy: 98.46
+ 95%|█████████▌| 19/20 [20:05<01:03, 63.42s/it][25/05/09 12:20:20] [train.py:   92]: epoch: 20
+Train Epoch: 20 [0/50000 (0%)]	Loss: 0.017838
+Train Epoch: 20 [5120/50000 (10%)]	Loss: 0.027328
+Train Epoch: 20 [10240/50000 (20%)]	Loss: 0.028915
+Train Epoch: 20 [15360/50000 (31%)]	Loss: 0.035065
+Train Epoch: 20 [20480/50000 (41%)]	Loss: 0.032867
+Train Epoch: 20 [25600/50000 (51%)]	Loss: 0.028397
+Train Epoch: 20 [30720/50000 (61%)]	Loss: 0.021301
+Train Epoch: 20 [35840/50000 (71%)]	Loss: 0.022324
+Train Epoch: 20 [40960/50000 (82%)]	Loss: 0.023880
+Train Epoch: 20 [46080/50000 (92%)]	Loss: 0.021545
+[25/05/09 12:20:21] [eval.py:   47]: Test Batch Process: 1/20
+[25/05/09 12:20:21] [eval.py:   47]: Test Batch Process: 2/20
+[25/05/09 12:20:21] [eval.py:   47]: Test Batch Process: 3/20
+[25/05/09 12:20:21] [eval.py:   47]: Test Batch Process: 4/20
+[25/05/09 12:20:22] [eval.py:   47]: Test Batch Process: 5/20
+[25/05/09 12:20:22] [eval.py:   47]: Test Batch Process: 6/20
+[25/05/09 12:20:22] [eval.py:   47]: Test Batch Process: 7/20
+[25/05/09 12:20:22] [eval.py:   47]: Test Batch Process: 8/20
+[25/05/09 12:20:23] [eval.py:   47]: Test Batch Process: 9/20
+[25/05/09 12:20:23] [eval.py:   47]: Test Batch Process: 10/20
+[25/05/09 12:20:23] [eval.py:   47]: Test Batch Process: 11/20
+[25/05/09 12:20:23] [eval.py:   47]: Test Batch Process: 12/20
+[25/05/09 12:20:23] [eval.py:   47]: Test Batch Process: 13/20
+[25/05/09 12:20:24] [eval.py:   47]: Test Batch Process: 14/20
+[25/05/09 12:20:24] [eval.py:   47]: Test Batch Process: 15/20
+[25/05/09 12:20:24] [eval.py:   47]: Test Batch Process: 16/20
+[25/05/09 12:20:24] [eval.py:   47]: Test Batch Process: 17/20
+[25/05/09 12:20:25] [eval.py:   47]: Test Batch Process: 18/20
+[25/05/09 12:20:25] [eval.py:   47]: Test Batch Process: 19/20
+[25/05/09 12:20:25] [eval.py:   47]: Test Batch Process: 20/20
+[25/05/09 12:20:25] [train.py:  110]: Test set Accuracy: 98.46
+100%|██████████| 20/20 [21:08<00:00, 63.37s/it]100%|██████████| 20/20 [21:08<00:00, 63.42s/it]
+
+JOB STATISTICS
+==============
+Job ID: 11677075
+Cluster: snellius
+User/Group: scur2578/scur2578
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:55:13
+CPU Efficiency: 14.02% of 06:33:54 core-walltime
+Job Wall-clock time: 00:21:53
+Memory Utilized: 2.85 GB
+Memory Efficiency: 2.37% of 120.00 GB (120.00 GB/node)
