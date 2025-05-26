@@ -29,6 +29,8 @@ _C.MODEL = CfgNode()
 # Check https://github.com/RobustBench/robustbench for available models
 _C.MODEL.ARCH = 'Standard'
 
+_C.MODEL.CHECKPOINT_PTH = None
+
 # Choice of (source, norm, tent)
 # - source: baseline without adaptation
 # - norm: test-time normalization
@@ -78,6 +80,12 @@ _C.OPTIM = CfgNode()
 
 # Number of updates per batch
 _C.OPTIM.STEPS = 1
+
+# Number of updates per batch
+_C.OPTIM.WARMUP_STEPS = 1000
+
+# Number of updates per batch
+_C.OPTIM.WARMUP_START_LR = 1e-6
 
 # Learning rate
 _C.OPTIM.LR = 1e-3

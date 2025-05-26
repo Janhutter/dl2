@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 
 from core.data import load_dataloader
-from core.optim import setup_optimizer
+from core.optim import setup_optimizer, setup_optimizer_with_warmup
 from core.param import configure_model, collect_params
 import core.adazoo.energy as energy
 import core.adazoo.tent as tent
@@ -113,6 +113,35 @@ def setup_eata(model, cfg, logger):
     return eta_model
 
 def setup_energy(model, cfg, logger, setup_optim_fn=setup_optimizer):
+    """Set up TEA adaptation.
+    """
+    model = configure_model(model, 
+                            ada_param=cfg.MODEL.ADA_PARAM)
+    params, param_names = collect_params(model, 
+                                         ada_param=cfg.MODEL.ADA_PARAM,
+                                         logger=logger)
+    optimizer = setup_optim_fn(params, cfg, logger)
+    energy_model = energy.Energy(model, optimizer,
+                           steps=cfg.OPTIM.STEPS,
+                           episodic=cfg.MODEL.EPISODIC,
+                           buffer_size=cfg.EBM.BUFFER_SIZE,
+                           sgld_steps=cfg.EBM.STEPS,
+                           sgld_lr=cfg.EBM.SGLD_LR,
+                           sgld_std=cfg.EBM.SGLD_STD,
+                           reinit_freq=cfg.EBM.REINIT_FREQ,
+                           if_cond=cfg.EBM.UNCOND,
+                           n_classes=cfg.CORRUPTION.NUM_CLASSES,
+                           im_sz=cfg.CORRUPTION.IMG_SIZE, 
+                           n_ch = cfg.CORRUPTION.NUM_CHANNEL,
+                           path = cfg.SAVE_DIR,
+                           logger = logger)
+    logger.info(f"model for adaptation: %s", model)
+    logger.info(f"params for adaptation: %s", param_names)
+    logger.info(f"optimizer for adaptation: %s", optimizer)
+    return energy_model
+
+
+def setup_energy_visz(model, cfg, logger, setup_optim_fn=setup_optimizer_with_warmup):
     """Set up TEA adaptation.
     """
     model = configure_model(model, 

@@ -15,6 +15,8 @@ from core.model import build_model_wrn2810bn, build_model_res18bn, build_model_r
 from core.setada import *
 from core.checkpoint import load_checkpoint
 
+# for ttt evaluation
+from ttt_eval import build_model_TTT, evaluate_ood_TTT, evaluate_ori_TTT
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +51,19 @@ def main():
         base_model = build_vit(num_classes=cfg.CORRUPTION.NUM_CLASSES, dropout_rate=0).to(device)
         ckpt = torch.load(os.path.join(cfg.CKPT_DIR ,'{}/{}.pth'.format(cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)))
         base_model.load_state_dict(ckpt['state_dict'])
+    if 'WRN2810_TET' in cfg.MODEL.ARCH:
+        base_model = build_model_wrn2810bn(cfg.CORRUPTION.NUM_CLASSES).to(device)
+
+        ckpt = torch.load(os.path.join(cfg.CKPT_DIR ,'{}/{}.pth'.format(cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)), weights_only=False)
+
+        # Strip prefix in one line
+        state_dict = {k.replace('energy_model.f.', ''): v for k, v in ckpt.items()}
+        base_model.load_state_dict(state_dict)
+        
+    elif 'WRN2810_TTT' in cfg.MODEL.ARCH:
+        base_model = build_model_wrn2810bn(cfg.CORRUPTION.NUM_CLASSES).to(device)
+        net, ext, head, ssh = build_model_TTT(base_model)
+        ckpt = torch.load('/home/jhutter/dl2/ckpt/cifar10/WRN2810_BN_TTT.pth',  weights_only=False)
     else:
         raise NotImplementedError
 
@@ -56,6 +71,9 @@ def main():
     if cfg.MODEL.ADAPTATION == "source":
         logger.info("test-time adaptation: NONE")
         model = setup_source(base_model, cfg, logger)
+    if 'WRN2810_TET' in cfg.MODEL.ARCH:
+        logger.info("test-time adaptation: TET")
+        model = setup_energy(base_model, cfg, logger)
     elif cfg.MODEL.ADAPTATION == "norm":
         logger.info("test-time adaptation: NORM")
         model = setup_norm(base_model, cfg, logger)
@@ -80,14 +98,22 @@ def main():
     elif cfg.MODEL.ADAPTATION == "pl":
         logger.info("test-time adaptation: PL")
         model = setup_pl(base_model, cfg, logger)
+    elif cfg.MODEL.ADAPTATION == 'ttt':
+        net.load_state_dict(ckpt['state_dict'])
+        head.load_state_dict(ckpt['head'])
     else:
         raise NotImplementedError
     
-    # evaluate on each severity and type of corruption in turn
-    evaluate_ood(model, cfg, logger, device)
-    evaluate_ori(model, cfg, logger, device)
-    # evaluate_adv(base_model, model, cfg, logger, device)
-    # calibration_ori(model, cfg, logger, device)
+
+    if cfg.MODEL.ADAPTATION == 'ttt':
+        evaluate_ori_TTT(ssh, ext, net, cfg, logger, device)
+        evaluate_ood_TTT(cfg, logger, device)
+    else:
+        # evaluate on each severity and type of corruption in turn
+        evaluate_ood(model, cfg, logger, device)
+        evaluate_ori(model, cfg, logger, device)
+        # evaluate_adv(base_model, model, cfg, logger, device)
+        # calibration_ori(model, cfg, logger, device)
 
 if __name__ == '__main__':
     main()

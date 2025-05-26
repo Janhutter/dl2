@@ -31,6 +31,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
 
+from core.eval import clean_accuracy
+from core.data import load_data
+
 logger = logging.getLogger(__name__)
 
 def main():
@@ -40,7 +43,7 @@ def main():
     device = torch.device('cuda:0')
 
     wandb.init(project="TET",
-        name="train_tet",
+        name="train_tet_energy_scheduler",
         config={
         "model.ADAPTATION": cfg.MODEL.ADAPTATION,
         "model.ARCH": cfg.MODEL.ARCH,
@@ -143,36 +146,14 @@ def train(cfg, base_model, device):
         net = setup_energy(base_model, cfg, logger, setup_optimizer)
         # cls_params = net.parameters()
 
-        cls_params = []
-        energy_params = []
-        for nm, m in net.named_modules():
-            if isinstance(m, nn.BatchNorm2d): 
-                for np, p in m.named_parameters():
-                    if np in ['weight', 'bias']:  # weight is scale, bias is shift
-                        energy_params.append(p)
-                        # cls_params.append(p) # werkt niet beter
-            else:       
-                for np, p in m.named_parameters():
-                    if np in ['weight', 'bias']:  # weight is scale, bias is shift
-                        cls_params.append(p)
+        optimizer = net.optimizer
 
-        print(f"{len(cls_params)=}")
-        print(f'{len(energy_params)=}')
-
-        cls_optimizer = setup_optimizer(cls_params, cfg, logger)
-        # cls_optimizer = net.optimizer
-        energy_optimizer = setup_energy_optimizer(energy_params, cfg, logger)
-
-        eval_every = 5
+        eval_every = 1
         cls_scheduler = lr_scheduler.MultiStepLR(
-            cls_optimizer,
+            optimizer,
             milestones=[m * length for m in cfg.OPTIM.SCHEDULER_MILESTONES],
             gamma=cfg.OPTIM.SCHEDULER_GAMMA,
         )
-    
-    # for TET, we want to update all params for cls loss, but only BN for energy loss
-   
-    # energy_optimizer = net.optimizer
 
     epochs_no_improvement = 0
     best_eval_acc = float('-inf')
@@ -181,6 +162,15 @@ def train(cfg, base_model, device):
     train_cls_losses = []
     eval_accs = []
 
+    energy_lambda_threshold = 0  # start increasing lambda_energy after test acc >= 0.85
+
+    start_energy_lambda = 0.00001
+    curr_energy_lambda = start_energy_lambda
+    base_energy_lambda = cfg.OPTIM.LAMBDA_ENERGY
+    energy_lambda_gamma = 1.1
+    eval_acc = 0
+    energy_loss = torch.tensor(0)
+
     for epoch in tqdm(range(1, cfg.OPTIM.N_EPOCHS + 1), desc="Training", unit="epoch", mininterval=5):
         # train_base(epoch, model, train_loader, optimizer, scheduler, cfg)
 
@@ -188,44 +178,55 @@ def train(cfg, base_model, device):
         epoch_total_loss = 0
         epoch_energy_loss = 0
         epoch_cls_loss = 0
-        for batch_idx, (inputs, labels) in enumerate(train_loader):
+        start_warmup = True
+        curr_step = 0
 
-            energy_optimizer.zero_grad()
+        # if eval_acc >= energy_lambda_threshold:
+        #     if curr_energy_lambda == 0:
+        #         curr_energy_lambda = start_energy_lambda
+        #         start_warmup = True
+        #     else:
+        #         curr_energy_lambda *= energy_lambda_gamma
+        #         start_warmup = False
+
+        print(f"curr_energy_lambda: {curr_energy_lambda}")
+
+        for batch_idx, (inputs, labels) in enumerate(train_loader):
+            if start_warmup:
+                # exponential warmup from 0 to base_energy_lambda
+                curr_energy_lambda = start_energy_lambda + (base_energy_lambda - start_energy_lambda) * (curr_step / 500)
+                if curr_energy_lambda > base_energy_lambda:
+                    curr_energy_lambda = base_energy_lambda
+                    start_warmup = False
+                curr_step += 1
+
+            optimizer.zero_grad()
 
             inputs_cls, labels_cls = inputs.cuda(), labels.cuda()
             # adapts the model, still needs to step this loss:
-            outputs, energy_loss = net(inputs_cls, if_adapt=True, tet=True) 
-            # clip energy loss to 0-5
-            # energy_loss = torch.clamp(energy_loss, -5, 5)
-            # final_loss = cfg.OPTIM.LAMBDA_CLS * cls_loss + cfg.OPTIM.LAMBDA_ENERGY * energy_loss
-            # final_loss = cls_loss * cfg.OPTIM.LAMBDA_CLS
-            energy_loss.backward()
-            energy_optimizer.step()
 
+            if curr_energy_lambda > 0:
+                outputs, energy_loss = net(inputs_cls, if_adapt=True, tet=True) 
+                cls_loss = F.cross_entropy(outputs, labels_cls)
+                final_loss = cfg.OPTIM.LAMBDA_CLS * cls_loss +  curr_energy_lambda* energy_loss
+            else:
+                outputs = net(inputs_cls, if_adapt=False, tet=True)
+                cls_loss = F.cross_entropy(outputs, labels_cls)
+                final_loss = cfg.OPTIM.LAMBDA_CLS * cls_loss
 
-            cls_optimizer.zero_grad()
-            outputs = net(inputs_cls, if_adapt=False, tet=False)
-            cls_loss = F.cross_entropy(outputs, labels_cls)
-            total_loss = energy_loss.item() + cls_loss.item()
-
-            cls_loss.backward()
-
-            cls_optimizer.step()
+            final_loss.backward()
+            optimizer.step()
             cls_scheduler.step()
 
-            # cls_loss.backward(retain_graph=True)
-            # energy_loss.backward()
 
-            # energy_optimizer.step()
-            # cls_optimizer.step()
+            total_loss = final_loss.item()
+
 
             epoch_total_loss += total_loss
-            # epoch_energy_loss += cfg.OPTIM.LAMBDA_ENERGY * energy_loss.item()
-            # epoch_cls_loss += cfg.OPTIM.LAMBDA_CLS * cls_loss.item()
-            epoch_energy_loss += energy_loss.item()
-            epoch_cls_loss += cls_loss.item()
+            epoch_energy_loss += energy_loss.item() * curr_energy_lambda
+            epoch_cls_loss += cls_loss.item() * cfg.OPTIM.LAMBDA_CLS
 
-            wandb.log({"cls_loss": cls_loss.item(), "energy_loss": energy_loss.item(), "total_loss": total_loss})
+            wandb.log({"cls_loss": cls_loss.item() * cfg.OPTIM.LAMBDA_CLS, "energy_loss": energy_loss.item() * curr_energy_lambda, "total_loss": total_loss})
             # wandb.log({"cls_loss": cls_loss, "energy_loss": energy_loss, "final_loss": final_loss})
 
         train_total_losses.append(epoch_total_loss / len(train_loader))
@@ -242,13 +243,13 @@ def train(cfg, base_model, device):
             if not os.path.exists(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)):
                 os.makedirs(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH))
             
-            torch.save(net.state_dict(), os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
+            # torch.save(net.state_dict(), os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
             net.eval()
             eval_acc = eval_without_reset(net, cfg, logger, device, test_loader)
             wandb.log({"eval_acc": eval_acc})
             eval_accs.append(eval_acc)
-            ckpt = torch.load(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
-            net.load_state_dict(ckpt)
+            # ckpt = torch.load(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
+            # net.load_state_dict(ckpt)
             net.train()
 
             # early stopping logic
@@ -280,11 +281,13 @@ def train(cfg, base_model, device):
     except Exception:
         logging.exception(f"Error while plotting, {train_total_losses=}, {train_cls_losses=}, {train_energy_losses=}, {eval_accs=}")
     
-    torch.save(net.state_dict(), os.path.join('ckpt', cfg.CORRUPTION.DATASET, f'TET_{cfg.MODEL.ARCH}.pth'))
+    torch.save(net.state_dict(), os.path.join('ckpt', cfg.CORRUPTION.DATASET, f'{cfg.MODEL.ARCH}.pth'))
 
 
 def eval_without_reset(net, cfg, logger, device, test_loader):
-    acc = clean_accuracy_loader(net, test_loader, logger=logger, device=device, ada=cfg.MODEL.ADAPTATION, if_adapt=False, if_vis=False)
+    x_test, y_test = load_data(cfg.CORRUPTION.DATASET, n_examples=cfg.CORRUPTION.NUM_EX, data_dir=cfg.DATA_DIR, model_arch=cfg.MODEL.ARCH, shuffle=True)
+    x_test, y_test = x_test.to(device), y_test.to(device)
+    acc = clean_accuracy(net, x_test, y_test, cfg.OPTIM.BATCH_SIZE, logger=logger, ada=cfg.MODEL.ADAPTATION, if_adapt=False, if_vis=False)
     logger.info("Test set Accuracy: {}".format(acc))
     return acc
 

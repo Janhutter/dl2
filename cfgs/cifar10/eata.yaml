@@ -1,12 +1,12 @@
-SAVE_DIR: ./save/cifar10/bn-wrn-28-10
+SAVE_DIR: ./save/cifar10/bn-wrm-28-10-ttt
 DATA_DIR: /scratch-shared/tea/cifar10
 MODEL:
-  ADAPTATION: eata
-  ARCH: WRN2810_BN
-  ADA_PARAM:
-    - bn
-EATA:
-  USE_FISHER: True
+  ADAPTATION: TTT
+  ARCH: WRN2810_TTT
+  # ADA_PARAM:
+  #   - bn
+# EATA:
+#   USE_FISHER: True
 CORRUPTION:
   DATASET: cifar10
   NUM_CLASSES: 10

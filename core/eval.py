@@ -10,11 +10,6 @@ from torchvision.utils import save_image
 from core.data import load_data, load_dataloader
 from tqdm import tqdm
 
-# authors did not have code for mce for the normal results
-def calc_mce(pred, y, num_classes=10, bins=10):
-    mce = calibration_error(pred, y, norm='max', task='multiclass', num_classes=num_classes, n_bins=bins)
-    return mce
-
 def clean_accuracy(model, x, y, batch_size = 100, logger=None, device = None, ada=None, if_adapt=True, if_vis=False):
     if device is None:
         device = x.device

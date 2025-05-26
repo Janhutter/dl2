@@ -20,7 +20,7 @@ def set_transform(dataset, model_arch=None):
         ])
         transform_test = T.Compose([T.Resize(224), T.ToTensor()])
     else:
-        if dataset.lower() == 'cifar10' or dataset.lower() == 'cifar100':
+        if dataset.lower() == 'cifar10' or dataset.lower() == 'cifar100' or dataset.lower() == 'cifar10c' or dataset.lower() == 'cifar100c':
             transform_train = T.Compose([ 
                 T.Resize(32), 
                 T.RandomCrop(32, padding=4), 
@@ -145,7 +145,6 @@ def load_data(data, n_examples=None, severity=None, data_dir=None, shuffle=False
             _, transform = set_transform(data)
             x_test, y_test = load_pacs(data_dir=data_dir, shuffle=shuffle, corruptions=corruptions, transform=transform)
         
-        print(x_test.shape, n_examples)
         return x_test, y_test
 
 def load_dataloader(root, dataset, batch_size, if_shuffle, logger=None, model_arch=None, test_batch_size=None):

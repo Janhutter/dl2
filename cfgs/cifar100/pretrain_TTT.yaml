@@ -1,21 +1,14 @@
-SAVE_DIR: ./save/cifar10/bn-wrn-28-10-tet
-DATA_DIR: /scratch-shared/tea2/cifar10
-RNG_SEED: 1
+SAVE_DIR: ./save/cifar100/bn-wrn-28-10-ttt
+DATA_DIR: /scratch-shared/tea2/cifar100
+RNG_SEED: 1  # we use [1, 17, 36, 91, 511]
 MODEL:
-  ADAPTATION: energy
-  ARCH: WRN2810_TET_3
+  ADAPTATION: source
+  ARCH: WRN2810_BN
   ADA_PARAM:
-    - all
-EBM:
-  UNCOND: uncond
-  STEPS: 20
-  SGLD_LR: 0.1
-  SGLD_STD: 0.01
-  BUFFER_SIZE: 10000
-  REINIT_FREQ:  0.05
+    - bn
 CORRUPTION:
-  DATASET: cifar10
-  NUM_CLASSES: 10
+  DATASET: cifar100
+  NUM_CLASSES: 100
   IMG_SIZE: 32
   NUM_CHANNEL: 3
   SEVERITY:
@@ -41,12 +34,10 @@ CORRUPTION:
     - pixelate
     - jpeg_compression
 OPTIM:
-  BATCH_SIZE: 1024
-  TEST_BATCH_SIZE: 128
+  BATCH_SIZE: 128
   METHOD: sgd
   LR: 0.1
   WD: 0.0005
   DAMPENING: 0.0
   NESTEROV: true
   MOMENTUM: 0.9
-  LAMBDA_ENERGY: 0.001

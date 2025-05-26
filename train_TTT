@@ -5,12 +5,12 @@
 #SBATCH --gpus=1                            # number of gpus per node
 #SBATCH --partition=gpu_a100                # partition
 #SBATCH --time=5:00:00                     # total run time limit (HH:MM:SS)
-#SBATCH --output=logs/TTT_%A.log       # output file
-source deactivate
+#SBATCH --output=logs/TTT_100_%A.log       # output file
+# source deactivate
 source .venv/bin/activate
 alias python=~/tea/.venv/bin/python
 
 export CUDA_VISIBLE_DEVICES=0
 # export CUDA_LAUNCH_BLOCKING=1
-python train_TTT.py --cfg cfgs/cifar10/pretrain_TTT.yaml
+python train_TTT.py --cfg cfgs/cifar100/pretrain_TTT.yaml
 

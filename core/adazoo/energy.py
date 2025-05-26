@@ -4,6 +4,7 @@ import torch
 import torch.jit
 import torch.nn as nn
 import torch.nn.functional as F
+import wandb
 
 import logging
 logger = logging.getLogger(__name__)
@@ -67,7 +68,7 @@ def sample_q(f, replay_buffer, n_steps, sgld_lr, sgld_std, reinit_freq, batch_si
     
     f.train()
     final_samples = x_k.detach()
-
+    
     # update replay buffer
     if len(replay_buffer) > 0:
         replay_buffer[buffer_inds] = final_samples.cpu()
@@ -117,6 +118,7 @@ class Energy(nn.Module):
         
         if if_adapt:
             for i in range(self.steps):
+                # logger.warning(f"{counter=}, step={i}")
                 # if tet=True, then outputs is (outputs, energy_loss)
                 outputs = forward_and_adapt(x, self.energy_model, self.optimizer, 
                                             self.replay_buffer, self.sgld_steps, self.sgld_lr, self.sgld_std, self.reinit_freq,
@@ -127,9 +129,9 @@ class Energy(nn.Module):
                                     sgld_steps=self.sgld_steps, sgld_lr=self.sgld_lr, sgld_std=self.sgld_std, reinit_freq=self.reinit_freq,
                                     batch_size=100, n_classes=self.n_classes, im_sz=self.im_sz, n_ch=self.n_ch, device=x.device, counter=counter, step=i)
         else:
-            self.energy_model.eval()
-            with torch.no_grad():
-                outputs = self.energy_model.classify(x)
+            # self.energy_model.eval()
+            # with torch.no_grad():
+            outputs = self.energy_model.classify(x)
 
         return outputs
 
@@ -148,7 +150,7 @@ def visualize_images(path, replay_buffer_old, replay_buffer, energy_model,
     y = torch.arange(n_classes).repeat(repeat_times).to(device) 
     x_fake, _ = sample_q(energy_model, replay_buffer, n_steps=sgld_steps, sgld_lr=sgld_lr, sgld_std=sgld_std, reinit_freq=reinit_freq, batch_size=batch_size, im_sz=im_sz, n_ch=n_ch, device=device, y=y)
     images = x_fake.detach().cpu()
-    save_image(images , os.path.join(path, f'sample{str(counter)}-{str(step)}.png'), padding=2, nrow=num_cols)
+    save_image(images , os.path.join(path, f'bn-explr-sample-{str(counter)}.png'), padding=2, nrow=num_cols)
 
     num_cols=40
     images_init = replay_buffer_old.cpu()
@@ -156,8 +158,8 @@ def visualize_images(path, replay_buffer_old, replay_buffer, energy_model,
     images_diff = replay_buffer.cpu() - replay_buffer_old.cpu()
     if step == 0:
         save_image(images_init , os.path.join(path, 'buffer_init.png'), padding=2, nrow=num_cols)
-    save_image(images , os.path.join(path, 'buffer-'+str(counter)+"-"+str(step)+'.png'), padding=2, nrow=num_cols) # 
-    save_image(images_diff , os.path.join(path, f'buffer_diff{counter}.png'), padding=2, nrow=num_cols)
+    save_image(images , os.path.join(path, 'nsteps-buffer-'+str(counter)+'.png'), padding=2, nrow=num_cols) # 
+    save_image(images_diff , os.path.join(path, f'nsteps-buffer_diff{counter}.png'), padding=2, nrow=num_cols)
 
 @torch.enable_grad()  # ensure grads in possible no grad context for testing
 def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sgld_steps, sgld_lr, sgld_std, reinit_freq, if_cond=False, n_classes=10, tet=False):
@@ -168,7 +170,7 @@ def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sg
     n_ch = x.shape[1]
     im_sz = x.shape[2]
     device = x.device
-    
+
     if if_cond == 'uncond':
         x_fake, _ = sample_q(energy_model, replay_buffer, 
                              n_steps=sgld_steps, sgld_lr=sgld_lr, sgld_std=sgld_std, reinit_freq=reinit_freq, 
@@ -180,8 +182,8 @@ def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sg
                              batch_size=batch_size, im_sz=im_sz, n_ch=n_ch, device=device, y=y)
 
     # forward
-    optimizer.zero_grad()
-    energy_model.train()
+    # optimizer.zero_grad()
+    # energy_model.train()
     out_real = energy_model(x)  # actual forward call
     # logits_real are the outputs of energy_model.f(x) (= energy_model.classify(x))
     logsumexp_real, logits_real = out_real
@@ -190,6 +192,9 @@ def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sg
 
     # adapt (original)
     energy_loss = (- (energy_real - energy_fake))  # = Efake - Ereal
+
+    # wandb.log({"energy_real": energy_real, "energy_fake": energy_fake, "energy_loss": energy_loss})
+
 
     # # alternative
     # energy_loss = (- (energy_fake - energy_real)) # = Ereal - Efake
@@ -200,10 +205,11 @@ def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sg
     if tet:
         return logits_real, energy_loss
 
+    optimizer.zero_grad()  # deze .zero_grad() kan weg?
+
     energy_loss.backward()
     # energy_model.f.clip_gradients()
     optimizer.step()
-    # optimizer.zero_grad()  # deze .zero_grad() kan weg?
     outputs = energy_model.classify(x)
 
     return outputs

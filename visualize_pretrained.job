@@ -4,17 +4,14 @@
 #SBATCH --cpus-per-task=1                   # cpu-cores per task (>1 if multi-threaded tasks), 4 is default
 #SBATCH --gpus=1                            # number of gpus per node
 #SBATCH --partition=gpu_a100                # partition
-#SBATCH --time=3:00:00                     # total run time limit (HH:MM:SS)
-#SBATCH --output=logs/TET/%A.log       # output file
+#SBATCH --time=4:00:00                     # total run time limit (HH:MM:SS)
+#SBATCH --output='logs/visualize_%A.log'
 
+log_file="logs/visualize_pt_${1}_${2}.log"
 source .venv/bin/activate
 alias python=~/tea/.venv/bin/python
 
-export WANDB_API_KEY="2148afe46d8dc6bca46f060d1665321d425917a6"
+CUDA_VISIBLE_DEVICES=0  
+# python main_visz.py --cfg cfgs/${1}/${2}.yaml &> "$log_file"
+python main_visz_pt.py --cfg cfgs/cifar10/energy_visz_test_pt.yaml &> "$log_file"
 
-# select gpu 0
-export CUDA_VISIBLE_DEVICES=0
-# for debugging
-# export CUDA_LAUNCH_BLOCKING=1
-
-python train_TET.py --cfg cfgs/cifar100/pretrain_TET.yaml

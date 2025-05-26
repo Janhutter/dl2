@@ -1,3 +1,5 @@
+import math
+import wandb
 import torch
 import torch.optim as optim
 
@@ -30,6 +32,61 @@ def setup_optimizer(params, cfg, logger):
                     nesterov=cfg.OPTIM.NESTEROV)
         else:
             raise NotImplementedError
+
+
+def setup_optimizer_with_warmup(params, cfg, logger):
+    optimizer = setup_optimizer(params, cfg, logger)
+    
+    if cfg.OPTIM.METHOD.lower() == 'adam':
+        # Store initial LR and warmup parameters
+        optimizer.initial_lr = cfg.OPTIM.LR
+        optimizer.step_count = 0
+        
+        # Warmup configuration
+        warmup_steps = getattr(cfg.OPTIM, 'WARMUP_STEPS', 20)  # Default 1000 steps
+        warmup_start_lr = getattr(cfg.OPTIM, 'WARMUP_START_LR', 1e-7)  # Very small starting LR
+        
+        # Add a custom step method that includes warmup scheduling
+        original_step = optimizer.step
+        def step_with_warmup(*args, **kwargs):
+            result = original_step(*args, **kwargs)
+            optimizer.step_count += 1
+            
+            if optimizer.step_count <= warmup_steps:
+                # Linear warmup phase
+                warmup_factor = optimizer.step_count / warmup_steps
+                new_lr = warmup_start_lr + (optimizer.initial_lr - warmup_start_lr) * warmup_factor
+                logger.info(f"Warmup step {optimizer.step_count}/{warmup_steps}, LR: {new_lr:.6f}")
+            else:
+                # # Post-warmup: keep constant or apply decay
+                # # Option 1: Constant LR after warmup
+                # new_lr = optimizer.initial_lr
+                
+                # # Option 2: Cosine decay after warmup (uncomment if desired) NOT CORRECT
+                # remaining_steps = cfg.OPTIM.STEPS - warmup_steps
+                # decay_step = optimizer.step_count - warmup_steps
+                # new_lr = 0.5 * optimizer.initial_lr * (1 + math.cos(math.pi * decay_step / remaining_steps))
+                
+                # Option 3: Exponential decay after warmup (uncomment if desired)
+                decay_rate = 0.996 # getattr(cfg.OPTIM, 'DECAY_RATE', 0.99)
+                new_lr = optimizer.initial_lr * (decay_rate ** (optimizer.step_count - warmup_steps))
+                logger.info(f"step {optimizer.step_count - warmup_steps}, LR: {new_lr:.6f}")
+            
+            wandb.log({"lr":new_lr})
+
+
+            # Apply the new learning rate
+            for param_group in optimizer.param_groups:
+                param_group['lr'] = new_lr
+                
+            return result
+            
+        optimizer.step = step_with_warmup
+        
+        logger.info(f"Warmup scheduler configured: {warmup_steps} steps, "
+                   f"start_lr: {warmup_start_lr}, target_lr: {optimizer.initial_lr}")
+    
+    return optimizer
 
 def setup_energy_optimizer(params, cfg, logger):
     if cfg.MODEL.ADAPTATION.lower() == 'sar':

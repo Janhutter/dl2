@@ -14,7 +14,7 @@ from core.eval import evaluate_ori, evaluate_ood, clean_accuracy_loader
 from core.calibration import calibration_ori
 from core.config import cfg, load_cfg_fom_args
 from core.utils import set_seed, set_logger, train_base
-from core.model import build_model_wrn2810bn, build_model_res18bn, build_model_res50gn, build_vit, build_model_wrn2810bn_TET
+from core.model import build_model_wrn2810bn, build_model_res18bn, build_model_res50gn, build_vit
 from core.setada import *
 from core.optim import setup_optimizer
 from core.data import load_dataloader
@@ -22,7 +22,8 @@ from torch.optim import lr_scheduler
 from core.checkpoint import load_checkpoint
 from transformers import get_cosine_schedule_with_warmup
 
-from ttt_cifar_release.utils.rotation import rotate_batch
+# from ttt_cifar_release.utils.rotation import rotate_batch
+from ttt_eval import    rotate_batch
 
 
 from tqdm import tqdm
@@ -144,9 +145,9 @@ def train(cfg, base_model, device):
                 os.makedirs(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH))
 
             # was eerst: head: ssh.state_dict(), maar voor consistency aangepast
-            torch.save({'state_dict': net.state_dict(), 'head':head.state_dict()}, os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, "epoch_TTT{}.pth".format(epoch)))
+            torch.save({'state_dict': net.state_dict(), 'head':head.state_dict()}, os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, "epoch_TTT_100_{}.pth".format(epoch)))
 
-    torch.save({'state_dict': net.state_dict(), 'head':head.state_dict()}, os.path.join('ckpt', cfg.CORRUPTION.DATASET, f'{cfg.MODEL.ARCH}_TTT.pth'))
+    torch.save({'state_dict': net.state_dict(), 'head':head.state_dict()}, os.path.join('ckpt', cfg.CORRUPTION.DATASET, f'{cfg.MODEL.ARCH}_TTT_100.pth'))
 
 
 def eval_without_reset(net, cfg, logger, device, test_loader):

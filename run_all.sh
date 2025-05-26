@@ -1,10 +1,11 @@
 #!/bin/bash
-dataset=tin200
-# dataset=cifar10
+# dataset=tin200
+dataset=cifar10
 # dataset=cifar10
 
 # model=sar
 # 
+
 
 for model in source norm tent eta eata energy sar shot pl
 do
