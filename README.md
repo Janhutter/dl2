@@ -53,14 +53,14 @@ Our TET model achieves slightly lower accuracy than TEA on the corruption set of
   </tr>
   <tr>
     <td rowspan="2">Henk</td>
-    <td></td>
+    <td>Replicating the images of Figure 5</td>
   </tr>
   <tr>
   <td></td>
   </tr>
     <tr>
     <td rowspan="2">Julian</td>
-    <td></td>
+    <td>Creating TET code</td>
   </tr>
   <tr>
   <td></td>
