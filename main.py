@@ -16,7 +16,7 @@ from core.setada import *
 from core.checkpoint import load_checkpoint
 
 # for ttt evaluation
-from ttt_eval import build_model_TTT, evaluate_ood_TTT, evaluate_ori_TTT
+from ttt_core.ttt_eval import build_model_TTT, evaluate_ood_TTT, evaluate_ori_TTT
 
 logger = logging.getLogger(__name__)
 
@@ -63,8 +63,12 @@ def main():
     elif 'WRN2810_TTT' in cfg.MODEL.ARCH:
         base_model = build_model_wrn2810bn(cfg.CORRUPTION.NUM_CLASSES).to(device)
         net, ext, head, ssh = build_model_TTT(base_model)
-        # ckpt = torch.load('/home/jhutter/dl2/ckpt/cifar10/WRN2810_BN_TTT.pth',  weights_only=False)
-        ckpt = torch.load('/home/jbibo/dl2/ckpt/WRN2810_BN_TTT.pth',  weights_only=False)
+
+        # JAN fix deze hardcoded path voor me please 
+        if cfg.DATASET == 'cifar10' :
+            ckpt = torch.load('/home/jbibo/dl2/ckpt/cifar10/WRN2810_BN_TTT.pth',  weights_only=False)
+        elif cfg.DATASET == 'cifar100':
+            ckpt = torch.load('/home/jbibo/dl2/ckpt/WRN2810_BN_TTT_100.pth',  weights_only=False)
     else:
         raise NotImplementedError
 
@@ -105,10 +109,13 @@ def main():
     else:
         raise NotImplementedError
     
-
+    # changed for TTT application
+    ####################
     if cfg.MODEL.ADAPTATION == 'ttt':
         evaluate_ori_TTT(ssh, ext, net, cfg, logger, device)
         evaluate_ood_TTT(cfg, logger, device)
+    ####################
+
     else:
         # evaluate on each severity and type of corruption in turn
         evaluate_ood(model, cfg, logger, device)

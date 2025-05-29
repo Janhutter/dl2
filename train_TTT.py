@@ -9,7 +9,6 @@ import torch.nn.functional as F
 # from robustbench.utils import load_model
 os.environ["ROBUSTBENCH_DATA"] = "~/ai-dl2/tea/save"
 
-
 from core.eval import evaluate_ori, evaluate_ood, clean_accuracy_loader
 from core.calibration import calibration_ori
 from core.config import cfg, load_cfg_fom_args
@@ -21,12 +20,10 @@ from core.data import load_dataloader
 from torch.optim import lr_scheduler
 from core.checkpoint import load_checkpoint
 from transformers import get_cosine_schedule_with_warmup
-
-# from ttt_cifar_release.utils.rotation import rotate_batch
-from ttt_eval import    rotate_batch
-
-
 from tqdm import tqdm
+
+# for rotation function from TTT original code
+from ttt_core.ttt_eval import rotate_batch
 
 logger = logging.getLogger(__name__)
 
@@ -96,8 +93,6 @@ def train(cfg, base_model, device):
     )
 
     for epoch in tqdm(range(1, epochs + 1), mininterval=5, desc='Training', unit='epoch'):
-        # train_base(epoch, model, train_loader, optimizer, scheduler, cfg)
-
         net.train()
         ssh.train()
         correct_net = 0

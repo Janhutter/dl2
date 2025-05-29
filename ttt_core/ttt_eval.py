@@ -19,7 +19,6 @@ class ViewFlatten(nn.Module):
     def forward(self, x):
         return x.view(x.size(0), -1)
 
-""" Load TTT model """
 # exact copy from original TTT repo
 class ExtractorHead(nn.Module):
     def __init__(self, ext, head):
@@ -30,7 +29,6 @@ class ExtractorHead(nn.Module):
     def forward(self, x):
         return self.head(self.ext(x))
 
-""" Load TTT model """
 def extractor_from_layer2(net):
 
     # changed layers compared to original TTT repo
@@ -48,7 +46,6 @@ def head_on_layer2(net, width, classes):
     head.append(nn.Linear(64 * width, classes))
     return nn.Sequential(*head)
 
-""" Load TTT model """
 def build_model_TTT(base_model):
 
     # changed, hardcoded aux_classes
@@ -62,6 +59,7 @@ def build_model_TTT(base_model):
 
     return net, ext, aux_head, ssh
 
+#############################################################################################################################
 
 
 """ Rotation adaptation code from TTT """
@@ -75,7 +73,6 @@ def tensor_rot_180(x):
 def tensor_rot_270(x):
     return x.transpose(1, 2).flip(2)
 
-""" Rotation adaptation code from TTT """
 # exact copy from original TTT repo
 def rotate_batch_with_labels(batch, labels):
 	images = []
@@ -89,7 +86,6 @@ def rotate_batch_with_labels(batch, labels):
 		images.append(img.unsqueeze(0))
 	return torch.cat(images)
 
-""" Rotation adaptation code from TTT """
 # exact copy from original TTT repo
 # Obtain rotation labels and prediction
 def rotate_batch(batch, label):
@@ -106,7 +102,7 @@ def rotate_batch(batch, label):
 		labels = torch.zeros((len(batch),), dtype=torch.long) + label
 	return rotate_batch_with_labels(batch, labels), labels
 
-
+#############################################################################################################################
 
 """ Changed Evaluation code from TEA for TTT """
 # Calculating accuracy on test set, while adapting with TTT rotation task
@@ -119,8 +115,8 @@ def clean_accuracy_TTT(ssh, ext, net, x, y, batch_size = 100, logger=None, devic
     # adapation TTT
     ####################
     # tried both, slow gets better results ofc
-    # opted for fast : lr=0.001 and 1 loops
-    # opted for slow : lr=0.001 and 10 loops
+    # for fast : lr=0.001 and 1 loops
+    # we opted for slow : lr=0.001 and 10 loops
     optimizer_ssh = optim.SGD(ext.parameters(), lr=0.001)
     criterion_ssh = nn.CrossEntropyLoss().cuda()
     ssh.eval()
@@ -152,7 +148,6 @@ def clean_accuracy_TTT(ssh, ext, net, x, y, batch_size = 100, logger=None, devic
         
     return acc.item() / x.shape[0]
 
-""" Changed Evaluation code from TEA for TTT """
 # Evaluation on CORRUPTED images from test dataset Cifar10
 def evaluate_ood_TTT(cfg, logger, device):
     if (cfg.CORRUPTION.DATASET == 'cifar10') or (cfg.CORRUPTION.DATASET == 'cifar100') or (cfg.CORRUPTION.DATASET == 'tin200'):
@@ -165,8 +160,15 @@ def evaluate_ood_TTT(cfg, logger, device):
                 # load TTT model (reset model)
                 base_model = build_model_wrn2810bn(cfg.CORRUPTION.NUM_CLASSES).to(device)
                 net, ext, head, ssh = build_model_TTT(base_model)
-                # ckpt = torch.load('/home/jhutter/dl2/ckpt/cifar10/WRN2810_BN_TTT.pth',  weights_only=False)
-                ckpt = torch.load('/home/jbibo/dl2/ckpt/WRN2810_BN_TTT.pth',  weights_only=False)
+
+                # JAN fix deze hardcoded path voor me please 
+                if cfg.DATASET == 'cifar10' :
+                    ckpt = torch.load('/home/jbibo/dl2/ckpt/cifar10/WRN2810_BN_TTT.pth',  weights_only=False)
+                elif cfg.DATASET == 'cifar100':
+                    ckpt = torch.load('/home/jbibo/dl2/ckpt/WRN2810_BN_TTT_100.pth',  weights_only=False)
+                else:
+                    raise NotImplementedError
+
                 net.load_state_dict(ckpt['state_dict'])
                 head.load_state_dict(ckpt['head'])
                 ####################
@@ -192,7 +194,6 @@ def evaluate_ood_TTT(cfg, logger, device):
     else:
         raise NotImplementedError
 
-""" Changed Evaluation code from TEA for TTT """
 # Evaluation on clean images from test dataset Cifar10
 def evaluate_ori_TTT(ssh, ext, net, cfg, logger, device):
 
