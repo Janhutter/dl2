@@ -1,5 +1,4 @@
 import math
-import wandb
 import torch
 import torch.optim as optim
 
@@ -72,8 +71,6 @@ def setup_optimizer_with_warmup(params, cfg, logger):
                 new_lr = optimizer.initial_lr * (decay_rate ** (optimizer.step_count - warmup_steps))
                 logger.info(f"step {optimizer.step_count - warmup_steps}, LR: {new_lr:.6f}")
             
-            wandb.log({"lr":new_lr})
-
 
             # Apply the new learning rate
             for param_group in optimizer.param_groups:

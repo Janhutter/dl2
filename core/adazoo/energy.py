@@ -4,7 +4,6 @@ import torch
 import torch.jit
 import torch.nn as nn
 import torch.nn.functional as F
-import wandb
 
 import logging
 logger = logging.getLogger(__name__)
@@ -193,22 +192,12 @@ def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sg
     # adapt (original)
     energy_loss = (- (energy_real - energy_fake))  # = Efake - Ereal
 
-    wandb.log({"energy_real": energy_real, "energy_fake": energy_fake, "energy_loss": energy_loss})
-
-
-    # # alternative
-    # energy_loss = (- (energy_fake - energy_real)) # = Ereal - Efake
-    
-    # could be expensive to print
-    # logger.warning(f"\n{energy_real=}\n{energy_fake=}\n{energy_loss=}\n")
-
     if tet:
         return logits_real, energy_loss
 
-    optimizer.zero_grad()  # deze .zero_grad() kan weg?
+    optimizer.zero_grad()  
 
     energy_loss.backward()
-    # energy_model.f.clip_gradients()
     optimizer.step()
     outputs = energy_model.classify(x)
 

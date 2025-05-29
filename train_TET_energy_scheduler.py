@@ -1,7 +1,6 @@
 import os
 import logging
 import copy
-import wandb
 
 import torch
 import torch.nn as nn
@@ -41,31 +40,6 @@ def main():
     set_seed(cfg)
     set_logger(cfg)
     device = torch.device('cuda:0')
-
-    wandb.init(project="TET",
-        name="train_tet_energy_scheduler",
-        config={
-        "model.ADAPTATION": cfg.MODEL.ADAPTATION,
-        "model.ARCH": cfg.MODEL.ARCH,
-        "model.ADA_PARAM": cfg.MODEL.ADA_PARAM,
-        "EBM.UNCOND": cfg.EBM.UNCOND,
-        "EBM.STEPS": cfg.EBM.STEPS,
-        "EBM.SGLD_LR": cfg.EBM.SGLD_LR,
-        "EBM.SGLD_STD": cfg.EBM.SGLD_STD,
-        "EBM.BUFFER_SIZE": cfg.EBM.BUFFER_SIZE,
-        "EBM.REINIT_FREQ": cfg.EBM.REINIT_FREQ,
-        "OPTIM.BATCH_SIZE": cfg.OPTIM.BATCH_SIZE,
-        "OPTIM.TEST_BATCH_SIZE": cfg.OPTIM.TEST_BATCH_SIZE,
-        "OPTIM.METHOD": cfg.OPTIM.METHOD,
-        "OPTIM.LR": cfg.OPTIM.LR,
-        "OPTIM.WD": cfg.OPTIM.WD,
-        "OPTIM.DAMPENING": cfg.OPTIM.DAMPENING,
-        "OPTIM.NESTEROV": cfg.OPTIM.NESTEROV,
-        "OPTIM.MOMENTUM": cfg.OPTIM.MOMENTUM,
-        "OPTIM.LAMBDA_ENERGY": cfg.OPTIM.LAMBDA_ENERGY,
-        "N_EPOCHS": cfg.OPTIM.N_EPOCHS
-        }
-    )
 
     # construct model
     base_model = None
@@ -226,9 +200,6 @@ def train(cfg, base_model, device):
             epoch_energy_loss += energy_loss.item() * curr_energy_lambda
             epoch_cls_loss += cls_loss.item() * cfg.OPTIM.LAMBDA_CLS
 
-            wandb.log({"cls_loss": cls_loss.item() * cfg.OPTIM.LAMBDA_CLS, "energy_loss": energy_loss.item() * curr_energy_lambda, "total_loss": total_loss})
-            # wandb.log({"cls_loss": cls_loss, "energy_loss": energy_loss, "final_loss": final_loss})
-
         train_total_losses.append(epoch_total_loss / len(train_loader))
         train_energy_losses.append(epoch_energy_loss / len(train_loader))
         train_cls_losses.append(epoch_cls_loss / len(train_loader))
@@ -246,7 +217,6 @@ def train(cfg, base_model, device):
             # torch.save(net.state_dict(), os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
             net.eval()
             eval_acc = eval_without_reset(net, cfg, logger, device, test_loader)
-            wandb.log({"eval_acc": eval_acc})
             eval_accs.append(eval_acc)
             # ckpt = torch.load(os.path.join('ckpt', cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH, f"TET_epoch_{epoch}.pth"))
             # net.load_state_dict(ckpt)

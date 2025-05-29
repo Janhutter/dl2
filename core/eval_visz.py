@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import math
-import wandb
 import os
 
 import torch
@@ -61,13 +60,11 @@ def clean_accuracy(cfg, model, x, y, n_epochs=1, batch_size = 100, logger=None, 
 
                 batch_accuracy = (output.max(1)[1] == y_curr).float().sum()
                 batch_accuracy = batch_accuracy / x_curr.shape[0]
-                wandb.log({'batch_acc (will be jittery)': batch_accuracy.item()})
                 logger.warning(f"batch_acc: {batch_accuracy.item()}")
 
                 acc += batch_accuracy
         
             epoch_acc = acc.item() / n_batches
-            wandb.log({'epoch_acc': epoch_acc})
 
             if not os.path.exists('ckpt'):
                 os.makedirs('ckpt')
