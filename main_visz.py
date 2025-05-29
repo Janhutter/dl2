@@ -6,15 +6,11 @@ from robustbench.model_zoo.enums import ThreatModel
 from robustbench.utils import load_model
 os.environ["ROBUSTBENCH_DATA"] = "~/ai-dl2/tea/save"
 
-
 from core.eval_visz import evaluate_visz
-# from core.eval_visz import evaluate_ood, evaluate_ori
-from core.calibration import calibration_ori
 from core.config import cfg, load_cfg_fom_args
 from core.utils import set_seed, set_logger
 from core.model import build_model_wrn2810bn, build_model_res18bn, build_model_res50gn, build_vit
 from core.setada import *
-from core.checkpoint import load_checkpoint
 
 
 logger = logging.getLogger(__name__)
@@ -24,7 +20,6 @@ def main():
     set_seed(cfg)
     set_logger(cfg)
     device = torch.device('cuda:0')
-
 
     # configure base model
     if 'BN' in cfg.MODEL.ARCH:
@@ -68,8 +63,6 @@ def main():
     else:
         raise NotImplementedError
 
-    
-
     # configure tta model
     if cfg.MODEL.ADAPTATION == "source":
         logger.info("test-time adaptation: NONE")
@@ -80,9 +73,6 @@ def main():
     else:
         raise NotImplementedError
     
-    # evaluate on each severity and type of corruption in turn
-    # evaluate_ood(model, cfg, logger, device)
-    # calibration_ori(model, cfg, logger, device)
     evaluate_visz(model, cfg, logger, device)
 
 
