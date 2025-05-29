@@ -4,8 +4,6 @@ import logging
 import torch
 from robustbench.model_zoo.enums import ThreatModel
 from robustbench.utils import load_model
-os.environ["ROBUSTBENCH_DATA"] = "~/ai-dl2/tea/save"
-
 
 from core.eval import evaluate_ori, evaluate_ood
 from core.calibration import calibration_ori
@@ -64,11 +62,10 @@ def main():
         base_model = build_model_wrn2810bn(cfg.CORRUPTION.NUM_CLASSES).to(device)
         net, ext, head, ssh = build_model_TTT(base_model)
 
-        # JAN fix deze hardcoded path voor me please 
         if cfg.DATASET == 'cifar10' :
-            ckpt = torch.load('/home/jbibo/dl2/ckpt/cifar10/WRN2810_BN_TTT.pth',  weights_only=False)
+            ckpt = torch.load(os.path.join(cfg.CKPT_DIR ,'{}/{}.pth'.format(cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH)),  weights_only=False)
         elif cfg.DATASET == 'cifar100':
-            ckpt = torch.load('/home/jbibo/dl2/ckpt/WRN2810_BN_TTT_100.pth',  weights_only=False)
+            ckpt = torch.load(os.path.join(cfg.CKPT_DIR ,'{}/{}.pth'.format(cfg.CORRUPTION.DATASET, cfg.MODEL.ARCH))+ '_100',  weights_only=False)
     else:
         raise NotImplementedError
 

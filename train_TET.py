@@ -8,7 +8,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from robustbench.model_zoo.enums import ThreatModel
 from robustbench.utils import load_model
-os.environ["ROBUSTBENCH_DATA"] = "~/ai-dl2/tea/save"
 
 
 from core.eval import evaluate_ori, evaluate_ood, clean_accuracy_loader

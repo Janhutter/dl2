@@ -10,8 +10,6 @@
 source .venv/bin/activate
 alias python=~/tea/.venv/bin/python
 
-export WANDB_API_KEY="2148afe46d8dc6bca46f060d1665321d425917a6"
-
 # select gpu 0
 export CUDA_VISIBLE_DEVICES=0
 # for debugging

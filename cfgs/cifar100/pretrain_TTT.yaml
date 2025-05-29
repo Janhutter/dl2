@@ -3,7 +3,7 @@ DATA_DIR: /scratch-shared/tea2/cifar100
 RNG_SEED: 1  # we use [1, 17, 36, 91, 511]
 MODEL:
   ADAPTATION: source
-  ARCH: WRN2810_BN
+  ARCH: WRN2810_BN_TTT
   ADA_PARAM:
     - bn
 CORRUPTION:
