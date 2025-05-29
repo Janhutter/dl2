@@ -12,6 +12,6 @@ source .venv/bin/activate
 alias python=~/tea/.venv/bin/python
 
 CUDA_VISIBLE_DEVICES=0  
-# python main_visz.py --cfg cfgs/${1}/${2}.yaml &> "$log_file"
+
 python main_visz.py --cfg cfgs/cifar10/energy_visz_test.yaml &> "$log_file"
 

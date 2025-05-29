@@ -4,7 +4,6 @@ import logging
 import torch
 from robustbench.model_zoo.enums import ThreatModel
 from robustbench.utils import load_model
-os.environ["ROBUSTBENCH_DATA"] = "~/ai-dl2/tea/save"
 
 from core.eval_visz import evaluate_visz
 from core.config import cfg, load_cfg_fom_args

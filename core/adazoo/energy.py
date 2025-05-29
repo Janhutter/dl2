@@ -62,7 +62,6 @@ def sample_q(f, replay_buffer, n_steps, sgld_lr, sgld_std, reinit_freq, batch_si
     for k in range(n_steps):
         f_prime = torch.autograd.grad(f(x_k, y=y)[0].sum(), [x_k], retain_graph=True)[0]
         # clip grad
-        # x_k.data -= sgld_lr * f_prime + sgld_std * torch.randn_like(x_k)
         x_k.data += sgld_lr * f_prime + sgld_std * torch.randn_like(x_k)
     
     f.train()
@@ -117,7 +116,6 @@ class Energy(nn.Module):
         
         if if_adapt:
             for i in range(self.steps):
-                # logger.warning(f"{counter=}, step={i}")
                 # if tet=True, then outputs is (outputs, energy_loss)
                 outputs = forward_and_adapt(x, self.energy_model, self.optimizer, 
                                             self.replay_buffer, self.sgld_steps, self.sgld_lr, self.sgld_std, self.reinit_freq,
@@ -128,8 +126,6 @@ class Energy(nn.Module):
                                     sgld_steps=self.sgld_steps, sgld_lr=self.sgld_lr, sgld_std=self.sgld_std, reinit_freq=self.reinit_freq,
                                     batch_size=100, n_classes=self.n_classes, im_sz=self.im_sz, n_ch=self.n_ch, device=x.device, counter=counter, step=i)
         else:
-            # self.energy_model.eval()
-            # with torch.no_grad():
             outputs = self.energy_model.classify(x)
 
         return outputs
@@ -181,15 +177,11 @@ def forward_and_adapt(x, energy_model: EnergyModel, optimizer, replay_buffer, sg
                              batch_size=batch_size, im_sz=im_sz, n_ch=n_ch, device=device, y=y)
 
     # forward
-    # optimizer.zero_grad()
-    # energy_model.train()
     out_real = energy_model(x)  # actual forward call
-    # logits_real are the outputs of energy_model.f(x) (= energy_model.classify(x))
     logsumexp_real, logits_real = out_real
     energy_real = logsumexp_real.mean()
     energy_fake = energy_model(x_fake)[0].mean()
 
-    # adapt (original)
     energy_loss = (- (energy_real - energy_fake))  # = Efake - Ereal
 
     if tet:

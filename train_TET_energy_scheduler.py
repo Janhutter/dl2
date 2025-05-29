@@ -7,7 +7,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from robustbench.model_zoo.enums import ThreatModel
 from robustbench.utils import load_model
-os.environ["ROBUSTBENCH_DATA"] = "~/ai-dl2/tea/save"
 
 
 from core.eval import evaluate_ori, evaluate_ood, clean_accuracy_loader
@@ -261,70 +260,5 @@ def eval_without_reset(net, cfg, logger, device, test_loader):
     logger.info("Test set Accuracy: {}".format(acc))
     return acc
 
-
-# class ViewFlatten(nn.Module):
-# 	def __init__(self):
-# 		super(ViewFlatten, self).__init__()
-
-# 	def forward(self, x):
-# 		return x.view(x.size(0), -1)
-
-# class ExtractorHead(nn.Module):
-# 	def __init__(self, ext, head):
-# 		super(ExtractorHead, self).__init__()
-# 		self.ext = ext
-# 		self.head = head
-
-# 	def forward(self, x):
-# 		return self.head(self.ext(x))
-
-# changed
-# def extractor_from_layer3(net):
-# 	layers = [net.conv1, net.block1, net.block2, net.block3, net.bn1, net.relu, nn.AvgPool2d(8), ViewFlatten()]
-# 	return nn.Sequential(*layers)
-
-# # changed
-# def extractor_from_layer2(net):
-# 	layers = [net.conv1, net.block1, net.block2]
-# 	return nn.Sequential(*layers)
-
-# def head_on_layer2(net, width, classes):
-# 	head = copy.deepcopy([net.block3, net.bn1, net.relu, nn.AvgPool2d(8)])
-# 	head.append(ViewFlatten())
-# 	head.append(nn.Linear(64 * width, classes))
-# 	return nn.Sequential(*head)
-
-# def build_model_TET(base_model):
-#     # aux_classes = 10
-#     net = base_model
-#     ext = extractor_from_layer3(net)
-    
-#     # dit is op basis van "energy & classification gebruikt zelfde (laatste) layer logits" idee
-#     # head = head_on_layer2(net, 10, classes)
-#     # head = nn.Linear(64 * 10, classes)
-
-#     # ssh = ExtractorHead(ext, head).cuda()
-#     # ssh = EnergyModel(ExtractorHead(ext, head).cuda())
-    
-#     return net, ext, head, ssh
-
-
 if __name__ == '__main__':
     main()
-
-
-#     # EBM subtask
-#     # save the results somewhere
-#     pos_sample = inputs_cls
-#     random_sample = init_random(cfg.OPTIM.BATCH_SIZE)
-#     neg_sample, _ = sample_q(net, random_sample, n_steps=20, sgld_std=0.01, sgld_lr= 0.1 ,reinit_freq=0.05, batch_size=cfg.OPTIM.BATCH_SIZE, im_sz=32, n_ch=3, device=device,  y=None)
-
-#     loss.backward()
-#     cls_optimizer.step()
-#     cls_scheduler.step()
-
-#     out_real = ssh_energy(pos_sample)
-#     energy_real = out_real[0].mean()
-#     energy_fake = ssh_energy(neg_sample)[0].mean()
-#     loss_ssh = (- (energy_real - energy_fake)) 
-#     loss += loss_ssh
