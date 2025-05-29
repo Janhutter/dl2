@@ -49,16 +49,15 @@ Our TET model achieves slightly lower accuracy than TEA on the corruption set of
   <tr>
     <td>Helping run the TET results, and discussing possible solutions to unstable energy training </td>
   </tr>
-
   </tr>
   <tr>
     <td rowspan="2">Henk</td>
-    <td>Replicating the images of Figure 5</td>
+    <td> Looking into replication of figures </td>
   </tr>
   <tr>
-  <td></td>
+    <td> Helping create code for TET </td>
   </tr>
-    <tr>
+  <tr>
     <td rowspan="2">Julian</td>
     <td>Creating TET code</td>
   </tr>
