@@ -3,7 +3,7 @@ DATA_DIR: /scratch-shared/tea3/cifar10
 RNG_SEED: 1 # we use [1, 17, 36, 91, 511]
 MODEL:
   ADAPTATION: energy
-  CHECKPOINT_PTH: ./ckpt/cifar10/WRN2810_BN/visz_epoch_8-bn.pth
+  CHECKPOINT_PTH: None
   ARCH: WRN2810_BN
   EPISODIC: False
   ADA_PARAM:
