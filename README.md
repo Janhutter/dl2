@@ -22,7 +22,7 @@ These specific results can be replicated using the `Replication of TEA` section 
 Below in Table 2, results for TET, TTT, and the ViT results are shown.\
 Our TET model achieves slightly lower accuracy than TEA on the corruption set of CIFAR-10, and significantly lower accuracy on the corruption set of CIFAR-100. TTT achieves significantly worse performance than all other TTA methods. These two findings suggest that TTA approaches requiring source training may underperform compared to purely test-time adaptation methods.
 <div style="text-align: center;">
-  <img src="extension_results.png" alt="Replication results" style="width: 60%;">
+  <img src="extension_results.png" alt="Extension results" style="width: 60%;">
 </div>
 
 
